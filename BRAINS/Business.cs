@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace BRAINS
 {
-    public partial class Form1 : Form
+    public partial class Business : Form
     {
-        public Form1()
+        public Business()
         {
             InitializeComponent();
         }
