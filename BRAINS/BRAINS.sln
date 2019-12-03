@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29326.143
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BRAINS", "BRAINS.csproj", "{6A7DA7DA-B107-43FB-9E4F-8E53DE2D86E2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BRAINS", "BRAINS.csproj", "{0E4FDFDE-60E5-44F6-AB96-E5B489105CA1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{6A7DA7DA-B107-43FB-9E4F-8E53DE2D86E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6A7DA7DA-B107-43FB-9E4F-8E53DE2D86E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6A7DA7DA-B107-43FB-9E4F-8E53DE2D86E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6A7DA7DA-B107-43FB-9E4F-8E53DE2D86E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E4FDFDE-60E5-44F6-AB96-E5B489105CA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E4FDFDE-60E5-44F6-AB96-E5B489105CA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E4FDFDE-60E5-44F6-AB96-E5B489105CA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E4FDFDE-60E5-44F6-AB96-E5B489105CA1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {0CD79AE2-7433-40AC-A234-564863AAEB74}
+		SolutionGuid = {E1D93A35-4EE4-4BF9-98DD-8F23877F7BC8}
 	EndGlobalSection
 EndGlobal
