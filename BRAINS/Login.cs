@@ -16,5 +16,10 @@ namespace BRAINS
         {
             InitializeComponent();
         }
+
+        private void loginButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
