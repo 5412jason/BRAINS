@@ -43,8 +43,13 @@
             this.submittedByHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.reviewedByHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.stenerManagementTab = new System.Windows.Forms.TabPage();
+            this.qNumTextBoxRO = new System.Windows.Forms.TextBox();
+            this.questionTextboxRO = new System.Windows.Forms.TextBox();
+            this.questionTextLabel = new System.Windows.Forms.Label();
             this.questionNumberLabel = new System.Windows.Forms.Label();
             this.listView2 = new System.Windows.Forms.ListView();
+            this.qNumber = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.questionDataHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -56,11 +61,11 @@
             this.departmentTab = new System.Windows.Forms.TabPage();
             this.accountsTab = new System.Windows.Forms.TabPage();
             this.violationsTab = new System.Windows.Forms.TabPage();
-            this.qNumber = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.questionDataHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.questionTextLabel = new System.Windows.Forms.Label();
-            this.questionTextboxRO = new System.Windows.Forms.TextBox();
-            this.qNumTextBoxRO = new System.Windows.Forms.TextBox();
+            this.removeQuestionButton = new System.Windows.Forms.Button();
+            this.modifyQuestionButton = new System.Windows.Forms.Button();
+            this.addQuestionButton = new System.Windows.Forms.Button();
+            this.deleteQuestionSetButton = new System.Windows.Forms.Button();
+            this.createQuestionSetButton = new System.Windows.Forms.Button();
             this.oversightTabControl.SuspendLayout();
             this.submissionsTab.SuspendLayout();
             this.stenerManagementTab.SuspendLayout();
@@ -181,6 +186,11 @@
             // 
             // stenerManagementTab
             // 
+            this.stenerManagementTab.Controls.Add(this.createQuestionSetButton);
+            this.stenerManagementTab.Controls.Add(this.deleteQuestionSetButton);
+            this.stenerManagementTab.Controls.Add(this.addQuestionButton);
+            this.stenerManagementTab.Controls.Add(this.modifyQuestionButton);
+            this.stenerManagementTab.Controls.Add(this.removeQuestionButton);
             this.stenerManagementTab.Controls.Add(this.qNumTextBoxRO);
             this.stenerManagementTab.Controls.Add(this.questionTextboxRO);
             this.stenerManagementTab.Controls.Add(this.questionTextLabel);
@@ -194,6 +204,32 @@
             this.stenerManagementTab.TabIndex = 1;
             this.stenerManagementTab.Text = "STENER Management";
             this.stenerManagementTab.UseVisualStyleBackColor = true;
+            // 
+            // qNumTextBoxRO
+            // 
+            this.qNumTextBoxRO.Location = new System.Drawing.Point(711, 220);
+            this.qNumTextBoxRO.Name = "qNumTextBoxRO";
+            this.qNumTextBoxRO.ReadOnly = true;
+            this.qNumTextBoxRO.Size = new System.Drawing.Size(33, 20);
+            this.qNumTextBoxRO.TabIndex = 8;
+            // 
+            // questionTextboxRO
+            // 
+            this.questionTextboxRO.Location = new System.Drawing.Point(658, 273);
+            this.questionTextboxRO.Multiline = true;
+            this.questionTextboxRO.Name = "questionTextboxRO";
+            this.questionTextboxRO.ReadOnly = true;
+            this.questionTextboxRO.Size = new System.Drawing.Size(316, 114);
+            this.questionTextboxRO.TabIndex = 7;
+            // 
+            // questionTextLabel
+            // 
+            this.questionTextLabel.AutoSize = true;
+            this.questionTextLabel.Location = new System.Drawing.Point(658, 256);
+            this.questionTextLabel.Name = "questionTextLabel";
+            this.questionTextLabel.Size = new System.Drawing.Size(52, 13);
+            this.questionTextLabel.TabIndex = 5;
+            this.questionTextLabel.Text = "Question:";
             // 
             // questionNumberLabel
             // 
@@ -216,6 +252,15 @@
             this.listView2.TabIndex = 3;
             this.listView2.UseCompatibleStateImageBehavior = false;
             this.listView2.View = System.Windows.Forms.View.Details;
+            // 
+            // qNumber
+            // 
+            this.qNumber.Text = "#";
+            // 
+            // questionDataHeader
+            // 
+            this.questionDataHeader.Text = "Question";
+            this.questionDataHeader.Width = 229;
             // 
             // listView1
             // 
@@ -304,40 +349,50 @@
             this.violationsTab.Text = "Violations";
             this.violationsTab.UseVisualStyleBackColor = true;
             // 
-            // qNumber
+            // removeQuestionButton
             // 
-            this.qNumber.Text = "#";
+            this.removeQuestionButton.Location = new System.Drawing.Point(711, 423);
+            this.removeQuestionButton.Name = "removeQuestionButton";
+            this.removeQuestionButton.Size = new System.Drawing.Size(111, 23);
+            this.removeQuestionButton.TabIndex = 9;
+            this.removeQuestionButton.Text = "Remove Question";
+            this.removeQuestionButton.UseVisualStyleBackColor = true;
             // 
-            // questionDataHeader
+            // modifyQuestionButton
             // 
-            this.questionDataHeader.Text = "Question";
-            this.questionDataHeader.Width = 229;
+            this.modifyQuestionButton.Location = new System.Drawing.Point(828, 423);
+            this.modifyQuestionButton.Name = "modifyQuestionButton";
+            this.modifyQuestionButton.Size = new System.Drawing.Size(108, 23);
+            this.modifyQuestionButton.TabIndex = 10;
+            this.modifyQuestionButton.Text = "Modify Question";
+            this.modifyQuestionButton.UseVisualStyleBackColor = true;
             // 
-            // questionTextLabel
+            // addQuestionButton
             // 
-            this.questionTextLabel.AutoSize = true;
-            this.questionTextLabel.Location = new System.Drawing.Point(658, 256);
-            this.questionTextLabel.Name = "questionTextLabel";
-            this.questionTextLabel.Size = new System.Drawing.Size(52, 13);
-            this.questionTextLabel.TabIndex = 5;
-            this.questionTextLabel.Text = "Question:";
+            this.addQuestionButton.Location = new System.Drawing.Point(764, 452);
+            this.addQuestionButton.Name = "addQuestionButton";
+            this.addQuestionButton.Size = new System.Drawing.Size(111, 23);
+            this.addQuestionButton.TabIndex = 11;
+            this.addQuestionButton.Text = "Add Question";
+            this.addQuestionButton.UseVisualStyleBackColor = true;
             // 
-            // questionTextboxRO
+            // deleteQuestionSetButton
             // 
-            this.questionTextboxRO.Location = new System.Drawing.Point(658, 273);
-            this.questionTextboxRO.Multiline = true;
-            this.questionTextboxRO.Name = "questionTextboxRO";
-            this.questionTextboxRO.ReadOnly = true;
-            this.questionTextboxRO.Size = new System.Drawing.Size(316, 114);
-            this.questionTextboxRO.TabIndex = 7;
+            this.deleteQuestionSetButton.Location = new System.Drawing.Point(746, 481);
+            this.deleteQuestionSetButton.Name = "deleteQuestionSetButton";
+            this.deleteQuestionSetButton.Size = new System.Drawing.Size(145, 23);
+            this.deleteQuestionSetButton.TabIndex = 12;
+            this.deleteQuestionSetButton.Text = "Delete Question Set";
+            this.deleteQuestionSetButton.UseVisualStyleBackColor = true;
             // 
-            // qNumTextBoxRO
+            // createQuestionSetButton
             // 
-            this.qNumTextBoxRO.Location = new System.Drawing.Point(711, 220);
-            this.qNumTextBoxRO.Name = "qNumTextBoxRO";
-            this.qNumTextBoxRO.ReadOnly = true;
-            this.qNumTextBoxRO.Size = new System.Drawing.Size(33, 20);
-            this.qNumTextBoxRO.TabIndex = 8;
+            this.createQuestionSetButton.Location = new System.Drawing.Point(746, 510);
+            this.createQuestionSetButton.Name = "createQuestionSetButton";
+            this.createQuestionSetButton.Size = new System.Drawing.Size(145, 23);
+            this.createQuestionSetButton.TabIndex = 13;
+            this.createQuestionSetButton.Text = "Create Question Set";
+            this.createQuestionSetButton.UseVisualStyleBackColor = true;
             // 
             // Oversight
             // 
@@ -390,5 +445,10 @@
         private System.Windows.Forms.TextBox qNumTextBoxRO;
         private System.Windows.Forms.TextBox questionTextboxRO;
         private System.Windows.Forms.Label questionTextLabel;
+        private System.Windows.Forms.Button createQuestionSetButton;
+        private System.Windows.Forms.Button deleteQuestionSetButton;
+        private System.Windows.Forms.Button addQuestionButton;
+        private System.Windows.Forms.Button modifyQuestionButton;
+        private System.Windows.Forms.Button removeQuestionButton;
     }
 }
