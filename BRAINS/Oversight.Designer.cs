@@ -30,24 +30,40 @@
         {
             this.oversightTabControl = new System.Windows.Forms.TabControl();
             this.submissionsTab = new System.Windows.Forms.TabPage();
-            this.stenerManagementTab = new System.Windows.Forms.TabPage();
-            this.departmentTab = new System.Windows.Forms.TabPage();
-            this.accountsTab = new System.Windows.Forms.TabPage();
-            this.violationsTab = new System.Windows.Forms.TabPage();
-            this.submittedStenerListView = new System.Windows.Forms.ListView();
-            this.approveButton = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.rejectButton = new System.Windows.Forms.Button();
+            this.approveButton = new System.Windows.Forms.Button();
+            this.submittedStenerListView = new System.Windows.Forms.ListView();
             this.id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.assignedDepartmentHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.questionCountHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.dueDateHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.submittedDateHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.statusHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.button1 = new System.Windows.Forms.Button();
             this.submittedByHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.reviewedByHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.stenerManagementTab = new System.Windows.Forms.TabPage();
+            this.questionNumberLabel = new System.Windows.Forms.Label();
+            this.listView2 = new System.Windows.Forms.ListView();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.departmentTab = new System.Windows.Forms.TabPage();
+            this.accountsTab = new System.Windows.Forms.TabPage();
+            this.violationsTab = new System.Windows.Forms.TabPage();
+            this.qNumber = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.questionDataHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.questionTextLabel = new System.Windows.Forms.Label();
+            this.questionTextboxRO = new System.Windows.Forms.TextBox();
+            this.qNumTextBoxRO = new System.Windows.Forms.TextBox();
             this.oversightTabControl.SuspendLayout();
             this.submissionsTab.SuspendLayout();
+            this.stenerManagementTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // oversightTabControl
@@ -78,8 +94,99 @@
             this.submissionsTab.Text = "Submissions";
             this.submissionsTab.UseVisualStyleBackColor = true;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(756, 226);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(213, 23);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "View Selected STENER";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // rejectButton
+            // 
+            this.rejectButton.Location = new System.Drawing.Point(802, 284);
+            this.rejectButton.Name = "rejectButton";
+            this.rejectButton.Size = new System.Drawing.Size(121, 23);
+            this.rejectButton.TabIndex = 4;
+            this.rejectButton.Text = "Reject";
+            this.rejectButton.UseVisualStyleBackColor = true;
+            // 
+            // approveButton
+            // 
+            this.approveButton.Location = new System.Drawing.Point(802, 255);
+            this.approveButton.Name = "approveButton";
+            this.approveButton.Size = new System.Drawing.Size(121, 23);
+            this.approveButton.TabIndex = 3;
+            this.approveButton.Text = "Approve";
+            this.approveButton.UseVisualStyleBackColor = true;
+            // 
+            // submittedStenerListView
+            // 
+            this.submittedStenerListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.id,
+            this.assignedDepartmentHeader,
+            this.questionCountHeader,
+            this.dueDateHeader,
+            this.submittedDateHeader,
+            this.statusHeader,
+            this.submittedByHeader,
+            this.reviewedByHeader});
+            this.submittedStenerListView.HideSelection = false;
+            this.submittedStenerListView.Location = new System.Drawing.Point(3, 6);
+            this.submittedStenerListView.Name = "submittedStenerListView";
+            this.submittedStenerListView.Size = new System.Drawing.Size(747, 561);
+            this.submittedStenerListView.TabIndex = 0;
+            this.submittedStenerListView.UseCompatibleStateImageBehavior = false;
+            this.submittedStenerListView.View = System.Windows.Forms.View.Details;
+            // 
+            // id
+            // 
+            this.id.Text = "Q-Set ID";
+            // 
+            // assignedDepartmentHeader
+            // 
+            this.assignedDepartmentHeader.Text = "Assigned Department";
+            this.assignedDepartmentHeader.Width = 127;
+            // 
+            // questionCountHeader
+            // 
+            this.questionCountHeader.Text = "Question Count";
+            this.questionCountHeader.Width = 112;
+            // 
+            // dueDateHeader
+            // 
+            this.dueDateHeader.Text = "Due Date";
+            this.dueDateHeader.Width = 82;
+            // 
+            // submittedDateHeader
+            // 
+            this.submittedDateHeader.Text = "Submitted Date";
+            this.submittedDateHeader.Width = 102;
+            // 
+            // statusHeader
+            // 
+            this.statusHeader.Text = "Status";
+            this.statusHeader.Width = 85;
+            // 
+            // submittedByHeader
+            // 
+            this.submittedByHeader.Text = "Submitted By";
+            this.submittedByHeader.Width = 93;
+            // 
+            // reviewedByHeader
+            // 
+            this.reviewedByHeader.Text = "Reviewed By";
+            this.reviewedByHeader.Width = 81;
+            // 
             // stenerManagementTab
             // 
+            this.stenerManagementTab.Controls.Add(this.qNumTextBoxRO);
+            this.stenerManagementTab.Controls.Add(this.questionTextboxRO);
+            this.stenerManagementTab.Controls.Add(this.questionTextLabel);
+            this.stenerManagementTab.Controls.Add(this.questionNumberLabel);
+            this.stenerManagementTab.Controls.Add(this.listView2);
+            this.stenerManagementTab.Controls.Add(this.listView1);
             this.stenerManagementTab.Location = new System.Drawing.Point(4, 22);
             this.stenerManagementTab.Name = "stenerManagementTab";
             this.stenerManagementTab.Padding = new System.Windows.Forms.Padding(3);
@@ -87,6 +194,85 @@
             this.stenerManagementTab.TabIndex = 1;
             this.stenerManagementTab.Text = "STENER Management";
             this.stenerManagementTab.UseVisualStyleBackColor = true;
+            // 
+            // questionNumberLabel
+            // 
+            this.questionNumberLabel.AutoSize = true;
+            this.questionNumberLabel.Location = new System.Drawing.Point(658, 223);
+            this.questionNumberLabel.Name = "questionNumberLabel";
+            this.questionNumberLabel.Size = new System.Drawing.Size(47, 13);
+            this.questionNumberLabel.TabIndex = 4;
+            this.questionNumberLabel.Text = "Number:";
+            // 
+            // listView2
+            // 
+            this.listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.qNumber,
+            this.questionDataHeader});
+            this.listView2.HideSelection = false;
+            this.listView2.Location = new System.Drawing.Point(658, 6);
+            this.listView2.Name = "listView2";
+            this.listView2.Size = new System.Drawing.Size(313, 197);
+            this.listView2.TabIndex = 3;
+            this.listView2.UseCompatibleStateImageBehavior = false;
+            this.listView2.View = System.Windows.Forms.View.Details;
+            // 
+            // listView1
+            // 
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader9,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4,
+            this.columnHeader5,
+            this.columnHeader6});
+            this.listView1.HideSelection = false;
+            this.listView1.Location = new System.Drawing.Point(3, 6);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(649, 561);
+            this.listView1.TabIndex = 1;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Q-Set ID";
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.DisplayIndex = 6;
+            this.columnHeader9.Text = "Category";
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.DisplayIndex = 1;
+            this.columnHeader2.Text = "Assigned Department";
+            this.columnHeader2.Width = 127;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.DisplayIndex = 2;
+            this.columnHeader3.Text = "Question Count";
+            this.columnHeader3.Width = 112;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.DisplayIndex = 3;
+            this.columnHeader4.Text = "Due Date";
+            this.columnHeader4.Width = 82;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.DisplayIndex = 4;
+            this.columnHeader5.Text = "Submitted Date";
+            this.columnHeader5.Width = 102;
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.DisplayIndex = 5;
+            this.columnHeader6.Text = "Status";
+            this.columnHeader6.Width = 85;
             // 
             // departmentTab
             // 
@@ -118,90 +304,40 @@
             this.violationsTab.Text = "Violations";
             this.violationsTab.UseVisualStyleBackColor = true;
             // 
-            // submittedStenerListView
+            // qNumber
             // 
-            this.submittedStenerListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.id,
-            this.assignedDepartmentHeader,
-            this.questionCountHeader,
-            this.dueDateHeader,
-            this.submittedDateHeader,
-            this.statusHeader,
-            this.submittedByHeader,
-            this.reviewedByHeader});
-            this.submittedStenerListView.HideSelection = false;
-            this.submittedStenerListView.Location = new System.Drawing.Point(3, 6);
-            this.submittedStenerListView.Name = "submittedStenerListView";
-            this.submittedStenerListView.Size = new System.Drawing.Size(747, 561);
-            this.submittedStenerListView.TabIndex = 0;
-            this.submittedStenerListView.UseCompatibleStateImageBehavior = false;
-            this.submittedStenerListView.View = System.Windows.Forms.View.Details;
+            this.qNumber.Text = "#";
             // 
-            // approveButton
+            // questionDataHeader
             // 
-            this.approveButton.Location = new System.Drawing.Point(802, 255);
-            this.approveButton.Name = "approveButton";
-            this.approveButton.Size = new System.Drawing.Size(121, 23);
-            this.approveButton.TabIndex = 3;
-            this.approveButton.Text = "Approve";
-            this.approveButton.UseVisualStyleBackColor = true;
+            this.questionDataHeader.Text = "Question";
+            this.questionDataHeader.Width = 229;
             // 
-            // rejectButton
+            // questionTextLabel
             // 
-            this.rejectButton.Location = new System.Drawing.Point(802, 284);
-            this.rejectButton.Name = "rejectButton";
-            this.rejectButton.Size = new System.Drawing.Size(121, 23);
-            this.rejectButton.TabIndex = 4;
-            this.rejectButton.Text = "Reject";
-            this.rejectButton.UseVisualStyleBackColor = true;
+            this.questionTextLabel.AutoSize = true;
+            this.questionTextLabel.Location = new System.Drawing.Point(658, 256);
+            this.questionTextLabel.Name = "questionTextLabel";
+            this.questionTextLabel.Size = new System.Drawing.Size(52, 13);
+            this.questionTextLabel.TabIndex = 5;
+            this.questionTextLabel.Text = "Question:";
             // 
-            // id
+            // questionTextboxRO
             // 
-            this.id.Text = "Q-Set ID";
+            this.questionTextboxRO.Location = new System.Drawing.Point(658, 273);
+            this.questionTextboxRO.Multiline = true;
+            this.questionTextboxRO.Name = "questionTextboxRO";
+            this.questionTextboxRO.ReadOnly = true;
+            this.questionTextboxRO.Size = new System.Drawing.Size(316, 114);
+            this.questionTextboxRO.TabIndex = 7;
             // 
-            // assignedDepartmentHeader
+            // qNumTextBoxRO
             // 
-            this.assignedDepartmentHeader.Text = "Assigned Department";
-            this.assignedDepartmentHeader.Width = 127;
-            // 
-            // questionCountHeader
-            // 
-            this.questionCountHeader.Text = "Question Count";
-            this.questionCountHeader.Width = 112;
-            // 
-            // dueDateHeader
-            // 
-            this.dueDateHeader.Text = "Due Date";
-            this.dueDateHeader.Width = 82;
-            // 
-            // submittedDateHeader
-            // 
-            this.submittedDateHeader.Text = "Submitted Date";
-            this.submittedDateHeader.Width = 102;
-            // 
-            // statusHeader
-            // 
-            this.statusHeader.Text = "Status";
-            this.statusHeader.Width = 85;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(756, 226);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(213, 23);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "View Selected STENER";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // submittedByHeader
-            // 
-            this.submittedByHeader.Text = "Submitted By";
-            this.submittedByHeader.Width = 93;
-            // 
-            // reviewedByHeader
-            // 
-            this.reviewedByHeader.Text = "Reviewed By";
-            this.reviewedByHeader.Width = 81;
+            this.qNumTextBoxRO.Location = new System.Drawing.Point(711, 220);
+            this.qNumTextBoxRO.Name = "qNumTextBoxRO";
+            this.qNumTextBoxRO.ReadOnly = true;
+            this.qNumTextBoxRO.Size = new System.Drawing.Size(33, 20);
+            this.qNumTextBoxRO.TabIndex = 8;
             // 
             // Oversight
             // 
@@ -213,6 +349,8 @@
             this.Text = "Oversight";
             this.oversightTabControl.ResumeLayout(false);
             this.submissionsTab.ResumeLayout(false);
+            this.stenerManagementTab.ResumeLayout(false);
+            this.stenerManagementTab.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -237,5 +375,20 @@
         private System.Windows.Forms.ColumnHeader statusHeader;
         private System.Windows.Forms.ColumnHeader submittedByHeader;
         private System.Windows.Forms.ColumnHeader reviewedByHeader;
+        private System.Windows.Forms.Label questionNumberLabel;
+        private System.Windows.Forms.ListView listView2;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader9;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.ColumnHeader qNumber;
+        private System.Windows.Forms.ColumnHeader questionDataHeader;
+        private System.Windows.Forms.TextBox qNumTextBoxRO;
+        private System.Windows.Forms.TextBox questionTextboxRO;
+        private System.Windows.Forms.Label questionTextLabel;
     }
 }
