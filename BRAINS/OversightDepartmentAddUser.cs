@@ -10,21 +10,11 @@ using System.Windows.Forms;
 
 namespace BRAINS
 {
-    public partial class Oversight : Form
+    public partial class OversightDepartmentAddUser : Form
     {
-        public Oversight()
+        public OversightDepartmentAddUser()
         {
             InitializeComponent();
-        }
-
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void accountsTab_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

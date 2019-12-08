@@ -64,6 +64,30 @@
     <Compile Include="Oversight.Designer.cs">
       <DependentUpon>Oversight.cs</DependentUpon>
     </Compile>
+    <Compile Include="OversightAccountsUsernameChange.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OversightAccountsUsernameChange.Designer.cs">
+      <DependentUpon>OversightAccountsUsernameChange.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OversightAddDepartment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OversightAddDepartment.Designer.cs">
+      <DependentUpon>OversightAddDepartment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OversightDepartmentAddUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OversightDepartmentAddUser.Designer.cs">
+      <DependentUpon>OversightDepartmentAddUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OversightPasswordChange.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OversightPasswordChange.Designer.cs">
+      <DependentUpon>OversightPasswordChange.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Login.resx">
@@ -71,6 +95,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Oversight.resx">
       <DependentUpon>Oversight.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OversightAccountsUsernameChange.resx">
+      <DependentUpon>OversightAccountsUsernameChange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OversightAddDepartment.resx">
+      <DependentUpon>OversightAddDepartment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OversightDepartmentAddUser.resx">
+      <DependentUpon>OversightDepartmentAddUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OversightPasswordChange.resx">
+      <DependentUpon>OversightPasswordChange.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
