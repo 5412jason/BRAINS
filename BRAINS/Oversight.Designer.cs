@@ -34,9 +34,15 @@
             this.departmentTab = new System.Windows.Forms.TabPage();
             this.accountsTab = new System.Windows.Forms.TabPage();
             this.violationsTab = new System.Windows.Forms.TabPage();
-            this.OversightViolationList = new System.Windows.Forms.ListView();
-            this.refreshButton = new System.Windows.Forms.Button();
             this.removeViolation = new System.Windows.Forms.Button();
+            this.refreshButton = new System.Windows.Forms.Button();
+            this.OversightViolationList = new System.Windows.Forms.ListView();
+            this.editViolation = new System.Windows.Forms.Button();
+            this.StenerSetUID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Department = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Severity = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Description = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.violatedDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.oversightTabControl.SuspendLayout();
             this.violationsTab.SuspendLayout();
             this.SuspendLayout();
@@ -97,6 +103,7 @@
             // 
             // violationsTab
             // 
+            this.violationsTab.Controls.Add(this.editViolation);
             this.violationsTab.Controls.Add(this.removeViolation);
             this.violationsTab.Controls.Add(this.refreshButton);
             this.violationsTab.Controls.Add(this.OversightViolationList);
@@ -109,14 +116,14 @@
             this.violationsTab.UseVisualStyleBackColor = true;
             this.violationsTab.Click += new System.EventHandler(this.violationsTab_Click);
             // 
-            // OversightViolationList
+            // removeViolation
             // 
-            this.OversightViolationList.HideSelection = false;
-            this.OversightViolationList.Location = new System.Drawing.Point(0, 49);
-            this.OversightViolationList.Name = "OversightViolationList";
-            this.OversightViolationList.Size = new System.Drawing.Size(700, 524);
-            this.OversightViolationList.TabIndex = 0;
-            this.OversightViolationList.UseCompatibleStateImageBehavior = false;
+            this.removeViolation.Location = new System.Drawing.Point(762, 230);
+            this.removeViolation.Name = "removeViolation";
+            this.removeViolation.Size = new System.Drawing.Size(107, 32);
+            this.removeViolation.TabIndex = 2;
+            this.removeViolation.Text = "Remove Violation";
+            this.removeViolation.UseVisualStyleBackColor = true;
             // 
             // refreshButton
             // 
@@ -128,14 +135,56 @@
             this.refreshButton.UseVisualStyleBackColor = true;
             this.refreshButton.Click += new System.EventHandler(this.Refresh_Click);
             // 
-            // removeViolation
+            // OversightViolationList
             // 
-            this.removeViolation.Location = new System.Drawing.Point(762, 179);
-            this.removeViolation.Name = "removeViolation";
-            this.removeViolation.Size = new System.Drawing.Size(107, 32);
-            this.removeViolation.TabIndex = 2;
-            this.removeViolation.Text = "Remove Violation";
-            this.removeViolation.UseVisualStyleBackColor = true;
+            this.OversightViolationList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.StenerSetUID,
+            this.Department,
+            this.Severity,
+            this.Description,
+            this.violatedDate});
+            this.OversightViolationList.HideSelection = false;
+            this.OversightViolationList.Location = new System.Drawing.Point(0, 49);
+            this.OversightViolationList.Name = "OversightViolationList";
+            this.OversightViolationList.Size = new System.Drawing.Size(700, 524);
+            this.OversightViolationList.TabIndex = 0;
+            this.OversightViolationList.UseCompatibleStateImageBehavior = false;
+            this.OversightViolationList.View = System.Windows.Forms.View.Details;
+            // 
+            // editViolation
+            // 
+            this.editViolation.Location = new System.Drawing.Point(762, 140);
+            this.editViolation.Name = "editViolation";
+            this.editViolation.Size = new System.Drawing.Size(107, 32);
+            this.editViolation.TabIndex = 3;
+            this.editViolation.Text = "Edit Violation";
+            this.editViolation.UseVisualStyleBackColor = true;
+            this.editViolation.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // StenerSetUID
+            // 
+            this.StenerSetUID.Text = "Document";
+            this.StenerSetUID.Width = 91;
+            // 
+            // Department
+            // 
+            this.Department.Text = "Department";
+            this.Department.Width = 83;
+            // 
+            // Severity
+            // 
+            this.Severity.Text = "Severity";
+            this.Severity.Width = 79;
+            // 
+            // Description
+            // 
+            this.Description.Text = "Description";
+            this.Description.Width = 91;
+            // 
+            // violatedDate
+            // 
+            this.violatedDate.Text = "Date Violated";
+            this.violatedDate.Width = 88;
             // 
             // Oversight
             // 
@@ -162,5 +211,11 @@
         private System.Windows.Forms.ListView OversightViolationList;
         private System.Windows.Forms.Button refreshButton;
         private System.Windows.Forms.Button removeViolation;
+        private System.Windows.Forms.Button editViolation;
+        private System.Windows.Forms.ColumnHeader StenerSetUID;
+        private System.Windows.Forms.ColumnHeader Department;
+        private System.Windows.Forms.ColumnHeader Severity;
+        private System.Windows.Forms.ColumnHeader Description;
+        private System.Windows.Forms.ColumnHeader violatedDate;
     }
 }
