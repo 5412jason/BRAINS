@@ -72,6 +72,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Question.cs" />
+    <Compile Include="QuestionSet.cs" />
     <Compile Include="SqlManager.cs" />
     <Compile Include="StenerManagement.cs" />
     <Compile Include="UserData.cs" />
