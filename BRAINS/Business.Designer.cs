@@ -31,7 +31,10 @@
             this.businessTabControl = new System.Windows.Forms.TabControl();
             this.completeStenerTab = new System.Windows.Forms.TabPage();
             this.violationTab = new System.Windows.Forms.TabPage();
+            this.CompleteStenerDataGridView = new System.Windows.Forms.DataGridView();
             this.businessTabControl.SuspendLayout();
+            this.completeStenerTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CompleteStenerDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // businessTabControl
@@ -47,6 +50,7 @@
             // 
             // completeStenerTab
             // 
+            this.completeStenerTab.Controls.Add(this.CompleteStenerDataGridView);
             this.completeStenerTab.Location = new System.Drawing.Point(4, 22);
             this.completeStenerTab.Name = "completeStenerTab";
             this.completeStenerTab.Padding = new System.Windows.Forms.Padding(3);
@@ -65,6 +69,15 @@
             this.violationTab.Text = "Violations";
             this.violationTab.UseVisualStyleBackColor = true;
             // 
+            // CompleteStenerDataGridView
+            // 
+            this.CompleteStenerDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.CompleteStenerDataGridView.Location = new System.Drawing.Point(9, 5);
+            this.CompleteStenerDataGridView.Name = "CompleteStenerDataGridView";
+            this.CompleteStenerDataGridView.Size = new System.Drawing.Size(780, 279);
+            this.CompleteStenerDataGridView.TabIndex = 0;
+            this.CompleteStenerDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
             // Business
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -73,7 +86,10 @@
             this.Controls.Add(this.businessTabControl);
             this.Name = "Business";
             this.Text = "Business";
+            this.Load += new System.EventHandler(this.Business_Load);
             this.businessTabControl.ResumeLayout(false);
+            this.completeStenerTab.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.CompleteStenerDataGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -83,5 +99,6 @@
         private System.Windows.Forms.TabControl businessTabControl;
         private System.Windows.Forms.TabPage completeStenerTab;
         private System.Windows.Forms.TabPage violationTab;
+        private System.Windows.Forms.DataGridView CompleteStenerDataGridView;
     }
 }

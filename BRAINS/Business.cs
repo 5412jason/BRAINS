@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Configuration;
+using System.Data.SqlClient;
 
 namespace BRAINS
 {
@@ -15,6 +17,40 @@ namespace BRAINS
         public Business()
         {
             InitializeComponent();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void Business_Load(object sender, EventArgs e)
+        {
+            CompleteStenerDataGridView.DataSource = GetDepartmentList();
+        }
+
+        private DataTable GetDepartmentList()
+        {
+            DataTable departmentList = new DataTable();
+
+            string connString = ConfigurationManager.ConnectionStrings["Brains"].ConnectionString;
+
+            using (SqlConnection con = new SqlConnection(connString))
+            {
+
+                using (SqlCommand cmd = new SqlCommand("SELECT * FROM StenerTable", con))
+                {
+
+                    con.Open();
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    departmentList.Load(reader);
+
+                }
+
+            }
+            return departmentList;
         }
     }
 }
