@@ -16,5 +16,20 @@ namespace BRAINS
         {
             InitializeComponent();
         }
+
+        private void violationsTab_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Refresh_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

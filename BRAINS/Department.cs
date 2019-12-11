@@ -8,5 +8,17 @@ namespace BRAINS
 {
     class Department
     {
+        private int departmentUID;
+        public int DepartmentUID
+        {
+            get
+            {
+                return departmentUID;
+            }
+            set
+            {
+                departmentUID = value;
+            }
+        }
     }
 }
