@@ -15,7 +15,7 @@ namespace BRAINS
         private string category;
         private DateTime dueDate;
         private DateTime submittedDate;
-        private int status;
+        private string status;
         private int priority;
 
         public int UniqueID { get => uniqueID; set => uniqueID = value; }
@@ -24,7 +24,7 @@ namespace BRAINS
         public string Category { get => category; set => category = value; }
         public DateTime DueDate { get => dueDate; set => dueDate = value; }
         public DateTime SubmittedDate { get => submittedDate; set => submittedDate = value; }
-        public int Status { get => status; set => status = value; }
+        public string Status { get => status; set => status = value; }
         public int Priority { get => priority; set => priority = value; }
         internal List<Question> Questions { get => questions; set => questions = value; }
     }

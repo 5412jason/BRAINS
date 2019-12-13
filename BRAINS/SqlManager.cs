@@ -45,13 +45,30 @@ namespace BRAINS
                 List<DataRow> qSetRows = new List<DataRow>();
                 List<int> qSetIds = new List<int>();
 
-                foreach(DataRow row in questionsDataTable.Rows)
+                foreach (DataRow row in questionsDataTable.Rows)
                 {
                     if (qSetIds.Contains(row.Field<int>("StenerSetUID")) == false)
                     {
                         qSetIds.Add(row.Field<int>("StenerSetUID"));
                         qSetRows.Add(row);
                     }
+                }
+
+                List<QuestionSet> questionSets = new List<QuestionSet>();
+                foreach (DataRow row in qSetRows)
+                {
+                    QuestionSet qSet = new QuestionSet();
+                    qSet.UniqueID = row.Field<int>("StenerSetUID");
+                    qSet.AssignedDepartment = row.Field<int>("DepartmentUID");
+                    qSet.Category = row.Field<string>("Categroy");
+                    qSet.Priority = row.Field<int>("Priority");
+                    qSet.DueDate = row.Field<DateTime>("DueDate");
+                    qSet.Status = row.Field<String>("Status");
+                    //qSet.SubmittedDate = row.Field<DateTime>("SubmittedDate");
+
+                    DataTable questionTable = QueryDatabase("SELECT * FROM QuestionTable");
+
+                    questionSets.Add(qSet);
                 }
             }
             catch
