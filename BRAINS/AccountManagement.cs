@@ -9,15 +9,15 @@ namespace BRAINS
     class AccountManagement
     {
 
-        public void modifyUser()
+        public void changePassword()
         {
 
         }
-        public void addUser()
+        public void createUser()
         {
 
         }
-        public void removeUser()
+        public void deleteUser()
         {
 
         }
