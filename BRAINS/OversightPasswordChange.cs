@@ -41,5 +41,15 @@ namespace BRAINS
         {
 
         }
+
+        private void oversightPasswordChangeDialogOK_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void oversightPasswordChangeDialogCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
