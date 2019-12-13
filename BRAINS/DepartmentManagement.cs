@@ -9,44 +9,38 @@ namespace BRAINS
     class DepartmentManagement
     {
         //Assigned value to be updated with each new highlight of an entry in Department panel of Oversight UI.
-        private int currentDepartmentUUID;
         SqlManager mySqlManager = new SqlManager();
 
-        public List<UserData> getAllUsersInDepartment()
+        public List<UserData> getAllUsersInDepartment(int departmentUID)
         {
-            List<UserData> allUsers = mySqlManager.getAllUsers(currentDepartmentUUID);
+            List<UserData> allUsers = mySqlManager.GetAllUsers(departmentUID);
             return allUsers;
         }
 
         public List<Department> getDepartments()
         {
-            List<Department> allDepartments = mySqlManager.getAllDepartments();
+            List<Department> allDepartments = mySqlManager.GetAllDepartments();
             return allDepartments;
         }
 
         public void addDepartment(Department newDepartment)
         {
-            mySqlManager.addDepartment(NewDepartment);
+            mySqlManager.AddDepartment(newDepartment);
         }
 
-        public void addDeparmentUser(Department newUser)
+        public void addDeparmentUser(UserData user)
         {
-            mySqlManager.get
+            mySqlManager.ModifyUser(user);
         }
 
-        public void removeDeparment()
+        public void removeDeparment(int departmentUID)
         {
-
+            mySqlManager.RemoveDepartment(departmentUID);
         }
 
-        public void removeDeparmentUser()
+        public void removeDeparmentUser(UserData user)
         {
-
-        }
-
-        public void refreshDepartment(int deptUUID)
-        {
-
+            mySqlManager.ModifyUser(user);
         }
     }
 }
