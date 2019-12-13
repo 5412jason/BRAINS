@@ -43,6 +43,11 @@
             this.submittedByHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.reviewedByHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.stenerManagementTab = new System.Windows.Forms.TabPage();
+            this.createQuestionSetButton = new System.Windows.Forms.Button();
+            this.deleteQuestionSetButton = new System.Windows.Forms.Button();
+            this.addQuestionButton = new System.Windows.Forms.Button();
+            this.modifyQuestionButton = new System.Windows.Forms.Button();
+            this.removeQuestionButton = new System.Windows.Forms.Button();
             this.qNumTextBoxRO = new System.Windows.Forms.TextBox();
             this.questionTextboxRO = new System.Windows.Forms.TextBox();
             this.questionTextLabel = new System.Windows.Forms.Label();
@@ -79,26 +84,23 @@
             this.Department = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Permissions = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.violationsTab = new System.Windows.Forms.TabPage();
-            this.removeQuestionButton = new System.Windows.Forms.Button();
-            this.modifyQuestionButton = new System.Windows.Forms.Button();
-            this.addQuestionButton = new System.Windows.Forms.Button();
-            this.deleteQuestionSetButton = new System.Windows.Forms.Button();
-            this.createQuestionSetButton = new System.Windows.Forms.Button();
-            this.OversightViolationList = new System.Windows.Forms.ListView();
             this.editViolation = new System.Windows.Forms.Button();
             this.removeViolation = new System.Windows.Forms.Button();
             this.violationrefreshButton = new System.Windows.Forms.Button();
+            this.OversightViolationList = new System.Windows.Forms.ListView();
             this.oversightStenerSetUID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.oversightDepartment = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.oversightSeverity = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.oversightDescription = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.oversightViolatedDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.OversightAccountsAddUser = new System.Windows.Forms.Button();
+            this.OversightAccountsRemoveUser = new System.Windows.Forms.Button();
             this.oversightTabControl.SuspendLayout();
             this.submissionsTab.SuspendLayout();
             this.stenerManagementTab.SuspendLayout();
-            this.violationsTab.SuspendLayout();
             this.departmentTab.SuspendLayout();
             this.accountsTab.SuspendLayout();
+            this.violationsTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // oversightTabControl
@@ -234,6 +236,51 @@
             this.stenerManagementTab.TabIndex = 1;
             this.stenerManagementTab.Text = "STENER Management";
             this.stenerManagementTab.UseVisualStyleBackColor = true;
+            // 
+            // createQuestionSetButton
+            // 
+            this.createQuestionSetButton.Location = new System.Drawing.Point(746, 510);
+            this.createQuestionSetButton.Name = "createQuestionSetButton";
+            this.createQuestionSetButton.Size = new System.Drawing.Size(145, 23);
+            this.createQuestionSetButton.TabIndex = 13;
+            this.createQuestionSetButton.Text = "Create Question Set";
+            this.createQuestionSetButton.UseVisualStyleBackColor = true;
+            // 
+            // deleteQuestionSetButton
+            // 
+            this.deleteQuestionSetButton.Location = new System.Drawing.Point(746, 481);
+            this.deleteQuestionSetButton.Name = "deleteQuestionSetButton";
+            this.deleteQuestionSetButton.Size = new System.Drawing.Size(145, 23);
+            this.deleteQuestionSetButton.TabIndex = 12;
+            this.deleteQuestionSetButton.Text = "Delete Question Set";
+            this.deleteQuestionSetButton.UseVisualStyleBackColor = true;
+            // 
+            // addQuestionButton
+            // 
+            this.addQuestionButton.Location = new System.Drawing.Point(764, 452);
+            this.addQuestionButton.Name = "addQuestionButton";
+            this.addQuestionButton.Size = new System.Drawing.Size(111, 23);
+            this.addQuestionButton.TabIndex = 11;
+            this.addQuestionButton.Text = "Add Question";
+            this.addQuestionButton.UseVisualStyleBackColor = true;
+            // 
+            // modifyQuestionButton
+            // 
+            this.modifyQuestionButton.Location = new System.Drawing.Point(828, 423);
+            this.modifyQuestionButton.Name = "modifyQuestionButton";
+            this.modifyQuestionButton.Size = new System.Drawing.Size(108, 23);
+            this.modifyQuestionButton.TabIndex = 10;
+            this.modifyQuestionButton.Text = "Modify Question";
+            this.modifyQuestionButton.UseVisualStyleBackColor = true;
+            // 
+            // removeQuestionButton
+            // 
+            this.removeQuestionButton.Location = new System.Drawing.Point(711, 423);
+            this.removeQuestionButton.Name = "removeQuestionButton";
+            this.removeQuestionButton.Size = new System.Drawing.Size(111, 23);
+            this.removeQuestionButton.TabIndex = 9;
+            this.removeQuestionButton.Text = "Remove Question";
+            this.removeQuestionButton.UseVisualStyleBackColor = true;
             // 
             // qNumTextBoxRO
             // 
@@ -449,6 +496,8 @@
             // 
             // accountsTab
             // 
+            this.accountsTab.Controls.Add(this.OversightAccountsRemoveUser);
+            this.accountsTab.Controls.Add(this.OversightAccountsAddUser);
             this.accountsTab.Controls.Add(this.refreshButtonAccounts);
             this.accountsTab.Controls.Add(this.changePasswordButton);
             this.accountsTab.Controls.Add(this.changeUsernameButton);
@@ -615,50 +664,24 @@
             this.oversightViolatedDate.Text = "Date Violated";
             this.oversightViolatedDate.Width = 88;
             // 
-            // removeQuestionButton
+            // OversightAccountsAddUser
             // 
-            this.removeQuestionButton.Location = new System.Drawing.Point(711, 423);
-            this.removeQuestionButton.Name = "removeQuestionButton";
-            this.removeQuestionButton.Size = new System.Drawing.Size(111, 23);
-            this.removeQuestionButton.TabIndex = 9;
-            this.removeQuestionButton.Text = "Remove Question";
-            this.removeQuestionButton.UseVisualStyleBackColor = true;
+            this.OversightAccountsAddUser.Location = new System.Drawing.Point(781, 140);
+            this.OversightAccountsAddUser.Name = "OversightAccountsAddUser";
+            this.OversightAccountsAddUser.Size = new System.Drawing.Size(128, 23);
+            this.OversightAccountsAddUser.TabIndex = 6;
+            this.OversightAccountsAddUser.Text = "Add User";
+            this.OversightAccountsAddUser.UseVisualStyleBackColor = true;
+            this.OversightAccountsAddUser.Click += new System.EventHandler(this.OversightAccountsAddUser_Click);
             // 
-            // modifyQuestionButton
+            // OversightAccountsRemoveUser
             // 
-            this.modifyQuestionButton.Location = new System.Drawing.Point(828, 423);
-            this.modifyQuestionButton.Name = "modifyQuestionButton";
-            this.modifyQuestionButton.Size = new System.Drawing.Size(108, 23);
-            this.modifyQuestionButton.TabIndex = 10;
-            this.modifyQuestionButton.Text = "Modify Question";
-            this.modifyQuestionButton.UseVisualStyleBackColor = true;
-            // 
-            // addQuestionButton
-            // 
-            this.addQuestionButton.Location = new System.Drawing.Point(764, 452);
-            this.addQuestionButton.Name = "addQuestionButton";
-            this.addQuestionButton.Size = new System.Drawing.Size(111, 23);
-            this.addQuestionButton.TabIndex = 11;
-            this.addQuestionButton.Text = "Add Question";
-            this.addQuestionButton.UseVisualStyleBackColor = true;
-            // 
-            // deleteQuestionSetButton
-            // 
-            this.deleteQuestionSetButton.Location = new System.Drawing.Point(746, 481);
-            this.deleteQuestionSetButton.Name = "deleteQuestionSetButton";
-            this.deleteQuestionSetButton.Size = new System.Drawing.Size(145, 23);
-            this.deleteQuestionSetButton.TabIndex = 12;
-            this.deleteQuestionSetButton.Text = "Delete Question Set";
-            this.deleteQuestionSetButton.UseVisualStyleBackColor = true;
-            // 
-            // createQuestionSetButton
-            // 
-            this.createQuestionSetButton.Location = new System.Drawing.Point(746, 510);
-            this.createQuestionSetButton.Name = "createQuestionSetButton";
-            this.createQuestionSetButton.Size = new System.Drawing.Size(145, 23);
-            this.createQuestionSetButton.TabIndex = 13;
-            this.createQuestionSetButton.Text = "Create Question Set";
-            this.createQuestionSetButton.UseVisualStyleBackColor = true;
+            this.OversightAccountsRemoveUser.Location = new System.Drawing.Point(781, 182);
+            this.OversightAccountsRemoveUser.Name = "OversightAccountsRemoveUser";
+            this.OversightAccountsRemoveUser.Size = new System.Drawing.Size(128, 23);
+            this.OversightAccountsRemoveUser.TabIndex = 7;
+            this.OversightAccountsRemoveUser.Text = "Remove User";
+            this.OversightAccountsRemoveUser.UseVisualStyleBackColor = true;
             // 
             // Oversight
             // 
@@ -672,9 +695,9 @@
             this.submissionsTab.ResumeLayout(false);
             this.stenerManagementTab.ResumeLayout(false);
             this.stenerManagementTab.PerformLayout();
-            this.violationsTab.ResumeLayout(false);
             this.departmentTab.ResumeLayout(false);
             this.accountsTab.ResumeLayout(false);
+            this.violationsTab.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -746,5 +769,7 @@
         private System.Windows.Forms.ListView memberList;
         private System.Windows.Forms.ColumnHeader Members;
         private System.Windows.Forms.ColumnHeader Departments;
+        private System.Windows.Forms.Button OversightAccountsRemoveUser;
+        private System.Windows.Forms.Button OversightAccountsAddUser;
     }
 }
