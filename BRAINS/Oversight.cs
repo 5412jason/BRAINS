@@ -17,19 +17,38 @@ namespace BRAINS
             InitializeComponent();
         }
 
-        private void violationsTab_Click(object sender, EventArgs e)
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void Refresh_Click(object sender, EventArgs e)
+        private void accountsTab_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void addDepartmentButton_Click(object sender, EventArgs e)
         {
+            OversightAddDepartment form = new OversightAddDepartment();
+            form.Show();
+        }
 
+        private void addUserButton_Click(object sender, EventArgs e)
+        {
+            OversightDepartmentAddUser form = new OversightDepartmentAddUser();
+            form.Show();
+        }
+
+        private void changeUsernameButton_Click(object sender, EventArgs e)
+        {
+            OversightAccountsUsernameChange form = new OversightAccountsUsernameChange();
+            form.Show();
+        }
+
+        private void changePasswordButton_Click(object sender, EventArgs e)
+        {
+            OversightPasswordChange form = new OversightPasswordChange();
+            form.Show();
         }
     }
 }
