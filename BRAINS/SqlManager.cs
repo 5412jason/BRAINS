@@ -40,9 +40,19 @@ namespace BRAINS
         {
             try
             {
-                DataTable questionSets = QueryDatabase("SELECT * FROM QuestionTable");
+                DataTable questionsDataTable = QueryDatabase("SELECT * FROM QuestionTable");
 
-                
+                List<DataRow> qSetRows = new List<DataRow>();
+                List<int> qSetIds = new List<int>();
+
+                foreach(DataRow row in questionsDataTable.Rows)
+                {
+                    if (qSetIds.Contains(row.Field<int>("StenerSetUID")) == false)
+                    {
+                        qSetIds.Add(row.Field<int>("StenerSetUID"));
+                        qSetRows.Add(row);
+                    }
+                }
             }
             catch
             {
