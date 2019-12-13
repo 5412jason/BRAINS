@@ -8,5 +8,18 @@ namespace BRAINS
 {
     class AccountManagement
     {
+
+        public void modifyUser()
+        {
+
+        }
+        public void addUser()
+        {
+
+        }
+        public void removeUser()
+        {
+
+        }
     }
 }
