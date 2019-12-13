@@ -9,10 +9,10 @@ using System.Configuration;
 
 namespace BRAINS
 {
-    class SqlManager
+    static class SqlManager
     {
 
-        private DataTable QueryDatabase(string query)
+        static private DataTable QueryDatabase(string query)
         {
             DataTable dataTable = new DataTable();
 
@@ -36,7 +36,7 @@ namespace BRAINS
             return dataTable;
         }
 
-        public List<QuestionSet> GetAllQuestionSets()
+        static public List<QuestionSet> GetAllQuestionSets()
         {
             try
             {
@@ -94,29 +94,41 @@ namespace BRAINS
             }
         }
 
-        public QuestionSet FindQuestionSet()
+        static public QuestionSet FindQuestionSet()
         {
+
             return new QuestionSet();
         }
 
-        public bool ModifyQuestionSet()
+        static public bool ModifyQuestionSet(QuestionSet updatedQSet)
         {
             return true;
         }
 
-        public bool AddQuestionSet()
+        static public bool AddQuestion(QuestionSet questionSet, Question question)
+        {
+            return false;
+        }
+
+        static public bool RemoveQuestion(int questionUID)
+        {
+            return false;
+        }
+
+        static public bool ModifyQuestion(Question question)
+        {
+            return false;
+        }
+
+        static public bool AddQuestionSet(QuestionSet questionSet)
         {
             return true;
         }
 
-        public bool RemoveQuestionSet()
+        static public bool RemoveQuestionSet(int questionSetUID)
         {
             return true;
         }
 
-        // Retreive stener database values
-
-       
-        // Retrieve violation database values
     }
 }
