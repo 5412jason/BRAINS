@@ -66,17 +66,32 @@ namespace BRAINS
                     qSet.Status = row.Field<String>("Status");
                     //qSet.SubmittedDate = row.Field<DateTime>("SubmittedDate");
 
+                    qSet.Questions = new List<Question>();
+
                     DataTable questionTable = QueryDatabase("SELECT * FROM QuestionTable");
+
+                    foreach(DataRow questionRow in questionTable.Rows)
+                    {
+                        Question question = new Question();
+                        question.QuestionID = questionRow.Field<int>("QuestionID");
+                        question.QuestionText = questionRow.Field<string>("Question");
+                        question.Answer = questionRow.Field<string>("Answer");
+                        question.EvidenceLocation = questionRow.Field<string>("LocationEvidence");
+                        //question.Compliance = questionRow.Field<bool>("Compliance");
+                        //question.SolutionPlan = questionRow.Field<string>("PlanForSolution");
+                        //violated?
+                        qSet.Questions.Add(question);
+                    }
 
                     questionSets.Add(qSet);
                 }
+
+                return questionSets;
             }
             catch
             {
                 return new List<QuestionSet>();
             }
-            
-            return new List<QuestionSet>();
         }
 
         public QuestionSet FindQuestionSet()
