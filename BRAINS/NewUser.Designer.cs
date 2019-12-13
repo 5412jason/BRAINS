@@ -32,10 +32,10 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.NewUserUsernameTextbox = new System.Windows.Forms.TextBox();
+            this.NewUserPasswordTextbox = new System.Windows.Forms.TextBox();
+            this.NewUserPasswordConfirmTextbox = new System.Windows.Forms.TextBox();
+            this.NewUserDepartmentComboBox = new System.Windows.Forms.ComboBox();
             this.newUserOK = new System.Windows.Forms.Button();
             this.newUserCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -76,34 +76,34 @@
             this.label4.TabIndex = 3;
             this.label4.Text = "Department Assignment:";
             // 
-            // textBox1
+            // NewUserUsernameTextbox
             // 
-            this.textBox1.Location = new System.Drawing.Point(142, 6);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(224, 20);
-            this.textBox1.TabIndex = 4;
+            this.NewUserUsernameTextbox.Location = new System.Drawing.Point(142, 6);
+            this.NewUserUsernameTextbox.Name = "NewUserUsernameTextbox";
+            this.NewUserUsernameTextbox.Size = new System.Drawing.Size(224, 20);
+            this.NewUserUsernameTextbox.TabIndex = 4;
             // 
-            // textBox2
+            // NewUserPasswordTextbox
             // 
-            this.textBox2.Location = new System.Drawing.Point(142, 33);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(224, 20);
-            this.textBox2.TabIndex = 5;
+            this.NewUserPasswordTextbox.Location = new System.Drawing.Point(142, 33);
+            this.NewUserPasswordTextbox.Name = "NewUserPasswordTextbox";
+            this.NewUserPasswordTextbox.Size = new System.Drawing.Size(224, 20);
+            this.NewUserPasswordTextbox.TabIndex = 5;
             // 
-            // textBox3
+            // NewUserPasswordConfirmTextbox
             // 
-            this.textBox3.Location = new System.Drawing.Point(142, 60);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(224, 20);
-            this.textBox3.TabIndex = 6;
+            this.NewUserPasswordConfirmTextbox.Location = new System.Drawing.Point(142, 60);
+            this.NewUserPasswordConfirmTextbox.Name = "NewUserPasswordConfirmTextbox";
+            this.NewUserPasswordConfirmTextbox.Size = new System.Drawing.Size(224, 20);
+            this.NewUserPasswordConfirmTextbox.TabIndex = 6;
             // 
-            // comboBox1
+            // NewUserDepartmentComboBox
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(142, 87);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(224, 21);
-            this.comboBox1.TabIndex = 7;
+            this.NewUserDepartmentComboBox.FormattingEnabled = true;
+            this.NewUserDepartmentComboBox.Location = new System.Drawing.Point(142, 87);
+            this.NewUserDepartmentComboBox.Name = "NewUserDepartmentComboBox";
+            this.NewUserDepartmentComboBox.Size = new System.Drawing.Size(224, 21);
+            this.NewUserDepartmentComboBox.TabIndex = 7;
             // 
             // newUserOK
             // 
@@ -132,10 +132,10 @@
             this.ClientSize = new System.Drawing.Size(383, 165);
             this.Controls.Add(this.newUserCancel);
             this.Controls.Add(this.newUserOK);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.NewUserDepartmentComboBox);
+            this.Controls.Add(this.NewUserPasswordConfirmTextbox);
+            this.Controls.Add(this.NewUserPasswordTextbox);
+            this.Controls.Add(this.NewUserUsernameTextbox);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -154,10 +154,10 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.TextBox NewUserUsernameTextbox;
+        private System.Windows.Forms.TextBox NewUserPasswordTextbox;
+        private System.Windows.Forms.TextBox NewUserPasswordConfirmTextbox;
+        private System.Windows.Forms.ComboBox NewUserDepartmentComboBox;
         private System.Windows.Forms.Button newUserOK;
         private System.Windows.Forms.Button newUserCancel;
     }

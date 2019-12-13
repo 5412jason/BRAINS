@@ -41,13 +41,14 @@ namespace BRAINS
 
         private void changeUsernameButton_Click(object sender, EventArgs e)
         {
-            OversightAccountsUsernameChange form = new OversightAccountsUsernameChange();
+            OversightAccountsUsernameChange form = new OversightAccountsUsernameChange(Int32.Parse(accountList.SelectedItems.ToString()));
             form.Show();
         }
 
         private void changePasswordButton_Click(object sender, EventArgs e)
         {
-            OversightPasswordChange form = new OversightPasswordChange();
+            //Verify Line 51 is working.
+            OversightPasswordChange form = new OversightPasswordChange(Int32.Parse(accountList.SelectedItems.ToString()));
             form.Show();
         }
 
@@ -55,6 +56,16 @@ namespace BRAINS
         {
             NewUser form = new NewUser();
             form.Show();
+        }
+
+        private void Oversight_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void OversightAccountsRemoveUser_Click(object sender, EventArgs e)
+        {
+         
         }
     }
 }

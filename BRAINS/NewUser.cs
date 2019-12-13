@@ -24,6 +24,15 @@ namespace BRAINS
 
         private void newUserOK_Click(object sender, EventArgs e)
         {
+            UserData newUserObj = new UserData();
+
+            if (NewUserPasswordTextbox.Text == NewUserPasswordConfirmTextbox.Text)
+            {
+                newUserObj.Username = NewUserUsernameTextbox.Text;
+                newUserObj.Password = NewUserPasswordTextbox.Text;
+                newUserObj.DepartmentName = NewUserDepartmentComboBox.Text;
+            }
+            
             this.Close();
         }
 

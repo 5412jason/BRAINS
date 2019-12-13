@@ -12,9 +12,17 @@ namespace BRAINS
 {
     public partial class OversightAccountsUsernameChange : Form
     {
+        private int uuid;
+
         public OversightAccountsUsernameChange()
         {
             InitializeComponent();
+        }
+
+        public OversightAccountsUsernameChange(int uuid)
+        {
+            InitializeComponent();
+            this.uuid = uuid;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -39,6 +47,19 @@ namespace BRAINS
 
         private void oversightAccountsUsernameChangeOK_Click(object sender, EventArgs e)
         {
+            string currentUsername = SqlManager.FindUser(uuid).Username;
+
+            if (currentUsername == OversightAccountsUsernameChangeCurrentTextbox.Text);
+            {
+                UserData userUpdatedPassword = SqlManager.FindUser(uuid).Password;
+                userUpdatedPassword.Username = OversightAccountsUsernameChangeNewTextbox.Text;
+                userUpdatedPassword.UUID = uuid;
+                userUpdatedPassword.DepartmentName = SqlManager.FindUser(uuid).DepartmentName;
+                userUpdatedPassword.DepartmentUID = SqlManager.FindUser(uuid).DepartmentUID;
+
+                SqlManager.ChangeUser(userUpdatedPassword);
+            }
+
             this.Close();
         }
     }
