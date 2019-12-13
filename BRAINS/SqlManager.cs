@@ -9,10 +9,10 @@ using System.Configuration;
 
 namespace BRAINS
 {
-    class SqlManager
+    static class SqlManager
     {
 
-        private DataTable QueryDatabase(string query)
+        static private DataTable QueryDatabase(string query)
         {
             DataTable dataTable = new DataTable();
 
@@ -36,45 +36,99 @@ namespace BRAINS
             return dataTable;
         }
 
-        public List<QuestionSet> GetAllQuestionSets()
+        static public List<QuestionSet> GetAllQuestionSets()
         {
             try
             {
-                DataTable questionSets = QueryDatabase("SELECT * FROM QuestionTable");
+                DataTable questionsDataTable = QueryDatabase("SELECT * FROM QuestionTable");
 
-                
+                List<DataRow> qSetRows = new List<DataRow>();
+                List<int> qSetIds = new List<int>();
+
+                foreach (DataRow row in questionsDataTable.Rows)
+                {
+                    if (qSetIds.Contains(row.Field<int>("StenerSetUID")) == false)
+                    {
+                        qSetIds.Add(row.Field<int>("StenerSetUID"));
+                        qSetRows.Add(row);
+                    }
+                }
+
+                List<QuestionSet> questionSets = new List<QuestionSet>();
+                foreach (DataRow row in qSetRows)
+                {
+                    QuestionSet qSet = new QuestionSet();
+                    qSet.UniqueID = row.Field<int>("StenerSetUID");
+                    qSet.AssignedDepartment = row.Field<int>("DepartmentUID");
+                    qSet.Category = row.Field<string>("Categroy");
+                    qSet.Priority = row.Field<int>("Priority");
+                    qSet.DueDate = row.Field<DateTime>("DueDate");
+                    qSet.Status = row.Field<String>("Status");
+                    //qSet.SubmittedDate = row.Field<DateTime>("SubmittedDate");
+
+                    qSet.Questions = new List<Question>();
+
+                    DataTable questionTable = QueryDatabase("SELECT * FROM QuestionTable");
+
+                    foreach(DataRow questionRow in questionTable.Rows)
+                    {
+                        Question question = new Question();
+                        question.QuestionID = questionRow.Field<int>("QuestionID");
+                        question.QuestionText = questionRow.Field<string>("Question");
+                        question.Answer = questionRow.Field<string>("Answer");
+                        question.EvidenceLocation = questionRow.Field<string>("LocationEvidence");
+                        //question.Compliance = questionRow.Field<bool>("Compliance");
+                        //question.SolutionPlan = questionRow.Field<string>("PlanForSolution");
+                        //violated?
+                        qSet.Questions.Add(question);
+                    }
+
+                    questionSets.Add(qSet);
+                }
+
+                return questionSets;
             }
             catch
             {
                 return new List<QuestionSet>();
             }
-            
-            return new List<QuestionSet>();
         }
 
-        public QuestionSet FindQuestionSet()
+        static public QuestionSet FindQuestionSet()
         {
+
             return new QuestionSet();
         }
 
-        public bool ModifyQuestionSet()
+        static public bool ModifyQuestionSet(QuestionSet updatedQSet)
         {
             return true;
         }
 
-        public bool AddQuestionSet()
+        static public bool AddQuestion(QuestionSet questionSet, Question question)
+        {
+            return false;
+        }
+
+        static public bool RemoveQuestion(int questionUID)
+        {
+            return false;
+        }
+
+        static public bool ModifyQuestion(Question question)
+        {
+            return false;
+        }
+
+        static public bool AddQuestionSet(QuestionSet questionSet)
         {
             return true;
         }
 
-        public bool RemoveQuestionSet()
+        static public bool RemoveQuestionSet(int questionSetUID)
         {
             return true;
         }
 
-        // Retreive stener database values
-
-       
-        // Retrieve violation database values
     }
 }

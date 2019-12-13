@@ -8,5 +8,21 @@ namespace BRAINS
 {
     class ViolationManagement
     {
+        public void addViolation()
+        {
+
+        }
+        public void removeViolation()
+        {
+
+        }
+        public void viewDepartmentViolations()
+        {
+
+        }
+        public void viewAllViolations()
+        {
+
+        }
     }
 }

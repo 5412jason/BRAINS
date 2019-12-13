@@ -632,7 +632,7 @@
             this.oversightDescription,
             this.oversightViolatedDate});
             this.OversightViolationList.HideSelection = false;
-            this.OversightViolationList.Location = new System.Drawing.Point(0, 49);
+            this.OversightViolationList.Location = new System.Drawing.Point(3, 41);
             this.OversightViolationList.Name = "OversightViolationList";
             this.OversightViolationList.Size = new System.Drawing.Size(700, 524);
             this.OversightViolationList.TabIndex = 0;
