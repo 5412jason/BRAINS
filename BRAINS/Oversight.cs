@@ -50,5 +50,24 @@ namespace BRAINS
             OversightPasswordChange form = new OversightPasswordChange();
             form.Show();
         }
+
+        private void OversightAccountsAddUser_Click(object sender, EventArgs e)
+        {
+            NewUser form = new NewUser();
+            form.Show();
+        }
+        private void violationRefreshButton_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void editViolation_Click(object sender, EventArgs e)
+        {
+            
+        }
+        private void removeViolation_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

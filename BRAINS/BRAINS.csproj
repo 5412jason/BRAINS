@@ -34,6 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -60,6 +61,12 @@
     </Compile>
     <Compile Include="Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NewUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewUser.Designer.cs">
+      <DependentUpon>NewUser.cs</DependentUpon>
     </Compile>
     <Compile Include="Notifications.cs" />
     <Compile Include="Oversight.cs">
@@ -102,8 +109,14 @@
     <Compile Include="UserData.cs" />
     <Compile Include="Violation.cs" />
     <Compile Include="ViolationManagement.cs" />
+    <EmbeddedResource Include="Business.resx">
+      <DependentUpon>Business.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewUser.resx">
+      <DependentUpon>NewUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Oversight.resx">
       <DependentUpon>Oversight.cs</DependentUpon>

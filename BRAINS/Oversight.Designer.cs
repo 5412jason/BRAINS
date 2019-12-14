@@ -86,7 +86,7 @@
             this.violationsTab = new System.Windows.Forms.TabPage();
             this.editViolation = new System.Windows.Forms.Button();
             this.removeViolation = new System.Windows.Forms.Button();
-            this.violationrefreshButton = new System.Windows.Forms.Button();
+            this.violationRefreshButton = new System.Windows.Forms.Button();
             this.OversightViolationList = new System.Windows.Forms.ListView();
             this.oversightStenerSetUID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.oversightDepartment = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -582,7 +582,7 @@
             // 
             this.violationsTab.Controls.Add(this.editViolation);
             this.violationsTab.Controls.Add(this.removeViolation);
-            this.violationsTab.Controls.Add(this.violationrefreshButton);
+            this.violationsTab.Controls.Add(this.violationRefreshButton);
             this.violationsTab.Controls.Add(this.OversightViolationList);
             this.violationsTab.Location = new System.Drawing.Point(4, 22);
             this.violationsTab.Name = "violationsTab";
@@ -610,14 +610,14 @@
             this.removeViolation.Text = "Remove Violation";
             this.removeViolation.UseVisualStyleBackColor = true;
             // 
-            // violationrefreshButton
+            // violationRefreshButton
             // 
-            this.violationrefreshButton.Location = new System.Drawing.Point(762, 49);
-            this.violationrefreshButton.Name = "violationrefreshButton";
-            this.violationrefreshButton.Size = new System.Drawing.Size(107, 32);
-            this.violationrefreshButton.TabIndex = 1;
-            this.violationrefreshButton.Text = "Refresh";
-            this.violationrefreshButton.UseVisualStyleBackColor = true;
+            this.violationRefreshButton.Location = new System.Drawing.Point(762, 49);
+            this.violationRefreshButton.Name = "violationRefreshButton";
+            this.violationRefreshButton.Size = new System.Drawing.Size(107, 32);
+            this.violationRefreshButton.TabIndex = 1;
+            this.violationRefreshButton.Text = "Refresh";
+            this.violationRefreshButton.UseVisualStyleBackColor = true;
             // 
             // OversightViolationList
             // 
@@ -628,9 +628,9 @@
             this.oversightDescription,
             this.oversightViolatedDate});
             this.OversightViolationList.HideSelection = false;
-            this.OversightViolationList.Location = new System.Drawing.Point(3, 41);
+            this.OversightViolationList.Location = new System.Drawing.Point(-4, 6);
             this.OversightViolationList.Name = "OversightViolationList";
-            this.OversightViolationList.Size = new System.Drawing.Size(700, 524);
+            this.OversightViolationList.Size = new System.Drawing.Size(700, 567);
             this.OversightViolationList.TabIndex = 0;
             this.OversightViolationList.UseCompatibleStateImageBehavior = false;
             this.OversightViolationList.View = System.Windows.Forms.View.Details;
@@ -720,7 +720,7 @@
         private System.Windows.Forms.Button modifyQuestionButton;
         private System.Windows.Forms.Button removeQuestionButton;
         private System.Windows.Forms.ListView OversightViolationList;
-        private System.Windows.Forms.Button violationrefreshButton;
+        private System.Windows.Forms.Button violationRefreshButton;
         private System.Windows.Forms.Button removeViolation;
         private System.Windows.Forms.Button editViolation;
         private System.Windows.Forms.ColumnHeader oversightStenerSetUID;
