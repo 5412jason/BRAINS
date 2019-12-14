@@ -306,5 +306,92 @@ namespace BRAINS
         }
 
         #endregion
+
+        #region VIOLATION_STUFF
+        static public List<Violation> GetAllViolations()
+        {
+            string query = "SELECT * FROM ViolationTable";
+            
+            DataTable violationTable = QueryDatabase(query);
+
+            List<Violation> violations = new List<Violation>();
+
+            if(violationTable.Rows.Count != 0)
+            {
+                foreach (DataRow row in violationTable.Rows)
+                {
+                    Violation violation = new Violation();
+                    violation.ViolationUID = row.Field<int>("ViolationUID");
+                    violation.DepartmentUID = row.Field<int>("DepartmentUID");
+                    violation.StenerSetUID = row.Field<int>("StenerSetUID");
+                    violation.Severity = row.Field<int>("Severity");
+                    violation.ViolationDate = row.Field<DateTime>("ViolatedDate");
+                    violation.ViolationDescription = row.Field<string>("ViolationDescription");
+
+                    violations.Add(violation);
+                }
+                return violations;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        static public List<Violation> GetDepartmentViolations(int departmentUID)
+        {
+            string query = "SELECT * FROM ViolationTable WHERE DepartmentUID = " + departmentUID.ToString();
+
+            DataTable violationTable = QueryDatabase(query);
+
+            List<Violation> violations = new List<Violation>();
+
+            if (violationTable.Rows.Count != 0)
+            {
+                foreach (DataRow row in violationTable.Rows)
+                {
+                    Violation violation = new Violation();
+                    violation.DepartmentUID = row.Field<int>("DepartmentUID");
+                    violation.StenerSetUID = row.Field<int>("StenerSetUID");
+                    violation.Severity = row.Field<int>("Severity");
+                    violation.ViolationDate = row.Field<DateTime>("ViolatedDate");
+                    violation.ViolationDescription = row.Field<string>("ViolationDescription");
+
+                    violations.Add(violation);
+                }
+                return violations;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        static public bool AddViolation(Violation violation)
+        {
+            string query =
+                "INSERT INTO ViolationTable SET"
+                + " ViolaitonUID = " + violation.ViolationUID.ToString()
+                + " DepartmentUID = " + violation.DepartmentUID.ToString()
+                + " StenerSetUID = " + violation.StenerSetUID.ToString()
+                + " Severity = " + violation.Severity.ToString()
+                + " ViolatedDate = " + violation.ViolationDate.ToString()
+                + " ViolatedDescription = " + violation.ViolationDescription;
+
+            bool passed = NonQueryDatabase(query);
+
+            return passed;
+        }
+
+        static public bool RemoveViolation(int violationUID)
+        {
+            string query =
+                "DELETE FROM ViolationTable WHERE ViolationUID = " + violationUID.ToString();
+
+            bool passed = NonQueryDatabase(query);
+
+            return passed;
+        }
+        #endregion
     }
 }
