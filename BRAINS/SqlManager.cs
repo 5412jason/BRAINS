@@ -30,10 +30,38 @@ namespace BRAINS
 
                     dataTable.Load(reader);
 
+                    con.Close();
                 }
 
             }
             return dataTable;
+        }
+
+        static private bool NonQueryDatabase(string query)
+        {
+            try
+            {
+                string connString = ConfigurationManager.ConnectionStrings["Brains"].ConnectionString;
+
+                using (SqlConnection con = new SqlConnection(connString))
+                {
+
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    {
+                        con.Open();
+
+                        cmd.ExecuteNonQuery();
+
+                        con.Close();
+                    }
+
+                }
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         static public List<QuestionSet> GetAllQuestionSets()
@@ -102,7 +130,17 @@ namespace BRAINS
 
         static public bool ModifyQuestionSet(QuestionSet updatedQSet)
         {
-            return true;
+            string queryString =
+                "UPDATE StenerDatabase SET DepartmentUID = " + updatedQSet.AssignedDepartment.ToString()
+                + " Priority = " + updatedQSet.Priority.ToString()
+                + " DueDate = " + updatedQSet.DueDate.ToString()
+                + " Status = " + updatedQSet.Status
+                + " Category = " + updatedQSet.Category
+                + " Where StenerSetUID = " + updatedQSet.UniqueID.ToString();
+
+            bool passed = NonQueryDatabase(queryString);
+
+            return passed;
         }
 
         static public bool AddQuestion(QuestionSet questionSet, Question question)
