@@ -55,7 +55,7 @@
             this.listView2 = new System.Windows.Forms.ListView();
             this.qNumber = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.questionDataHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.StenerManagementListView = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -74,6 +74,8 @@
             this.departmentList = new System.Windows.Forms.ListView();
             this.Departments = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.accountsTab = new System.Windows.Forms.TabPage();
+            this.OversightAccountsRemoveUser = new System.Windows.Forms.Button();
+            this.OversightAccountsAddUser = new System.Windows.Forms.Button();
             this.refreshButtonAccounts = new System.Windows.Forms.Button();
             this.changePasswordButton = new System.Windows.Forms.Button();
             this.changeUsernameButton = new System.Windows.Forms.Button();
@@ -93,8 +95,7 @@
             this.oversightSeverity = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.oversightDescription = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.oversightViolatedDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.OversightAccountsAddUser = new System.Windows.Forms.Button();
-            this.OversightAccountsRemoveUser = new System.Windows.Forms.Button();
+            this.stenerManageRefreshBtn = new System.Windows.Forms.Button();
             this.oversightTabControl.SuspendLayout();
             this.submissionsTab.SuspendLayout();
             this.stenerManagementTab.SuspendLayout();
@@ -218,6 +219,7 @@
             // 
             // stenerManagementTab
             // 
+            this.stenerManagementTab.Controls.Add(this.stenerManageRefreshBtn);
             this.stenerManagementTab.Controls.Add(this.createQuestionSetButton);
             this.stenerManagementTab.Controls.Add(this.deleteQuestionSetButton);
             this.stenerManagementTab.Controls.Add(this.addQuestionButton);
@@ -228,7 +230,7 @@
             this.stenerManagementTab.Controls.Add(this.questionTextLabel);
             this.stenerManagementTab.Controls.Add(this.questionNumberLabel);
             this.stenerManagementTab.Controls.Add(this.listView2);
-            this.stenerManagementTab.Controls.Add(this.listView1);
+            this.stenerManagementTab.Controls.Add(this.StenerManagementListView);
             this.stenerManagementTab.Location = new System.Drawing.Point(4, 22);
             this.stenerManagementTab.Name = "stenerManagementTab";
             this.stenerManagementTab.Padding = new System.Windows.Forms.Padding(3);
@@ -339,9 +341,9 @@
             this.questionDataHeader.Text = "Question";
             this.questionDataHeader.Width = 229;
             // 
-            // listView1
+            // StenerManagementListView
             // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.StenerManagementListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader9,
             this.columnHeader2,
@@ -349,13 +351,13 @@
             this.columnHeader4,
             this.columnHeader5,
             this.columnHeader6});
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(3, 6);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(649, 561);
-            this.listView1.TabIndex = 1;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            this.StenerManagementListView.HideSelection = false;
+            this.StenerManagementListView.Location = new System.Drawing.Point(3, 6);
+            this.StenerManagementListView.Name = "StenerManagementListView";
+            this.StenerManagementListView.Size = new System.Drawing.Size(649, 561);
+            this.StenerManagementListView.TabIndex = 1;
+            this.StenerManagementListView.UseCompatibleStateImageBehavior = false;
+            this.StenerManagementListView.View = System.Windows.Forms.View.Details;
             // 
             // columnHeader1
             // 
@@ -511,6 +513,24 @@
             this.accountsTab.UseVisualStyleBackColor = true;
             this.accountsTab.Click += new System.EventHandler(this.accountsTab_Click);
             // 
+            // OversightAccountsRemoveUser
+            // 
+            this.OversightAccountsRemoveUser.Location = new System.Drawing.Point(781, 182);
+            this.OversightAccountsRemoveUser.Name = "OversightAccountsRemoveUser";
+            this.OversightAccountsRemoveUser.Size = new System.Drawing.Size(128, 23);
+            this.OversightAccountsRemoveUser.TabIndex = 7;
+            this.OversightAccountsRemoveUser.Text = "Remove User";
+            this.OversightAccountsRemoveUser.UseVisualStyleBackColor = true;
+            // 
+            // OversightAccountsAddUser
+            // 
+            this.OversightAccountsAddUser.Location = new System.Drawing.Point(781, 140);
+            this.OversightAccountsAddUser.Name = "OversightAccountsAddUser";
+            this.OversightAccountsAddUser.Size = new System.Drawing.Size(128, 23);
+            this.OversightAccountsAddUser.TabIndex = 6;
+            this.OversightAccountsAddUser.Text = "Add User";
+            this.OversightAccountsAddUser.UseVisualStyleBackColor = true;
+            // 
             // refreshButtonAccounts
             // 
             this.refreshButtonAccounts.Location = new System.Drawing.Point(781, 285);
@@ -664,23 +684,15 @@
             this.oversightViolatedDate.Text = "Date Violated";
             this.oversightViolatedDate.Width = 88;
             // 
-            // OversightAccountsAddUser
+            // stenerManageRefreshBtn
             // 
-            this.OversightAccountsAddUser.Location = new System.Drawing.Point(781, 140);
-            this.OversightAccountsAddUser.Name = "OversightAccountsAddUser";
-            this.OversightAccountsAddUser.Size = new System.Drawing.Size(128, 23);
-            this.OversightAccountsAddUser.TabIndex = 6;
-            this.OversightAccountsAddUser.Text = "Add User";
-            this.OversightAccountsAddUser.UseVisualStyleBackColor = true;
-            // 
-            // OversightAccountsRemoveUser
-            // 
-            this.OversightAccountsRemoveUser.Location = new System.Drawing.Point(781, 182);
-            this.OversightAccountsRemoveUser.Name = "OversightAccountsRemoveUser";
-            this.OversightAccountsRemoveUser.Size = new System.Drawing.Size(128, 23);
-            this.OversightAccountsRemoveUser.TabIndex = 7;
-            this.OversightAccountsRemoveUser.Text = "Remove User";
-            this.OversightAccountsRemoveUser.UseVisualStyleBackColor = true;
+            this.stenerManageRefreshBtn.Location = new System.Drawing.Point(787, 394);
+            this.stenerManageRefreshBtn.Name = "stenerManageRefreshBtn";
+            this.stenerManageRefreshBtn.Size = new System.Drawing.Size(75, 23);
+            this.stenerManageRefreshBtn.TabIndex = 14;
+            this.stenerManageRefreshBtn.Text = "Refresh List";
+            this.stenerManageRefreshBtn.UseVisualStyleBackColor = true;
+            this.stenerManageRefreshBtn.Click += new System.EventHandler(this.stenerManageRefreshBtn_Click);
             // 
             // Oversight
             // 
@@ -723,7 +735,7 @@
         private System.Windows.Forms.ColumnHeader reviewedByHeader;
         private System.Windows.Forms.Label questionNumberLabel;
         private System.Windows.Forms.ListView listView2;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView StenerManagementListView;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader9;
         private System.Windows.Forms.ColumnHeader columnHeader2;
@@ -770,5 +782,6 @@
         private System.Windows.Forms.ColumnHeader Departments;
         private System.Windows.Forms.Button OversightAccountsRemoveUser;
         private System.Windows.Forms.Button OversightAccountsAddUser;
+        private System.Windows.Forms.Button stenerManageRefreshBtn;
     }
 }

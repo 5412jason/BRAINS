@@ -117,8 +117,9 @@ namespace BRAINS
 
                 return questionSets;
             }
-            catch
+            catch(Exception e)
             {
+                Console.WriteLine(e);
                 return new List<QuestionSet>();
             }
         }

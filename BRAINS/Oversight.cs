@@ -12,14 +12,17 @@ namespace BRAINS
 {
     public partial class Oversight : Form
     {
+        private StenerManagement stenerManagement;
         public Oversight()
         {
             InitializeComponent();
+
+            stenerManagement = new StenerManagement();
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            
         }
 
         private void accountsTab_Click(object sender, EventArgs e)
@@ -57,12 +60,6 @@ namespace BRAINS
             NewUser form = new NewUser();
             form.Show();
         }
-
-        private void OversightAccountsAddUser_Click(object sender, EventArgs e)
-        {
-            NewUser form = new NewUser();
-            form.Show();
-        }
         private void violationRefreshButton_Click(object sender, EventArgs e)
         {
 
@@ -76,5 +73,20 @@ namespace BRAINS
 
         }
 
+        #region STENER_MANAGEMENT
+        private void stenerManageRefreshBtn_Click(object sender, EventArgs e)
+        {
+            StenerManagementListView.Items.Clear();
+            List<QuestionSet> questionSets = stenerManagement.GetStenerList();
+            foreach (QuestionSet qSet in questionSets)
+            {
+                string[] row = { qSet.UniqueID.ToString(), qSet.AssignedDepartment.ToString(), qSet.QuestionCount.ToString(), qSet.SubmittedDate.ToString(), qSet.Status, qSet.Category };
+
+                var listItem = new ListViewItem(row);
+                StenerManagementListView.Items.Add(listItem);
+            }
+        }
+
+        #endregion
     }
 }

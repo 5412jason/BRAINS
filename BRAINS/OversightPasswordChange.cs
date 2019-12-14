@@ -52,7 +52,7 @@ namespace BRAINS
 
         private void oversightPasswordChangeDialogOK_Click(object sender, EventArgs e)
         {
-            int currentPasswordHash = SqlManager.FindUser(uuid).Password;
+            /*int currentPasswordHash = SqlManager.FindUser(uuid).Password;
 
             if(ComputeSha256Hash(currentPasswordHash) == ComputeSha256Hash(OversightPasswordChangeCurrentTextBox.Text))
             {
@@ -64,7 +64,7 @@ namespace BRAINS
 
                 SqlManager.ChangeUser(userUpdatedPassword);
             }
-
+            */
             this.Close();
         }
 

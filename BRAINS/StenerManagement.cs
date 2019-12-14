@@ -8,5 +8,13 @@ namespace BRAINS
 {
     class StenerManagement
     {
+        public StenerManagement() { }
+
+        public List<QuestionSet> GetStenerList()
+        {
+            List<QuestionSet> steners = SqlManager.GetAllQuestionSets();
+
+            return steners;
+        }
     }
 }

@@ -47,7 +47,7 @@ namespace BRAINS
 
         private void oversightAccountsUsernameChangeOK_Click(object sender, EventArgs e)
         {
-            string currentUsername = SqlManager.FindUser(uuid).Username;
+            /*string currentUsername = SqlManager.FindUser(uuid).Username;
 
             if (currentUsername == OversightAccountsUsernameChangeCurrentTextbox.Text);
             {
@@ -59,7 +59,7 @@ namespace BRAINS
 
                 SqlManager.ChangeUser(userUpdatedPassword);
             }
-
+            */
             this.Close();
         }
     }

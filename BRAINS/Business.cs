@@ -33,11 +33,6 @@ namespace BRAINS
 
         }
 
-        private void Business_Load(object sender, EventArgs e)
-        {
-            CompleteStenerDataGridView.DataSource = GetDepartmentList();
-        }
-
         private DataTable GetDepartmentList()
         {
             DataTable departmentList = new DataTable();
