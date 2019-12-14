@@ -30,10 +30,38 @@ namespace BRAINS
 
                     dataTable.Load(reader);
 
+                    con.Close();
                 }
 
             }
             return dataTable;
+        }
+
+        static private bool NonQueryDatabase(string query)
+        {
+            try
+            {
+                string connString = ConfigurationManager.ConnectionStrings["Brains"].ConnectionString;
+
+                using (SqlConnection con = new SqlConnection(connString))
+                {
+
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    {
+                        con.Open();
+
+                        cmd.ExecuteNonQuery();
+
+                        con.Close();
+                    }
+
+                }
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         static public List<QuestionSet> GetAllQuestionSets()
@@ -94,40 +122,97 @@ namespace BRAINS
             }
         }
 
-        static public QuestionSet FindQuestionSet()
-        {
-
-            return new QuestionSet();
-        }
-
         static public bool ModifyQuestionSet(QuestionSet updatedQSet)
         {
-            return true;
+            string queryString =
+                "UPDATE StenerDatabase SET DepartmentUID = " + updatedQSet.AssignedDepartment.ToString()
+                + " Priority = " + updatedQSet.Priority.ToString()
+                + " DueDate = " + updatedQSet.DueDate.ToString()
+                + " Status = " + updatedQSet.Status
+                + " Category = " + updatedQSet.Category
+                + " WHERE StenerSetUID = " + updatedQSet.UniqueID.ToString();
+
+            bool passed = NonQueryDatabase(queryString);
+
+            return passed;
         }
 
         static public bool AddQuestion(QuestionSet questionSet, Question question)
         {
-            return false;
+            string queryString =
+                "INSERT INTO StenerDatabase SET"
+                + " DepartmentUID = " + questionSet.AssignedDepartment.ToString()
+                + " Priority = " + questionSet.Priority.ToString()
+                + " DueDate = " + questionSet.DueDate.ToString()
+                + " Status = " + questionSet.Status
+                + " Category = " + questionSet.Category
+                + " StenerSetUID = " + questionSet.UniqueID.ToString()
+                + " QuestionID = " + question.QuestionID.ToString()
+                + " Question = " + question.QuestionText
+                + " Answer = " + question.Answer
+                + " LocationEvidence = " + question.EvidenceLocation;
+
+            bool passed = NonQueryDatabase(queryString);
+
+            return passed;
         }
 
         static public bool RemoveQuestion(int questionUID)
         {
-            return false;
+            string queryString = "DELETE FROM StenerDatabase WHERE QuestionID = " + questionUID.ToString();
+
+            bool passed = NonQueryDatabase(queryString);
+
+            return passed;
         }
 
         static public bool ModifyQuestion(Question question)
         {
-            return false;
+            string queryString =
+                "UPDATE StenerDatabase SET "
+                    + " Question = " + question.QuestionText
+                    + " Answer = " + question.Answer
+                    + " LocationEvidence = " + question.EvidenceLocation
+                    + " WHERE QuestionID = " + question.QuestionID.ToString();
+
+            bool passed = NonQueryDatabase(queryString);
+
+            return passed;
         }
 
         static public bool AddQuestionSet(QuestionSet questionSet)
         {
+            foreach (Question question in questionSet.Questions)
+            {
+                string queryString =
+                    "INSERT INTO StenerDatabase SET"
+                    + " DepartmentUID = " + questionSet.AssignedDepartment.ToString()
+                    + " Priority = " + questionSet.Priority.ToString()
+                    + " DueDate = " + questionSet.DueDate.ToString()
+                    + " Status = " + questionSet.Status
+                    + " Category = " + questionSet.Category
+                    + " StenerSetUID = " + questionSet.UniqueID.ToString()
+                    + " QuestionID = " + question.QuestionID.ToString()
+                    + " Question = " + question.QuestionText
+                    + " Answer = " + question.Answer
+                    + " LocationEvidence = " + question.EvidenceLocation;
+
+                bool passed = NonQueryDatabase(queryString);
+                if (passed == false)
+                {
+                    return false;
+                }
+            }
             return true;
         }
 
         static public bool RemoveQuestionSet(int questionSetUID)
         {
-            return true;
+            string queryString = "DELETE FROM StenerDatabase WHERE StenerSetUID = " + questionSetUID.ToString();
+
+            bool passed = NonQueryDatabase(queryString);
+
+            return passed;
         }
 
     }
