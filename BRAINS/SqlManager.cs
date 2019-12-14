@@ -72,9 +72,17 @@ namespace BRAINS
             return true;
         }
 
+        static public bool RemoveViolation(int violationUID)
+        {
+            string queryString = "DELETE FROM StenerDatabase WHERE ViolationUID = " + violationUID.ToString();
+
+            bool passed = NonQueryDatabase(queryString);
+
+            return passed;
+        }
         // Retreive stener database values
 
-       
+
         // Retrieve violation database values
     }
 }
