@@ -38,7 +38,7 @@
             this.businessSeverity = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.businessDescription = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.businessViolatedDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.BusniessViolationsrefreshButton = new System.Windows.Forms.Button();
+            this.busniessViolationsrefreshButton = new System.Windows.Forms.Button();
             this.businessTabControl.SuspendLayout();
             this.completeStenerTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CompleteStenerDataGridView)).BeginInit();
@@ -79,7 +79,7 @@
             // violationTab
             // 
             this.violationTab.Controls.Add(this.BusinessViolationList);
-            this.violationTab.Controls.Add(this.BusniessViolationsrefreshButton);
+            this.violationTab.Controls.Add(this.busniessViolationsrefreshButton);
             this.violationTab.Location = new System.Drawing.Point(4, 22);
             this.violationTab.Name = "violationTab";
             this.violationTab.Padding = new System.Windows.Forms.Padding(3);
@@ -129,14 +129,14 @@
             this.businessViolatedDate.Text = "Date Violated";
             this.businessViolatedDate.Width = 88;
             // 
-            // BusniessViolationsrefreshButton
+            // busniessViolationsrefreshButton
             // 
-            this.BusniessViolationsrefreshButton.Location = new System.Drawing.Point(673, 28);
-            this.BusniessViolationsrefreshButton.Name = "BusniessViolationsrefreshButton";
-            this.BusniessViolationsrefreshButton.Size = new System.Drawing.Size(107, 32);
-            this.BusniessViolationsrefreshButton.TabIndex = 2;
-            this.BusniessViolationsrefreshButton.Text = "Refresh";
-            this.BusniessViolationsrefreshButton.UseVisualStyleBackColor = true;
+            this.busniessViolationsrefreshButton.Location = new System.Drawing.Point(673, 28);
+            this.busniessViolationsrefreshButton.Name = "busniessViolationsrefreshButton";
+            this.busniessViolationsrefreshButton.Size = new System.Drawing.Size(107, 32);
+            this.busniessViolationsrefreshButton.TabIndex = 2;
+            this.busniessViolationsrefreshButton.Text = "Refresh";
+            this.busniessViolationsrefreshButton.UseVisualStyleBackColor = true;
             // 
             // Business
             // 
@@ -146,7 +146,6 @@
             this.Controls.Add(this.businessTabControl);
             this.Name = "Business";
             this.Text = "Business";
-            this.Load += new System.EventHandler(this.Business_Load);
             this.businessTabControl.ResumeLayout(false);
             this.completeStenerTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.CompleteStenerDataGridView)).EndInit();
@@ -161,7 +160,7 @@
         private System.Windows.Forms.TabPage completeStenerTab;
         private System.Windows.Forms.TabPage violationTab;
         private System.Windows.Forms.DataGridView CompleteStenerDataGridView;
-        private System.Windows.Forms.Button BusniessViolationsrefreshButton;
+        private System.Windows.Forms.Button busniessViolationsrefreshButton;
         private System.Windows.Forms.ListView BusinessViolationList;
         private System.Windows.Forms.ColumnHeader businessStenerSetUID;
         private System.Windows.Forms.ColumnHeader businessDepartment;
