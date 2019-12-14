@@ -64,6 +64,7 @@ namespace BRAINS
             }
         }
 
+        #region QUESTION_SETS
         static public List<QuestionSet> GetAllQuestionSets()
         {
             try
@@ -180,7 +181,7 @@ namespace BRAINS
             return passed;
         }
 
-        static public bool AddQuestionSet(QuestionSet questionSet)
+        static public bool CreateNewQuestionSet(QuestionSet questionSet)
         {
             foreach (Question question in questionSet.Questions)
             {
@@ -214,6 +215,96 @@ namespace BRAINS
 
             return passed;
         }
+        #endregion
 
+        #region USER_DATA_STUFF
+
+        static public List<UserData> GetAllUsers()
+        {
+            DataTable usersTable = QueryDatabase("SELECT * FROM LoginTable");
+            List<UserData> users = new List<UserData>();
+
+            foreach (DataRow row in usersTable.Rows)
+            {
+                UserData user = new UserData();
+                user.UUID = row.Field<int>("UsernameUID");
+                user.Username = row.Field<string>("Username");
+                user.Password = "";
+                user.DepartmentUID = row.Field<int>("DepartmentUID");
+                user.DepartmentName = row.Field<string>("Department");
+                user.Permissions = row.Field<bool>("Permissions");
+                
+                users.Add(user);
+            }
+            return users;
+        }
+        
+        static public UserData AuthenticateCredentials(string username, string password)
+        {
+            DataTable userTable = QueryDatabase(
+                "SELECT * FROM LoginTable WHERE Username = " + username + " AND Password = " + password
+                );
+            
+            if (userTable.Rows.Count == 0)
+            {
+                return null;
+            }
+            else
+            {
+                DataRow row = userTable.Rows[0];
+                UserData user = new UserData();
+                user.UUID = row.Field<int>("UsernameUID");
+                user.Username = row.Field<string>("Username");
+                user.Password = "";
+                user.DepartmentUID = row.Field<int>("DepartmentUID");
+                user.DepartmentName = row.Field<string>("Department");
+                user.Permissions = row.Field<bool>("Permissions");
+
+                return user;
+            }
+        }
+
+        static public bool ModifyUser(UserData user)
+        {
+            string query =
+                "UPDATE LoginTable SET"
+                + " Username = " + user.Username
+                + " Department = " + user.DepartmentName
+                + " DepartmentUID = " + user.DepartmentUID.ToString()
+                + " Permissions = " + user.Permissions
+                + " Password = " + user.Password
+                + " WHERE UsernameUID = " + user.UUID.ToString();
+
+            bool passed = NonQueryDatabase(query);
+            
+            return passed;
+        }
+
+        static public bool RemoveUser(int uid)
+        {
+            string query = "DELETE FROM LoginTable WHERE UsernameUID = " + uid.ToString();
+
+            bool passed = NonQueryDatabase(query);
+
+            return passed;
+        }
+
+        static public bool AddUser(UserData user)
+        {
+            string query =
+                "INSERT INTO LoginTable SET"
+                + " Username = " + user.Username
+                + " Department = " + user.DepartmentName
+                + " DepartmentUID = " + user.DepartmentUID.ToString()
+                + " Permissions = " + user.Permissions
+                + " Password = " + user.Password
+                + " UsernameUID = " + user.UUID.ToString();
+
+            bool passed = NonQueryDatabase(query);
+
+            return passed;
+        }
+
+        #endregion
     }
 }
