@@ -12,9 +12,15 @@ namespace BRAINS
 {
     public partial class NewUser : Form
     {
+        private UserData newUser;
         public NewUser()
         {
             InitializeComponent();
+        }
+        public NewUser(UserData user)
+        {
+            InitializeComponent();
+            newUser = user;
         }
 
         private void NewUser_Load(object sender, EventArgs e)
@@ -24,6 +30,7 @@ namespace BRAINS
 
         private void newUserOK_Click(object sender, EventArgs e)
         {
+            SqlManager.AddUser(newUser);
             this.Close();
         }
 

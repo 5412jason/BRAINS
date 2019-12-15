@@ -52,7 +52,6 @@
             this.OversightPasswordChangeNewTextBox.Name = "OversightPasswordChangeNewTextBox";
             this.OversightPasswordChangeNewTextBox.Size = new System.Drawing.Size(227, 20);
             this.OversightPasswordChangeNewTextBox.TabIndex = 3;
-            this.OversightPasswordChangeNewTextBox.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // oversightPasswordChangeDialogOK
             // 

@@ -15,6 +15,7 @@ namespace BRAINS
         private StenerManagement stenerManagement;
         private List<QuestionSet> questionSets;
         private UserData currentUser;
+        private UserData deleteUser;
         private enum stenerManagementMode
         {
             None,
@@ -59,8 +60,15 @@ namespace BRAINS
 
         private void addUserButton_Click(object sender, EventArgs e)
         {
-            OversightDepartmentAddUser form = new OversightDepartmentAddUser();
-            form.Show();
+            NewUser newUser = new NewUser();
+            newUser.Show();
+        }
+        private void OversightAccountsRemoveUser(object sender, EventArgs e)
+        {
+            /*
+            * Get user id from list
+           */
+            SqlManager.RemoveUser(deleteUser.UUID);
         }
 
         private void changeUsernameButton_Click(object sender, EventArgs e)
@@ -71,9 +79,13 @@ namespace BRAINS
 
         private void changePasswordButton_Click(object sender, EventArgs e)
         {
-            //Verify Line 51 is working.
-            OversightPasswordChange form = new OversightPasswordChange(Int32.Parse(accountList.SelectedItems.ToString()));
-            form.Show();
+            /*
+             * Get user id from list
+             * call find user to get the user data from sql manager
+             * pass user in as parameter to oversight password change
+            */
+            OversightPasswordChange passwordChange = new OversightPasswordChange();
+            passwordChange.Show();
         }
 
         private void OversightAccountsAddUser_Click(object sender, EventArgs e)
@@ -83,7 +95,7 @@ namespace BRAINS
         }
         private void violationRefreshButton_Click(object sender, EventArgs e)
         {
-            //ListView.Items.Clear();
+            //ViolationsListView.Items.Clear();
             this.questionSets = stenerManagement.GetStenerList();
             foreach (QuestionSet qSet in this.questionSets)
             {

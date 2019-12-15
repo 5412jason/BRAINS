@@ -15,10 +15,9 @@ namespace BRAINS
     class AccountManagement
     {
 
-        public void changePassword()
+        public void changePassword(string password)
         {
-            OversightPasswordChange passChange = new OversightPasswordChange();
-
+            
         }
         public void createUser()
         {
@@ -47,8 +46,6 @@ namespace BRAINS
         }
         public UserData Login(string username, string password)
         {
- 
-            
             UserData user = SqlManager.AuthenticateCredentials(username, ComputeSha256Hash(password));
             return user;
         }
