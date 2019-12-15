@@ -20,7 +20,31 @@ namespace BRAINS
         private void loginButton_Click(object sender, EventArgs e)
         {
             AccountManagement accMan = new AccountManagement();
-            accMan.Login(usernameTextBox.Text, passwordTextBox.Text);
+            UserData user = accMan.Login(usernameTextBox.Text, passwordTextBox.Text);
+            if (user != null)
+            {
+                
+                if (user.Permissions == true)
+                {
+
+                    Oversight Landingpage = new Oversight(user);
+                    this.Hide();
+                    Landingpage.Show();
+                }
+                else
+                {
+                    Business Landingpage = new Business(user);
+                    this.Hide();
+                    Landingpage.Show();
+
+                }
+            }
+            else
+            {
+                MessageBox.Show("Invalid username or password");
+               
+            }
+
         }
 
         private void Login_Load(object sender, EventArgs e)

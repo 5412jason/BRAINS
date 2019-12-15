@@ -15,9 +15,9 @@ namespace BRAINS
     class AccountManagement
     {
 
-        public void changePassword()
+        public void changePassword(string password)
         {
-
+            
         }
         public void createUser()
         {
@@ -46,29 +46,8 @@ namespace BRAINS
         }
         public UserData Login(string username, string password)
         {
- 
-            
             UserData user = SqlManager.AuthenticateCredentials(username, ComputeSha256Hash(password));
-            if (user != null)
-            {
-                if (user.Permissions == true)
-                {
-                    Oversight Landingpage = new Oversight();
-                    Landingpage.Show();
-                    return null;
-                }
-                else
-                {
-                    Business Landingpage = new Business();
-                    Landingpage.Show();
-                    return null;
-                }
-            }
-            else
-            {
-                MessageBox.Show("Invalid username or password");
-                return null;
-            }
+            return user;
         }
     }
 }

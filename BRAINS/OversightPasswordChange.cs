@@ -12,17 +12,16 @@ namespace BRAINS
 {
     public partial class OversightPasswordChange : Form
     {
-        private int uuid;
+        private UserData userToModify;
 
         public OversightPasswordChange()
         {
             InitializeComponent();
         }
-
-        public OversightPasswordChange(int uuid)
+        public OversightPasswordChange(UserData user)
         {
             InitializeComponent();
-            this.uuid = uuid;
+            userToModify = user;
         }
 
         private void OversightPasswordChange_Load(object sender, EventArgs e)
@@ -40,33 +39,14 @@ namespace BRAINS
 
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
        private void oversightPasswordChangeDialogOK_Click(object sender, EventArgs e)
         {
-         /*   int currentPasswordHash = SqlManager.FindUser(uuid).Password;
 
-            if(ComputeSha256Hash(currentPasswordHash) == ComputeSha256Hash(OversightPasswordChangeCurrentTextBox.Text))
+            if (OversightPasswordChangeNewTextBox.Text == confirmPassword.Text)
             {
-                UserData userUpdatedPassword = new userUpdatedPassword;
-                userUpdatedPassword.Username = SqlManager.FindUser(uuid).Username;
-                userUpdatedPassword.UUID = uuid;
-                userUpdatedPassword.DepartmentName = SqlManager.FindUser(uuid).DepartmentName;
-                userUpdatedPassword.DepartmentUID = SqlManager.FindUser(uuid).DepartmentUID;
-
-                SqlManager.ChangeUser(userUpdatedPassword);
+               /* userToModify.Password = */ SqlManager.ModifyUser(userToModify);
             }
-            
-            this.Close();
-    */
+
         }
         
         private void oversightPasswordChangeDialogCancel_Click(object sender, EventArgs e)
