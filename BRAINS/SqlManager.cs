@@ -198,8 +198,8 @@ namespace BRAINS
                 + questionSet.AssignedDepartment.ToString() + "','" + questionSet.Category + "','"
                 + question.QuestionText + "','" + question.Answer + "','" + question.EvidenceLocation + "','"
                 + questionSet.Priority.ToString() + "','" + questionSet.DueDate.ToString() + "','"
-                + questionSet.Status + "','" + question.Compliance.ToString() + "','"
-                + question.PlanForSolution + "','" + questionSet.SubmittedDate.ToString() + "','" + questionSet.Violated.ToString() + "')";
+                + questionSet.Status + "','" + Convert.ToInt32(question.Compliance) + "','"
+                + question.PlanForSolution + "','" + questionSet.SubmittedDate.ToString() + "','" + Convert.ToInt32(questionSet.Violated) + "')";
 
             bool passed = NonQueryDatabase(queryString);
 
@@ -239,8 +239,8 @@ namespace BRAINS
                     + questionSet.AssignedDepartment.ToString() + "','" + questionSet.Category + "','"
                     + question.QuestionText + "','" + question.Answer + "','" + question.EvidenceLocation + "','"
                     + questionSet.Priority.ToString() + "','" + questionSet.DueDate.ToString() + "','"
-                    + questionSet.Status + "','" + question.Compliance.ToString() + "','"
-                    + question.PlanForSolution + "','" + questionSet.Violated.ToString() + "')";
+                    + questionSet.Status + "','" + Convert.ToInt32(question.Compliance) + "','"
+                    + question.PlanForSolution + "','" + Convert.ToInt32(questionSet.Violated) + "')";
 
                 bool passed = NonQueryDatabase(queryString);
                 if (passed == false)
@@ -356,7 +356,7 @@ namespace BRAINS
         {
             string query = "INSERT INTO LoginTable(Username, DepartmentUID, Permissions, Password, UsernameUID)VALUES("
                 + user.Username + "','" + user.DepartmentUID.ToString() + "','"
-                + user.Permissions.ToString() + "','" + user.Password + "','"
+                + Convert.ToInt32(user.Permissions) + "','" + user.Password + "','"
                 + user.UUID.ToString() + "')";
 
             bool passed = NonQueryDatabase(query);
@@ -450,30 +450,104 @@ namespace BRAINS
         #endregion
 
         #region DEPARTMENTS
-        /*static public List<Department> GetAllDepartments()
+        static public List<Department> GetAllDepartments()
         {
+            List<Department> departments = new List<Department>();
 
+            string query = "SELECT * FROM Departments";
+            DataTable dataTable = QueryDatabase(query);
+
+            foreach(DataRow row in dataTable.Rows)
+            {
+                Department department = new Department();
+                department.DepartmentUID = row.Field<int>("DepartmentUID");
+                department.Name = row.Field<string>("DepartmentName");
+                department.Admin = Convert.ToBoolean(row.Field<int>("Administrator"));
+
+                departments.Add(department);
+            }
+
+            return departments;
         }
 
-        static public bool RemoveDepartment()
+        static public bool RemoveDepartment(int departmentUID)
         {
+            string query = "DELETE FROM Departments WHERE DepartmentUID = " + departmentUID.ToString();
 
+            bool passed = NonQueryDatabase(query);
+            if(passed == true)
+            {
+                List<UserData> users = GetUsersInDepartment(departmentUID);
+                foreach(UserData user in users)
+                {
+                    user.DepartmentUID = 0;
+                    ModifyUser(user);
+                }
+                return passed;
+            }
+            else
+            {
+                return passed;
+            }
         }
         
         static public bool AddDepartment(Department department)
         {
+            string query = "INSERT INTO Departments(DepartmentUID, DepartmentName, Administrator)VALUES("
+                + department.DepartmentUID.ToString() + "','" + department.Name + "','" + Convert.ToInt32(department.Admin) + "')";
 
+            bool passed = NonQueryDatabase(query);
+
+            return passed;
         }
 
         static public List<UserData> GetUsersInDepartment(int departmentID)
         {
+            string query = "SELECT * FROM LoginTable WHERE DepartmentUID = " + departmentID.ToString();
 
+            List<UserData> users = new List<UserData>();
+            DataTable dataTable = QueryDatabase(query);
+
+            if(dataTable.Rows.Count > 0)
+            {
+                foreach(DataRow row in dataTable.Rows)
+                {
+                    UserData user = new UserData();
+                    user.UUID = row.Field<int>("UsernameUID");
+                    user.Username = row.Field<string>("Username");
+                    user.Password = row.Field<string>("Password");
+                    user.DepartmentUID = row.Field<int>("DepartmentUID");
+                    user.Permissions = row.Field<bool>("Permissions");
+
+                    users.Add(user);
+                }
+            }
+
+            return users;
         }
 
-        static public bool FindDepartment(int departmentID)
+        static public Department FindDepartment(int departmentID)
         {
+            string query = "SELECT * FROM Departments WHERE departmentUID = " + departmentID.ToString();
 
-        }*/
+            DataTable dataTable = QueryDatabase(query);
+            
+            if(dataTable.Rows.Count > 0)
+            {
+                DataRow row = dataTable.Rows[0];
+
+                Department department = new Department();
+                department.DepartmentUID = row.Field<int>("DepartmentUID");
+                department.Name = row.Field<string>("DepartmentName");
+                department.Admin = Convert.ToBoolean(row.Field<int>("Administrator"));
+
+                return department;
+            }
+            else
+            {
+                return null;
+            }
+        }
         #endregion
     }
 }

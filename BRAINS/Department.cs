@@ -10,11 +10,9 @@ namespace BRAINS
     {
         private int departmentUID;
         private string name;
-        private List<UserData> users;
-
+        private bool admin;
         public int DepartmentUID { get => departmentUID; set => departmentUID = value; }
         public string Name { get => name; set => name = value; }
-        public List<UserData> Users { get => users; set => users = value; }
-
+        public bool Admin { get => admin; set => admin = value; }
     }
 }
