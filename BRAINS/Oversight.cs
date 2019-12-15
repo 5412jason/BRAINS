@@ -83,11 +83,6 @@ namespace BRAINS
             passwordChange.Show();
         }
 
-        private void OversightAccountsAddUser_Click(object sender, EventArgs e)
-        {
-            NewUser newUser = new NewUser();
-            newUser.Show();
-        }
         private void violationRefreshButton_Click(object sender, EventArgs e)
         {
             //ViolationsListView.Items.Clear();
@@ -223,5 +218,11 @@ namespace BRAINS
             stenerManagementStatusLabel.Text = statusMessage;
         }
         #endregion
+
+        private void OversightAccountsAddUser_Click(object sender, EventArgs e)
+        {
+            NewUser newUser = new NewUser();
+            newUser.Show();
+        }
     }
 }
