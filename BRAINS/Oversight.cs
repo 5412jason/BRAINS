@@ -63,7 +63,7 @@ namespace BRAINS
             NewUser newUser = new NewUser();
             newUser.Show();
         }
-        private void OversightAccountsRemoveUser(object sender, EventArgs e)
+        private void OversightAccountsRemoveUser_Click (object sender, EventArgs e)
         {
             /*
             * Get user id from list
