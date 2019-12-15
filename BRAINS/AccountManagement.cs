@@ -17,12 +17,26 @@ namespace BRAINS
 
         public void changePassword(string password)
         {
-            
-        }
-        public void createUser()
-        {
 
         }
+        public void createUser(string username, string password, int departmentID)
+        {
+          //  UUID = getNextUserID();
+        }
+        private int getNextUserID()
+        {
+            List<UserData> users = SqlManager.GetAllUsers();
+            int nextID = 0;
+            foreach (UserData user in users)
+            {
+                if (user.UUID > nextID)
+                {
+                    nextID = user.UUID;
+                }
+            }
+            return nextID + 1;
+        }
+        
         public void deleteUser()
         {
 

@@ -30,7 +30,9 @@ namespace BRAINS
 
         private void newUserOK_Click(object sender, EventArgs e)
         {
-            SqlManager.AddUser(newUser);
+            AccountManagement newUser = new AccountManagement();
+            UserData user = newUser.createUser(newUsername.Text, newUserPassword.Text, dep);
+
             this.Close();
         }
 
