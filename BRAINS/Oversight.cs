@@ -138,6 +138,7 @@ namespace BRAINS
             questionTextbox.Enabled = true;
             submitStenerManagementButton.Enabled = true;
 
+
             currentStenerManagementMode = stenerManagementMode.CreateQuestionSet;
 
         }
@@ -179,6 +180,10 @@ namespace BRAINS
                     {
                         success = true;
                         statusMessage = "Successfully added the new question set.";
+                        currentStenerManagementMode = stenerManagementMode.None;
+                        departmentComboBox.Items.Clear();
+                        priorityComboBox.Items.Clear();
+                        questionTextbox.Text = "";
                     }
                     else
                     {
