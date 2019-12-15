@@ -5,9 +5,27 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace BRAINS
-{/*
+{
     class DepartmentManagement
     { 
+        public List<String> GetDepartmentNames()
+        {
+            List<Department> departments = SqlManager.GetAllDepartments();
+            List<string> names = new List<string>();
+
+            foreach(Department dept in departments)
+            {
+                names.Add(dept.Name);
+            }
+            return names;
+        }
+
+        public Department GetDepartmentByName(string departmentName)
+        {
+            Department department = SqlManager.FindDepartmentByName(departmentName);
+
+            return department;
+        }
 
         public List<UserData> getAllUsersInDepartment(int departmentUID)
         {
@@ -45,5 +63,5 @@ namespace BRAINS
             SqlManager.ModifyUser(user);
         }
     }
-    */
+    
 }

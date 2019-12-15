@@ -528,11 +528,34 @@ namespace BRAINS
 
         static public Department FindDepartment(int departmentID)
         {
-            string query = "SELECT * FROM Departments WHERE departmentUID = " + departmentID.ToString();
+            string query = "SELECT * FROM Departments WHERE DepartmentUID = " + departmentID.ToString();
 
             DataTable dataTable = QueryDatabase(query);
             
             if(dataTable.Rows.Count > 0)
+            {
+                DataRow row = dataTable.Rows[0];
+
+                Department department = new Department();
+                department.DepartmentUID = row.Field<int>("DepartmentUID");
+                department.Name = row.Field<string>("DepartmentName");
+                department.Admin = Convert.ToBoolean(row.Field<int>("Administrator"));
+
+                return department;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        static public Department FindDepartmentByName(string name)
+        {
+            string query = "SELECT * FROM Departments WHERE DepartmentName = " + name;
+
+            DataTable dataTable = QueryDatabase(query);
+
+            if (dataTable.Rows.Count > 0)
             {
                 DataRow row = dataTable.Rows[0];
 
