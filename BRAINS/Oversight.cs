@@ -83,7 +83,15 @@ namespace BRAINS
         }
         private void violationRefreshButton_Click(object sender, EventArgs e)
         {
+            //ListView.Items.Clear();
+            this.questionSets = stenerManagement.GetStenerList();
+            foreach (QuestionSet qSet in this.questionSets)
+            {
+                string[] row = { qSet.UniqueID.ToString(), qSet.AssignedDepartment.ToString(), qSet.QuestionCount.ToString(), qSet.SubmittedDate.ToString(), qSet.Status, qSet.Category };
 
+                var listItem = new ListViewItem(row);
+                StenerManagementListView.Items.Add(listItem);
+            }
         }
         private void editViolation_Click(object sender, EventArgs e)
         {
