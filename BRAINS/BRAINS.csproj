@@ -99,6 +99,12 @@
     <Compile Include="OversightPasswordChange.Designer.cs">
       <DependentUpon>OversightPasswordChange.cs</DependentUpon>
     </Compile>
+    <Compile Include="OversightPreview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OversightPreview.Designer.cs">
+      <DependentUpon>OversightPreview.cs</DependentUpon>
+    </Compile>
     <Compile Include="Preview.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -132,6 +138,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="OversightPasswordChange.resx">
       <DependentUpon>OversightPasswordChange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OversightPreview.resx">
+      <DependentUpon>OversightPreview.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
