@@ -16,27 +16,35 @@ namespace BRAINS
 
         static private DataTable QueryDatabase(string query)
         {
-            DataTable dataTable = new DataTable();
-
-            string connString = ConfigurationManager.ConnectionStrings["Brains"].ConnectionString;
-
-            using (SqlConnection con = new SqlConnection(connString))
+            try
             {
-                
-                using (SqlCommand cmd = new SqlCommand(query, con))
+                DataTable dataTable = new DataTable();
+
+                string connString = ConfigurationManager.ConnectionStrings["Brains"].ConnectionString;
+
+                using (SqlConnection con = new SqlConnection(connString))
                 {
 
-                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    {
 
-                    SqlDataReader reader = cmd.ExecuteReader();
+                        con.Open();
 
-                    dataTable.Load(reader);
+                        SqlDataReader reader = cmd.ExecuteReader();
 
-                    con.Close();
+                        dataTable.Load(reader);
+
+                        con.Close();
+                    }
+
                 }
-                
+                return dataTable;
             }
-            return dataTable;
+            catch(Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
         }
 
         static private bool NonQueryDatabase(string query)
@@ -242,9 +250,7 @@ namespace BRAINS
         
         static public UserData AuthenticateCredentials(string username, string password)
         {
-            DataTable userTable = QueryDatabase(
-                "SELECT * FROM LoginTable WHERE Username = " + username + " AND Password = " + password
-                );
+            DataTable userTable = QueryDatabase("SELECT * FROM LoginTable WHERE Username = '" + username + "' AND Password = '" + password + "'");
             
             if (userTable.Rows.Count == 0)
             {
@@ -259,7 +265,7 @@ namespace BRAINS
                 user.Password = "";
                 user.DepartmentUID = row.Field<int>("DepartmentUID");
                 user.DepartmentName = row.Field<string>("Department");
-                user.Permissions = row.Field<bool>("Permissions");
+                user.Permissions = Convert.ToBoolean(row.Field<int>("Permissions"));
 
                 return user;
             }

@@ -64,7 +64,7 @@ namespace BRAINS
 
                 SqlManager.ChangeUser(userUpdatedPassword);
             }
-            */
+            
             this.Close();
     */
         }
