@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BRAINS
 {
-    class DepartmentManagement
+    public class DepartmentManagement
     { 
         public List<String> GetDepartmentNames()
         {

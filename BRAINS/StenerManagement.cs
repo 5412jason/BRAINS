@@ -22,7 +22,7 @@ namespace BRAINS
             SqlManager.RemoveQuestionSet(id);
         }
 
-        public bool CreateQuestionSet(int departmentID, int priority, DateTime dueDate, string question)
+        public bool CreateQuestionSet(int departmentID, int priority, DateTime dueDate, string question, string category)
         {
             QuestionSet qSet = new QuestionSet();
 

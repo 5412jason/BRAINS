@@ -13,6 +13,8 @@ namespace BRAINS
     public partial class Oversight : Form
     {
         private StenerManagement stenerManagement;
+        private DepartmentManagement departmentManagement;
+
         private List<QuestionSet> questionSets;
         private UserData currentUser;
         private UserData deleteUser;
@@ -32,12 +34,14 @@ namespace BRAINS
             InitializeComponent();
 
             stenerManagement = new StenerManagement();
+            departmentManagement = new DepartmentManagement();
         }
         public Oversight(UserData user)
         {
             InitializeComponent();
 
             stenerManagement = new StenerManagement();
+            departmentManagement = new DepartmentManagement();
             currentUser = user;
         }
 
@@ -137,7 +141,16 @@ namespace BRAINS
             dueDateCalendar.Enabled = true;
             questionTextbox.Enabled = true;
             submitStenerManagementButton.Enabled = true;
+            categoryTextBox.Enabled = true;
 
+            departmentComboBox.Items.Clear();
+
+            List<string> departmentNames = departmentManagement.GetDepartmentNames();
+
+            foreach(string dept in departmentNames)
+            {
+                departmentComboBox.Items.Add(dept);
+            }
 
             currentStenerManagementMode = stenerManagementMode.CreateQuestionSet;
 
@@ -167,14 +180,18 @@ namespace BRAINS
                 if (departmentComboBox.SelectedItem != null 
                     && priorityComboBox.SelectedItem != null
                     && dueDateCalendar.SelectionStart != null
-                    && questionTextbox.Text != "")
+                    && questionTextbox.Text != ""
+                    && categoryTextBox.Text != "")
                 {
-                    int departmentName = Convert.ToInt32(departmentComboBox.SelectedItem.ToString());
+                    string departmentName = departmentComboBox.SelectedItem.ToString();
                     int priority = Convert.ToInt32(priorityComboBox.SelectedItem);
                     DateTime dueDate = dueDateCalendar.SelectionStart;
                     string question = questionTextbox.Text;
+                    string category = categoryTextBox.Text;
 
-                    bool result = stenerManagement.CreateQuestionSet(departmentName, priority, dueDate, question);
+                    int departmentID = departmentManagement.GetDepartmentByName(departmentName).DepartmentUID;
+
+                    bool result = stenerManagement.CreateQuestionSet(departmentID, priority, dueDate, question, category);
                     
                     if (result == true)
                     {
@@ -184,6 +201,7 @@ namespace BRAINS
                         departmentComboBox.Items.Clear();
                         priorityComboBox.Items.Clear();
                         questionTextbox.Text = "";
+                        categoryTextBox.Text = "";
                     }
                     else
                     {
@@ -223,6 +241,7 @@ namespace BRAINS
                 dueDateCalendar.Enabled = false;
                 questionTextbox.Enabled = false;
                 submitStenerManagementButton.Enabled = false;
+                categoryTextBox.Enabled = true;
             }
 
             stenerManagementStatusLabel.Text = statusMessage;

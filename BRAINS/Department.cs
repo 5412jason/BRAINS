@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BRAINS
 {
-    class Department
+    public class Department
     {
         private int departmentUID;
         private string name;
