@@ -82,7 +82,7 @@
             this.oversightPasswordChangeDialogOK.TabIndex = 4;
             this.oversightPasswordChangeDialogOK.Text = "OK";
             this.oversightPasswordChangeDialogOK.UseVisualStyleBackColor = true;
-            this.oversightPasswordChangeDialogOK.Click += new System.EventHandler(this.oversightPasswordChangeDialogOK_Click);
+            //this.oversightPasswordChangeDialogOK.Click += new System.EventHandler(this.oversightPasswordChangeDialogOK_Click);
             // 
             // oversightPasswordChangeDialogCancel
             // 

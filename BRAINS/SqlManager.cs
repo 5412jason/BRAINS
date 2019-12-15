@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.Security.Cryptography;
+
 
 namespace BRAINS
 {
@@ -20,7 +22,7 @@ namespace BRAINS
 
             using (SqlConnection con = new SqlConnection(connString))
             {
-
+                
                 using (SqlCommand cmd = new SqlCommand(query, con))
                 {
 
@@ -32,7 +34,7 @@ namespace BRAINS
 
                     con.Close();
                 }
-
+                
             }
             return dataTable;
         }
@@ -262,6 +264,7 @@ namespace BRAINS
                 return user;
             }
         }
+
 
         static public bool ModifyUser(UserData user)
         {

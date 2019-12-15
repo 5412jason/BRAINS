@@ -14,11 +14,19 @@ namespace BRAINS
 {
     public partial class Business : Form
     {
+
+        private UserData currentUser;
+
         public Business()
         {
             InitializeComponent();
         }
 
+        public Business(UserData user)
+        {
+            InitializeComponent();
+            currentUser = user;
+        }
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 

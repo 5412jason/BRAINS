@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace BRAINS
-{
+{/*
     class DepartmentManagement
     { 
 
@@ -45,4 +45,5 @@ namespace BRAINS
             SqlManager.ModifyUser(user);
         }
     }
+    */
 }

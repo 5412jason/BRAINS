@@ -103,6 +103,7 @@
             this.priorityComboBox = new System.Windows.Forms.ComboBox();
             this.stenerManagementStatusStrip = new System.Windows.Forms.StatusStrip();
             this.stenerManagementStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.violationUID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.oversightTabControl.SuspendLayout();
             this.submissionsTab.SuspendLayout();
             this.stenerManagementTab.SuspendLayout();
@@ -653,6 +654,7 @@
             // OversightViolationList
             // 
             this.OversightViolationList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.violationUID,
             this.oversightStenerSetUID,
             this.oversightDepartment,
             this.oversightSeverity,
@@ -668,26 +670,31 @@
             // 
             // oversightStenerSetUID
             // 
+            this.oversightStenerSetUID.DisplayIndex = 0;
             this.oversightStenerSetUID.Text = "Document";
             this.oversightStenerSetUID.Width = 91;
             // 
             // oversightDepartment
             // 
+            this.oversightDepartment.DisplayIndex = 1;
             this.oversightDepartment.Text = "Department";
             this.oversightDepartment.Width = 83;
             // 
             // oversightSeverity
             // 
+            this.oversightSeverity.DisplayIndex = 2;
             this.oversightSeverity.Text = "Severity";
             this.oversightSeverity.Width = 79;
             // 
             // oversightDescription
             // 
+            this.oversightDescription.DisplayIndex = 3;
             this.oversightDescription.Text = "Description";
             this.oversightDescription.Width = 91;
             // 
             // oversightViolatedDate
             // 
+            this.oversightViolatedDate.DisplayIndex = 4;
             this.oversightViolatedDate.Text = "Date Violated";
             this.oversightViolatedDate.Width = 88;
             // 
@@ -778,6 +785,9 @@
             // 
             // stenerManagementStatusLabel
             // 
+            this.violationUID.DisplayIndex = 5;
+            this.violationUID.Text = "ViolationUID";
+            this.violationUID.Width = 95;
             this.stenerManagementStatusLabel.Name = "stenerManagementStatusLabel";
             this.stenerManagementStatusLabel.Size = new System.Drawing.Size(0, 17);
             // 
@@ -879,5 +889,6 @@
         private System.Windows.Forms.ComboBox departmentComboBox;
         private System.Windows.Forms.StatusStrip stenerManagementStatusStrip;
         private System.Windows.Forms.ToolStripStatusLabel stenerManagementStatusLabel;
+        private System.Windows.Forms.ColumnHeader violationUID;
     }
 }

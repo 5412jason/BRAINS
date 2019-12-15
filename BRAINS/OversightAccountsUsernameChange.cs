@@ -45,7 +45,7 @@ namespace BRAINS
             this.Close();
         }
 
-        private void oversightAccountsUsernameChangeOK_Click(object sender, EventArgs e)
+      /*  private void oversightAccountsUsernameChangeOK_Click(object sender, EventArgs e)
         {
             /*string currentUsername = SqlManager.FindUser(uuid).Username;
 
@@ -62,5 +62,6 @@ namespace BRAINS
             */
             this.Close();
         }
+        */
     }
 }
