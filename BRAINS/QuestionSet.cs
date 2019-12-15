@@ -17,6 +17,7 @@ namespace BRAINS
         private DateTime submittedDate;
         private string status;
         private int priority;
+        private bool violated;
 
         public int UniqueID { get => uniqueID; set => uniqueID = value; }
         public int QuestionCount { get => questionCount; set => questionCount = value; }
@@ -27,6 +28,7 @@ namespace BRAINS
         public string Status { get => status; set => status = value; }
         public int Priority { get => priority; set => priority = value; }
         internal List<Question> Questions { get => questions; set => questions = value; }
+        public bool Violated { get => violated; set => violated = value; }
 
         public QuestionSet()
         {

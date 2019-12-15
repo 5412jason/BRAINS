@@ -103,13 +103,14 @@ namespace BRAINS
                     qSet.Category = row.Field<string>("Category");
                     qSet.Priority = row.Field<int>("Priority");
                     //broken
-                    qSet.DueDate = Convert.ToDateTime(row["DueDate"].ToString());
+                    qSet.DueDate = row.Field<DateTime>("DueDate");
                     qSet.Status = row.Field<String>("Status");
-                    //qSet.SubmittedDate = row.Field<DateTime>("SubmittedDate");
+                    qSet.SubmittedDate = row.Field<DateTime>("SubmittedDate");
+                    qSet.Violated = Convert.ToBoolean(row.Field<int>("Violated"));
 
                     qSet.Questions = new List<Question>();
 
-                    DataTable questionTable = QueryDatabase("SELECT * FROM StenerTable");
+                    DataTable questionTable = QueryDatabase("SELECT * FROM StenerTable WHERE StenerSetUID = " + qSet.UniqueID.ToString());
 
                     foreach(DataRow questionRow in questionTable.Rows)
                     {
@@ -118,9 +119,9 @@ namespace BRAINS
                         question.QuestionText = questionRow.Field<string>("Question");
                         question.Answer = questionRow.Field<string>("Answer");
                         question.EvidenceLocation = questionRow.Field<string>("LocationEvidence");
-                        //question.Compliance = questionRow.Field<bool>("Compliance");
-                        //question.SolutionPlan = questionRow.Field<string>("PlanForSolution");
-                        //violated?
+                        question.Compliance = questionRow.Field<bool>("Compliance");
+                        question.SolutionPlan = questionRow.Field<string>("PlanForSolution");
+                        
                         qSet.Questions.Add(question);
                     }
 
@@ -134,6 +135,44 @@ namespace BRAINS
                 Console.WriteLine(e);
                 return new List<QuestionSet>();
             }
+        }
+
+        static public QuestionSet FindQuestionSet(int qSetID)
+        {
+            string query = "SELECT * FROM StenerTable WHERE StenerSetUID = " + qSetID.ToString();
+
+            DataTable dataTable = QueryDatabase(query);
+            if (dataTable.Rows.Count > 0)
+            {
+                DataRow row = dataTable.Rows[0];
+
+                QuestionSet qSet = new QuestionSet();
+                qSet.UniqueID = row.Field<int>("StenerSetUID");
+                qSet.AssignedDepartment = row.Field<int>("DepartmentUID");
+                qSet.Category = row.Field<string>("Category");
+                qSet.Priority = row.Field<int>("Priority");
+                qSet.DueDate = row.Field<DateTime>("DueDate");
+                qSet.Status = row.Field<String>("Status");
+                qSet.SubmittedDate = row.Field<DateTime>("SubmittedDate");
+                qSet.Violated = Convert.ToBoolean(row.Field<int>("Violated"));
+
+                foreach(DataRow questionRow in dataTable.Rows)
+                {
+                    Question question = new Question();
+                    question.QuestionID = questionRow.Field<int>("QuestionUID");
+                    question.QuestionText = questionRow.Field<string>("Question");
+                    question.Answer = questionRow.Field<string>("Answer");
+                    question.EvidenceLocation = questionRow.Field<string>("LocationEvidence");
+                    question.Compliance = questionRow.Field<bool>("Compliance");
+                    question.SolutionPlan = questionRow.Field<string>("PlanForSolution");
+
+                    qSet.Questions.Add(question);
+                }
+
+                return qSet;
+            }
+
+            return null;
         }
 
         static public bool ModifyQuestionSet(QuestionSet updatedQSet)
@@ -154,17 +193,13 @@ namespace BRAINS
         static public bool AddQuestion(QuestionSet questionSet, Question question)
         {
             string queryString =
-                "INSERT INTO StenerTable SET"
-                + " DepartmentUID = " + questionSet.AssignedDepartment.ToString()
-                + " Priority = " + questionSet.Priority.ToString()
-                + " DueDate = " + questionSet.DueDate.ToString()
-                + " Status = " + questionSet.Status
-                + " Category = " + questionSet.Category
-                + " StenerSetUID = " + questionSet.UniqueID.ToString()
-                + " QuestionUID = " + question.QuestionID.ToString()
-                + " Question = " + question.QuestionText
-                + " Answer = " + question.Answer
-                + " LocationEvidence = " + question.EvidenceLocation;
+                "INSERT INTO StenerTable(QuestionUID, StenerSetUID, DepartmentUID, Category, Question, Answer, LocationEvidence, Priority, DueDate, Status, Compliance, PlanForSolution, SubmittedDate, Violated)"
+                + "VALUES('" + question.QuestionID.ToString() + "','" + questionSet.UniqueID.ToString() + "','"
+                + questionSet.AssignedDepartment.ToString() + "','" + questionSet.Category + "','"
+                + question.QuestionText + "','" + question.Answer + "','" + question.EvidenceLocation + "','"
+                + questionSet.Priority.ToString() + "','" + questionSet.DueDate.ToString() + "','"
+                + questionSet.Status + "','" + question.Compliance.ToString() + "','"
+                + question.PlanForSolution + "','" + questionSet.SubmittedDate.ToString() + "','" + questionSet.Violated.ToString() + "')";
 
             bool passed = NonQueryDatabase(queryString);
 
@@ -205,7 +240,7 @@ namespace BRAINS
                     + question.QuestionText + "','" + question.Answer + "','" + question.EvidenceLocation + "','"
                     + questionSet.Priority.ToString() + "','" + questionSet.DueDate.ToString() + "','"
                     + questionSet.Status + "','" + question.Compliance.ToString() + "','"
-                    + question.PlanForSolution + "','" + question.Violated.ToString() + "')";
+                    + question.PlanForSolution + "','" + questionSet.Violated.ToString() + "')";
 
                 bool passed = NonQueryDatabase(queryString);
                 if (passed == false)
@@ -238,14 +273,36 @@ namespace BRAINS
                 UserData user = new UserData();
                 user.UUID = row.Field<int>("UsernameUID");
                 user.Username = row.Field<string>("Username");
-                user.Password = "";
+                user.Password = row.Field<string>("Password");
                 user.DepartmentUID = row.Field<int>("DepartmentUID");
-                user.DepartmentName = row.Field<string>("Department");
                 user.Permissions = row.Field<bool>("Permissions");
                 
                 users.Add(user);
             }
             return users;
+        }
+
+        static public UserData FindUser(int userID)
+        {
+            DataTable dataTable = QueryDatabase("SELECT * FROM LoginTable WHERE UsernameUID = " + userID.ToString());
+
+            if(dataTable.Rows.Count > 0)
+            {
+                DataRow row = dataTable.Rows[0];
+
+                UserData user = new UserData();
+                user.UUID = row.Field<int>("UsernameUID");
+                user.Username = row.Field<string>("Username");
+                user.Password = row.Field<string>("Password");
+                user.DepartmentUID = row.Field<int>("DepartmentUID");
+                user.Permissions = row.Field<bool>("Permissions");
+
+                return user;
+            }
+            else
+            {
+                return null;
+            }
         }
         
         static public UserData AuthenticateCredentials(string username, string password)
@@ -262,9 +319,8 @@ namespace BRAINS
                 UserData user = new UserData();
                 user.UUID = row.Field<int>("UsernameUID");
                 user.Username = row.Field<string>("Username");
-                user.Password = "";
+                user.Password = row.Field<string>("Password");
                 user.DepartmentUID = row.Field<int>("DepartmentUID");
-                user.DepartmentName = row.Field<string>("Department");
                 user.Permissions = Convert.ToBoolean(row.Field<int>("Permissions"));
 
                 return user;
@@ -277,7 +333,6 @@ namespace BRAINS
             string query =
                 "UPDATE LoginTable SET"
                 + " Username = " + user.Username
-                + " Department = " + user.DepartmentName
                 + " DepartmentUID = " + user.DepartmentUID.ToString()
                 + " Permissions = " + user.Permissions
                 + " Password = " + user.Password
@@ -299,14 +354,10 @@ namespace BRAINS
 
         static public bool AddUser(UserData user)
         {
-            string query =
-                "INSERT INTO LoginTable SET"
-                + " Username = " + user.Username
-                + " Department = " + user.DepartmentName
-                + " DepartmentUID = " + user.DepartmentUID.ToString()
-                + " Permissions = " + user.Permissions
-                + " Password = " + user.Password
-                + " UsernameUID = " + user.UUID.ToString();
+            string query = "INSERT INTO LoginTable(Username, DepartmentUID, Permissions, Password, UsernameUID)VALUES("
+                + user.Username + "','" + user.DepartmentUID.ToString() + "','"
+                + user.Permissions.ToString() + "','" + user.Password + "','"
+                + user.UUID.ToString() + "')";
 
             bool passed = NonQueryDatabase(query);
 
@@ -377,14 +428,10 @@ namespace BRAINS
 
         static public bool AddViolation(Violation violation)
         {
-            string query =
-                "INSERT INTO ViolationTable SET"
-                + " ViolaitonUID = " + violation.ViolationUID.ToString()
-                + " DepartmentUID = " + violation.DepartmentUID.ToString()
-                + " StenerSetUID = " + violation.StenerSetUID.ToString()
-                + " Severity = " + violation.Severity.ToString()
-                + " ViolatedDate = " + violation.ViolationDate.ToString()
-                + " ViolatedDescription = " + violation.ViolationDescription;
+            string query = "INSERT INTO ViolationTable(ViolationUID, DepratrmentUID, StenerSetUID, Severity, ViolatedDate, ViolatedDescription)VALUES("
+                + violation.ViolationUID.ToString() + "','" + violation.DepartmentUID.ToString() + "','"
+                + violation.StenerSetUID.ToString() + "','" + violation.Severity.ToString() + "','"
+                + violation.ViolationDate.ToString() + "','" + violation.ViolationDescription + "')";
 
             bool passed = NonQueryDatabase(query);
 
@@ -400,6 +447,33 @@ namespace BRAINS
 
             return passed;
         }
+        #endregion
+
+        #region DEPARTMENTS
+        /*static public List<Department> GetAllDepartments()
+        {
+
+        }
+
+        static public bool RemoveDepartment()
+        {
+
+        }
+        
+        static public bool AddDepartment(Department department)
+        {
+
+        }
+
+        static public List<UserData> GetUsersInDepartment(int departmentID)
+        {
+
+        }
+
+        static public bool FindDepartment(int departmentID)
+        {
+
+        }*/
         #endregion
     }
 }
