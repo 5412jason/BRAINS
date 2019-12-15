@@ -32,6 +32,7 @@ namespace BRAINS
             qSet.Priority = priority;
             qSet.DueDate = dueDate;
             qSet.UniqueID = GetNextQuestionSetID();
+            qSet.Status = "CREATED";
 
             Question newQuestion = new Question();
             newQuestion.QuestionText = question;

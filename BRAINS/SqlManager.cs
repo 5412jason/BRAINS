@@ -58,8 +58,9 @@ namespace BRAINS
                 }
                 return true;
             }
-            catch
+            catch (Exception e)
             {
+                Console.WriteLine(e);
                 return false;
             }
         }
@@ -188,17 +189,13 @@ namespace BRAINS
             foreach (Question question in questionSet.Questions)
             {
                 string queryString =
-                    "INSERT INTO StenerTable SET"
-                    + " DepartmentUID = " + questionSet.AssignedDepartment.ToString()
-                    + " Priority = " + questionSet.Priority.ToString()
-                    + " DueDate = " + questionSet.DueDate.ToString()
-                    + " Status = " + questionSet.Status
-                    + " Category = " + questionSet.Category
-                    + " StenerSetUID = " + questionSet.UniqueID.ToString()
-                    + " QuestionUID = " + question.QuestionID.ToString()
-                    + " Question = " + question.QuestionText
-                    + " Answer = " + question.Answer
-                    + " LocationEvidence = " + question.EvidenceLocation;
+                    "INSERT INTO StenerTable(QuestionUID, StenerSetUID, DepartmentUID, Category, Question, Answer, LocationEvidence, Priority, DueDate, Status, Compliance, PlanForSolution, Violated)"
+                    + "VALUES('" + question.QuestionID.ToString() + "','" + questionSet.UniqueID.ToString() + "','"
+                    + questionSet.AssignedDepartment.ToString() + "','" + questionSet.Category + "','"
+                    + question.QuestionText + "','" + question.Answer + "','" + question.EvidenceLocation + "','"
+                    + questionSet.Priority.ToString() + "','" + questionSet.DueDate.ToString() + "','"
+                    + questionSet.Status + "','" + question.Compliance.ToString() + "','"
+                    + question.PlanForSolution + "','" + question.Violated.ToString() + "')";
 
                 bool passed = NonQueryDatabase(queryString);
                 if (passed == false)
