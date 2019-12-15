@@ -58,11 +58,6 @@ namespace BRAINS
             form.Show();
         }
 
-        private void addUserButton_Click(object sender, EventArgs e)
-        {
-            NewUser newUser = new NewUser();
-            newUser.Show();
-        }
         private void OversightAccountsRemoveUser_Click (object sender, EventArgs e)
         {
             /*
@@ -90,8 +85,8 @@ namespace BRAINS
 
         private void OversightAccountsAddUser_Click(object sender, EventArgs e)
         {
-            NewUser form = new NewUser();
-            form.Show();
+            NewUser newUser = new NewUser();
+            newUser.Show();
         }
         private void violationRefreshButton_Click(object sender, EventArgs e)
         {
