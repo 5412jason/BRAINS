@@ -19,9 +19,15 @@ namespace BRAINS
         {
 
         }
-        public void createUser(string username, string password, int departmentID)
+        public void createUser(string username, string password, string confirmPassword, int department, string permissions)
         {
-          //  UUID = getNextUserID();
+            UserData user = new UserData();
+            user.Username = username;
+            user.Password = password;
+            user.DepartmentUID = department;
+            user.Permissions = Convert.ToBoolean(permissions);
+            user.UUID = getNextUserID();
+            SqlManager.AddUser(user);
         }
         private int getNextUserID()
         {
