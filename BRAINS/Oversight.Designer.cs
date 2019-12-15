@@ -43,26 +43,25 @@
             this.submittedByHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.reviewedByHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.stenerManagementTab = new System.Windows.Forms.TabPage();
+            this.stenerManageRefreshBtn = new System.Windows.Forms.Button();
             this.createQuestionSetButton = new System.Windows.Forms.Button();
             this.deleteQuestionSetButton = new System.Windows.Forms.Button();
             this.addQuestionButton = new System.Windows.Forms.Button();
             this.modifyQuestionButton = new System.Windows.Forms.Button();
             this.removeQuestionButton = new System.Windows.Forms.Button();
-            this.qNumTextBoxRO = new System.Windows.Forms.TextBox();
-            this.questionTextboxRO = new System.Windows.Forms.TextBox();
-            this.questionTextLabel = new System.Windows.Forms.Label();
-            this.questionNumberLabel = new System.Windows.Forms.Label();
+            this.questionTextbox = new System.Windows.Forms.TextBox();
+            this.questionEntryTextLabel = new System.Windows.Forms.Label();
             this.listView2 = new System.Windows.Forms.ListView();
             this.qNumber = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.questionDataHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.StenerManagementListView = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.departmentTab = new System.Windows.Forms.TabPage();
             this.memberList = new System.Windows.Forms.ListView();
             this.Members = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -95,13 +94,22 @@
             this.oversightSeverity = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.oversightDescription = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.oversightViolatedDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.stenerManageRefreshBtn = new System.Windows.Forms.Button();
+            this.departmentSelectionLabel = new System.Windows.Forms.Label();
+            this.priorityEntryLabel = new System.Windows.Forms.Label();
+            this.dueDateEntryLabel = new System.Windows.Forms.Label();
+            this.dueDateCalendar = new System.Windows.Forms.MonthCalendar();
+            this.submitStenerManagementButton = new System.Windows.Forms.Button();
+            this.departmentComboBox = new System.Windows.Forms.ComboBox();
+            this.priorityComboBox = new System.Windows.Forms.ComboBox();
+            this.stenerManagementStatusStrip = new System.Windows.Forms.StatusStrip();
+            this.stenerManagementStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.oversightTabControl.SuspendLayout();
             this.submissionsTab.SuspendLayout();
             this.stenerManagementTab.SuspendLayout();
             this.departmentTab.SuspendLayout();
             this.accountsTab.SuspendLayout();
             this.violationsTab.SuspendLayout();
+            this.stenerManagementStatusStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // oversightTabControl
@@ -115,7 +123,7 @@
             this.oversightTabControl.Location = new System.Drawing.Point(0, 0);
             this.oversightTabControl.Name = "oversightTabControl";
             this.oversightTabControl.SelectedIndex = 0;
-            this.oversightTabControl.Size = new System.Drawing.Size(985, 599);
+            this.oversightTabControl.Size = new System.Drawing.Size(985, 620);
             this.oversightTabControl.TabIndex = 0;
             // 
             // submissionsTab
@@ -219,105 +227,107 @@
             // 
             // stenerManagementTab
             // 
+            this.stenerManagementTab.Controls.Add(this.stenerManagementStatusStrip);
+            this.stenerManagementTab.Controls.Add(this.priorityComboBox);
+            this.stenerManagementTab.Controls.Add(this.departmentComboBox);
+            this.stenerManagementTab.Controls.Add(this.submitStenerManagementButton);
+            this.stenerManagementTab.Controls.Add(this.dueDateCalendar);
+            this.stenerManagementTab.Controls.Add(this.dueDateEntryLabel);
+            this.stenerManagementTab.Controls.Add(this.priorityEntryLabel);
+            this.stenerManagementTab.Controls.Add(this.departmentSelectionLabel);
             this.stenerManagementTab.Controls.Add(this.stenerManageRefreshBtn);
             this.stenerManagementTab.Controls.Add(this.createQuestionSetButton);
             this.stenerManagementTab.Controls.Add(this.deleteQuestionSetButton);
             this.stenerManagementTab.Controls.Add(this.addQuestionButton);
             this.stenerManagementTab.Controls.Add(this.modifyQuestionButton);
             this.stenerManagementTab.Controls.Add(this.removeQuestionButton);
-            this.stenerManagementTab.Controls.Add(this.qNumTextBoxRO);
-            this.stenerManagementTab.Controls.Add(this.questionTextboxRO);
-            this.stenerManagementTab.Controls.Add(this.questionTextLabel);
-            this.stenerManagementTab.Controls.Add(this.questionNumberLabel);
+            this.stenerManagementTab.Controls.Add(this.questionTextbox);
+            this.stenerManagementTab.Controls.Add(this.questionEntryTextLabel);
             this.stenerManagementTab.Controls.Add(this.listView2);
             this.stenerManagementTab.Controls.Add(this.StenerManagementListView);
             this.stenerManagementTab.Location = new System.Drawing.Point(4, 22);
             this.stenerManagementTab.Name = "stenerManagementTab";
             this.stenerManagementTab.Padding = new System.Windows.Forms.Padding(3);
-            this.stenerManagementTab.Size = new System.Drawing.Size(977, 573);
+            this.stenerManagementTab.Size = new System.Drawing.Size(977, 594);
             this.stenerManagementTab.TabIndex = 1;
             this.stenerManagementTab.Text = "STENER Management";
             this.stenerManagementTab.UseVisualStyleBackColor = true;
             // 
+            // stenerManageRefreshBtn
+            // 
+            this.stenerManageRefreshBtn.Location = new System.Drawing.Point(3, 542);
+            this.stenerManageRefreshBtn.Name = "stenerManageRefreshBtn";
+            this.stenerManageRefreshBtn.Size = new System.Drawing.Size(633, 23);
+            this.stenerManageRefreshBtn.TabIndex = 14;
+            this.stenerManageRefreshBtn.Text = "Refresh Lists";
+            this.stenerManageRefreshBtn.UseVisualStyleBackColor = true;
+            this.stenerManageRefreshBtn.Click += new System.EventHandler(this.stenerManageRefreshBtn_Click);
+            // 
             // createQuestionSetButton
             // 
-            this.createQuestionSetButton.Location = new System.Drawing.Point(746, 510);
+            this.createQuestionSetButton.Location = new System.Drawing.Point(642, 35);
             this.createQuestionSetButton.Name = "createQuestionSetButton";
-            this.createQuestionSetButton.Size = new System.Drawing.Size(145, 23);
+            this.createQuestionSetButton.Size = new System.Drawing.Size(327, 22);
             this.createQuestionSetButton.TabIndex = 13;
             this.createQuestionSetButton.Text = "Create Question Set";
             this.createQuestionSetButton.UseVisualStyleBackColor = true;
+            this.createQuestionSetButton.Click += new System.EventHandler(this.createQuestionSetButton_Click);
             // 
             // deleteQuestionSetButton
             // 
-            this.deleteQuestionSetButton.Location = new System.Drawing.Point(746, 481);
+            this.deleteQuestionSetButton.Location = new System.Drawing.Point(642, 6);
             this.deleteQuestionSetButton.Name = "deleteQuestionSetButton";
-            this.deleteQuestionSetButton.Size = new System.Drawing.Size(145, 23);
+            this.deleteQuestionSetButton.Size = new System.Drawing.Size(327, 22);
             this.deleteQuestionSetButton.TabIndex = 12;
             this.deleteQuestionSetButton.Text = "Delete Question Set";
             this.deleteQuestionSetButton.UseVisualStyleBackColor = true;
+            this.deleteQuestionSetButton.Click += new System.EventHandler(this.deleteQuestionSetButton_Click);
             // 
             // addQuestionButton
             // 
-            this.addQuestionButton.Location = new System.Drawing.Point(764, 452);
+            this.addQuestionButton.Location = new System.Drawing.Point(642, 119);
             this.addQuestionButton.Name = "addQuestionButton";
-            this.addQuestionButton.Size = new System.Drawing.Size(111, 23);
+            this.addQuestionButton.Size = new System.Drawing.Size(327, 22);
             this.addQuestionButton.TabIndex = 11;
             this.addQuestionButton.Text = "Add Question";
             this.addQuestionButton.UseVisualStyleBackColor = true;
             // 
             // modifyQuestionButton
             // 
-            this.modifyQuestionButton.Location = new System.Drawing.Point(828, 423);
+            this.modifyQuestionButton.Location = new System.Drawing.Point(642, 91);
             this.modifyQuestionButton.Name = "modifyQuestionButton";
-            this.modifyQuestionButton.Size = new System.Drawing.Size(108, 23);
+            this.modifyQuestionButton.Size = new System.Drawing.Size(327, 22);
             this.modifyQuestionButton.TabIndex = 10;
             this.modifyQuestionButton.Text = "Modify Question";
             this.modifyQuestionButton.UseVisualStyleBackColor = true;
             // 
             // removeQuestionButton
             // 
-            this.removeQuestionButton.Location = new System.Drawing.Point(711, 423);
+            this.removeQuestionButton.Location = new System.Drawing.Point(642, 63);
             this.removeQuestionButton.Name = "removeQuestionButton";
-            this.removeQuestionButton.Size = new System.Drawing.Size(111, 23);
+            this.removeQuestionButton.Size = new System.Drawing.Size(327, 22);
             this.removeQuestionButton.TabIndex = 9;
             this.removeQuestionButton.Text = "Remove Question";
             this.removeQuestionButton.UseVisualStyleBackColor = true;
             // 
-            // qNumTextBoxRO
+            // questionTextbox
             // 
-            this.qNumTextBoxRO.Location = new System.Drawing.Point(711, 220);
-            this.qNumTextBoxRO.Name = "qNumTextBoxRO";
-            this.qNumTextBoxRO.ReadOnly = true;
-            this.qNumTextBoxRO.Size = new System.Drawing.Size(33, 20);
-            this.qNumTextBoxRO.TabIndex = 8;
+            this.questionTextbox.Enabled = false;
+            this.questionTextbox.Location = new System.Drawing.Point(642, 447);
+            this.questionTextbox.Multiline = true;
+            this.questionTextbox.Name = "questionTextbox";
+            this.questionTextbox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.questionTextbox.Size = new System.Drawing.Size(327, 89);
+            this.questionTextbox.TabIndex = 7;
             // 
-            // questionTextboxRO
+            // questionEntryTextLabel
             // 
-            this.questionTextboxRO.Location = new System.Drawing.Point(658, 273);
-            this.questionTextboxRO.Multiline = true;
-            this.questionTextboxRO.Name = "questionTextboxRO";
-            this.questionTextboxRO.ReadOnly = true;
-            this.questionTextboxRO.Size = new System.Drawing.Size(316, 114);
-            this.questionTextboxRO.TabIndex = 7;
-            // 
-            // questionTextLabel
-            // 
-            this.questionTextLabel.AutoSize = true;
-            this.questionTextLabel.Location = new System.Drawing.Point(658, 256);
-            this.questionTextLabel.Name = "questionTextLabel";
-            this.questionTextLabel.Size = new System.Drawing.Size(52, 13);
-            this.questionTextLabel.TabIndex = 5;
-            this.questionTextLabel.Text = "Question:";
-            // 
-            // questionNumberLabel
-            // 
-            this.questionNumberLabel.AutoSize = true;
-            this.questionNumberLabel.Location = new System.Drawing.Point(658, 223);
-            this.questionNumberLabel.Name = "questionNumberLabel";
-            this.questionNumberLabel.Size = new System.Drawing.Size(47, 13);
-            this.questionNumberLabel.TabIndex = 4;
-            this.questionNumberLabel.Text = "Number:";
+            this.questionEntryTextLabel.AutoSize = true;
+            this.questionEntryTextLabel.Location = new System.Drawing.Point(639, 431);
+            this.questionEntryTextLabel.Name = "questionEntryTextLabel";
+            this.questionEntryTextLabel.Size = new System.Drawing.Size(52, 13);
+            this.questionEntryTextLabel.TabIndex = 5;
+            this.questionEntryTextLabel.Text = "Question:";
             // 
             // listView2
             // 
@@ -325,9 +335,9 @@
             this.qNumber,
             this.questionDataHeader});
             this.listView2.HideSelection = false;
-            this.listView2.Location = new System.Drawing.Point(658, 6);
+            this.listView2.Location = new System.Drawing.Point(3, 266);
             this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(313, 197);
+            this.listView2.Size = new System.Drawing.Size(633, 270);
             this.listView2.TabIndex = 3;
             this.listView2.UseCompatibleStateImageBehavior = false;
             this.listView2.View = System.Windows.Forms.View.Details;
@@ -335,26 +345,29 @@
             // qNumber
             // 
             this.qNumber.Text = "#";
+            this.qNumber.Width = 38;
             // 
             // questionDataHeader
             // 
             this.questionDataHeader.Text = "Question";
-            this.questionDataHeader.Width = 229;
+            this.questionDataHeader.Width = 584;
             // 
             // StenerManagementListView
             // 
             this.StenerManagementListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
-            this.columnHeader9,
             this.columnHeader2,
             this.columnHeader3,
             this.columnHeader4,
             this.columnHeader5,
-            this.columnHeader6});
+            this.columnHeader6,
+            this.columnHeader9});
+            this.StenerManagementListView.FullRowSelect = true;
             this.StenerManagementListView.HideSelection = false;
             this.StenerManagementListView.Location = new System.Drawing.Point(3, 6);
+            this.StenerManagementListView.MultiSelect = false;
             this.StenerManagementListView.Name = "StenerManagementListView";
-            this.StenerManagementListView.Size = new System.Drawing.Size(649, 561);
+            this.StenerManagementListView.Size = new System.Drawing.Size(633, 254);
             this.StenerManagementListView.TabIndex = 1;
             this.StenerManagementListView.UseCompatibleStateImageBehavior = false;
             this.StenerManagementListView.View = System.Windows.Forms.View.Details;
@@ -363,40 +376,34 @@
             // 
             this.columnHeader1.Text = "Q-Set ID";
             // 
-            // columnHeader9
-            // 
-            this.columnHeader9.DisplayIndex = 6;
-            this.columnHeader9.Text = "Category";
-            // 
             // columnHeader2
             // 
-            this.columnHeader2.DisplayIndex = 1;
             this.columnHeader2.Text = "Assigned Department";
             this.columnHeader2.Width = 127;
             // 
             // columnHeader3
             // 
-            this.columnHeader3.DisplayIndex = 2;
             this.columnHeader3.Text = "Question Count";
             this.columnHeader3.Width = 112;
             // 
             // columnHeader4
             // 
-            this.columnHeader4.DisplayIndex = 3;
             this.columnHeader4.Text = "Due Date";
             this.columnHeader4.Width = 82;
             // 
             // columnHeader5
             // 
-            this.columnHeader5.DisplayIndex = 4;
             this.columnHeader5.Text = "Submitted Date";
             this.columnHeader5.Width = 102;
             // 
             // columnHeader6
             // 
-            this.columnHeader6.DisplayIndex = 5;
             this.columnHeader6.Text = "Status";
             this.columnHeader6.Width = 85;
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Text = "Category";
             // 
             // departmentTab
             // 
@@ -684,21 +691,101 @@
             this.oversightViolatedDate.Text = "Date Violated";
             this.oversightViolatedDate.Width = 88;
             // 
-            // stenerManageRefreshBtn
+            // departmentSelectionLabel
             // 
-            this.stenerManageRefreshBtn.Location = new System.Drawing.Point(787, 394);
-            this.stenerManageRefreshBtn.Name = "stenerManageRefreshBtn";
-            this.stenerManageRefreshBtn.Size = new System.Drawing.Size(75, 23);
-            this.stenerManageRefreshBtn.TabIndex = 14;
-            this.stenerManageRefreshBtn.Text = "Refresh List";
-            this.stenerManageRefreshBtn.UseVisualStyleBackColor = true;
-            this.stenerManageRefreshBtn.Click += new System.EventHandler(this.stenerManageRefreshBtn_Click);
+            this.departmentSelectionLabel.AutoSize = true;
+            this.departmentSelectionLabel.Location = new System.Drawing.Point(645, 144);
+            this.departmentSelectionLabel.Name = "departmentSelectionLabel";
+            this.departmentSelectionLabel.Size = new System.Drawing.Size(95, 13);
+            this.departmentSelectionLabel.TabIndex = 15;
+            this.departmentSelectionLabel.Text = "Select Department";
+            // 
+            // priorityEntryLabel
+            // 
+            this.priorityEntryLabel.AutoSize = true;
+            this.priorityEntryLabel.Location = new System.Drawing.Point(645, 185);
+            this.priorityEntryLabel.Name = "priorityEntryLabel";
+            this.priorityEntryLabel.Size = new System.Drawing.Size(38, 13);
+            this.priorityEntryLabel.TabIndex = 16;
+            this.priorityEntryLabel.Text = "Priority";
+            // 
+            // dueDateEntryLabel
+            // 
+            this.dueDateEntryLabel.AutoSize = true;
+            this.dueDateEntryLabel.Location = new System.Drawing.Point(645, 238);
+            this.dueDateEntryLabel.Name = "dueDateEntryLabel";
+            this.dueDateEntryLabel.Size = new System.Drawing.Size(53, 13);
+            this.dueDateEntryLabel.TabIndex = 17;
+            this.dueDateEntryLabel.Text = "Due Date";
+            // 
+            // dueDateCalendar
+            // 
+            this.dueDateCalendar.Enabled = false;
+            this.dueDateCalendar.Location = new System.Drawing.Point(648, 260);
+            this.dueDateCalendar.Name = "dueDateCalendar";
+            this.dueDateCalendar.TabIndex = 18;
+            // 
+            // submitStenerManagementButton
+            // 
+            this.submitStenerManagementButton.Enabled = false;
+            this.submitStenerManagementButton.Location = new System.Drawing.Point(642, 543);
+            this.submitStenerManagementButton.Name = "submitStenerManagementButton";
+            this.submitStenerManagementButton.Size = new System.Drawing.Size(327, 23);
+            this.submitStenerManagementButton.TabIndex = 19;
+            this.submitStenerManagementButton.Text = "Submit Modifications";
+            this.submitStenerManagementButton.UseVisualStyleBackColor = true;
+            this.submitStenerManagementButton.Click += new System.EventHandler(this.submitStenerManagementButton_Click);
+            // 
+            // departmentComboBox
+            // 
+            this.departmentComboBox.Enabled = false;
+            this.departmentComboBox.FormattingEnabled = true;
+            this.departmentComboBox.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"});
+            this.departmentComboBox.Location = new System.Drawing.Point(648, 161);
+            this.departmentComboBox.Name = "departmentComboBox";
+            this.departmentComboBox.Size = new System.Drawing.Size(321, 21);
+            this.departmentComboBox.TabIndex = 20;
+            // 
+            // priorityComboBox
+            // 
+            this.priorityComboBox.Enabled = false;
+            this.priorityComboBox.FormattingEnabled = true;
+            this.priorityComboBox.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"});
+            this.priorityComboBox.Location = new System.Drawing.Point(648, 201);
+            this.priorityComboBox.Name = "priorityComboBox";
+            this.priorityComboBox.Size = new System.Drawing.Size(121, 21);
+            this.priorityComboBox.TabIndex = 21;
+            // 
+            // stenerManagementStatusStrip
+            // 
+            this.stenerManagementStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.stenerManagementStatusLabel});
+            this.stenerManagementStatusStrip.Location = new System.Drawing.Point(3, 569);
+            this.stenerManagementStatusStrip.Name = "stenerManagementStatusStrip";
+            this.stenerManagementStatusStrip.Size = new System.Drawing.Size(971, 22);
+            this.stenerManagementStatusStrip.TabIndex = 22;
+            this.stenerManagementStatusStrip.Text = "statusStrip1";
+            // 
+            // stenerManagementStatusLabel
+            // 
+            this.stenerManagementStatusLabel.Name = "stenerManagementStatusLabel";
+            this.stenerManagementStatusLabel.Size = new System.Drawing.Size(0, 17);
             // 
             // Oversight
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(985, 599);
+            this.ClientSize = new System.Drawing.Size(985, 620);
             this.Controls.Add(this.oversightTabControl);
             this.Name = "Oversight";
             this.Text = "Oversight";
@@ -709,6 +796,8 @@
             this.departmentTab.ResumeLayout(false);
             this.accountsTab.ResumeLayout(false);
             this.violationsTab.ResumeLayout(false);
+            this.stenerManagementStatusStrip.ResumeLayout(false);
+            this.stenerManagementStatusStrip.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -733,7 +822,6 @@
         private System.Windows.Forms.ColumnHeader statusHeader;
         private System.Windows.Forms.ColumnHeader submittedByHeader;
         private System.Windows.Forms.ColumnHeader reviewedByHeader;
-        private System.Windows.Forms.Label questionNumberLabel;
         private System.Windows.Forms.ListView listView2;
         private System.Windows.Forms.ListView StenerManagementListView;
         private System.Windows.Forms.ColumnHeader columnHeader1;
@@ -745,9 +833,8 @@
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.ColumnHeader qNumber;
         private System.Windows.Forms.ColumnHeader questionDataHeader;
-        private System.Windows.Forms.TextBox qNumTextBoxRO;
-        private System.Windows.Forms.TextBox questionTextboxRO;
-        private System.Windows.Forms.Label questionTextLabel;
+        private System.Windows.Forms.TextBox questionTextbox;
+        private System.Windows.Forms.Label questionEntryTextLabel;
         private System.Windows.Forms.Button createQuestionSetButton;
         private System.Windows.Forms.Button deleteQuestionSetButton;
         private System.Windows.Forms.Button addQuestionButton;
@@ -783,5 +870,14 @@
         private System.Windows.Forms.Button OversightAccountsRemoveUser;
         private System.Windows.Forms.Button OversightAccountsAddUser;
         private System.Windows.Forms.Button stenerManageRefreshBtn;
+        private System.Windows.Forms.Button submitStenerManagementButton;
+        private System.Windows.Forms.MonthCalendar dueDateCalendar;
+        private System.Windows.Forms.Label dueDateEntryLabel;
+        private System.Windows.Forms.Label priorityEntryLabel;
+        private System.Windows.Forms.Label departmentSelectionLabel;
+        private System.Windows.Forms.ComboBox priorityComboBox;
+        private System.Windows.Forms.ComboBox departmentComboBox;
+        private System.Windows.Forms.StatusStrip stenerManagementStatusStrip;
+        private System.Windows.Forms.ToolStripStatusLabel stenerManagementStatusLabel;
     }
 }

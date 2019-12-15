@@ -16,5 +16,68 @@ namespace BRAINS
 
             return steners;
         }
+
+        public void DeleteQuesitonSet(int id)
+        {
+            SqlManager.RemoveQuestionSet(id);
+        }
+
+        public bool CreateQuestionSet(int departmentID, int priority, DateTime dueDate, string question)
+        {
+            QuestionSet qSet = new QuestionSet();
+
+            //TODO: Getassigned department ID from a string parmaneter
+
+            qSet.AssignedDepartment = departmentID;
+            qSet.Priority = priority;
+            qSet.DueDate = dueDate;
+            qSet.UniqueID = GetNextQuestionSetID();
+
+            Question newQuestion = new Question();
+            newQuestion.QuestionText = question;
+            newQuestion.QuestionID = GetNextQuestionID(qSet);
+            qSet.Questions.Add(newQuestion);
+
+            bool result = SqlManager.CreateNewQuestionSet(qSet);
+
+            return result;
+        }
+
+        private int GetNextQuestionSetID()
+        {
+            List<QuestionSet> qSets = SqlManager.GetAllQuestionSets();
+            int nextID = 0;
+            foreach(QuestionSet qSet in qSets)
+            {
+                if(qSet.UniqueID > nextID)
+                {
+                    nextID = qSet.UniqueID;
+                }
+            }
+
+            nextID = nextID + 1;
+
+            return nextID;
+        }
+
+        private int GetNextQuestionID(QuestionSet qSet)
+        {
+            int nextID = 0;
+
+            if (qSet.Questions != null)
+            {
+                foreach (Question q in qSet.Questions)
+                {
+                    if (q.QuestionID > nextID)
+                    {
+                        nextID = q.QuestionID;
+                    }
+                }
+            }
+
+            nextID = nextID + 1;
+
+            return nextID;
+        }
     }
 }

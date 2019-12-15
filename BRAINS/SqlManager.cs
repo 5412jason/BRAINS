@@ -69,7 +69,7 @@ namespace BRAINS
         {
             try
             {
-                DataTable questionsDataTable = QueryDatabase("SELECT * FROM QuestionTable");
+                DataTable questionsDataTable = QueryDatabase("SELECT * FROM StenerTable");
 
                 List<DataRow> qSetRows = new List<DataRow>();
                 List<int> qSetIds = new List<int>();
@@ -89,20 +89,21 @@ namespace BRAINS
                     QuestionSet qSet = new QuestionSet();
                     qSet.UniqueID = row.Field<int>("StenerSetUID");
                     qSet.AssignedDepartment = row.Field<int>("DepartmentUID");
-                    qSet.Category = row.Field<string>("Categroy");
+                    qSet.Category = row.Field<string>("Category");
                     qSet.Priority = row.Field<int>("Priority");
-                    qSet.DueDate = row.Field<DateTime>("DueDate");
+                    //broken
+                    qSet.DueDate = Convert.ToDateTime(row["DueDate"].ToString());
                     qSet.Status = row.Field<String>("Status");
                     //qSet.SubmittedDate = row.Field<DateTime>("SubmittedDate");
 
                     qSet.Questions = new List<Question>();
 
-                    DataTable questionTable = QueryDatabase("SELECT * FROM QuestionTable");
+                    DataTable questionTable = QueryDatabase("SELECT * FROM StenerTable");
 
                     foreach(DataRow questionRow in questionTable.Rows)
                     {
                         Question question = new Question();
-                        question.QuestionID = questionRow.Field<int>("QuestionID");
+                        question.QuestionID = questionRow.Field<int>("QuestionUID");
                         question.QuestionText = questionRow.Field<string>("Question");
                         question.Answer = questionRow.Field<string>("Answer");
                         question.EvidenceLocation = questionRow.Field<string>("LocationEvidence");
@@ -127,7 +128,7 @@ namespace BRAINS
         static public bool ModifyQuestionSet(QuestionSet updatedQSet)
         {
             string queryString =
-                "UPDATE StenerDatabase SET DepartmentUID = " + updatedQSet.AssignedDepartment.ToString()
+                "UPDATE StenerTable SET DepartmentUID = " + updatedQSet.AssignedDepartment.ToString()
                 + " Priority = " + updatedQSet.Priority.ToString()
                 + " DueDate = " + updatedQSet.DueDate.ToString()
                 + " Status = " + updatedQSet.Status
@@ -142,14 +143,14 @@ namespace BRAINS
         static public bool AddQuestion(QuestionSet questionSet, Question question)
         {
             string queryString =
-                "INSERT INTO StenerDatabase SET"
+                "INSERT INTO StenerTable SET"
                 + " DepartmentUID = " + questionSet.AssignedDepartment.ToString()
                 + " Priority = " + questionSet.Priority.ToString()
                 + " DueDate = " + questionSet.DueDate.ToString()
                 + " Status = " + questionSet.Status
                 + " Category = " + questionSet.Category
                 + " StenerSetUID = " + questionSet.UniqueID.ToString()
-                + " QuestionID = " + question.QuestionID.ToString()
+                + " QuestionUID = " + question.QuestionID.ToString()
                 + " Question = " + question.QuestionText
                 + " Answer = " + question.Answer
                 + " LocationEvidence = " + question.EvidenceLocation;
@@ -161,7 +162,7 @@ namespace BRAINS
 
         static public bool RemoveQuestion(int questionUID)
         {
-            string queryString = "DELETE FROM StenerDatabase WHERE QuestionID = " + questionUID.ToString();
+            string queryString = "DELETE FROM StenerTable WHERE QuestionUID = " + questionUID.ToString();
 
             bool passed = NonQueryDatabase(queryString);
 
@@ -171,11 +172,11 @@ namespace BRAINS
         static public bool ModifyQuestion(Question question)
         {
             string queryString =
-                "UPDATE StenerDatabase SET "
+                "UPDATE StenerTable SET "
                     + " Question = " + question.QuestionText
                     + " Answer = " + question.Answer
                     + " LocationEvidence = " + question.EvidenceLocation
-                    + " WHERE QuestionID = " + question.QuestionID.ToString();
+                    + " WHERE QuestionUID = " + question.QuestionID.ToString();
 
             bool passed = NonQueryDatabase(queryString);
 
@@ -187,14 +188,14 @@ namespace BRAINS
             foreach (Question question in questionSet.Questions)
             {
                 string queryString =
-                    "INSERT INTO StenerDatabase SET"
+                    "INSERT INTO StenerTable SET"
                     + " DepartmentUID = " + questionSet.AssignedDepartment.ToString()
                     + " Priority = " + questionSet.Priority.ToString()
                     + " DueDate = " + questionSet.DueDate.ToString()
                     + " Status = " + questionSet.Status
                     + " Category = " + questionSet.Category
                     + " StenerSetUID = " + questionSet.UniqueID.ToString()
-                    + " QuestionID = " + question.QuestionID.ToString()
+                    + " QuestionUID = " + question.QuestionID.ToString()
                     + " Question = " + question.QuestionText
                     + " Answer = " + question.Answer
                     + " LocationEvidence = " + question.EvidenceLocation;
@@ -210,7 +211,7 @@ namespace BRAINS
 
         static public bool RemoveQuestionSet(int questionSetUID)
         {
-            string queryString = "DELETE FROM StenerDatabase WHERE StenerSetUID = " + questionSetUID.ToString();
+            string queryString = "DELETE FROM StenerTable WHERE StenerSetUID = " + questionSetUID.ToString();
 
             bool passed = NonQueryDatabase(queryString);
 

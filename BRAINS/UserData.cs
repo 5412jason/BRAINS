@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BRAINS
 {
-    class UserData
+    public class UserData
     {
         private int uuid;
         private string username;

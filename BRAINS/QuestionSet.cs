@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BRAINS
 {
-    class QuestionSet
+    public class QuestionSet
     {
         private int uniqueID;
         private int questionCount;
@@ -27,5 +27,10 @@ namespace BRAINS
         public string Status { get => status; set => status = value; }
         public int Priority { get => priority; set => priority = value; }
         internal List<Question> Questions { get => questions; set => questions = value; }
+
+        public QuestionSet()
+        {
+            questions = new List<Question>();
+        }
     }
 }
