@@ -74,6 +74,8 @@
             this.departmentList = new System.Windows.Forms.ListView();
             this.Departments = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.accountsTab = new System.Windows.Forms.TabPage();
+            this.OversightAccountsRemoveUser = new System.Windows.Forms.Button();
+            this.OversightAccountsAddUser = new System.Windows.Forms.Button();
             this.refreshButtonAccounts = new System.Windows.Forms.Button();
             this.changePasswordButton = new System.Windows.Forms.Button();
             this.changeUsernameButton = new System.Windows.Forms.Button();
@@ -93,8 +95,7 @@
             this.oversightSeverity = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.oversightDescription = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.oversightViolatedDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.OversightAccountsAddUser = new System.Windows.Forms.Button();
-            this.OversightAccountsRemoveUser = new System.Windows.Forms.Button();
+            this.violationUID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.oversightTabControl.SuspendLayout();
             this.submissionsTab.SuspendLayout();
             this.stenerManagementTab.SuspendLayout();
@@ -511,6 +512,24 @@
             this.accountsTab.UseVisualStyleBackColor = true;
             this.accountsTab.Click += new System.EventHandler(this.accountsTab_Click);
             // 
+            // OversightAccountsRemoveUser
+            // 
+            this.OversightAccountsRemoveUser.Location = new System.Drawing.Point(781, 182);
+            this.OversightAccountsRemoveUser.Name = "OversightAccountsRemoveUser";
+            this.OversightAccountsRemoveUser.Size = new System.Drawing.Size(128, 23);
+            this.OversightAccountsRemoveUser.TabIndex = 7;
+            this.OversightAccountsRemoveUser.Text = "Remove User";
+            this.OversightAccountsRemoveUser.UseVisualStyleBackColor = true;
+            // 
+            // OversightAccountsAddUser
+            // 
+            this.OversightAccountsAddUser.Location = new System.Drawing.Point(781, 140);
+            this.OversightAccountsAddUser.Name = "OversightAccountsAddUser";
+            this.OversightAccountsAddUser.Size = new System.Drawing.Size(128, 23);
+            this.OversightAccountsAddUser.TabIndex = 6;
+            this.OversightAccountsAddUser.Text = "Add User";
+            this.OversightAccountsAddUser.UseVisualStyleBackColor = true;
+            // 
             // refreshButtonAccounts
             // 
             this.refreshButtonAccounts.Location = new System.Drawing.Point(781, 285);
@@ -626,6 +645,7 @@
             // OversightViolationList
             // 
             this.OversightViolationList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.violationUID,
             this.oversightStenerSetUID,
             this.oversightDepartment,
             this.oversightSeverity,
@@ -641,46 +661,39 @@
             // 
             // oversightStenerSetUID
             // 
+            this.oversightStenerSetUID.DisplayIndex = 0;
             this.oversightStenerSetUID.Text = "Document";
             this.oversightStenerSetUID.Width = 91;
             // 
             // oversightDepartment
             // 
+            this.oversightDepartment.DisplayIndex = 1;
             this.oversightDepartment.Text = "Department";
             this.oversightDepartment.Width = 83;
             // 
             // oversightSeverity
             // 
+            this.oversightSeverity.DisplayIndex = 2;
             this.oversightSeverity.Text = "Severity";
             this.oversightSeverity.Width = 79;
             // 
             // oversightDescription
             // 
+            this.oversightDescription.DisplayIndex = 3;
             this.oversightDescription.Text = "Description";
             this.oversightDescription.Width = 91;
             // 
             // oversightViolatedDate
             // 
+            this.oversightViolatedDate.DisplayIndex = 4;
             this.oversightViolatedDate.Text = "Date Violated";
             this.oversightViolatedDate.Width = 88;
             // 
-            // OversightAccountsAddUser
+            // violationUID
             // 
-            this.OversightAccountsAddUser.Location = new System.Drawing.Point(781, 140);
-            this.OversightAccountsAddUser.Name = "OversightAccountsAddUser";
-            this.OversightAccountsAddUser.Size = new System.Drawing.Size(128, 23);
-            this.OversightAccountsAddUser.TabIndex = 6;
-            this.OversightAccountsAddUser.Text = "Add User";
-            this.OversightAccountsAddUser.UseVisualStyleBackColor = true;
-            // 
-            // OversightAccountsRemoveUser
-            // 
-            this.OversightAccountsRemoveUser.Location = new System.Drawing.Point(781, 182);
-            this.OversightAccountsRemoveUser.Name = "OversightAccountsRemoveUser";
-            this.OversightAccountsRemoveUser.Size = new System.Drawing.Size(128, 23);
-            this.OversightAccountsRemoveUser.TabIndex = 7;
-            this.OversightAccountsRemoveUser.Text = "Remove User";
-            this.OversightAccountsRemoveUser.UseVisualStyleBackColor = true;
+            this.violationUID.DisplayIndex = 5;
+            this.violationUID.Text = "ViolationUID";
+            this.violationUID.Width = 95;
             // 
             // Oversight
             // 
@@ -770,5 +783,6 @@
         private System.Windows.Forms.ColumnHeader Departments;
         private System.Windows.Forms.Button OversightAccountsRemoveUser;
         private System.Windows.Forms.Button OversightAccountsAddUser;
+        private System.Windows.Forms.ColumnHeader violationUID;
     }
 }

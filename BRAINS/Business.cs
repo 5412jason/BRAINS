@@ -14,11 +14,19 @@ namespace BRAINS
 {
     public partial class Business : Form
     {
+
+        private UserData currentUser;
+
         public Business()
         {
             InitializeComponent();
         }
 
+        public Business(UserData user)
+        {
+            InitializeComponent();
+            currentUser = user;
+        }
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
@@ -32,12 +40,7 @@ namespace BRAINS
         {
 
         }
-
-        private void Business_Load(object sender, EventArgs e)
-        {
-            CompleteStenerDataGridView.DataSource = GetDepartmentList();
-        }
-
+      
         private DataTable GetDepartmentList()
         {
             DataTable departmentList = new DataTable();

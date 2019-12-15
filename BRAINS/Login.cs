@@ -19,7 +19,8 @@ namespace BRAINS
 
         private void loginButton_Click(object sender, EventArgs e)
         {
-
+            AccountManagement accMan = new AccountManagement();
+            accMan.Login(usernameTextBox.Text, passwordTextBox.Text);
         }
 
         private void Login_Load(object sender, EventArgs e)

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace BRAINS
-{
+{/*
     class DepartmentManagement
     { 
         public List<UserData> getAllUsersInDepartment(int departmentUID)
@@ -65,4 +65,5 @@ namespace BRAINS
             mySqlManager.ModifyUser(user);
         }
     }
+    */
 }
