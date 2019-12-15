@@ -17,6 +17,7 @@ namespace BRAINS
 
         public void changePassword()
         {
+            OversightPasswordChange passChange = new OversightPasswordChange();
 
         }
         public void createUser()
@@ -49,26 +50,7 @@ namespace BRAINS
  
             
             UserData user = SqlManager.AuthenticateCredentials(username, ComputeSha256Hash(password));
-            if (user != null)
-            {
-                if (user.Permissions == true)
-                {
-                    Oversight Landingpage = new Oversight();
-                    Landingpage.Show();
-                    return null;
-                }
-                else
-                {
-                    Business Landingpage = new Business();
-                    Landingpage.Show();
-                    return null;
-                }
-            }
-            else
-            {
-                MessageBox.Show("Invalid username or password");
-                return null;
-            }
+            return user;
         }
     }
 }
