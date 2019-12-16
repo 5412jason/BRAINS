@@ -37,6 +37,8 @@ namespace BRAINS
 
             stenerManagement = new StenerManagement();
             departmentManagement = new DepartmentManagement();
+            accountManagement = new AccountManagement();
+
         }
         public Oversight(UserData user)
         {
@@ -110,6 +112,28 @@ namespace BRAINS
         {
             this.refreshStenerManagementList();
         }
+
+        private void StenerManagementListView_ItemSelectionChanged(object sender, EventArgs e)
+        {
+            stenerManagementQuestionList.Items.Clear();
+            if (StenerManagementListView.SelectedItems.Count > 0)
+            {
+                int selectedID = Convert.ToInt32(StenerManagementListView.SelectedItems[0].SubItems[0].Text);
+                QuestionSet qSet = stenerManagement.GetQuestionSet(selectedID);
+
+                if (qSet != null)
+                {
+                    foreach (Question question in qSet.Questions)
+                    {
+                        string[] row = { question.QuestionID.ToString(), question.QuestionText };
+                        var listItem = new ListViewItem(row);
+
+                        stenerManagementQuestionList.Items.Add(listItem);
+                    }
+                }
+            }
+        }
+
         private void deleteQuestionSetButton_Click(object sender, EventArgs e)
         {
             ListViewItem selectedItem = StenerManagementListView.SelectedItems[0]; //only can select one item at a time
@@ -120,7 +144,6 @@ namespace BRAINS
 
             this.refreshStenerManagementList();
         }
-
         private void createQuestionSetButton_Click(object sender, EventArgs e)
         {
             departmentComboBox.Enabled = true;
@@ -146,10 +169,11 @@ namespace BRAINS
         private void refreshStenerManagementList()
         {
             StenerManagementListView.Items.Clear();
+            stenerManagementQuestionList.Items.Clear();
             this.questionSets = stenerManagement.GetStenerList();
             foreach (QuestionSet qSet in this.questionSets)
             {
-                string[] row = { qSet.UniqueID.ToString(), qSet.AssignedDepartment.ToString(), qSet.QuestionCount.ToString(), qSet.SubmittedDate.ToString(), qSet.Status, qSet.Category };
+                string[] row = { qSet.UniqueID.ToString(), qSet.AssignedDepartment.ToString(), qSet.QuestionCount.ToString(), qSet.DueDate.ToString("MM/dd/yyyy"), (qSet.SubmittedDate.Equals(new DateTime()) ? "" : qSet.SubmittedDate.ToString("MM/dd/yyyy")), qSet.Status, qSet.Category };
 
                 var listItem = new ListViewItem(row);
                 StenerManagementListView.Items.Add(listItem);
@@ -164,7 +188,7 @@ namespace BRAINS
             if (currentStenerManagementMode == stenerManagementMode.CreateQuestionSet)
             {
                 // TODO: Need to populate the department drop down box dynamically and get a string name
-                if (departmentComboBox.SelectedItem != null 
+                if (departmentComboBox.SelectedItem != null
                     && priorityComboBox.SelectedItem != null
                     && dueDateCalendar.SelectionStart != null
                     && questionTextbox.Text != ""
@@ -179,14 +203,13 @@ namespace BRAINS
                     int departmentID = departmentManagement.GetDepartmentByName(departmentName).DepartmentUID;
 
                     bool result = stenerManagement.CreateQuestionSet(departmentID, priority, dueDate, question, category);
-                    
+
                     if (result == true)
                     {
                         success = true;
                         statusMessage = "Successfully added the new question set.";
                         currentStenerManagementMode = stenerManagementMode.None;
                         departmentComboBox.Items.Clear();
-                        priorityComboBox.Items.Clear();
                         questionTextbox.Text = "";
                         categoryTextBox.Text = "";
                     }
@@ -202,15 +225,72 @@ namespace BRAINS
                     statusMessage = "Cannot submit until all fields have a selection or an value entered!";
                 }
             }
-            else if(currentStenerManagementMode == stenerManagementMode.ModifyQuestion)
+            else if (currentStenerManagementMode == stenerManagementMode.ModifyQuestion)
             {
+                if (StenerManagementListView.SelectedItems.Count > 0 && stenerManagementQuestionList.SelectedItems.Count > 0 && questionTextbox.Text != "")
+                {
+                    int qSetID = Convert.ToInt32(StenerManagementListView.SelectedItems[0].SubItems[0].Text);
+                    int qID = Convert.ToInt32(stenerManagementQuestionList.SelectedItems[0].SubItems[0].Text);
 
+                    bool result = stenerManagement.ModifyQuestion(questionTextbox.Text, qSetID, qID);
+
+                    if (result == true)
+                    {
+                        success = true;
+
+                        statusMessage = "Successfully modified the question.";
+                        currentStenerManagementMode = stenerManagementMode.None;
+                        questionTextbox.Text = "";
+                        this.refreshStenerManagementList();
+                    }
+                    else
+                    {
+                        success = false;
+
+                        statusMessage = "Error modifying the question.";
+                        questionTextbox.Text = "";
+                    }
+                }
+                else
+                {
+                    success = false;
+
+                    statusMessage = "Error modifying the question.";
+                }
             }
-            else if(currentStenerManagementMode == stenerManagementMode.AddQuestion)
+            else if (currentStenerManagementMode == stenerManagementMode.AddQuestion)
             {
+                if (StenerManagementListView.SelectedItems.Count > 0 && questionTextbox.Text != "")
+                {
+                    int qSetID = Convert.ToInt32(StenerManagementListView.SelectedItems[0].SubItems[0].Text);
 
+                    bool result = stenerManagement.AddQuestion(questionTextbox.Text, qSetID);
+
+                    if (result == true)
+                    {
+                        success = true;
+
+                        statusMessage = "Successfully added the question.";
+                        currentStenerManagementMode = stenerManagementMode.None;
+                        questionTextbox.Text = "";
+                        this.refreshStenerManagementList();
+                    }
+                    else
+                    {
+                        success = false;
+
+                        statusMessage = "Error adding the question.";
+                        questionTextbox.Text = "";
+                    }
+                }
+                else
+                {
+                    success = false;
+
+                    statusMessage = "Error modifying the question.";
+                }
             }
-            else if(currentStenerManagementMode == stenerManagementMode.None)
+            else if (currentStenerManagementMode == stenerManagementMode.None)
             {
 
             }
@@ -223,15 +303,75 @@ namespace BRAINS
 
             if(success == true)
             {
+                StenerManagementListView.Enabled = true;
+                stenerManagementQuestionList.Enabled = true;
+
                 departmentComboBox.Enabled = false;
                 priorityComboBox.Enabled = false;
                 dueDateCalendar.Enabled = false;
                 questionTextbox.Enabled = false;
                 submitStenerManagementButton.Enabled = false;
-                categoryTextBox.Enabled = true;
+                categoryTextBox.Enabled = false;
             }
 
             stenerManagementStatusLabel.Text = statusMessage;
+        }
+
+        private void removeQuestionButton_Click(object sender, EventArgs e)
+        {
+            if (StenerManagementListView.SelectedItems.Count > 0 && stenerManagementQuestionList.SelectedItems.Count > 0) 
+            {
+                int qSetID = Convert.ToInt32(StenerManagementListView.SelectedItems[0].SubItems[0].Text);
+                int qID = Convert.ToInt32(stenerManagementQuestionList.SelectedItems[0].SubItems[0].Text);
+
+                stenerManagement.DeleteQuestion(qSetID, qID);
+
+                this.refreshStenerManagementList();
+
+                stenerManagementStatusLabel.Text = "Successfully removed question.";
+            }
+            else
+            {
+                stenerManagementStatusLabel.Text = "Error removing question.";
+            }
+        }
+
+        private void modifyQuestionButton_Click(object sender, EventArgs e)
+        {
+            if (StenerManagementListView.SelectedItems.Count > 0 && stenerManagementQuestionList.SelectedItems.Count > 0)
+            {
+                currentStenerManagementMode = stenerManagementMode.ModifyQuestion;
+                questionTextbox.Enabled = true;
+                submitStenerManagementButton.Enabled = true;
+                questionTextbox.Text = stenerManagementQuestionList.SelectedItems[0].SubItems[1].Text;
+
+                StenerManagementListView.Enabled = false;
+                stenerManagementQuestionList.Enabled = false;
+
+                stenerManagementStatusLabel.Text = "Modifying question.";
+            }
+            else
+            {
+                stenerManagementStatusLabel.Text = "Error modifying question.";
+            }
+        }
+        private void addQuestionButton_Click(object sender, EventArgs e)
+        {
+            if (StenerManagementListView.SelectedItems.Count > 0)
+            {
+                currentStenerManagementMode = stenerManagementMode.AddQuestion;
+                questionTextbox.Enabled = true;
+                submitStenerManagementButton.Enabled = true;
+
+                StenerManagementListView.Enabled = false;
+                stenerManagementQuestionList.Enabled = false;
+
+                stenerManagementStatusLabel.Text = "Adding question.";
+            }
+            else
+            {
+                stenerManagementStatusLabel.Text = "Error adding question.";
+            }
         }
         #endregion
 
@@ -246,5 +386,7 @@ namespace BRAINS
             OversightPreview preview = new OversightPreview();
             preview.Show();
         }
+
+
     }
 }

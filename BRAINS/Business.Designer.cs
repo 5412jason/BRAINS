@@ -30,7 +30,6 @@
         {
             this.businessTabControl = new System.Windows.Forms.TabControl();
             this.completeStenerTab = new System.Windows.Forms.TabPage();
-            this.CompleteStenerDataGridView = new System.Windows.Forms.DataGridView();
             this.violationTab = new System.Windows.Forms.TabPage();
             this.BusinessViolationList = new System.Windows.Forms.ListView();
             this.businessStenerSetUID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -39,9 +38,14 @@
             this.businessDescription = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.businessViolatedDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.busniessViolationsrefreshButton = new System.Windows.Forms.Button();
+            this.completeStenerListView = new System.Windows.Forms.ListView();
+            this.priorityColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.qSetID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.categoryColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.questionCountColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.statusColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.businessTabControl.SuspendLayout();
             this.completeStenerTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.CompleteStenerDataGridView)).BeginInit();
             this.violationTab.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,28 +57,19 @@
             this.businessTabControl.Location = new System.Drawing.Point(0, 0);
             this.businessTabControl.Name = "businessTabControl";
             this.businessTabControl.SelectedIndex = 0;
-            this.businessTabControl.Size = new System.Drawing.Size(1112, 504);
+            this.businessTabControl.Size = new System.Drawing.Size(964, 574);
             this.businessTabControl.TabIndex = 0;
             // 
             // completeStenerTab
             // 
-            this.completeStenerTab.Controls.Add(this.CompleteStenerDataGridView);
+            this.completeStenerTab.Controls.Add(this.completeStenerListView);
             this.completeStenerTab.Location = new System.Drawing.Point(4, 22);
             this.completeStenerTab.Name = "completeStenerTab";
             this.completeStenerTab.Padding = new System.Windows.Forms.Padding(3);
-            this.completeStenerTab.Size = new System.Drawing.Size(1104, 478);
+            this.completeStenerTab.Size = new System.Drawing.Size(956, 548);
             this.completeStenerTab.TabIndex = 0;
             this.completeStenerTab.Text = "Complete STENERs";
             this.completeStenerTab.UseVisualStyleBackColor = true;
-            // 
-            // CompleteStenerDataGridView
-            // 
-            this.CompleteStenerDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.CompleteStenerDataGridView.Location = new System.Drawing.Point(9, 5);
-            this.CompleteStenerDataGridView.Name = "CompleteStenerDataGridView";
-            this.CompleteStenerDataGridView.Size = new System.Drawing.Size(780, 279);
-            this.CompleteStenerDataGridView.TabIndex = 0;
-            this.CompleteStenerDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // violationTab
             // 
@@ -138,17 +133,57 @@
             this.busniessViolationsrefreshButton.Text = "Refresh";
             this.busniessViolationsrefreshButton.UseVisualStyleBackColor = true;
             // 
+            // completeStenerListView
+            // 
+            this.completeStenerListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.priorityColumn,
+            this.qSetID,
+            this.categoryColumn,
+            this.questionCountColumn,
+            this.statusColumn});
+            this.completeStenerListView.FullRowSelect = true;
+            this.completeStenerListView.HideSelection = false;
+            this.completeStenerListView.Location = new System.Drawing.Point(3, 3);
+            this.completeStenerListView.MultiSelect = false;
+            this.completeStenerListView.Name = "completeStenerListView";
+            this.completeStenerListView.Size = new System.Drawing.Size(382, 232);
+            this.completeStenerListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
+            this.completeStenerListView.TabIndex = 0;
+            this.completeStenerListView.UseCompatibleStateImageBehavior = false;
+            this.completeStenerListView.View = System.Windows.Forms.View.Details;
+            // 
+            // priorityColumn
+            // 
+            this.priorityColumn.Text = "Priority";
+            // 
+            // qSetID
+            // 
+            this.qSetID.Text = "Q-Set ID";
+            // 
+            // categoryColumn
+            // 
+            this.categoryColumn.Text = "Category";
+            this.categoryColumn.Width = 98;
+            // 
+            // questionCountColumn
+            // 
+            this.questionCountColumn.Text = "# of Questions";
+            // 
+            // statusColumn
+            // 
+            this.statusColumn.Text = "Status";
+            this.statusColumn.Width = 98;
+            // 
             // Business
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(814, 504);
+            this.ClientSize = new System.Drawing.Size(964, 574);
             this.Controls.Add(this.businessTabControl);
             this.Name = "Business";
             this.Text = "Business";
             this.businessTabControl.ResumeLayout(false);
             this.completeStenerTab.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.CompleteStenerDataGridView)).EndInit();
             this.violationTab.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -159,7 +194,6 @@
         private System.Windows.Forms.TabControl businessTabControl;
         private System.Windows.Forms.TabPage completeStenerTab;
         private System.Windows.Forms.TabPage violationTab;
-        private System.Windows.Forms.DataGridView CompleteStenerDataGridView;
         private System.Windows.Forms.Button busniessViolationsrefreshButton;
         private System.Windows.Forms.ListView BusinessViolationList;
         private System.Windows.Forms.ColumnHeader businessStenerSetUID;
@@ -167,5 +201,11 @@
         private System.Windows.Forms.ColumnHeader businessSeverity;
         private System.Windows.Forms.ColumnHeader businessDescription;
         private System.Windows.Forms.ColumnHeader businessViolatedDate;
+        private System.Windows.Forms.ListView completeStenerListView;
+        private System.Windows.Forms.ColumnHeader priorityColumn;
+        private System.Windows.Forms.ColumnHeader qSetID;
+        private System.Windows.Forms.ColumnHeader categoryColumn;
+        private System.Windows.Forms.ColumnHeader questionCountColumn;
+        private System.Windows.Forms.ColumnHeader statusColumn;
     }
 }

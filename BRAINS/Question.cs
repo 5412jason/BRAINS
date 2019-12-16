@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BRAINS
 {
-    class Question
+    public class Question
     {
         private int questionID;
         private string questionText;
