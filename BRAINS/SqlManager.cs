@@ -103,9 +103,12 @@ namespace BRAINS
                     qSet.Category = row.Field<string>("Category");
                     qSet.Priority = row.Field<int>("Priority");
                     //broken
-                    qSet.DueDate = row.Field<DateTime>("DueDate");
-                    qSet.Status = row.Field<String>("Status");
-                    qSet.SubmittedDate = row.Field<DateTime>("SubmittedDate");
+                    qSet.DueDate = DateTime.ParseExact(row.Field<string>("DueDate"), "yyyy-MM-dd", null);
+                    if (row.Field<string>("SubmittedDate") != null)
+                    {
+                        qSet.SubmittedDate = DateTime.ParseExact(row.Field<string>("SubmittedDate"), "yyyy-MM-dd", null);
+                    }
+                    qSet.Status = row.Field<string>("Status");
                     qSet.Violated = Convert.ToBoolean(row.Field<int>("Violated"));
 
                     qSet.Questions = new List<Question>();
@@ -119,7 +122,7 @@ namespace BRAINS
                         question.QuestionText = questionRow.Field<string>("Question");
                         question.Answer = questionRow.Field<string>("Answer");
                         question.EvidenceLocation = questionRow.Field<string>("LocationEvidence");
-                        question.Compliance = questionRow.Field<bool>("Compliance");
+                        question.Compliance = Convert.ToBoolean(questionRow.Field<int>("Compliance"));
                         question.SolutionPlan = questionRow.Field<string>("PlanForSolution");
                         
                         qSet.Questions.Add(question);
@@ -151,9 +154,9 @@ namespace BRAINS
                 qSet.AssignedDepartment = row.Field<int>("DepartmentUID");
                 qSet.Category = row.Field<string>("Category");
                 qSet.Priority = row.Field<int>("Priority");
-                qSet.DueDate = row.Field<DateTime>("DueDate");
                 qSet.Status = row.Field<String>("Status");
-                qSet.SubmittedDate = row.Field<DateTime>("SubmittedDate");
+                qSet.DueDate = DateTime.ParseExact(row.Field<string>("DueDate"), "yyyy-MM-dd", null);
+                qSet.SubmittedDate = DateTime.ParseExact(row.Field<string>("SubmittedDate"), "yyyy-MM-dd", null);
                 qSet.Violated = Convert.ToBoolean(row.Field<int>("Violated"));
 
                 foreach(DataRow questionRow in dataTable.Rows)
@@ -551,7 +554,7 @@ namespace BRAINS
 
         static public Department FindDepartmentByName(string name)
         {
-            string query = "SELECT * FROM Departments WHERE DepartmentName = " + name;
+            string query = "SELECT * FROM Departments WHERE DepartmentName = '" + name + "'";
 
             DataTable dataTable = QueryDatabase(query);
 
