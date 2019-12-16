@@ -17,9 +17,64 @@ namespace BRAINS
             return steners;
         }
 
+        public QuestionSet GetQuestionSet(int id)
+        {
+            QuestionSet qSet = SqlManager.FindQuestionSet(id);
+            return qSet;
+        }
+
+        public bool ModifyQuestion(string qText, int qSetID, int qID)
+        {
+            QuestionSet qSet = SqlManager.FindQuestionSet(qSetID);
+            if(qSet != null)
+            {
+                foreach(Question q in qSet.Questions)
+                {
+                    if(q.QuestionID == qID)
+                    {
+                        q.QuestionText = qText;
+                        bool passed = SqlManager.ModifyQuestion(q, qSetID);
+                        qSet.Status = "UPDATED";
+                        SqlManager.ModifyQuestionSet(qSet);
+
+                        return passed;
+                    }
+                }
+                return false;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool AddQuestion(string qText, int qSetID)
+        {
+            QuestionSet qSet = SqlManager.FindQuestionSet(qSetID);
+            if(qSet != null)
+            {
+                Question question = new Question();
+                question.QuestionText = qText;
+                question.QuestionID = GetNextQuestionID(qSet);
+                qSet.Questions.Add(question);
+                qSet.Status = "UPDATED";
+                bool passed = SqlManager.AddQuestion(qSet, question);
+                SqlManager.ModifyQuestionSet(qSet);
+                return passed;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public void DeleteQuesitonSet(int id)
         {
             SqlManager.RemoveQuestionSet(id);
+        }
+        public void DeleteQuestion(int qSetID, int qID)
+        {
+            SqlManager.RemoveQuestion(qID, qSetID);
         }
 
         public bool CreateQuestionSet(int departmentID, int priority, DateTime dueDate, string question, string category)
@@ -31,6 +86,7 @@ namespace BRAINS
             qSet.AssignedDepartment = departmentID;
             qSet.Priority = priority;
             qSet.DueDate = dueDate;
+            qSet.Category = category;
             qSet.UniqueID = GetNextQuestionSetID();
             qSet.Status = "CREATED";
 

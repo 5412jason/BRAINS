@@ -34,7 +34,7 @@ namespace BRAINS
 
         private void Business_Load(object sender, EventArgs e)
         {
-            CompleteStenerDataGridView.DataSource = GetDepartmentList();
+            //CompleteStenerDataGridView.DataSource = GetDepartmentList();
         }
         private void busniessViolationsrefreshButton_Click(object sender, EventArgs e)
         {

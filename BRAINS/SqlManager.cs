@@ -108,11 +108,14 @@ namespace BRAINS
                     }
                     if (row.Field<string>("DueDate") != null)
                     {
-                        qSet.DueDate = DateTime.ParseExact(row.Field<string>("DueDate"), "yyyy-MM-dd", null);
+                        //test
+                        string test = row.Field<string>("DueDate");
+                        qSet.DueDate = DateTime.ParseExact(row.Field<string>("DueDate"), "MM/dd/yyyy hh:mm:ss tt", null);
                     }
                     if (row.Field<string>("SubmittedDate") != null)
                     {
-                        qSet.SubmittedDate = DateTime.ParseExact(row.Field<string>("SubmittedDate"), "yyyy-MM-dd", null);
+                        string test = row.Field<string>("SubmittedDate");
+                        qSet.SubmittedDate = DateTime.ParseExact(row.Field<string>("SubmittedDate"), "MM/dd/yyyy hh:mm:ss tt", null);
                     }
                     if (row.Field<string>("Status") != null)
                     {
@@ -182,11 +185,11 @@ namespace BRAINS
                 }
                 if (row.Field<string>("DueDate") != null)
                 {
-                    qSet.DueDate = DateTime.ParseExact(row.Field<string>("DueDate"), "yyyy-MM-dd", null);
+                    qSet.DueDate = DateTime.ParseExact(row.Field<string>("DueDate"), "MM/dd/yyyy hh:mm:ss tt", null);
                 }
                 if (row.Field<string>("SubmittedDate") != null)
                 {
-                    qSet.SubmittedDate = DateTime.ParseExact(row.Field<string>("SubmittedDate"), "yyyy-MM-dd", null);
+                    qSet.SubmittedDate = DateTime.ParseExact(row.Field<string>("SubmittedDate"), "MM/dd/yyyy hh:mm:ss tt", null);
                 }
                 if (row.Field<string>("Status") != null)
                 {
@@ -228,12 +231,13 @@ namespace BRAINS
         static public bool ModifyQuestionSet(QuestionSet updatedQSet)
         {
             string queryString =
-                "UPDATE StenerTable SET DepartmentUID = " + updatedQSet.AssignedDepartment.ToString()
-                + " Priority = " + updatedQSet.Priority.ToString()
-                + " DueDate = " + updatedQSet.DueDate.ToString()
-                + " Status = " + updatedQSet.Status
-                + " Category = " + updatedQSet.Category
-                + " WHERE StenerSetUID = " + updatedQSet.UniqueID.ToString();
+                "UPDATE StenerTable SET DepartmentUID = '" + updatedQSet.AssignedDepartment.ToString()
+                + "', Priority = '" + updatedQSet.Priority.ToString()
+                + "', DueDate = '" + updatedQSet.DueDate.ToString("MM/dd/yyyy hh:mm:ss tt")
+                + "', SubmittedDate = '" + updatedQSet.SubmittedDate.ToString("MM/dd/yyyy hh:mm:ss tt")
+                + "', Status = '" + updatedQSet.Status
+                + "', Category = '" + updatedQSet.Category
+                + "' WHERE StenerSetUID = '" + updatedQSet.UniqueID.ToString() + "'";
 
             bool passed = NonQueryDatabase(queryString);
 
@@ -247,32 +251,32 @@ namespace BRAINS
                 + "VALUES('" + question.QuestionID.ToString() + "','" + questionSet.UniqueID.ToString() + "','"
                 + questionSet.AssignedDepartment.ToString() + "','" + questionSet.Category + "','"
                 + question.QuestionText + "','" + question.Answer + "','" + question.EvidenceLocation + "','"
-                + questionSet.Priority.ToString() + "','" + questionSet.DueDate.ToString() + "','"
+                + questionSet.Priority.ToString() + "','" + questionSet.DueDate.ToString("MM/dd/yyyy hh:mm:ss tt") + "','"
                 + questionSet.Status + "','" + Convert.ToInt32(question.Compliance) + "','"
-                + question.PlanForSolution + "','" + questionSet.SubmittedDate.ToString() + "','" + Convert.ToInt32(questionSet.Violated) + "')";
+                + question.PlanForSolution + "','" + questionSet.SubmittedDate.ToString("MM/dd/yyyy hh:mm:ss tt") + "','" + Convert.ToInt32(questionSet.Violated) + "')";
 
             bool passed = NonQueryDatabase(queryString);
 
             return passed;
         }
 
-        static public bool RemoveQuestion(int questionUID)
+        static public bool RemoveQuestion(int questionUID, int qSetUID)
         {
-            string queryString = "DELETE FROM StenerTable WHERE QuestionUID = " + questionUID.ToString();
+            string queryString = "DELETE FROM StenerTable WHERE QuestionUID = '" + questionUID.ToString() + "' AND StenerSetUID = '" + qSetUID.ToString() + "'";
 
             bool passed = NonQueryDatabase(queryString);
 
             return passed;
         }
 
-        static public bool ModifyQuestion(Question question)
+        static public bool ModifyQuestion(Question question, int qSetID)
         {
             string queryString =
                 "UPDATE StenerTable SET "
-                    + " Question = " + question.QuestionText
-                    + " Answer = " + question.Answer
-                    + " LocationEvidence = " + question.EvidenceLocation
-                    + " WHERE QuestionUID = " + question.QuestionID.ToString();
+                    + " Question = '" + question.QuestionText
+                    + "', Answer = '" + question.Answer
+                    + "', LocationEvidence = '" + question.EvidenceLocation
+                    + "' WHERE QuestionUID = '" + question.QuestionID.ToString() + "' AND StenerSetUID = '" + qSetID.ToString() + "'";
 
             bool passed = NonQueryDatabase(queryString);
 
@@ -288,7 +292,7 @@ namespace BRAINS
                     + "VALUES('" + question.QuestionID.ToString() + "','" + questionSet.UniqueID.ToString() + "','"
                     + questionSet.AssignedDepartment.ToString() + "','" + questionSet.Category + "','"
                     + question.QuestionText + "','" + question.Answer + "','" + question.EvidenceLocation + "','"
-                    + questionSet.Priority.ToString() + "','" + questionSet.DueDate.ToString() + "','"
+                    + questionSet.Priority.ToString() + "','" + questionSet.DueDate.ToString("MM/dd/yyyy hh:mm:ss tt") + "','"
                     + questionSet.Status + "','" + Convert.ToInt32(question.Compliance) + "','"
                     + question.PlanForSolution + "','" + Convert.ToInt32(questionSet.Violated) + "')";
 
@@ -398,16 +402,15 @@ namespace BRAINS
             }
         }
 
-
         static public bool ModifyUser(UserData user)
         {
             string query =
                 "UPDATE LoginTable SET"
-                + " Username = " + user.Username
-                + " DepartmentUID = " + user.DepartmentUID.ToString()
-                + " Permissions = " + user.Permissions
-                + " Password = " + user.Password
-                + " WHERE UsernameUID = " + user.UUID.ToString();
+                + " Username = '" + user.Username
+                + "', DepartmentUID = '" + user.DepartmentUID.ToString()
+                + "', Permissions = '" + user.Permissions
+                + "', Password = '" + user.Password
+                + "' WHERE UsernameUID = '" + user.UUID.ToString() + "'";
 
             bool passed = NonQueryDatabase(query);
             
@@ -425,7 +428,7 @@ namespace BRAINS
 
         static public bool AddUser(UserData user)
         {
-            string query = "INSERT INTO LoginTable(Username, DepartmentUID, Permissions, Password, UsernameUID)VALUES("
+            string query = "INSERT INTO LoginTable(Username, DepartmentUID, Permissions, Password, UsernameUID)VALUES('"
                 + user.Username + "','" + user.DepartmentUID.ToString() + "','"
                 + Convert.ToInt32(user.Permissions) + "','" + user.Password + "','"
                 + user.UUID.ToString() + "')";
@@ -586,7 +589,7 @@ namespace BRAINS
         
         static public bool AddDepartment(Department department)
         {
-            string query = "INSERT INTO Departments(DepartmentUID, DepartmentName, Administrator)VALUES("
+            string query = "INSERT INTO Departments(DepartmentUID, DepartmentName, Administrator)VALUES('"
                 + department.DepartmentUID.ToString() + "','" + department.Name + "','" + Convert.ToInt32(department.Admin) + "')";
 
             bool passed = NonQueryDatabase(query);
