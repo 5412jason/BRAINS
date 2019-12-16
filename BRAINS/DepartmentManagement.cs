@@ -34,6 +34,20 @@ namespace BRAINS
             return null;
         }
 
+        private int getNextDepartmentID()
+        {
+            List<Department> departments = SqlManager.GetAllDepartments();
+            int nextID = 0;
+            foreach (Department Department in departments)
+            {
+                if (Department.DepartmentUID > nextID)
+                {
+                    nextID = Department.DepartmentUID;
+                }
+            }
+            return nextID + 1;
+        }
+
         public List<Department> getDepartments()
         {
             //List<Department> allDepartments = SqlManager.GetAllDepartments();
@@ -42,10 +56,22 @@ namespace BRAINS
 
         }
 
-        public void addDepartment(Department newDepartment)
+        public void addDepartment(string dpmtName, int dpmtPermissions)
         {
-            //SqlManager.AddDepartment(newDepartment);
+            Department dpmt = new Department();
+            dpmt.DepartmentUID = getNextDepartmentID();
+            dpmt.Name = dpmtName;
 
+
+            if (dpmtPermissions == 1)
+            {
+                dpmt.Admin = true;
+            }
+            else
+            {
+                dpmt.Admin = false;
+            }
+            SqlManager.AddDepartment(dpmt);
         }
 
         public void addDeparmentUser(UserData user)
@@ -55,7 +81,12 @@ namespace BRAINS
 
         public void removeDeparment(int departmentUID)
         {
-            //SqlManager.RemoveDepartment(departmentUID);
+            Department dpmt = new Department();
+            int dpmtToDelete = dpmt.DepartmentUID;
+            dpmt.DepartmentUID = departmentUID;
+            dpmtToDelete = dpmt.DepartmentUID;
+            SqlManager.RemoveDepartment(dpmtToDelete);
+            
         }
 
         public void removeDeparmentUser(UserData user)

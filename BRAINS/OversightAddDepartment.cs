@@ -12,18 +12,29 @@ namespace BRAINS
 {
     public partial class OversightAddDepartment : Form
     {
+        public string dpmtName;
+        public int dpmtPermissions;
         public OversightAddDepartment()
         {
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void departmentNameText_TextChanged(object sender, EventArgs e)
         {
-            this.Close();
+            dpmtName = departmentNameText.Text;
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void departmentPermissionsText_TextChanged(object sender, EventArgs e)
         {
+            dpmtPermissions = Int32.Parse(departmentPermissionsText.Text);
+            
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            DepartmentManagement addDpmt = new DepartmentManagement();
+
+            addDpmt.addDepartment(dpmtName, dpmtPermissions);
+            
             this.Close();
         }
     }

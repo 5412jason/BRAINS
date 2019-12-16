@@ -418,5 +418,11 @@ namespace BRAINS
         {
 
         }
+
+        private void RemoveDepartmentButton_Click(object sender, EventArgs e)
+        {
+            OversightRemoveDepartment form1 = new OversightRemoveDepartment();
+            form1.Show();
+        }
     }
 }

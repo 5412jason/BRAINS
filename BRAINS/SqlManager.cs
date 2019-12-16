@@ -20,7 +20,7 @@ namespace BRAINS
                 DataTable dataTable = new DataTable();
 
                 string connString = ConfigurationManager.ConnectionStrings["Brains"].ConnectionString;
-
+                
                 using (SqlConnection con = new SqlConnection(connString))
                 {
 

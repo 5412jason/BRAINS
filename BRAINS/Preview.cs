@@ -13,43 +13,44 @@ namespace BRAINS
 
             QuestionSet resultsByID = SqlManager.FindQuestionSet(qID);
 
+
             string resultStr = "";
 
             resultStr += "Assigned Department : ";
-            resultStr += " " + resultsByID.AssignedDepartment + "\n";
+            resultStr += " " + resultsByID.AssignedDepartment + " , ";
             resultStr += "Category : ";
-            resultStr += " " + resultsByID.Category + "\n";
+            resultStr += " " + resultsByID.Category + " , ";
             resultStr += "Due Date : ";
-            resultStr += " " + resultsByID.DueDate + "\n";
+            resultStr += " " + resultsByID.DueDate + " , ";
             resultStr += "Priority : ";
-            resultStr += " " + resultsByID.Priority + "\n";
+            resultStr += " " + resultsByID.Priority + " , ";
             resultStr += "Question Count: ";
-            resultStr += " " + resultsByID.QuestionCount + "\n";
+            resultStr += " " + resultsByID.QuestionCount + " , ";
             resultStr += "Submitted Date : ";
-            resultStr += " " + resultsByID.SubmittedDate + "\n";
+            resultStr += " " + resultsByID.SubmittedDate + " , ";
             resultStr += "Unique ID : ";
-            resultStr += " " + resultsByID.UniqueID + "\n";
+            resultStr += " " + resultsByID.UniqueID + " , ";
             resultStr += "Violated : ";
-            resultStr += " " + resultsByID.Violated + "\n";
+            resultStr += " " + resultsByID.Violated + " , ";
             resultStr += "Status : ";
-            resultStr += " " + resultsByID.Status + " \n";
+            resultStr += " " + resultsByID.Status + " , ";
            
             
 
             foreach (Question question in resultsByID.Questions)
             {
                 resultStr += "Question ID: ";
-                resultStr += question.QuestionID + "\n";
+                resultStr += question.QuestionID + " , ";
                 resultStr += "Question: ";
-                resultStr += question.QuestionText + " ";
+                resultStr += question.QuestionText + " , ";
                 resultStr += "Answer: ";
-                resultStr += question.Answer + "\n";
+                resultStr += question.Answer + " , ";
                 resultStr += "Evidence Location: ";
-                resultStr += question.EvidenceLocation + "\n";
+                resultStr += question.EvidenceLocation + " ,";
                 resultStr += "Compliance: ";
-                resultStr += question.Compliance + "\n";
+                resultStr += question.Compliance + " , ";
                 resultStr += "Plan For Solution: ";
-                resultStr += question.PlanForSolution + "\n";
+                resultStr += question.PlanForSolution + " , ";
 
             }
 

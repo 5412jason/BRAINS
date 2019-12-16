@@ -32,7 +32,7 @@ namespace BRAINS
 
         public void OversightPreview_Load(object sender, EventArgs e)
         {
-            string qSetResult=preview.previewStener(qSetId);
+            string qSetResult=preview.previewStener(qSetId=1);
             previewTextBox.Text = qSetResult;
 
         }

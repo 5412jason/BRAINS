@@ -592,6 +592,7 @@
             this.RemoveDepartmentButton.TabIndex = 2;
             this.RemoveDepartmentButton.Text = "Remove Department";
             this.RemoveDepartmentButton.UseVisualStyleBackColor = true;
+            this.RemoveDepartmentButton.Click += new System.EventHandler(this.RemoveDepartmentButton_Click);
             // 
             // addDepartmentButton
             // 
