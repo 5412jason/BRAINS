@@ -365,6 +365,7 @@ namespace BRAINS
                     + " Question = '" + question.QuestionText
                     + "', Answer = '" + question.Answer
                     + "', LocationEvidence = '" + question.EvidenceLocation
+                    + "', Compliance = '" + Convert.ToInt32(question.Compliance).ToString()
                     + "' WHERE QuestionUID = '" + question.QuestionID.ToString() + "' AND StenerSetUID = '" + qSetID.ToString() + "'";
 
             bool passed = NonQueryDatabase(queryString);

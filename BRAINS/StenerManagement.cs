@@ -54,6 +54,21 @@ namespace BRAINS
             }
         }
 
+        public bool SubmitQuestionSet(QuestionSet qSet)
+        {
+            bool result = SqlManager.ModifyQuestionSet(qSet);
+            
+            if(result == true)
+            {
+                foreach(Question q in qSet.Questions)
+                {
+                    SqlManager.ModifyQuestion(q, qSet.UniqueID);
+                }
+            }
+
+            return result;
+        }
+
         public bool AddQuestion(string qText, int qSetID)
         {
             QuestionSet qSet = SqlManager.FindQuestionSet(qSetID);
