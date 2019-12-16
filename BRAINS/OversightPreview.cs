@@ -36,5 +36,10 @@ namespace BRAINS
             previewTextBox.Text = qSetResult;
 
         }
+
+        private void PreviewTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

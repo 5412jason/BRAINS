@@ -223,5 +223,11 @@ namespace BRAINS
             stenerManagementStatusLabel.Text = statusMessage;
         }
         #endregion
+
+        private void PreviewStenerButton_Click(object sender, EventArgs e)
+        {
+            OversightPreview preview = new OversightPreview();
+            preview.Show();
+        }
     }
 }

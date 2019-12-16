@@ -40,6 +40,7 @@
             this.previewTextBox.ReadOnly = true;
             this.previewTextBox.Size = new System.Drawing.Size(800, 450);
             this.previewTextBox.TabIndex = 0;
+            this.previewTextBox.TextChanged += new System.EventHandler(this.PreviewTextBox_TextChanged);
             // 
             // OversightPreview
             // 
