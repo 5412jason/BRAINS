@@ -30,12 +30,6 @@
         {
             this.businessTabControl = new System.Windows.Forms.TabControl();
             this.completeStenerTab = new System.Windows.Forms.TabPage();
-            this.completeStenerListView = new System.Windows.Forms.ListView();
-            this.priorityColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.qSetID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.categoryColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.questionCountColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.statusColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.violationTab = new System.Windows.Forms.TabPage();
             this.BusinessViolationList = new System.Windows.Forms.ListView();
             this.businessStenerSetUID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -63,6 +57,13 @@
             this.nextButton = new System.Windows.Forms.Button();
             this.closeQuestionSetButton = new System.Windows.Forms.Button();
             this.submitQuestionSetButton = new System.Windows.Forms.Button();
+            this.completeQuestionSetListView = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.businessTabControl.SuspendLayout();
             this.completeStenerTab.SuspendLayout();
             this.violationTab.SuspendLayout();
@@ -82,6 +83,7 @@
             // 
             // completeStenerTab
             // 
+            this.completeStenerTab.Controls.Add(this.completeQuestionSetListView);
             this.completeStenerTab.Controls.Add(this.submitQuestionSetButton);
             this.completeStenerTab.Controls.Add(this.closeQuestionSetButton);
             this.completeStenerTab.Controls.Add(this.nextButton);
@@ -100,7 +102,6 @@
             this.completeStenerTab.Controls.Add(this.completeStenerStatusStrip);
             this.completeStenerTab.Controls.Add(this.workOnSelectedStenerButton);
             this.completeStenerTab.Controls.Add(this.refreshCompleteList);
-            this.completeStenerTab.Controls.Add(this.completeStenerListView);
             this.completeStenerTab.Location = new System.Drawing.Point(4, 22);
             this.completeStenerTab.Name = "completeStenerTab";
             this.completeStenerTab.Padding = new System.Windows.Forms.Padding(3);
@@ -108,47 +109,6 @@
             this.completeStenerTab.TabIndex = 0;
             this.completeStenerTab.Text = "Complete STENERs";
             this.completeStenerTab.UseVisualStyleBackColor = true;
-            // 
-            // completeStenerListView
-            // 
-            this.completeStenerListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.priorityColumn,
-            this.qSetID,
-            this.categoryColumn,
-            this.questionCountColumn,
-            this.statusColumn});
-            this.completeStenerListView.FullRowSelect = true;
-            this.completeStenerListView.HideSelection = false;
-            this.completeStenerListView.Location = new System.Drawing.Point(3, 3);
-            this.completeStenerListView.MultiSelect = false;
-            this.completeStenerListView.Name = "completeStenerListView";
-            this.completeStenerListView.Size = new System.Drawing.Size(382, 444);
-            this.completeStenerListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
-            this.completeStenerListView.TabIndex = 0;
-            this.completeStenerListView.UseCompatibleStateImageBehavior = false;
-            this.completeStenerListView.View = System.Windows.Forms.View.Details;
-            // 
-            // priorityColumn
-            // 
-            this.priorityColumn.Text = "Priority";
-            // 
-            // qSetID
-            // 
-            this.qSetID.Text = "Q-Set ID";
-            // 
-            // categoryColumn
-            // 
-            this.categoryColumn.Text = "Category";
-            this.categoryColumn.Width = 98;
-            // 
-            // questionCountColumn
-            // 
-            this.questionCountColumn.Text = "# of Questions";
-            // 
-            // statusColumn
-            // 
-            this.statusColumn.Text = "Status";
-            this.statusColumn.Width = 98;
             // 
             // violationTab
             // 
@@ -216,7 +176,7 @@
             // 
             this.refreshCompleteList.Location = new System.Drawing.Point(3, 453);
             this.refreshCompleteList.Name = "refreshCompleteList";
-            this.refreshCompleteList.Size = new System.Drawing.Size(382, 23);
+            this.refreshCompleteList.Size = new System.Drawing.Size(464, 23);
             this.refreshCompleteList.TabIndex = 1;
             this.refreshCompleteList.Text = "Refresh List";
             this.refreshCompleteList.UseVisualStyleBackColor = true;
@@ -226,7 +186,7 @@
             // 
             this.workOnSelectedStenerButton.Location = new System.Drawing.Point(3, 483);
             this.workOnSelectedStenerButton.Name = "workOnSelectedStenerButton";
-            this.workOnSelectedStenerButton.Size = new System.Drawing.Size(382, 23);
+            this.workOnSelectedStenerButton.Size = new System.Drawing.Size(464, 23);
             this.workOnSelectedStenerButton.TabIndex = 2;
             this.workOnSelectedStenerButton.Text = "Work On Selected Stener";
             this.workOnSelectedStenerButton.UseVisualStyleBackColor = true;
@@ -385,6 +345,55 @@
             this.submitQuestionSetButton.Text = "Submit Question Set";
             this.submitQuestionSetButton.UseVisualStyleBackColor = true;
             // 
+            // completeQuestionSetListView
+            // 
+            this.completeQuestionSetListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4,
+            this.columnHeader5,
+            this.columnHeader7});
+            this.completeQuestionSetListView.FullRowSelect = true;
+            this.completeQuestionSetListView.HideSelection = false;
+            this.completeQuestionSetListView.Location = new System.Drawing.Point(3, 3);
+            this.completeQuestionSetListView.MultiSelect = false;
+            this.completeQuestionSetListView.Name = "completeQuestionSetListView";
+            this.completeQuestionSetListView.Size = new System.Drawing.Size(464, 444);
+            this.completeQuestionSetListView.TabIndex = 20;
+            this.completeQuestionSetListView.UseCompatibleStateImageBehavior = false;
+            this.completeQuestionSetListView.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Priority";
+            this.columnHeader1.Width = 47;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Q-SetID";
+            this.columnHeader2.Width = 61;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Question Count";
+            this.columnHeader3.Width = 87;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Due Date";
+            this.columnHeader4.Width = 82;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "Status";
+            this.columnHeader5.Width = 102;
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "Category";
+            this.columnHeader7.Width = 75;
+            // 
             // Business
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -415,12 +424,6 @@
         private System.Windows.Forms.ColumnHeader businessSeverity;
         private System.Windows.Forms.ColumnHeader businessDescription;
         private System.Windows.Forms.ColumnHeader businessViolatedDate;
-        private System.Windows.Forms.ListView completeStenerListView;
-        private System.Windows.Forms.ColumnHeader priorityColumn;
-        private System.Windows.Forms.ColumnHeader qSetID;
-        private System.Windows.Forms.ColumnHeader categoryColumn;
-        private System.Windows.Forms.ColumnHeader questionCountColumn;
-        private System.Windows.Forms.ColumnHeader statusColumn;
         private System.Windows.Forms.Button workOnSelectedStenerButton;
         private System.Windows.Forms.Button refreshCompleteList;
         private System.Windows.Forms.StatusStrip completeStenerStatusStrip;
@@ -440,5 +443,12 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label answerLabel;
         private System.Windows.Forms.TextBox answerTextBox;
+        private System.Windows.Forms.ListView completeQuestionSetListView;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ColumnHeader columnHeader7;
     }
 }

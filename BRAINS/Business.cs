@@ -55,14 +55,14 @@ namespace BRAINS
 
             //get all question sets for the department
             List<QuestionSet> qSets = stenerManagement.GetQuestionSetsForDepartment(departmentID);
-            completeStenerListView.Clear();
+            completeQuestionSetListView.Clear();
 
             foreach(QuestionSet qSet in qSets)
             {
-                string[] row = { qSet.Priority.ToString(), qSet.UniqueID.ToString(), qSet.QuestionCount.ToString(), qSet.Questions.Count.ToString(), qSet.Status.ToString() };
+                string[] row = { qSet.Priority.ToString(), qSet.UniqueID.ToString(), qSet.Questions.Count.ToString(), qSet.DueDate.ToString("MM/dd/yyyy"), qSet.Status.ToString(), qSet.Category };
                 var listItem = new ListViewItem(row);
 
-                completeStenerListView.Items.Add(listItem);
+                completeQuestionSetListView.Items.Add(listItem);
             }
         }
     }
