@@ -17,9 +17,9 @@ namespace BRAINS
 
         public void changePassword(string password)
         {
-            UserData user = 
+
         }
-        public void createUser(string username, string password, string confirmPassword, int department, string permissions)
+        public void createUser(string username, string password, string confirmPassword, int department, int permissions)
         {
             UserData user = new UserData();
             user.Username = username;

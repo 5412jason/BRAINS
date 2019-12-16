@@ -32,9 +32,9 @@ namespace BRAINS
         {
 
             AccountManagement newUser = new AccountManagement();
-            DepartmentManagement deptartment = new DepartmentManagement();
-            Department newdepartment = deptartment.GetDepartmentByName(departmentAssign.Text);
-            newUser.createUser(newUsername.Text, newUserPassword.Text, confirmNewUserPassword.Text, newdepartment.DepartmentUID, permissionsBox.Text);
+            DepartmentManagement department = new DepartmentManagement();
+            Department newdepartment = department.GetDepartmentByName(departmentAssign.Text);
+            newUser.createUser(newUsername.Text, newUserPassword.Text, confirmNewUserPassword.Text, newdepartment.DepartmentUID, Convert.ToInt32(permissionsBox.Text));
             if (confirmNewUserPassword == newUserPassword)
             {
                  this.Hide();

@@ -551,7 +551,7 @@ namespace BRAINS
 
         static public Department FindDepartmentByName(string name)
         {
-            string query = "SELECT * FROM Departments WHERE DepartmentName = " + name;
+            string query = "SELECT * FROM Departments WHERE DepartmentName = '" + name + "'";
 
             DataTable dataTable = QueryDatabase(query);
 
