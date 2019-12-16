@@ -91,7 +91,6 @@
             this.accountList = new System.Windows.Forms.ListView();
             this.UUID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Username = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Password = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Department = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Permissions = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.violationsTab = new System.Windows.Forms.TabPage();
@@ -664,6 +663,7 @@
             this.refreshButtonAccounts.TabIndex = 5;
             this.refreshButtonAccounts.Text = "Refresh";
             this.refreshButtonAccounts.UseVisualStyleBackColor = true;
+            this.refreshButtonAccounts.Click += new System.EventHandler(this.refreshButtonAccounts_Click);
             // 
             // changePasswordButton
             // 
@@ -680,13 +680,15 @@
             this.accountList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.UUID,
             this.Username,
-            this.Password,
             this.Department,
             this.Permissions});
+            this.accountList.FullRowSelect = true;
             this.accountList.HideSelection = false;
             this.accountList.Location = new System.Drawing.Point(31, 17);
+            this.accountList.MultiSelect = false;
             this.accountList.Name = "accountList";
             this.accountList.Size = new System.Drawing.Size(700, 358);
+            this.accountList.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.accountList.TabIndex = 0;
             this.accountList.UseCompatibleStateImageBehavior = false;
             this.accountList.View = System.Windows.Forms.View.Details;
@@ -699,13 +701,9 @@
             // 
             // Username
             // 
+            this.Username.DisplayIndex = 0;
             this.Username.Text = "Username";
             this.Username.Width = 111;
-            // 
-            // Password
-            // 
-            this.Password.Text = "Password";
-            this.Password.Width = 126;
             // 
             // Department
             // 
@@ -882,7 +880,6 @@
         private System.Windows.Forms.ListView accountList;
         private System.Windows.Forms.ColumnHeader UUID;
         private System.Windows.Forms.ColumnHeader Username;
-        private System.Windows.Forms.ColumnHeader Password;
         private System.Windows.Forms.ColumnHeader Department;
         private System.Windows.Forms.ColumnHeader Permissions;
         private System.Windows.Forms.Button changePasswordButton;

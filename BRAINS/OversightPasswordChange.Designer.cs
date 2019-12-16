@@ -30,10 +30,10 @@
         {
             this.label2 = new System.Windows.Forms.Label();
             this.OversightPasswordChangeNewTextBox = new System.Windows.Forms.TextBox();
-            this.oversightPasswordChangeDialogOK = new System.Windows.Forms.Button();
             this.oversightPasswordChangeDialogCancel = new System.Windows.Forms.Button();
             this.confirmPassword = new System.Windows.Forms.TextBox();
             this.confirmPass = new System.Windows.Forms.Label();
+            this.changePassword = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label2
@@ -52,15 +52,6 @@
             this.OversightPasswordChangeNewTextBox.Name = "OversightPasswordChangeNewTextBox";
             this.OversightPasswordChangeNewTextBox.Size = new System.Drawing.Size(227, 20);
             this.OversightPasswordChangeNewTextBox.TabIndex = 3;
-            // 
-            // oversightPasswordChangeDialogOK
-            // 
-            this.oversightPasswordChangeDialogOK.Location = new System.Drawing.Point(177, 155);
-            this.oversightPasswordChangeDialogOK.Name = "oversightPasswordChangeDialogOK";
-            this.oversightPasswordChangeDialogOK.Size = new System.Drawing.Size(75, 23);
-            this.oversightPasswordChangeDialogOK.TabIndex = 4;
-            this.oversightPasswordChangeDialogOK.Text = "OK";
-            this.oversightPasswordChangeDialogOK.UseVisualStyleBackColor = true;
             // 
             // oversightPasswordChangeDialogCancel
             // 
@@ -88,15 +79,25 @@
             this.confirmPass.TabIndex = 7;
             this.confirmPass.Text = "Confirm Password:";
             // 
+            // changePassword
+            // 
+            this.changePassword.Location = new System.Drawing.Point(157, 155);
+            this.changePassword.Name = "changePassword";
+            this.changePassword.Size = new System.Drawing.Size(75, 23);
+            this.changePassword.TabIndex = 8;
+            this.changePassword.Text = "Change";
+            this.changePassword.UseVisualStyleBackColor = true;
+            this.changePassword.Click += new System.EventHandler(this.changePassword_Click);
+            // 
             // OversightPasswordChange
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(428, 280);
+            this.Controls.Add(this.changePassword);
             this.Controls.Add(this.confirmPass);
             this.Controls.Add(this.confirmPassword);
             this.Controls.Add(this.oversightPasswordChangeDialogCancel);
-            this.Controls.Add(this.oversightPasswordChangeDialogOK);
             this.Controls.Add(this.OversightPasswordChangeNewTextBox);
             this.Controls.Add(this.label2);
             this.Name = "OversightPasswordChange";
@@ -110,9 +111,9 @@
         #endregion
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox OversightPasswordChangeNewTextBox;
-        private System.Windows.Forms.Button oversightPasswordChangeDialogOK;
         private System.Windows.Forms.Button oversightPasswordChangeDialogCancel;
         private System.Windows.Forms.TextBox confirmPassword;
         private System.Windows.Forms.Label confirmPass;
+        private System.Windows.Forms.Button changePassword;
     }
 }

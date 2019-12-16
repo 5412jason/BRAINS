@@ -15,15 +15,23 @@ namespace BRAINS
     class AccountManagement
     {
 
-        public void changePassword(string password)
+        public void changePassword(string password, int UUID)
         {
+            UserData user = SqlManager.FindUser(UUID);
+            user.Password = ComputeSha256Hash(password);
+            SqlManager.ModifyUser(user);
+        }
+        public List<UserData> GetUserList()
+        {
+            List<UserData> usersData = SqlManager.GetAllUsers();
 
+            return usersData;
         }
         public void createUser(string username, string password, string confirmPassword, int department, int permissions)
         {
             UserData user = new UserData();
             user.Username = username;
-            user.Password = password;
+            user.Password = ComputeSha256Hash(password);
             user.DepartmentUID = department;
             user.Permissions = Convert.ToBoolean(permissions);
             user.UUID = getNextUserID();

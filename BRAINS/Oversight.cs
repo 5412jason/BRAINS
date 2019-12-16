@@ -14,11 +14,12 @@ namespace BRAINS
     {
         private StenerManagement stenerManagement;
         private DepartmentManagement departmentManagement;
-
-        private List<QuestionSet> questionSets;
-        private UserData currentUser;
-        private UserData deleteUser;
         private AccountManagement accountManagement;
+        private List<QuestionSet> questionSets;
+        private List<UserData> usersData;
+        private UserData currentUser;
+        //private UserData deleteUser;
+        
 
         private enum stenerManagementMode
         {
@@ -46,6 +47,7 @@ namespace BRAINS
 
             stenerManagement = new StenerManagement();
             departmentManagement = new DepartmentManagement();
+            accountManagement = new AccountManagement();
             currentUser = user;
         }
 
@@ -66,14 +68,14 @@ namespace BRAINS
             form.Show();
         }
 
-        private void OversightAccountsRemoveUser_Click (object sender, EventArgs e)
+        /*private void OversightAccountsRemoveUser_Click (object sender, EventArgs e)
         {
-            /*
+            
             * Get user id from list
-           */
-            SqlManager.RemoveUser(deleteUser.UUID);
+           
+        SqlManager.RemoveUser(deleteUser.UUID);
         }
-
+    */
 
         private void changePasswordButton_Click(object sender, EventArgs e)
         {
@@ -82,7 +84,7 @@ namespace BRAINS
             /*
              * pass user in as parameter to oversight password change
             */
-            OversightPasswordChange passwordChange = new OversightPasswordChange(user);
+            OversightPasswordChange passwordChange = new OversightPasswordChange(UUID);
             passwordChange.Show();
         }
 
@@ -97,14 +99,6 @@ namespace BRAINS
                 var listItem = new ListViewItem(row);
                 StenerManagementListView.Items.Add(listItem);
             }
-        }
-        private void editViolation_Click(object sender, EventArgs e)
-        {
-            
-        }
-        private void removeViolation_Click(object sender, EventArgs e)
-        {
-
         }
 
         #region STENER_MANAGEMENT
@@ -177,6 +171,18 @@ namespace BRAINS
 
                 var listItem = new ListViewItem(row);
                 StenerManagementListView.Items.Add(listItem);
+            }
+        }
+        private void refreshAccountList()
+        {
+            accountList.Items.Clear();
+            this.usersData = accountManagement.GetUserList();
+            foreach (UserData user in this.usersData)
+            {
+                string[] row = { user.Username.ToString(), user.UUID.ToString(), user.DepartmentUID.ToString(), user.Permissions.ToString()};
+
+                var listItem = new ListViewItem(row);
+                accountList.Items.Add(listItem);
             }
         }
 
@@ -387,6 +393,17 @@ namespace BRAINS
             preview.Show();
         }
 
+        private void refreshButtonAccounts_Click(object sender, EventArgs e)
+        {
+            accountList.Items.Clear();
+            this.usersData = accountManagement.GetUserList();
+            foreach (UserData user in this.usersData)
+            {
+                string[] row = { user.UUID.ToString(), user.Username.ToString(), user.DepartmentUID.ToString(), user.Permissions.ToString() };
 
+                var listItem = new ListViewItem(row);
+                accountList.Items.Add(listItem);
+            }
+        }
     }
 }
