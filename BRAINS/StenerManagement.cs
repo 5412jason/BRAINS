@@ -23,6 +23,12 @@ namespace BRAINS
             return qSet;
         }
 
+        public List<QuestionSet> GetQuestionSetsForDepartment(int departmentID)
+        {
+            List<QuestionSet> qSets = SqlManager.GetAllDepartmentQuestionSets(departmentID);
+            return qSets;
+        }
+
         public bool ModifyQuestion(string qText, int qSetID, int qID)
         {
             QuestionSet qSet = SqlManager.FindQuestionSet(qSetID);
@@ -46,6 +52,21 @@ namespace BRAINS
             {
                 return false;
             }
+        }
+
+        public bool SubmitQuestionSet(QuestionSet qSet)
+        {
+            bool result = SqlManager.ModifyQuestionSet(qSet);
+            
+            if(result == true)
+            {
+                foreach(Question q in qSet.Questions)
+                {
+                    SqlManager.ModifyQuestion(q, qSet.UniqueID);
+                }
+            }
+
+            return result;
         }
 
         public bool AddQuestion(string qText, int qSetID)
