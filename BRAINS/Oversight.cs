@@ -39,11 +39,7 @@ namespace BRAINS
             stenerManagement = new StenerManagement();
             departmentManagement = new DepartmentManagement();
             accountManagement = new AccountManagement();
-<<<<<<< HEAD
-            
-=======
-            int x = 1;
->>>>>>> de1cbc35541cc68250300f81f50521614908e5ce
+
         }
         public Oversight(UserData user)
         {
