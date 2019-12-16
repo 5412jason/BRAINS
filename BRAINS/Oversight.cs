@@ -240,5 +240,11 @@ namespace BRAINS
             NewUser newUser = new NewUser();
             newUser.Show();
         }
+
+        private void PreviewStenerButton_Click(object sender, EventArgs e)
+        {
+            OversightPreview preview = new OversightPreview();
+            preview.Show();
+        }
     }
 }

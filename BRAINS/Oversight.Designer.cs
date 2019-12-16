@@ -30,7 +30,7 @@
         {
             this.oversightTabControl = new System.Windows.Forms.TabControl();
             this.submissionsTab = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
+            this.previewStenerButton = new System.Windows.Forms.Button();
             this.rejectButton = new System.Windows.Forms.Button();
             this.approveButton = new System.Windows.Forms.Button();
             this.submittedStenerListView = new System.Windows.Forms.ListView();
@@ -130,7 +130,7 @@
             // 
             // submissionsTab
             // 
-            this.submissionsTab.Controls.Add(this.button1);
+            this.submissionsTab.Controls.Add(this.previewStenerButton);
             this.submissionsTab.Controls.Add(this.rejectButton);
             this.submissionsTab.Controls.Add(this.approveButton);
             this.submissionsTab.Controls.Add(this.submittedStenerListView);
@@ -142,14 +142,15 @@
             this.submissionsTab.Text = "Submissions";
             this.submissionsTab.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // previewStenerButton
             // 
-            this.button1.Location = new System.Drawing.Point(756, 226);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(213, 23);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "View Selected STENER";
-            this.button1.UseVisualStyleBackColor = true;
+            this.previewStenerButton.Location = new System.Drawing.Point(756, 226);
+            this.previewStenerButton.Name = "previewStenerButton";
+            this.previewStenerButton.Size = new System.Drawing.Size(213, 23);
+            this.previewStenerButton.TabIndex = 5;
+            this.previewStenerButton.Text = "View Selected STENER";
+            this.previewStenerButton.UseVisualStyleBackColor = true;
+            this.previewStenerButton.Click += new System.EventHandler(this.PreviewStenerButton_Click);
             // 
             // rejectButton
             // 
@@ -833,7 +834,7 @@
         private System.Windows.Forms.TabPage accountsTab;
         private System.Windows.Forms.TabPage violationsTab;
         private System.Windows.Forms.ListView submittedStenerListView;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button previewStenerButton;
         private System.Windows.Forms.Button rejectButton;
         private System.Windows.Forms.Button approveButton;
         private System.Windows.Forms.ColumnHeader id;
