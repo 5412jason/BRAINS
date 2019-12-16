@@ -8,10 +8,16 @@ namespace BRAINS
 {
     class ViolationManagement
     {
-
-        public void removeViolation()
+        public List<Violation> GetViolationList()
         {
+            List<Violation> violate = SqlManager.GetAllViolations();
 
+            return violate;
+        }
+        public void RemoveViolation(int violationUID)
+        {
+            SqlManager.FindQuestionSet(violationUID);
+            SqlManager.RemoveViolation(violationUID);
         }
         public void viewDepartmentViolations()
         {

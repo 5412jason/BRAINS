@@ -101,8 +101,8 @@
             this.violationUID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.oversightStenerSetUID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.oversightDepartment = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.oversightSeverity = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.oversightDescription = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.oversightSeverity = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.oversightViolatedDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.oversightTabControl.SuspendLayout();
             this.submissionsTab.SuspendLayout();
@@ -737,6 +737,7 @@
             this.editViolation.TabIndex = 3;
             this.editViolation.Text = "Edit Violation";
             this.editViolation.UseVisualStyleBackColor = true;
+            this.editViolation.Click += new System.EventHandler(this.editViolation_Click);
             // 
             // removeViolation
             // 
@@ -746,6 +747,7 @@
             this.removeViolation.TabIndex = 2;
             this.removeViolation.Text = "Remove Violation";
             this.removeViolation.UseVisualStyleBackColor = true;
+            this.removeViolation.Click += new System.EventHandler(this.removeViolation_Click);
             // 
             // violationRefreshButton
             // 
@@ -755,6 +757,7 @@
             this.violationRefreshButton.TabIndex = 1;
             this.violationRefreshButton.Text = "Refresh";
             this.violationRefreshButton.UseVisualStyleBackColor = true;
+            this.violationRefreshButton.Click += new System.EventHandler(this.violationRefreshButton_Click);
             // 
             // OversightViolationList
             // 
@@ -762,11 +765,13 @@
             this.violationUID,
             this.oversightStenerSetUID,
             this.oversightDepartment,
-            this.oversightSeverity,
             this.oversightDescription,
+            this.oversightSeverity,
             this.oversightViolatedDate});
+            this.OversightViolationList.FullRowSelect = true;
             this.OversightViolationList.HideSelection = false;
-            this.OversightViolationList.Location = new System.Drawing.Point(-4, 6);
+            this.OversightViolationList.Location = new System.Drawing.Point(3, 6);
+            this.OversightViolationList.MultiSelect = false;
             this.OversightViolationList.Name = "OversightViolationList";
             this.OversightViolationList.Size = new System.Drawing.Size(700, 567);
             this.OversightViolationList.TabIndex = 0;
@@ -775,37 +780,31 @@
             // 
             // violationUID
             // 
-            this.violationUID.DisplayIndex = 5;
             this.violationUID.Text = "ViolationUID";
             this.violationUID.Width = 95;
             // 
             // oversightStenerSetUID
             // 
-            this.oversightStenerSetUID.DisplayIndex = 0;
-            this.oversightStenerSetUID.Text = "Document";
+            this.oversightStenerSetUID.Text = "StenerSetUID";
             this.oversightStenerSetUID.Width = 91;
             // 
             // oversightDepartment
             // 
-            this.oversightDepartment.DisplayIndex = 1;
             this.oversightDepartment.Text = "Department";
             this.oversightDepartment.Width = 83;
             // 
-            // oversightSeverity
-            // 
-            this.oversightSeverity.DisplayIndex = 2;
-            this.oversightSeverity.Text = "Severity";
-            this.oversightSeverity.Width = 79;
-            // 
             // oversightDescription
             // 
-            this.oversightDescription.DisplayIndex = 3;
             this.oversightDescription.Text = "Description";
             this.oversightDescription.Width = 91;
             // 
+            // oversightSeverity
+            // 
+            this.oversightSeverity.Text = "Severity";
+            this.oversightSeverity.Width = 79;
+            // 
             // oversightViolatedDate
             // 
-            this.oversightViolatedDate.DisplayIndex = 4;
             this.oversightViolatedDate.Text = "Date Violated";
             this.oversightViolatedDate.Width = 88;
             // 

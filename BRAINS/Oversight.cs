@@ -15,8 +15,10 @@ namespace BRAINS
         private StenerManagement stenerManagement;
         private DepartmentManagement departmentManagement;
         private AccountManagement accountManagement;
+        private ViolationManagement violationManagement;
         private List<QuestionSet> questionSets;
         private List<UserData> usersData;
+        private List<Violation> violations;
         private UserData currentUser;
         //private UserData deleteUser;
         
@@ -39,6 +41,7 @@ namespace BRAINS
             stenerManagement = new StenerManagement();
             departmentManagement = new DepartmentManagement();
             accountManagement = new AccountManagement();
+            violationManagement = new ViolationManagement();
 
         }
         public Oversight(UserData user)
@@ -48,6 +51,7 @@ namespace BRAINS
             stenerManagement = new StenerManagement();
             departmentManagement = new DepartmentManagement();
             accountManagement = new AccountManagement();
+            violationManagement = new ViolationManagement();
             currentUser = user;
         }
 
@@ -74,11 +78,6 @@ namespace BRAINS
             UserData user = accountManagement.FindUser(UUID);
             OversightPasswordChange passwordChange = new OversightPasswordChange(UUID);
             passwordChange.Show();
-        }
-
-        private void violationRefreshButton_Click(object sender, EventArgs e)
-        {
-
         }
 
         #region STENER_MANAGEMENT
@@ -393,6 +392,31 @@ namespace BRAINS
             AccountManagement deleteUser = new AccountManagement();
 
             deleteUser.DeleteUser(UUID);
+        }
+
+        private void violationRefreshButton_Click(object sender, EventArgs e)
+        {
+            OversightViolationList.Items.Clear();
+            this.violations = violationManagement.GetViolationList();
+            foreach (Violation violate in this.violations)
+            {
+                string[] row = { violate.ViolationUID.ToString(), violate.StenerSetUID.ToString(), violate.DepartmentUID.ToString(), violate.ViolationDescription.ToString(), violate.Severity.ToString(), violate.ViolationDate.ToString("MM/dd/yyyy") };
+
+                var listItem = new ListViewItem(row);
+                OversightViolationList.Items.Add(listItem);
+            }
+        }
+
+        private void removeViolation_Click(object sender, EventArgs e)
+        {
+            int violationUID = Convert.ToInt32(OversightViolationList.SelectedItems[0].Text);
+            SqlManager.RemoveViolation(violationUID);
+
+        }
+
+        private void editViolation_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
