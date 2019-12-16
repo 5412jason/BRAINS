@@ -40,8 +40,6 @@
             this.dueDateHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.submittedDateHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.statusHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.submittedByHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.reviewedByHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.stenerManagementTab = new System.Windows.Forms.TabPage();
             this.categoryTextBox = new System.Windows.Forms.TextBox();
             this.categoryLabel = new System.Windows.Forms.Label();
@@ -104,6 +102,7 @@
             this.oversightDescription = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.oversightSeverity = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.oversightViolatedDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.oversightTabControl.SuspendLayout();
             this.submissionsTab.SuspendLayout();
             this.stenerManagementTab.SuspendLayout();
@@ -129,6 +128,7 @@
             // 
             // submissionsTab
             // 
+            this.submissionsTab.Controls.Add(this.textBox1);
             this.submissionsTab.Controls.Add(this.previewStenerButton);
             this.submissionsTab.Controls.Add(this.rejectButton);
             this.submissionsTab.Controls.Add(this.approveButton);
@@ -143,7 +143,7 @@
             // 
             // previewStenerButton
             // 
-            this.previewStenerButton.Location = new System.Drawing.Point(756, 226);
+            this.previewStenerButton.Location = new System.Drawing.Point(715, 6);
             this.previewStenerButton.Name = "previewStenerButton";
             this.previewStenerButton.Size = new System.Drawing.Size(213, 23);
             this.previewStenerButton.TabIndex = 5;
@@ -153,7 +153,7 @@
             // 
             // rejectButton
             // 
-            this.rejectButton.Location = new System.Drawing.Point(802, 284);
+            this.rejectButton.Location = new System.Drawing.Point(761, 64);
             this.rejectButton.Name = "rejectButton";
             this.rejectButton.Size = new System.Drawing.Size(121, 23);
             this.rejectButton.TabIndex = 4;
@@ -162,7 +162,7 @@
             // 
             // approveButton
             // 
-            this.approveButton.Location = new System.Drawing.Point(802, 255);
+            this.approveButton.Location = new System.Drawing.Point(761, 35);
             this.approveButton.Name = "approveButton";
             this.approveButton.Size = new System.Drawing.Size(121, 23);
             this.approveButton.TabIndex = 3;
@@ -177,13 +177,13 @@
             this.questionCountHeader,
             this.dueDateHeader,
             this.submittedDateHeader,
-            this.statusHeader,
-            this.submittedByHeader,
-            this.reviewedByHeader});
+            this.statusHeader});
+            this.submittedStenerListView.FullRowSelect = true;
             this.submittedStenerListView.HideSelection = false;
             this.submittedStenerListView.Location = new System.Drawing.Point(3, 6);
+            this.submittedStenerListView.MultiSelect = false;
             this.submittedStenerListView.Name = "submittedStenerListView";
-            this.submittedStenerListView.Size = new System.Drawing.Size(747, 561);
+            this.submittedStenerListView.Size = new System.Drawing.Size(664, 585);
             this.submittedStenerListView.TabIndex = 0;
             this.submittedStenerListView.UseCompatibleStateImageBehavior = false;
             this.submittedStenerListView.View = System.Windows.Forms.View.Details;
@@ -216,16 +216,6 @@
             // 
             this.statusHeader.Text = "Status";
             this.statusHeader.Width = 85;
-            // 
-            // submittedByHeader
-            // 
-            this.submittedByHeader.Text = "Submitted By";
-            this.submittedByHeader.Width = 93;
-            // 
-            // reviewedByHeader
-            // 
-            this.reviewedByHeader.Text = "Reviewed By";
-            this.reviewedByHeader.Width = 81;
             // 
             // stenerManagementTab
             // 
@@ -809,6 +799,13 @@
             this.oversightViolatedDate.Text = "Date Violated";
             this.oversightViolatedDate.Width = 88;
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(674, 138);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 6;
+            // 
             // Oversight
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -819,6 +816,7 @@
             this.Text = "Oversight";
             this.oversightTabControl.ResumeLayout(false);
             this.submissionsTab.ResumeLayout(false);
+            this.submissionsTab.PerformLayout();
             this.stenerManagementTab.ResumeLayout(false);
             this.stenerManagementTab.PerformLayout();
             this.stenerManagementStatusStrip.ResumeLayout(false);
@@ -848,8 +846,6 @@
         private System.Windows.Forms.ColumnHeader dueDateHeader;
         private System.Windows.Forms.ColumnHeader submittedDateHeader;
         private System.Windows.Forms.ColumnHeader statusHeader;
-        private System.Windows.Forms.ColumnHeader submittedByHeader;
-        private System.Windows.Forms.ColumnHeader reviewedByHeader;
         private System.Windows.Forms.ListView stenerManagementQuestionList;
         private System.Windows.Forms.ListView StenerManagementListView;
         private System.Windows.Forms.ColumnHeader columnHeader1;
@@ -908,5 +904,6 @@
         private System.Windows.Forms.TextBox categoryTextBox;
         private System.Windows.Forms.Label categoryLabel;
         private System.Windows.Forms.Button OversightAccountsAddUser;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
