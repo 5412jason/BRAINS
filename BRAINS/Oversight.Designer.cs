@@ -654,6 +654,7 @@
             this.OversightAccountsRemoveUser.TabIndex = 7;
             this.OversightAccountsRemoveUser.Text = "Remove User";
             this.OversightAccountsRemoveUser.UseVisualStyleBackColor = true;
+            this.OversightAccountsRemoveUser.Click += new System.EventHandler(this.OversightAccountsRemoveUser_Click);
             // 
             // refreshButtonAccounts
             // 
@@ -701,7 +702,6 @@
             // 
             // Username
             // 
-            this.Username.DisplayIndex = 0;
             this.Username.Text = "Username";
             this.Username.Width = 111;
             // 

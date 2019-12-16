@@ -51,8 +51,10 @@ namespace BRAINS
             return nextID + 1;
         }
         
-        public void deleteUser()
+        public void DeleteUser(int UUID)
         {
+            UserData user = SqlManager.FindUser(UUID);
+            SqlManager.RemoveUser(UUID);
 
         }
         public UserData FindUser(int x)

@@ -405,15 +405,15 @@ namespace BRAINS
         static public bool ModifyUser(UserData user)
         {
             string query =
-                "UPDATE LoginTable SET"
-                + " Username = '" + user.Username
-                + "', DepartmentUID = '" + user.DepartmentUID.ToString()
-                + "', Permissions = '" + user.Permissions
-                + "', Password = '" + user.Password
-                + "' WHERE UsernameUID = '" + user.UUID.ToString() + "'";
+                           "UPDATE LoginTable SET"
+                           + " Username = '" + user.Username
+                           + "', DepartmentUID = '" + user.DepartmentUID.ToString()
+                           + "', Permissions = '" + Convert.ToInt32(user.Permissions).ToString()
+                           + "', Password = '" + user.Password
+                           + "' WHERE UsernameUID = '" + user.UUID.ToString() + "'";
 
             bool passed = NonQueryDatabase(query);
-            
+
             return passed;
         }
 

@@ -68,37 +68,17 @@ namespace BRAINS
             form.Show();
         }
 
-        /*private void OversightAccountsRemoveUser_Click (object sender, EventArgs e)
-        {
-            
-            * Get user id from list
-           
-        SqlManager.RemoveUser(deleteUser.UUID);
-        }
-    */
-
         private void changePasswordButton_Click(object sender, EventArgs e)
         {
             int UUID = Convert.ToInt32(accountList.SelectedItems[0].Text);
             UserData user = accountManagement.FindUser(UUID);
-            /*
-             * pass user in as parameter to oversight password change
-            */
             OversightPasswordChange passwordChange = new OversightPasswordChange(UUID);
             passwordChange.Show();
         }
 
         private void violationRefreshButton_Click(object sender, EventArgs e)
         {
-            //ViolationsListView.Items.Clear();
-            this.questionSets = stenerManagement.GetStenerList();
-            foreach (QuestionSet qSet in this.questionSets)
-            {
-                string[] row = { qSet.UniqueID.ToString(), qSet.AssignedDepartment.ToString(), qSet.QuestionCount.ToString(), qSet.SubmittedDate.ToString("MM/dd/yyyy"), qSet.Status, qSet.Category };
 
-                var listItem = new ListViewItem(row);
-                StenerManagementListView.Items.Add(listItem);
-            }
         }
 
         #region STENER_MANAGEMENT
@@ -404,6 +384,15 @@ namespace BRAINS
                 var listItem = new ListViewItem(row);
                 accountList.Items.Add(listItem);
             }
+        }
+
+        private void OversightAccountsRemoveUser_Click(object sender, EventArgs e)
+        {
+            int UUID = Convert.ToInt32(accountList.SelectedItems[0].Text);
+            UserData user = accountManagement.FindUser(UUID);
+            AccountManagement deleteUser = new AccountManagement();
+
+            deleteUser.DeleteUser(UUID);
         }
     }
 }
