@@ -38,7 +38,12 @@ namespace BRAINS
 
         }
 
-       private void oversightPasswordChangeDialogOK_Click(object sender, EventArgs e)
+        private void oversightPasswordChangeDialogCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void changePassword_Click(object sender, EventArgs e)
         {
             AccountManagement newPassword = new AccountManagement();
 
@@ -46,17 +51,11 @@ namespace BRAINS
             if (OversightPasswordChangeNewTextBox.Text == confirmPassword.Text)
             {
                 MessageBox.Show("Password changed");
-
-                this.Hide();
+                this.Close();
             }
             else
-            MessageBox.Show("Passwords do not match, Please re-enter");
+                MessageBox.Show("Passwords do not match, Please re-enter");
 
-        }
-
-        private void oversightPasswordChangeDialogCancel_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
     }
 }

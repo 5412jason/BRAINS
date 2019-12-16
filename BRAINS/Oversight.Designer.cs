@@ -671,8 +671,8 @@
             // accountList
             // 
             this.accountList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.Username,
             this.UUID,
+            this.Username,
             this.Department,
             this.Permissions});
             this.accountList.FullRowSelect = true;
@@ -694,6 +694,7 @@
             // 
             // Username
             // 
+            this.Username.DisplayIndex = 0;
             this.Username.Text = "Username";
             this.Username.Width = 111;
             // 

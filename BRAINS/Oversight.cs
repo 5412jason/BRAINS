@@ -18,7 +18,7 @@ namespace BRAINS
         private List<QuestionSet> questionSets;
         private List<UserData> usersData;
         private UserData currentUser;
-        private UserData deleteUser;
+        //private UserData deleteUser;
         
 
         private enum stenerManagementMode
@@ -39,6 +39,7 @@ namespace BRAINS
             stenerManagement = new StenerManagement();
             departmentManagement = new DepartmentManagement();
             accountManagement = new AccountManagement();
+            
         }
         public Oversight(UserData user)
         {
@@ -46,6 +47,7 @@ namespace BRAINS
 
             stenerManagement = new StenerManagement();
             departmentManagement = new DepartmentManagement();
+            accountManagement = new AccountManagement();
             currentUser = user;
         }
 
@@ -66,14 +68,14 @@ namespace BRAINS
             form.Show();
         }
 
-        private void OversightAccountsRemoveUser_Click (object sender, EventArgs e)
+        /*private void OversightAccountsRemoveUser_Click (object sender, EventArgs e)
         {
-            /*
+            
             * Get user id from list
-           */
-            SqlManager.RemoveUser(deleteUser.UUID);
+           
+        SqlManager.RemoveUser(deleteUser.UUID);
         }
-
+    */
 
         private void changePasswordButton_Click(object sender, EventArgs e)
         {
@@ -259,7 +261,7 @@ namespace BRAINS
             this.usersData = accountManagement.GetUserList();
             foreach (UserData user in this.usersData)
             {
-                string[] row = { user.Username.ToString(), user.UUID.ToString(), user.DepartmentUID.ToString(), user.Permissions.ToString() };
+                string[] row = { user.UUID.ToString(), user.Username.ToString(), user.DepartmentUID.ToString(), user.Permissions.ToString() };
 
                 var listItem = new ListViewItem(row);
                 accountList.Items.Add(listItem);
