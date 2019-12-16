@@ -671,14 +671,17 @@
             // accountList
             // 
             this.accountList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.UUID,
             this.Username,
+            this.UUID,
             this.Department,
             this.Permissions});
+            this.accountList.FullRowSelect = true;
             this.accountList.HideSelection = false;
             this.accountList.Location = new System.Drawing.Point(31, 17);
+            this.accountList.MultiSelect = false;
             this.accountList.Name = "accountList";
             this.accountList.Size = new System.Drawing.Size(700, 358);
+            this.accountList.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.accountList.TabIndex = 0;
             this.accountList.UseCompatibleStateImageBehavior = false;
             this.accountList.View = System.Windows.Forms.View.Details;

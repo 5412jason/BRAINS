@@ -38,6 +38,7 @@ namespace BRAINS
 
             stenerManagement = new StenerManagement();
             departmentManagement = new DepartmentManagement();
+            accountManagement = new AccountManagement();
         }
         public Oversight(UserData user)
         {
