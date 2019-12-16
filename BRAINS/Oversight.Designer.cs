@@ -43,6 +43,8 @@
             this.submittedByHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.reviewedByHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.stenerManagementTab = new System.Windows.Forms.TabPage();
+            this.categoryTextBox = new System.Windows.Forms.TextBox();
+            this.categoryLabel = new System.Windows.Forms.Label();
             this.stenerManagementStatusStrip = new System.Windows.Forms.StatusStrip();
             this.stenerManagementStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.priorityComboBox = new System.Windows.Forms.ComboBox();
@@ -89,7 +91,6 @@
             this.accountList = new System.Windows.Forms.ListView();
             this.UUID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Username = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Password = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Department = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Permissions = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.violationsTab = new System.Windows.Forms.TabPage();
@@ -103,8 +104,6 @@
             this.oversightSeverity = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.oversightDescription = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.oversightViolatedDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.categoryLabel = new System.Windows.Forms.Label();
-            this.categoryTextBox = new System.Windows.Forms.TextBox();
             this.oversightTabControl.SuspendLayout();
             this.submissionsTab.SuspendLayout();
             this.stenerManagementTab.SuspendLayout();
@@ -257,6 +256,23 @@
             this.stenerManagementTab.TabIndex = 1;
             this.stenerManagementTab.Text = "STENER Management";
             this.stenerManagementTab.UseVisualStyleBackColor = true;
+            // 
+            // categoryTextBox
+            // 
+            this.categoryTextBox.Enabled = false;
+            this.categoryTextBox.Location = new System.Drawing.Point(780, 201);
+            this.categoryTextBox.Name = "categoryTextBox";
+            this.categoryTextBox.Size = new System.Drawing.Size(189, 20);
+            this.categoryTextBox.TabIndex = 24;
+            // 
+            // categoryLabel
+            // 
+            this.categoryLabel.AutoSize = true;
+            this.categoryLabel.Location = new System.Drawing.Point(777, 185);
+            this.categoryLabel.Name = "categoryLabel";
+            this.categoryLabel.Size = new System.Drawing.Size(49, 13);
+            this.categoryLabel.TabIndex = 23;
+            this.categoryLabel.Text = "Category";
             // 
             // stenerManagementStatusStrip
             // 
@@ -640,6 +656,7 @@
             this.refreshButtonAccounts.TabIndex = 5;
             this.refreshButtonAccounts.Text = "Refresh";
             this.refreshButtonAccounts.UseVisualStyleBackColor = true;
+            this.refreshButtonAccounts.Click += new System.EventHandler(this.refreshButtonAccounts_Click);
             // 
             // changePasswordButton
             // 
@@ -656,7 +673,6 @@
             this.accountList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.UUID,
             this.Username,
-            this.Password,
             this.Department,
             this.Permissions});
             this.accountList.HideSelection = false;
@@ -677,11 +693,6 @@
             // 
             this.Username.Text = "Username";
             this.Username.Width = 111;
-            // 
-            // Password
-            // 
-            this.Password.Text = "Password";
-            this.Password.Width = 126;
             // 
             // Department
             // 
@@ -787,23 +798,6 @@
             this.oversightViolatedDate.Text = "Date Violated";
             this.oversightViolatedDate.Width = 88;
             // 
-            // categoryLabel
-            // 
-            this.categoryLabel.AutoSize = true;
-            this.categoryLabel.Location = new System.Drawing.Point(777, 185);
-            this.categoryLabel.Name = "categoryLabel";
-            this.categoryLabel.Size = new System.Drawing.Size(49, 13);
-            this.categoryLabel.TabIndex = 23;
-            this.categoryLabel.Text = "Category";
-            // 
-            // categoryTextBox
-            // 
-            this.categoryTextBox.Enabled = false;
-            this.categoryTextBox.Location = new System.Drawing.Point(780, 201);
-            this.categoryTextBox.Name = "categoryTextBox";
-            this.categoryTextBox.Size = new System.Drawing.Size(189, 20);
-            this.categoryTextBox.TabIndex = 24;
-            // 
             // Oversight
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -875,7 +869,6 @@
         private System.Windows.Forms.ListView accountList;
         private System.Windows.Forms.ColumnHeader UUID;
         private System.Windows.Forms.ColumnHeader Username;
-        private System.Windows.Forms.ColumnHeader Password;
         private System.Windows.Forms.ColumnHeader Department;
         private System.Windows.Forms.ColumnHeader Permissions;
         private System.Windows.Forms.Button changePasswordButton;

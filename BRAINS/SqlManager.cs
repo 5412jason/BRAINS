@@ -403,11 +403,11 @@ namespace BRAINS
         {
             string query =
                 "UPDATE LoginTable SET"
-                + " Username = " + user.Username
-                + " DepartmentUID = " + user.DepartmentUID.ToString()
-                + " Permissions = " + user.Permissions
-                + " Password = " + user.Password
-                + " WHERE UsernameUID = " + user.UUID.ToString();
+                + " Username = '" + user.Username
+                + "' DepartmentUID = '" + user.DepartmentUID.ToString()
+                + "' Permissions = '" + user.Permissions
+                + "' Password = '" + user.Password
+                + "' WHERE UsernameUID = '" + user.UUID.ToString() + "'";
 
             bool passed = NonQueryDatabase(query);
             

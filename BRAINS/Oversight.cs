@@ -14,11 +14,12 @@ namespace BRAINS
     {
         private StenerManagement stenerManagement;
         private DepartmentManagement departmentManagement;
-
+        private AccountManagement accountManagement;
         private List<QuestionSet> questionSets;
+        private List<UserData> usersData;
         private UserData currentUser;
         private UserData deleteUser;
-        private AccountManagement accountManagement;
+        
 
         private enum stenerManagementMode
         {
@@ -155,6 +156,18 @@ namespace BRAINS
                 StenerManagementListView.Items.Add(listItem);
             }
         }
+        private void refreshAccountList()
+        {
+            accountList.Items.Clear();
+            this.usersData = accountManagement.GetUserList();
+            foreach (UserData user in this.usersData)
+            {
+                string[] row = { user.Username.ToString(), user.UUID.ToString(), user.DepartmentUID.ToString(), user.Permissions.ToString()};
+
+                var listItem = new ListViewItem(row);
+                accountList.Items.Add(listItem);
+            }
+        }
 
         private void submitStenerManagementButton_Click(object sender, EventArgs e)
         {
@@ -245,6 +258,19 @@ namespace BRAINS
         {
             OversightPreview preview = new OversightPreview();
             preview.Show();
+        }
+
+        private void refreshButtonAccounts_Click(object sender, EventArgs e)
+        {
+            accountList.Items.Clear();
+            this.usersData = accountManagement.GetUserList();
+            foreach (UserData user in this.usersData)
+            {
+                string[] row = { user.Username.ToString(), user.UUID.ToString(), user.DepartmentUID.ToString(), user.Permissions.ToString() };
+
+                var listItem = new ListViewItem(row);
+                accountList.Items.Add(listItem);
+            }
         }
     }
 }

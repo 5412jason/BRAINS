@@ -19,6 +19,12 @@ namespace BRAINS
         {
 
         }
+        public List<UserData> GetUserList()
+        {
+            List<UserData> usersData = SqlManager.GetAllUsers();
+
+            return usersData;
+        }
         public void createUser(string username, string password, string confirmPassword, int department, int permissions)
         {
             UserData user = new UserData();
