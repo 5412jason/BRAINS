@@ -13,7 +13,6 @@ namespace BRAINS
 {
     static class SqlManager
     {
-
         static private DataTable QueryDatabase(string query)
         {
             try
@@ -100,16 +99,25 @@ namespace BRAINS
                     QuestionSet qSet = new QuestionSet();
                     qSet.UniqueID = row.Field<int>("StenerSetUID");
                     qSet.AssignedDepartment = row.Field<int>("DepartmentUID");
-                    qSet.Category = row.Field<string>("Category");
                     qSet.Priority = row.Field<int>("Priority");
-                    //broken
-                    qSet.DueDate = DateTime.ParseExact(row.Field<string>("DueDate"), "yyyy-MM-dd", null);
+                    qSet.Violated = Convert.ToBoolean(row.Field<int>("Violated"));
+
+                    if (row.Field<string>("Category") != null)
+                    {
+                        qSet.Category = row.Field<string>("Category");
+                    }
+                    if (row.Field<string>("DueDate") != null)
+                    {
+                        qSet.DueDate = DateTime.ParseExact(row.Field<string>("DueDate"), "yyyy-MM-dd", null);
+                    }
                     if (row.Field<string>("SubmittedDate") != null)
                     {
                         qSet.SubmittedDate = DateTime.ParseExact(row.Field<string>("SubmittedDate"), "yyyy-MM-dd", null);
                     }
-                    qSet.Status = row.Field<string>("Status");
-                    qSet.Violated = Convert.ToBoolean(row.Field<int>("Violated"));
+                    if (row.Field<string>("Status") != null)
+                    {
+                        qSet.Status = row.Field<string>("Status");
+                    }
 
                     qSet.Questions = new List<Question>();
 
@@ -119,11 +127,24 @@ namespace BRAINS
                     {
                         Question question = new Question();
                         question.QuestionID = questionRow.Field<int>("QuestionUID");
-                        question.QuestionText = questionRow.Field<string>("Question");
-                        question.Answer = questionRow.Field<string>("Answer");
-                        question.EvidenceLocation = questionRow.Field<string>("LocationEvidence");
                         question.Compliance = Convert.ToBoolean(questionRow.Field<int>("Compliance"));
-                        question.SolutionPlan = questionRow.Field<string>("PlanForSolution");
+
+                        if (questionRow.Field<string>("Question") != null)
+                        {
+                            question.QuestionText = questionRow.Field<string>("Question");
+                        }
+                        if (questionRow.Field<string>("Answer") != null)
+                        {
+                            question.Answer = questionRow.Field<string>("Answer");
+                        }
+                        if (questionRow.Field<string>("LocationEvidence") != null)
+                        {
+                            question.EvidenceLocation = questionRow.Field<string>("LocationEvidence");
+                        }
+                        if (questionRow.Field<string>("PlanForSolution") != null)
+                        {
+                            question.SolutionPlan = questionRow.Field<string>("PlanForSolution");
+                        }
                         
                         qSet.Questions.Add(question);
                     }
@@ -152,22 +173,48 @@ namespace BRAINS
                 QuestionSet qSet = new QuestionSet();
                 qSet.UniqueID = row.Field<int>("StenerSetUID");
                 qSet.AssignedDepartment = row.Field<int>("DepartmentUID");
-                qSet.Category = row.Field<string>("Category");
                 qSet.Priority = row.Field<int>("Priority");
-                qSet.Status = row.Field<String>("Status");
-                qSet.DueDate = DateTime.ParseExact(row.Field<string>("DueDate"), "yyyy-MM-dd", null);
-                qSet.SubmittedDate = DateTime.ParseExact(row.Field<string>("SubmittedDate"), "yyyy-MM-dd", null);
                 qSet.Violated = Convert.ToBoolean(row.Field<int>("Violated"));
 
-                foreach(DataRow questionRow in dataTable.Rows)
+                if (row.Field<string>("Category") != null)
+                {
+                    qSet.Category = row.Field<string>("Category");
+                }
+                if (row.Field<string>("DueDate") != null)
+                {
+                    qSet.DueDate = DateTime.ParseExact(row.Field<string>("DueDate"), "yyyy-MM-dd", null);
+                }
+                if (row.Field<string>("SubmittedDate") != null)
+                {
+                    qSet.SubmittedDate = DateTime.ParseExact(row.Field<string>("SubmittedDate"), "yyyy-MM-dd", null);
+                }
+                if (row.Field<string>("Status") != null)
+                {
+                    qSet.Status = row.Field<string>("Status");
+                }
+
+                foreach (DataRow questionRow in dataTable.Rows)
                 {
                     Question question = new Question();
                     question.QuestionID = questionRow.Field<int>("QuestionUID");
-                    question.QuestionText = questionRow.Field<string>("Question");
-                    question.Answer = questionRow.Field<string>("Answer");
-                    question.EvidenceLocation = questionRow.Field<string>("LocationEvidence");
-                    question.Compliance = questionRow.Field<bool>("Compliance");
-                    question.SolutionPlan = questionRow.Field<string>("PlanForSolution");
+                    question.Compliance = Convert.ToBoolean(questionRow.Field<int>("Compliance"));
+
+                    if (questionRow.Field<string>("Question") != null)
+                    {
+                        question.QuestionText = questionRow.Field<string>("Question");
+                    }
+                    if (questionRow.Field<string>("Answer") != null)
+                    {
+                        question.Answer = questionRow.Field<string>("Answer");
+                    }
+                    if (questionRow.Field<string>("LocationEvidence") != null)
+                    {
+                        question.EvidenceLocation = questionRow.Field<string>("LocationEvidence");
+                    }
+                    if (questionRow.Field<string>("PlanForSolution") != null)
+                    {
+                        question.SolutionPlan = questionRow.Field<string>("PlanForSolution");
+                    }
 
                     qSet.Questions.Add(question);
                 }
@@ -275,10 +322,17 @@ namespace BRAINS
             {
                 UserData user = new UserData();
                 user.UUID = row.Field<int>("UsernameUID");
-                user.Username = row.Field<string>("Username");
-                user.Password = row.Field<string>("Password");
                 user.DepartmentUID = row.Field<int>("DepartmentUID");
-                user.Permissions = row.Field<bool>("Permissions");
+                user.Permissions = Convert.ToBoolean(row.Field<int>("Permissions"));
+
+                if (row.Field<string>("Username") != null)
+                {
+                    user.Username = row.Field<string>("Username");
+                }
+                if (row.Field<string>("Password") != null)
+                {
+                    user.Password = row.Field<string>("Password");
+                }
                 
                 users.Add(user);
             }
@@ -295,10 +349,17 @@ namespace BRAINS
 
                 UserData user = new UserData();
                 user.UUID = row.Field<int>("UsernameUID");
-                user.Username = row.Field<string>("Username");
-                user.Password = row.Field<string>("Password");
                 user.DepartmentUID = row.Field<int>("DepartmentUID");
-                user.Permissions = row.Field<bool>("Permissions");
+                user.Permissions = Convert.ToBoolean(row.Field<int>("Permissions"));
+
+                if (row.Field<string>("Username") != null)
+                {
+                    user.Username = row.Field<string>("Username");
+                }
+                if (row.Field<string>("Password") != null)
+                {
+                    user.Password = row.Field<string>("Password");
+                }
 
                 return user;
             }
@@ -321,10 +382,17 @@ namespace BRAINS
                 DataRow row = userTable.Rows[0];
                 UserData user = new UserData();
                 user.UUID = row.Field<int>("UsernameUID");
-                user.Username = row.Field<string>("Username");
-                user.Password = row.Field<string>("Password");
                 user.DepartmentUID = row.Field<int>("DepartmentUID");
                 user.Permissions = Convert.ToBoolean(row.Field<int>("Permissions"));
+
+                if (row.Field<string>("Username") != null)
+                {
+                    user.Username = row.Field<string>("Username");
+                }
+                if (row.Field<string>("Password") != null)
+                {
+                    user.Password = row.Field<string>("Password");
+                }
 
                 return user;
             }
@@ -383,12 +451,20 @@ namespace BRAINS
                 foreach (DataRow row in violationTable.Rows)
                 {
                     Violation violation = new Violation();
+
                     violation.ViolationUID = row.Field<int>("ViolationUID");
                     violation.DepartmentUID = row.Field<int>("DepartmentUID");
                     violation.StenerSetUID = row.Field<int>("StenerSetUID");
                     violation.Severity = row.Field<int>("Severity");
-                    violation.ViolationDate = row.Field<DateTime>("ViolatedDate");
-                    violation.ViolationDescription = row.Field<string>("ViolationDescription");
+
+                    if (row.Field<string>("ViolatedDate") != null)
+                    {
+                        violation.ViolationDate = DateTime.ParseExact(row.Field<string>("ViolatedDate"), "yyyy-MM-dd", null);
+                    }
+                    if (row.Field<string>("ViolationDescription") != null)
+                    {
+                        violation.ViolationDescription = row.Field<string>("ViolationDescription");
+                    }
 
                     violations.Add(violation);
                 }
@@ -413,11 +489,20 @@ namespace BRAINS
                 foreach (DataRow row in violationTable.Rows)
                 {
                     Violation violation = new Violation();
+
+                    violation.ViolationUID = row.Field<int>("ViolationUID");
                     violation.DepartmentUID = row.Field<int>("DepartmentUID");
                     violation.StenerSetUID = row.Field<int>("StenerSetUID");
                     violation.Severity = row.Field<int>("Severity");
-                    violation.ViolationDate = row.Field<DateTime>("ViolatedDate");
-                    violation.ViolationDescription = row.Field<string>("ViolationDescription");
+
+                    if (row.Field<string>("ViolatedDate") != null)
+                    {
+                        violation.ViolationDate = DateTime.ParseExact(row.Field<string>("ViolatedDate"), "yyyy-MM-dd", null);
+                    }
+                    if (row.Field<string>("ViolationDescription") != null)
+                    {
+                        violation.ViolationDescription = row.Field<string>("ViolationDescription");
+                    }
 
                     violations.Add(violation);
                 }
@@ -463,9 +548,14 @@ namespace BRAINS
             foreach(DataRow row in dataTable.Rows)
             {
                 Department department = new Department();
+
                 department.DepartmentUID = row.Field<int>("DepartmentUID");
-                department.Name = row.Field<string>("DepartmentName");
                 department.Admin = Convert.ToBoolean(row.Field<int>("Administrator"));
+
+                if (row.Field<string>("DepartmentName") != null)
+                {
+                    department.Name = row.Field<string>("DepartmentName");
+                }
 
                 departments.Add(department);
             }
@@ -516,11 +606,19 @@ namespace BRAINS
                 foreach(DataRow row in dataTable.Rows)
                 {
                     UserData user = new UserData();
+
                     user.UUID = row.Field<int>("UsernameUID");
-                    user.Username = row.Field<string>("Username");
-                    user.Password = row.Field<string>("Password");
                     user.DepartmentUID = row.Field<int>("DepartmentUID");
-                    user.Permissions = row.Field<bool>("Permissions");
+                    user.Permissions = Convert.ToBoolean(row.Field<int>("Permissions"));
+
+                    if (row.Field<string>("Username") != null)
+                    {
+                        user.Username = row.Field<string>("Username");
+                    }
+                    if (row.Field<string>("Password") != null)
+                    {
+                        user.Password = row.Field<string>("Password");
+                    }
 
                     users.Add(user);
                 }
@@ -540,9 +638,14 @@ namespace BRAINS
                 DataRow row = dataTable.Rows[0];
 
                 Department department = new Department();
+
                 department.DepartmentUID = row.Field<int>("DepartmentUID");
-                department.Name = row.Field<string>("DepartmentName");
                 department.Admin = Convert.ToBoolean(row.Field<int>("Administrator"));
+
+                if (row.Field<string>("DepartmentName") != null)
+                {
+                    department.Name = row.Field<string>("DepartmentName");
+                }
 
                 return department;
             }
@@ -563,9 +666,14 @@ namespace BRAINS
                 DataRow row = dataTable.Rows[0];
 
                 Department department = new Department();
+
                 department.DepartmentUID = row.Field<int>("DepartmentUID");
-                department.Name = row.Field<string>("DepartmentName");
                 department.Admin = Convert.ToBoolean(row.Field<int>("Administrator"));
+
+                if (row.Field<string>("DepartmentName") != null)
+                {
+                    department.Name = row.Field<string>("DepartmentName");
+                }
 
                 return department;
             }
