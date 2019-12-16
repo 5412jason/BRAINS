@@ -82,7 +82,7 @@ namespace BRAINS
             /*
              * pass user in as parameter to oversight password change
             */
-            OversightPasswordChange passwordChange = new OversightPasswordChange(user);
+            OversightPasswordChange passwordChange = new OversightPasswordChange(UUID);
             passwordChange.Show();
         }
 
@@ -97,14 +97,6 @@ namespace BRAINS
                 var listItem = new ListViewItem(row);
                 StenerManagementListView.Items.Add(listItem);
             }
-        }
-        private void editViolation_Click(object sender, EventArgs e)
-        {
-            
-        }
-        private void removeViolation_Click(object sender, EventArgs e)
-        {
-
         }
 
         #region STENER_MANAGEMENT

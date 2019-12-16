@@ -15,9 +15,11 @@ namespace BRAINS
     class AccountManagement
     {
 
-        public void changePassword(string password)
+        public void changePassword(string password, int UUID)
         {
-
+            UserData user = SqlManager.FindUser(UUID);
+            user.Password = ComputeSha256Hash(password);
+            SqlManager.ModifyUser(user);
         }
         public List<UserData> GetUserList()
         {

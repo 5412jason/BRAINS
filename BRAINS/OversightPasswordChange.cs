@@ -12,16 +12,15 @@ namespace BRAINS
 {
     public partial class OversightPasswordChange : Form
     {
-        private UserData userToModify;
-
+        private int userID;
         public OversightPasswordChange()
         {
             InitializeComponent();
         }
-        public OversightPasswordChange(UserData user)
+        public OversightPasswordChange(int ID)
         {
             InitializeComponent();
-            userToModify = user;
+            userID = ID;
         }
 
         private void OversightPasswordChange_Load(object sender, EventArgs e)
@@ -41,14 +40,20 @@ namespace BRAINS
 
        private void oversightPasswordChangeDialogOK_Click(object sender, EventArgs e)
         {
+            AccountManagement newPassword = new AccountManagement();
 
+            newPassword.changePassword(OversightPasswordChangeNewTextBox.Text, userID);
             if (OversightPasswordChangeNewTextBox.Text == confirmPassword.Text)
             {
-                
+                MessageBox.Show("Password changed");
+
+                this.Hide();
             }
+            else
+            MessageBox.Show("Passwords do not match, Please re-enter");
 
         }
-        
+
         private void oversightPasswordChangeDialogCancel_Click(object sender, EventArgs e)
         {
             this.Close();
