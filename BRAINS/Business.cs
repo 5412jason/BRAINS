@@ -16,22 +16,20 @@ namespace BRAINS
     {
 
         private UserData currentUser;
+        private StenerManagement stenerManagement;
 
         public Business()
         {
             InitializeComponent();
+            stenerManagement = new StenerManagement();
         }
 
         public Business(UserData user)
         {
             InitializeComponent();
             currentUser = user;
+            stenerManagement = new StenerManagement();
         }
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void Business_Load(object sender, EventArgs e)
         {
             //CompleteStenerDataGridView.DataSource = GetDepartmentList();
@@ -41,28 +39,31 @@ namespace BRAINS
 
         }
 
-        private DataTable GetDepartmentList()
+        private void RefreshCompleteList_Click(object sender, EventArgs e)
         {
-            DataTable departmentList = new DataTable();
+            this.refreshQuestionSetList();
+        }
 
-            string connString = ConfigurationManager.ConnectionStrings["Brains"].ConnectionString;
-
-            using (SqlConnection con = new SqlConnection(connString))
+        private void refreshQuestionSetList()
+        {
+            if (currentUser == null)
             {
-
-                using (SqlCommand cmd = new SqlCommand("SELECT * FROM StenerTable", con))
-                {
-
-                    con.Open();
-
-                    SqlDataReader reader = cmd.ExecuteReader();
-
-                    departmentList.Load(reader);
-
-                }
-
+                completeStenerStatusLabel.Text = "No valid user logged in!";
+                return;
             }
-            return departmentList;
+            int departmentID = currentUser.DepartmentUID;
+
+            //get all question sets for the department
+            List<QuestionSet> qSets = stenerManagement.GetQuestionSetsForDepartment(departmentID);
+            completeStenerListView.Clear();
+
+            foreach(QuestionSet qSet in qSets)
+            {
+                string[] row = { qSet.Priority.ToString(), qSet.UniqueID.ToString(), qSet.QuestionCount.ToString(), qSet.Questions.Count.ToString(), qSet.Status.ToString() };
+                var listItem = new ListViewItem(row);
+
+                completeStenerListView.Items.Add(listItem);
+            }
         }
     }
 }

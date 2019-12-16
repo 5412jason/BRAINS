@@ -23,6 +23,12 @@ namespace BRAINS
             return qSet;
         }
 
+        public List<QuestionSet> GetQuestionSetsForDepartment(int departmentID)
+        {
+            List<QuestionSet> qSets = SqlManager.GetAllDepartmentQuestionSets(departmentID);
+            return qSets;
+        }
+
         public bool ModifyQuestion(string qText, int qSetID, int qID)
         {
             QuestionSet qSet = SqlManager.FindQuestionSet(qSetID);

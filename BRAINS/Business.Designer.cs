@@ -63,7 +63,6 @@
             this.nextButton = new System.Windows.Forms.Button();
             this.closeQuestionSetButton = new System.Windows.Forms.Button();
             this.submitQuestionSetButton = new System.Windows.Forms.Button();
-            this.departmentNameLabel = new System.Windows.Forms.Label();
             this.businessTabControl.SuspendLayout();
             this.completeStenerTab.SuspendLayout();
             this.violationTab.SuspendLayout();
@@ -83,7 +82,6 @@
             // 
             // completeStenerTab
             // 
-            this.completeStenerTab.Controls.Add(this.departmentNameLabel);
             this.completeStenerTab.Controls.Add(this.submitQuestionSetButton);
             this.completeStenerTab.Controls.Add(this.closeQuestionSetButton);
             this.completeStenerTab.Controls.Add(this.nextButton);
@@ -222,6 +220,7 @@
             this.refreshCompleteList.TabIndex = 1;
             this.refreshCompleteList.Text = "Refresh List";
             this.refreshCompleteList.UseVisualStyleBackColor = true;
+            this.refreshCompleteList.Click += new System.EventHandler(this.RefreshCompleteList_Click);
             // 
             // workOnSelectedStenerButton
             // 
@@ -284,6 +283,7 @@
             // complianceCheckBox
             // 
             this.complianceCheckBox.AutoSize = true;
+            this.complianceCheckBox.Enabled = false;
             this.complianceCheckBox.Location = new System.Drawing.Point(561, 300);
             this.complianceCheckBox.Name = "complianceCheckBox";
             this.complianceCheckBox.Size = new System.Drawing.Size(93, 17);
@@ -293,6 +293,7 @@
             // 
             // answerTextBox
             // 
+            this.answerTextBox.Enabled = false;
             this.answerTextBox.Location = new System.Drawing.Point(561, 241);
             this.answerTextBox.Multiline = true;
             this.answerTextBox.Name = "answerTextBox";
@@ -310,6 +311,7 @@
             // 
             // textBox1
             // 
+            this.textBox1.Enabled = false;
             this.textBox1.Location = new System.Drawing.Point(561, 336);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
@@ -327,6 +329,7 @@
             // 
             // evidenceLocationTextBox
             // 
+            this.evidenceLocationTextBox.Enabled = false;
             this.evidenceLocationTextBox.Location = new System.Drawing.Point(561, 404);
             this.evidenceLocationTextBox.Multiline = true;
             this.evidenceLocationTextBox.Name = "evidenceLocationTextBox";
@@ -344,6 +347,7 @@
             // 
             // backButton
             // 
+            this.backButton.Enabled = false;
             this.backButton.Location = new System.Drawing.Point(561, 453);
             this.backButton.Name = "backButton";
             this.backButton.Size = new System.Drawing.Size(174, 23);
@@ -353,6 +357,7 @@
             // 
             // nextButton
             // 
+            this.nextButton.Enabled = false;
             this.nextButton.Location = new System.Drawing.Point(779, 453);
             this.nextButton.Name = "nextButton";
             this.nextButton.Size = new System.Drawing.Size(174, 23);
@@ -362,6 +367,7 @@
             // 
             // closeQuestionSetButton
             // 
+            this.closeQuestionSetButton.Enabled = false;
             this.closeQuestionSetButton.Location = new System.Drawing.Point(561, 482);
             this.closeQuestionSetButton.Name = "closeQuestionSetButton";
             this.closeQuestionSetButton.Size = new System.Drawing.Size(174, 23);
@@ -371,21 +377,13 @@
             // 
             // submitQuestionSetButton
             // 
+            this.submitQuestionSetButton.Enabled = false;
             this.submitQuestionSetButton.Location = new System.Drawing.Point(779, 482);
             this.submitQuestionSetButton.Name = "submitQuestionSetButton";
             this.submitQuestionSetButton.Size = new System.Drawing.Size(174, 23);
             this.submitQuestionSetButton.TabIndex = 19;
             this.submitQuestionSetButton.Text = "Submit Question Set";
             this.submitQuestionSetButton.UseVisualStyleBackColor = true;
-            // 
-            // departmentNameLabel
-            // 
-            this.departmentNameLabel.AutoSize = true;
-            this.departmentNameLabel.Location = new System.Drawing.Point(558, 17);
-            this.departmentNameLabel.Name = "departmentNameLabel";
-            this.departmentNameLabel.Size = new System.Drawing.Size(65, 13);
-            this.departmentNameLabel.TabIndex = 20;
-            this.departmentNameLabel.Text = "Department:";
             // 
             // Business
             // 
@@ -432,7 +430,6 @@
         private System.Windows.Forms.TextBox questionCountTextBox;
         private System.Windows.Forms.Label questionNumberLabel;
         private System.Windows.Forms.CheckBox complianceCheckBox;
-        private System.Windows.Forms.Label departmentNameLabel;
         private System.Windows.Forms.Button submitQuestionSetButton;
         private System.Windows.Forms.Button closeQuestionSetButton;
         private System.Windows.Forms.Button nextButton;

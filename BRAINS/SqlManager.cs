@@ -164,6 +164,95 @@ namespace BRAINS
             }
         }
 
+        static public List<QuestionSet> GetAllDepartmentQuestionSets(int departmentID)
+        {
+            try
+            {
+                DataTable questionsDataTable = QueryDatabase("SELECT * FROM StenerTable WHERE DepartmentUID = " + departmentID.ToString());
+
+                List<DataRow> qSetRows = new List<DataRow>();
+                List<int> qSetIds = new List<int>();
+
+                foreach (DataRow row in questionsDataTable.Rows)
+                {
+                    if (qSetIds.Contains(row.Field<int>("StenerSetUID")) == false)
+                    {
+                        qSetIds.Add(row.Field<int>("StenerSetUID"));
+                        qSetRows.Add(row);
+                    }
+                }
+
+                List<QuestionSet> questionSets = new List<QuestionSet>();
+                foreach (DataRow row in qSetRows)
+                {
+                    QuestionSet qSet = new QuestionSet();
+                    qSet.UniqueID = row.Field<int>("StenerSetUID");
+                    qSet.AssignedDepartment = row.Field<int>("DepartmentUID");
+                    qSet.Priority = row.Field<int>("Priority");
+                    qSet.Violated = Convert.ToBoolean(row.Field<int>("Violated"));
+
+                    if (row.Field<string>("Category") != null)
+                    {
+                        qSet.Category = row.Field<string>("Category");
+                    }
+                    if (row.Field<string>("DueDate") != null)
+                    {
+                        //test
+                        string test = row.Field<string>("DueDate");
+                        qSet.DueDate = DateTime.ParseExact(row.Field<string>("DueDate"), "MM/dd/yyyy hh:mm:ss tt", null);
+                    }
+                    if (row.Field<string>("SubmittedDate") != null)
+                    {
+                        string test = row.Field<string>("SubmittedDate");
+                        qSet.SubmittedDate = DateTime.ParseExact(row.Field<string>("SubmittedDate"), "MM/dd/yyyy hh:mm:ss tt", null);
+                    }
+                    if (row.Field<string>("Status") != null)
+                    {
+                        qSet.Status = row.Field<string>("Status");
+                    }
+
+                    qSet.Questions = new List<Question>();
+
+                    DataTable questionTable = QueryDatabase("SELECT * FROM StenerTable WHERE StenerSetUID = " + qSet.UniqueID.ToString());
+
+                    foreach (DataRow questionRow in questionTable.Rows)
+                    {
+                        Question question = new Question();
+                        question.QuestionID = questionRow.Field<int>("QuestionUID");
+                        question.Compliance = Convert.ToBoolean(questionRow.Field<int>("Compliance"));
+
+                        if (questionRow.Field<string>("Question") != null)
+                        {
+                            question.QuestionText = questionRow.Field<string>("Question");
+                        }
+                        if (questionRow.Field<string>("Answer") != null)
+                        {
+                            question.Answer = questionRow.Field<string>("Answer");
+                        }
+                        if (questionRow.Field<string>("LocationEvidence") != null)
+                        {
+                            question.EvidenceLocation = questionRow.Field<string>("LocationEvidence");
+                        }
+                        if (questionRow.Field<string>("PlanForSolution") != null)
+                        {
+                            question.SolutionPlan = questionRow.Field<string>("PlanForSolution");
+                        }
+
+                        qSet.Questions.Add(question);
+                    }
+
+                    questionSets.Add(qSet);
+                }
+
+                return questionSets;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return new List<QuestionSet>();
+            }
+        }
+
         static public QuestionSet FindQuestionSet(int qSetID)
         {
             string query = "SELECT * FROM StenerTable WHERE StenerSetUID = " + qSetID.ToString();
@@ -408,7 +497,7 @@ namespace BRAINS
                 "UPDATE LoginTable SET"
                 + " Username = '" + user.Username
                 + "', DepartmentUID = '" + user.DepartmentUID.ToString()
-                + "', Permissions = '" + user.Permissions
+                + "', Permissions = '" + Convert.ToInt32(user.Permissions).ToString()
                 + "', Password = '" + user.Password
                 + "' WHERE UsernameUID = '" + user.UUID.ToString() + "'";
 
