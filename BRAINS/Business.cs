@@ -108,6 +108,20 @@ namespace BRAINS
                     planForSolutionTextBox.Text = currentQuestionSet.Questions[currentQuestion - 1].PlanForSolution;
                     evidenceLocationTextBox.Text = currentQuestionSet.Questions[currentQuestion - 1].EvidenceLocation;
 
+                    if (currentQuestionSet.Status != "SUBMITTED" && currentQuestionSet.Status != "APPROVED")
+                    {
+                        if (complianceCheckBox.Checked == true)
+                        {
+                            planForSolutionTextBox.Enabled = false;
+                            evidenceLocationTextBox.Enabled = true;
+                        }
+                        else
+                        {
+                            planForSolutionTextBox.Enabled = true;
+                            evidenceLocationTextBox.Enabled = false;
+                        }
+                    }
+
                     if (currentQuestion == currentQuestionSet.Questions.Count)
                     {
                         nextButton.Enabled = false;
@@ -226,40 +240,71 @@ namespace BRAINS
         {
             if (currentQuestionSet.Status != "SUBMITTED" && currentQuestionSet.Status != "APPROVED")
             {
-                currentQuestionSet.Status = "SUBMITTED";
-                currentQuestionSet.SubmittedDate = DateTime.Now;
-                bool result = stenerManagement.SubmitQuestionSet(currentQuestionSet);
-
-                if (result == true)
+                bool passed = false;
+                if (answerTextBox.Text != "")
                 {
-                    questionCountTextBox.Text = "";
-                    questionBodyTextBox.Text = "";
-                    complianceCheckBox.Checked = false;
-                    planForSolutionTextBox.Text = "";
-                    evidenceLocationTextBox.Text = "";
-                    answerTextBox.Text = "";
+                    if (complianceCheckBox.Checked == true)
+                    {
+                        if (evidenceLocationTextBox.Text != "")
+                        {
+                            currentQuestionSet.Questions[currentQuestion - 1].Answer = answerTextBox.Text;
+                            currentQuestionSet.Questions[currentQuestion - 1].Compliance = complianceCheckBox.Checked;
+                            currentQuestionSet.Questions[currentQuestion - 1].EvidenceLocation = evidenceLocationTextBox.Text;
+                            currentQuestionSet.Questions[currentQuestion - 1].PlanForSolution = "";
 
-                    answerTextBox.Enabled = false;
-                    complianceCheckBox.Enabled = false;
-                    planForSolutionTextBox.Enabled = false;
-                    evidenceLocationTextBox.Enabled = false;
+                            passed = true;
+                        }
+                    }
+                    else
+                    {
+                        if (planForSolutionTextBox.Text != "")
+                        {
+                            currentQuestionSet.Questions[currentQuestion - 1].Answer = answerTextBox.Text;
+                            currentQuestionSet.Questions[currentQuestion - 1].Compliance = complianceCheckBox.Checked;
+                            currentQuestionSet.Questions[currentQuestion - 1].EvidenceLocation = "";
+                            currentQuestionSet.Questions[currentQuestion - 1].PlanForSolution = planForSolutionTextBox.Text;
 
-                    backButton.Enabled = false;
-                    nextButton.Enabled = false;
-                    saveAndCloseSetButton.Enabled = false;
-                    submitQuestionSetButton.Enabled = false;
-                    completeQuestionSetListView.Enabled = true;
-                    workOnSelectedStenerButton.Enabled = true;
-                    refreshCompleteListButton.Enabled = true;
-
-                    refreshQuestionSetList();
-
-                    completeStenerStatusLabel.Text = "Submitted Successfully!";
+                            passed = true;
+                        }
+                    }
                 }
-                else
+                if (passed == true)
                 {
-                    completeStenerStatusLabel.Text = "Error Submitting!";
-                    currentQuestionSet.Status = "INPROGRESS";
+                    currentQuestionSet.Status = "SUBMITTED";
+                    currentQuestionSet.SubmittedDate = DateTime.Now;
+                    bool result = stenerManagement.SubmitQuestionSet(currentQuestionSet);
+
+                    if (result == true)
+                    {
+                        questionCountTextBox.Text = "";
+                        questionBodyTextBox.Text = "";
+                        complianceCheckBox.Checked = false;
+                        planForSolutionTextBox.Text = "";
+                        evidenceLocationTextBox.Text = "";
+                        answerTextBox.Text = "";
+
+                        answerTextBox.Enabled = false;
+                        complianceCheckBox.Enabled = false;
+                        planForSolutionTextBox.Enabled = false;
+                        evidenceLocationTextBox.Enabled = false;
+
+                        backButton.Enabled = false;
+                        nextButton.Enabled = false;
+                        saveAndCloseSetButton.Enabled = false;
+                        submitQuestionSetButton.Enabled = false;
+                        completeQuestionSetListView.Enabled = true;
+                        workOnSelectedStenerButton.Enabled = true;
+                        refreshCompleteListButton.Enabled = true;
+
+                        refreshQuestionSetList();
+
+                        completeStenerStatusLabel.Text = "Submitted Successfully!";
+                    }
+                    else
+                    {
+                        completeStenerStatusLabel.Text = "Error Submitting!";
+                        currentQuestionSet.Status = "INPROGRESS";
+                    }
                 }
             }
         }
@@ -273,59 +318,112 @@ namespace BRAINS
 
                 if (result == true)
                 {
-                    questionCountTextBox.Text = "";
-                    questionBodyTextBox.Text = "";
-                    complianceCheckBox.Checked = false;
-                    planForSolutionTextBox.Text = "";
-                    evidenceLocationTextBox.Text = "";
-
-                    answerTextBox.Enabled = false;
-                    complianceCheckBox.Enabled = false;
-                    planForSolutionTextBox.Enabled = false;
-                    evidenceLocationTextBox.Enabled = false;
-
-                    backButton.Enabled = false;
-                    nextButton.Enabled = false;
-                    saveAndCloseSetButton.Enabled = false;
-                    submitQuestionSetButton.Enabled = false;
-
-                    currentQuestion = 1;
-                    currentQuestionSet = null;
-
-                    refreshQuestionSetList();
 
                     completeStenerStatusLabel.Text = "Saved Successfully!";
                 }
                 else
                 {
                     completeStenerStatusLabel.Text = "Error Saving!";
-                    currentQuestionSet.Status = "INPROGRESS";
                 }
             }
-            else
+
+            questionCountTextBox.Text = "";
+            questionBodyTextBox.Text = "";
+            complianceCheckBox.Checked = false;
+            planForSolutionTextBox.Text = "";
+            evidenceLocationTextBox.Text = "";
+            answerTextBox.Text = "";
+
+            answerTextBox.Enabled = false;
+            complianceCheckBox.Enabled = false;
+            planForSolutionTextBox.Enabled = false;
+            evidenceLocationTextBox.Enabled = false;
+
+            backButton.Enabled = false;
+            nextButton.Enabled = false;
+            saveAndCloseSetButton.Enabled = false;
+            submitQuestionSetButton.Enabled = false;
+            completeQuestionSetListView.Enabled = true;
+            workOnSelectedStenerButton.Enabled = true;
+            refreshCompleteListButton.Enabled = true; ;
+
+            currentQuestion = 1;
+            currentQuestionSet = null;
+
+            refreshQuestionSetList();
+            completeStenerStatusLabel.Text = "Closed Successfully!";
+            
+        }
+
+        private void backButton_Click(object sender, EventArgs e)
+        {
+            // check that the answer is not empty
+            // check the stuff for compliance
+            bool passed = false;
+            if (currentQuestionSet.Status != "SUBMITTED" && currentQuestionSet.Status != "APPROVED")
             {
-                questionCountTextBox.Text = "";
-                questionBodyTextBox.Text = "";
-                complianceCheckBox.Checked = false;
-                planForSolutionTextBox.Text = "";
-                evidenceLocationTextBox.Text = "";
-                answerTextBox.Text = "";
+                if (answerTextBox.Text != "")
+                {
+                    if (complianceCheckBox.Checked == true)
+                    {
+                        if (evidenceLocationTextBox.Text != "")
+                        {
+                            currentQuestionSet.Questions[currentQuestion - 1].Answer = answerTextBox.Text;
+                            currentQuestionSet.Questions[currentQuestion - 1].Compliance = complianceCheckBox.Checked;
+                            currentQuestionSet.Questions[currentQuestion - 1].EvidenceLocation = evidenceLocationTextBox.Text;
+                            currentQuestionSet.Questions[currentQuestion - 1].PlanForSolution = "";
 
-                answerTextBox.Enabled = false;
-                complianceCheckBox.Enabled = false;
-                planForSolutionTextBox.Enabled = false;
-                evidenceLocationTextBox.Enabled = false;
+                            passed = true;
+                        }
+                    }
+                    else
+                    {
+                        if (planForSolutionTextBox.Text != "")
+                        {
+                            currentQuestionSet.Questions[currentQuestion - 1].Answer = answerTextBox.Text;
+                            currentQuestionSet.Questions[currentQuestion - 1].Compliance = complianceCheckBox.Checked;
+                            currentQuestionSet.Questions[currentQuestion - 1].EvidenceLocation = "";
+                            currentQuestionSet.Questions[currentQuestion - 1].PlanForSolution = planForSolutionTextBox.Text;
 
-                backButton.Enabled = false;
-                nextButton.Enabled = false;
-                saveAndCloseSetButton.Enabled = false;
-                submitQuestionSetButton.Enabled = false;
+                            passed = true;
+                        }
+                    }
+                }
+            }
+            if (passed == true || (currentQuestionSet.Status == "SUBMITTED" || currentQuestionSet.Status == "APPROVED"))
+            {
+                if (currentQuestion - 1 > 0)
+                {
+                    currentQuestion = currentQuestion - 1;
+                    questionCountTextBox.Text = currentQuestion + "/" + currentQuestionSet.Questions.Count.ToString();
+                    questionBodyTextBox.Text = currentQuestionSet.Questions[currentQuestion - 1].QuestionText;
+                    complianceCheckBox.Checked = currentQuestionSet.Questions[currentQuestion - 1].Compliance;
+                    answerTextBox.Text = currentQuestionSet.Questions[currentQuestion - 1].Answer;
+                    planForSolutionTextBox.Text = currentQuestionSet.Questions[currentQuestion - 1].PlanForSolution;
+                    evidenceLocationTextBox.Text = currentQuestionSet.Questions[currentQuestion - 1].EvidenceLocation;
 
-                currentQuestion = 1;
-                currentQuestionSet = null;
-
-                refreshQuestionSetList();
-                completeStenerStatusLabel.Text = "Closed Successfully!";
+                    if (currentQuestion == currentQuestionSet.Questions.Count)
+                    {
+                        nextButton.Enabled = false;
+                        if (currentQuestionSet.Status != "SUBMITTED" && currentQuestionSet.Status != "APPROVED")
+                        {
+                            submitQuestionSetButton.Enabled = true;
+                        }
+                    }
+                    else
+                    {
+                        nextButton.Enabled = true;
+                        submitQuestionSetButton.Enabled = false;
+                    }
+                    if (currentQuestion > 1)
+                    {
+                        backButton.Enabled = true;
+                    }
+                    else
+                    {
+                        backButton.Enabled = false;
+                    }
+                }
             }
         }
     }

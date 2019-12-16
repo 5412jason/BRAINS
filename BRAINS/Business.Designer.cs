@@ -208,6 +208,7 @@
             this.backButton.TabIndex = 16;
             this.backButton.Text = "Previous Question";
             this.backButton.UseVisualStyleBackColor = true;
+            this.backButton.Click += new System.EventHandler(this.backButton_Click);
             // 
             // evidenceLocationLabel
             // 

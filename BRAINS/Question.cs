@@ -21,6 +21,5 @@ namespace BRAINS
         public string EvidenceLocation { get => evidenceLocation; set => evidenceLocation = value; }
         public bool Compliance { get => compliance; set => compliance = value; }
         public string PlanForSolution { get => planForSolution; set => planForSolution = value; }
-        public string SolutionPlan { get; internal set; }
     }
 }

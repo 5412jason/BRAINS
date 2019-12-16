@@ -146,7 +146,7 @@ namespace BRAINS
                         }
                         if (questionRow.Field<string>("PlanForSolution") != null)
                         {
-                            question.SolutionPlan = questionRow.Field<string>("PlanForSolution");
+                            question.PlanForSolution = questionRow.Field<string>("PlanForSolution");
                         }
                         
                         qSet.Questions.Add(question);
@@ -235,7 +235,7 @@ namespace BRAINS
                         }
                         if (questionRow.Field<string>("PlanForSolution") != null)
                         {
-                            question.SolutionPlan = questionRow.Field<string>("PlanForSolution");
+                            question.PlanForSolution = questionRow.Field<string>("PlanForSolution");
                         }
 
                         qSet.Questions.Add(question);
@@ -305,7 +305,7 @@ namespace BRAINS
                     }
                     if (questionRow.Field<string>("PlanForSolution") != null)
                     {
-                        question.SolutionPlan = questionRow.Field<string>("PlanForSolution");
+                        question.PlanForSolution = questionRow.Field<string>("PlanForSolution");
                     }
 
                     qSet.Questions.Add(question);
@@ -365,6 +365,7 @@ namespace BRAINS
                     + " Question = '" + question.QuestionText
                     + "', Answer = '" + question.Answer
                     + "', LocationEvidence = '" + question.EvidenceLocation
+                    + "', PlanForSolution = '" + question.PlanForSolution
                     + "', Compliance = '" + Convert.ToInt32(question.Compliance).ToString()
                     + "' WHERE QuestionUID = '" + question.QuestionID.ToString() + "' AND StenerSetUID = '" + qSetID.ToString() + "'";
 
