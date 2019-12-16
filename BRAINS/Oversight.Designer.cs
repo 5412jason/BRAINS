@@ -43,6 +43,8 @@
             this.submittedByHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.reviewedByHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.stenerManagementTab = new System.Windows.Forms.TabPage();
+            this.categoryTextBox = new System.Windows.Forms.TextBox();
+            this.categoryLabel = new System.Windows.Forms.Label();
             this.stenerManagementStatusStrip = new System.Windows.Forms.StatusStrip();
             this.stenerManagementStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.priorityComboBox = new System.Windows.Forms.ComboBox();
@@ -103,8 +105,6 @@
             this.oversightSeverity = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.oversightDescription = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.oversightViolatedDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.categoryLabel = new System.Windows.Forms.Label();
-            this.categoryTextBox = new System.Windows.Forms.TextBox();
             this.oversightTabControl.SuspendLayout();
             this.submissionsTab.SuspendLayout();
             this.stenerManagementTab.SuspendLayout();
@@ -257,6 +257,23 @@
             this.stenerManagementTab.TabIndex = 1;
             this.stenerManagementTab.Text = "STENER Management";
             this.stenerManagementTab.UseVisualStyleBackColor = true;
+            // 
+            // categoryTextBox
+            // 
+            this.categoryTextBox.Enabled = false;
+            this.categoryTextBox.Location = new System.Drawing.Point(780, 201);
+            this.categoryTextBox.Name = "categoryTextBox";
+            this.categoryTextBox.Size = new System.Drawing.Size(189, 20);
+            this.categoryTextBox.TabIndex = 24;
+            // 
+            // categoryLabel
+            // 
+            this.categoryLabel.AutoSize = true;
+            this.categoryLabel.Location = new System.Drawing.Point(777, 185);
+            this.categoryLabel.Name = "categoryLabel";
+            this.categoryLabel.Size = new System.Drawing.Size(49, 13);
+            this.categoryLabel.TabIndex = 23;
+            this.categoryLabel.Text = "Category";
             // 
             // stenerManagementStatusStrip
             // 
@@ -569,6 +586,7 @@
             this.RemoveDepartmentButton.TabIndex = 2;
             this.RemoveDepartmentButton.Text = "Remove Department";
             this.RemoveDepartmentButton.UseVisualStyleBackColor = true;
+            this.RemoveDepartmentButton.Click += new System.EventHandler(this.RemoveDepartmentButton_Click);
             // 
             // addDepartmentButton
             // 
@@ -786,23 +804,6 @@
             this.oversightViolatedDate.DisplayIndex = 4;
             this.oversightViolatedDate.Text = "Date Violated";
             this.oversightViolatedDate.Width = 88;
-            // 
-            // categoryLabel
-            // 
-            this.categoryLabel.AutoSize = true;
-            this.categoryLabel.Location = new System.Drawing.Point(777, 185);
-            this.categoryLabel.Name = "categoryLabel";
-            this.categoryLabel.Size = new System.Drawing.Size(49, 13);
-            this.categoryLabel.TabIndex = 23;
-            this.categoryLabel.Text = "Category";
-            // 
-            // categoryTextBox
-            // 
-            this.categoryTextBox.Enabled = false;
-            this.categoryTextBox.Location = new System.Drawing.Point(780, 201);
-            this.categoryTextBox.Name = "categoryTextBox";
-            this.categoryTextBox.Size = new System.Drawing.Size(189, 20);
-            this.categoryTextBox.TabIndex = 24;
             // 
             // Oversight
             // 

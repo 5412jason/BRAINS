@@ -246,5 +246,11 @@ namespace BRAINS
             OversightPreview preview = new OversightPreview();
             preview.Show();
         }
+
+        private void RemoveDepartmentButton_Click(object sender, EventArgs e)
+        {
+            OversightRemoveDepartment form1 = new OversightRemoveDepartment();
+            form1.Show();
+        }
     }
 }

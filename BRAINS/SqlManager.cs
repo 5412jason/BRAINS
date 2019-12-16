@@ -20,7 +20,7 @@ namespace BRAINS
                 DataTable dataTable = new DataTable();
 
                 string connString = ConfigurationManager.ConnectionStrings["Brains"].ConnectionString;
-
+                
                 using (SqlConnection con = new SqlConnection(connString))
                 {
 
@@ -586,7 +586,7 @@ namespace BRAINS
         
         static public bool AddDepartment(Department department)
         {
-            string query = "INSERT INTO Departments(DepartmentUID, DepartmentName, Administrator)VALUES("
+            string query = "INSERT INTO Departments(DepartmentUID, DepartmentName, Administrator)VALUES('"
                 + department.DepartmentUID.ToString() + "','" + department.Name + "','" + Convert.ToInt32(department.Admin) + "')";
 
             bool passed = NonQueryDatabase(query);

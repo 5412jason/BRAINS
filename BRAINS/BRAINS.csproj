@@ -105,6 +105,12 @@
     <Compile Include="OversightPreview.Designer.cs">
       <DependentUpon>OversightPreview.cs</DependentUpon>
     </Compile>
+    <Compile Include="OversightRemoveDepartment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OversightRemoveDepartment.Designer.cs">
+      <DependentUpon>OversightRemoveDepartment.cs</DependentUpon>
+    </Compile>
     <Compile Include="Preview.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -141,6 +147,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="OversightPreview.resx">
       <DependentUpon>OversightPreview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OversightRemoveDepartment.resx">
+      <DependentUpon>OversightRemoveDepartment.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
