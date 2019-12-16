@@ -17,15 +17,40 @@ namespace BRAINS
 
         public void changePassword(string password)
         {
-            
-        }
-        public void createUser()
-        {
 
         }
+        public void createUser(string username, string password, string confirmPassword, int department, int permissions)
+        {
+            UserData user = new UserData();
+            user.Username = username;
+            user.Password = password;
+            user.DepartmentUID = department;
+            user.Permissions = Convert.ToBoolean(permissions);
+            user.UUID = getNextUserID();
+            SqlManager.AddUser(user);
+        }
+        private int getNextUserID()
+        {
+            List<UserData> users = SqlManager.GetAllUsers();
+            int nextID = 0;
+            foreach (UserData user in users)
+            {
+                if (user.UUID > nextID)
+                {
+                    nextID = user.UUID;
+                }
+            }
+            return nextID + 1;
+        }
+        
         public void deleteUser()
         {
 
+        }
+        public UserData FindUser(int x)
+        {
+            UserData tempUserData = SqlManager.FindUser(x);
+            return tempUserData;
         }
         public string ComputeSha256Hash(string password)
         {

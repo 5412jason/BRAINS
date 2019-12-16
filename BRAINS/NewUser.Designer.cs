@@ -35,9 +35,11 @@
             this.newUsername = new System.Windows.Forms.TextBox();
             this.newUserPassword = new System.Windows.Forms.TextBox();
             this.confirmNewUserPassword = new System.Windows.Forms.TextBox();
-            this.departmentAssign = new System.Windows.Forms.ComboBox();
             this.newUserOK = new System.Windows.Forms.Button();
             this.newUserCancel = new System.Windows.Forms.Button();
+            this.departmentAssign = new System.Windows.Forms.ComboBox();
+            this.permissionsBox = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -97,17 +99,9 @@
             this.confirmNewUserPassword.Size = new System.Drawing.Size(224, 20);
             this.confirmNewUserPassword.TabIndex = 6;
             // 
-            // departmentAssign
-            // 
-            this.departmentAssign.FormattingEnabled = true;
-            this.departmentAssign.Location = new System.Drawing.Point(142, 87);
-            this.departmentAssign.Name = "departmentAssign";
-            this.departmentAssign.Size = new System.Drawing.Size(224, 21);
-            this.departmentAssign.TabIndex = 7;
-            // 
             // newUserOK
             // 
-            this.newUserOK.Location = new System.Drawing.Point(202, 130);
+            this.newUserOK.Location = new System.Drawing.Point(202, 160);
             this.newUserOK.Name = "newUserOK";
             this.newUserOK.Size = new System.Drawing.Size(75, 23);
             this.newUserOK.TabIndex = 8;
@@ -117,7 +111,7 @@
             // 
             // newUserCancel
             // 
-            this.newUserCancel.Location = new System.Drawing.Point(283, 130);
+            this.newUserCancel.Location = new System.Drawing.Point(283, 160);
             this.newUserCancel.Name = "newUserCancel";
             this.newUserCancel.Size = new System.Drawing.Size(83, 23);
             this.newUserCancel.TabIndex = 9;
@@ -125,11 +119,41 @@
             this.newUserCancel.UseVisualStyleBackColor = true;
             this.newUserCancel.Click += new System.EventHandler(this.newUserCancel_Click);
             // 
+            // departmentAssign
+            // 
+            this.departmentAssign.FormattingEnabled = true;
+            this.departmentAssign.Location = new System.Drawing.Point(142, 87);
+            this.departmentAssign.Name = "departmentAssign";
+            this.departmentAssign.Size = new System.Drawing.Size(224, 21);
+            this.departmentAssign.TabIndex = 7;
+            // 
+            // permissionsBox
+            // 
+            this.permissionsBox.FormattingEnabled = true;
+            this.permissionsBox.Items.AddRange(new object[] {
+            "true",
+            "false"});
+            this.permissionsBox.Location = new System.Drawing.Point(142, 117);
+            this.permissionsBox.Name = "permissionsBox";
+            this.permissionsBox.Size = new System.Drawing.Size(224, 21);
+            this.permissionsBox.TabIndex = 11;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(96, 120);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(39, 13);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "Admin:";
+            // 
             // NewUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(383, 165);
+            this.ClientSize = new System.Drawing.Size(449, 242);
+            this.Controls.Add(this.permissionsBox);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.newUserCancel);
             this.Controls.Add(this.newUserOK);
             this.Controls.Add(this.departmentAssign);
@@ -157,8 +181,10 @@
         private System.Windows.Forms.TextBox newUsername;
         private System.Windows.Forms.TextBox newUserPassword;
         private System.Windows.Forms.TextBox confirmNewUserPassword;
-        private System.Windows.Forms.ComboBox departmentAssign;
         private System.Windows.Forms.Button newUserOK;
         private System.Windows.Forms.Button newUserCancel;
+        private System.Windows.Forms.ComboBox departmentAssign;
+        private System.Windows.Forms.ComboBox permissionsBox;
+        private System.Windows.Forms.Label label5;
     }
 }

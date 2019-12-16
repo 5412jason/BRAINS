@@ -82,11 +82,10 @@
             this.departmentList = new System.Windows.Forms.ListView();
             this.Departments = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.accountsTab = new System.Windows.Forms.TabPage();
-            this.OversightAccountsRemoveUser = new System.Windows.Forms.Button();
             this.OversightAccountsAddUser = new System.Windows.Forms.Button();
+            this.OversightAccountsRemoveUser = new System.Windows.Forms.Button();
             this.refreshButtonAccounts = new System.Windows.Forms.Button();
             this.changePasswordButton = new System.Windows.Forms.Button();
-            this.changeUsernameButton = new System.Windows.Forms.Button();
             this.accountList = new System.Windows.Forms.ListView();
             this.UUID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Username = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -551,7 +550,6 @@
             this.addUserButton.TabIndex = 4;
             this.addUserButton.Text = "Add User to Department";
             this.addUserButton.UseVisualStyleBackColor = true;
-            this.addUserButton.Click += new System.EventHandler(this.addUserButton_Click);
             // 
             // refreshButtonDepartments
             // 
@@ -600,11 +598,10 @@
             // 
             // accountsTab
             // 
-            this.accountsTab.Controls.Add(this.OversightAccountsRemoveUser);
             this.accountsTab.Controls.Add(this.OversightAccountsAddUser);
+            this.accountsTab.Controls.Add(this.OversightAccountsRemoveUser);
             this.accountsTab.Controls.Add(this.refreshButtonAccounts);
             this.accountsTab.Controls.Add(this.changePasswordButton);
-            this.accountsTab.Controls.Add(this.changeUsernameButton);
             this.accountsTab.Controls.Add(this.accountList);
             this.accountsTab.Location = new System.Drawing.Point(4, 22);
             this.accountsTab.Name = "accountsTab";
@@ -615,27 +612,28 @@
             this.accountsTab.UseVisualStyleBackColor = true;
             this.accountsTab.Click += new System.EventHandler(this.accountsTab_Click);
             // 
+            // OversightAccountsAddUser
+            // 
+            this.OversightAccountsAddUser.Location = new System.Drawing.Point(781, 115);
+            this.OversightAccountsAddUser.Name = "OversightAccountsAddUser";
+            this.OversightAccountsAddUser.Size = new System.Drawing.Size(128, 23);
+            this.OversightAccountsAddUser.TabIndex = 8;
+            this.OversightAccountsAddUser.Text = "Add User";
+            this.OversightAccountsAddUser.UseVisualStyleBackColor = true;
+            this.OversightAccountsAddUser.Click += new System.EventHandler(this.OversightAccountsAddUser_Click);
+            // 
             // OversightAccountsRemoveUser
             // 
-            this.OversightAccountsRemoveUser.Location = new System.Drawing.Point(781, 182);
+            this.OversightAccountsRemoveUser.Location = new System.Drawing.Point(781, 156);
             this.OversightAccountsRemoveUser.Name = "OversightAccountsRemoveUser";
             this.OversightAccountsRemoveUser.Size = new System.Drawing.Size(128, 23);
             this.OversightAccountsRemoveUser.TabIndex = 7;
             this.OversightAccountsRemoveUser.Text = "Remove User";
             this.OversightAccountsRemoveUser.UseVisualStyleBackColor = true;
             // 
-            // OversightAccountsAddUser
-            // 
-            this.OversightAccountsAddUser.Location = new System.Drawing.Point(781, 140);
-            this.OversightAccountsAddUser.Name = "OversightAccountsAddUser";
-            this.OversightAccountsAddUser.Size = new System.Drawing.Size(128, 23);
-            this.OversightAccountsAddUser.TabIndex = 6;
-            this.OversightAccountsAddUser.Text = "Add User";
-            this.OversightAccountsAddUser.UseVisualStyleBackColor = true;
-            // 
             // refreshButtonAccounts
             // 
-            this.refreshButtonAccounts.Location = new System.Drawing.Point(781, 285);
+            this.refreshButtonAccounts.Location = new System.Drawing.Point(781, 259);
             this.refreshButtonAccounts.Name = "refreshButtonAccounts";
             this.refreshButtonAccounts.Size = new System.Drawing.Size(128, 23);
             this.refreshButtonAccounts.TabIndex = 5;
@@ -644,23 +642,13 @@
             // 
             // changePasswordButton
             // 
-            this.changePasswordButton.Location = new System.Drawing.Point(781, 99);
+            this.changePasswordButton.Location = new System.Drawing.Point(781, 73);
             this.changePasswordButton.Name = "changePasswordButton";
             this.changePasswordButton.Size = new System.Drawing.Size(128, 23);
             this.changePasswordButton.TabIndex = 2;
             this.changePasswordButton.Text = "Change Password";
             this.changePasswordButton.UseVisualStyleBackColor = true;
             this.changePasswordButton.Click += new System.EventHandler(this.changePasswordButton_Click);
-            // 
-            // changeUsernameButton
-            // 
-            this.changeUsernameButton.Location = new System.Drawing.Point(781, 59);
-            this.changeUsernameButton.Name = "changeUsernameButton";
-            this.changeUsernameButton.Size = new System.Drawing.Size(128, 23);
-            this.changeUsernameButton.TabIndex = 1;
-            this.changeUsernameButton.Text = "Change Username";
-            this.changeUsernameButton.UseVisualStyleBackColor = true;
-            this.changeUsernameButton.Click += new System.EventHandler(this.changeUsernameButton_Click);
             // 
             // accountList
             // 
@@ -889,7 +877,6 @@
         private System.Windows.Forms.ColumnHeader Password;
         private System.Windows.Forms.ColumnHeader Department;
         private System.Windows.Forms.ColumnHeader Permissions;
-        private System.Windows.Forms.Button changeUsernameButton;
         private System.Windows.Forms.Button changePasswordButton;
         private System.Windows.Forms.Button refreshButtonAccounts;
         private System.Windows.Forms.ListView departmentList;
@@ -902,7 +889,6 @@
         private System.Windows.Forms.ColumnHeader Members;
         private System.Windows.Forms.ColumnHeader Departments;
         private System.Windows.Forms.Button OversightAccountsRemoveUser;
-        private System.Windows.Forms.Button OversightAccountsAddUser;
         private System.Windows.Forms.Button stenerManageRefreshBtn;
         private System.Windows.Forms.Button submitStenerManagementButton;
         private System.Windows.Forms.MonthCalendar dueDateCalendar;
@@ -916,5 +902,6 @@
         private System.Windows.Forms.ColumnHeader violationUID;
         private System.Windows.Forms.TextBox categoryTextBox;
         private System.Windows.Forms.Label categoryLabel;
+        private System.Windows.Forms.Button OversightAccountsAddUser;
     }
 }

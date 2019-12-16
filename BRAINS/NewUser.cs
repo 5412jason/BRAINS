@@ -30,8 +30,17 @@ namespace BRAINS
 
         private void newUserOK_Click(object sender, EventArgs e)
         {
-            SqlManager.AddUser(newUser);
-            this.Close();
+
+            AccountManagement newUser = new AccountManagement();
+            DepartmentManagement department = new DepartmentManagement();
+            Department newdepartment = department.GetDepartmentByName(departmentAssign.Text);
+            newUser.createUser(newUsername.Text, newUserPassword.Text, confirmNewUserPassword.Text, newdepartment.DepartmentUID, Convert.ToInt32(permissionsBox.Text));
+            if (confirmNewUserPassword == newUserPassword)
+            {
+                 this.Hide();
+            }
+            else
+            MessageBox.Show("Passwords do not match, Please re-enter");
         }
 
         private void newUserCancel_Click(object sender, EventArgs e)

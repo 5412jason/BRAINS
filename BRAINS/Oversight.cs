@@ -18,6 +18,8 @@ namespace BRAINS
         private List<QuestionSet> questionSets;
         private UserData currentUser;
         private UserData deleteUser;
+        private AccountManagement accountManagement;
+
         private enum stenerManagementMode
         {
             None,
@@ -62,11 +64,6 @@ namespace BRAINS
             form.Show();
         }
 
-        private void addUserButton_Click(object sender, EventArgs e)
-        {
-            NewUser newUser = new NewUser();
-            newUser.Show();
-        }
         private void OversightAccountsRemoveUser_Click (object sender, EventArgs e)
         {
             /*
@@ -75,28 +72,18 @@ namespace BRAINS
             SqlManager.RemoveUser(deleteUser.UUID);
         }
 
-        private void changeUsernameButton_Click(object sender, EventArgs e)
-        {
-            OversightAccountsUsernameChange form = new OversightAccountsUsernameChange(Int32.Parse(accountList.SelectedItems.ToString()));
-            form.Show();
-        }
 
         private void changePasswordButton_Click(object sender, EventArgs e)
         {
+            int UUID = Convert.ToInt32(accountList.SelectedItems[0].Text);
+            UserData user = accountManagement.FindUser(UUID);
             /*
-             * Get user id from list
-             * call find user to get the user data from sql manager
              * pass user in as parameter to oversight password change
             */
-            OversightPasswordChange passwordChange = new OversightPasswordChange();
+            OversightPasswordChange passwordChange = new OversightPasswordChange(user);
             passwordChange.Show();
         }
 
-        private void OversightAccountsAddUser_Click(object sender, EventArgs e)
-        {
-            NewUser form = new NewUser();
-            form.Show();
-        }
         private void violationRefreshButton_Click(object sender, EventArgs e)
         {
             //ViolationsListView.Items.Clear();
@@ -247,5 +234,11 @@ namespace BRAINS
             stenerManagementStatusLabel.Text = statusMessage;
         }
         #endregion
+
+        private void OversightAccountsAddUser_Click(object sender, EventArgs e)
+        {
+            NewUser newUser = new NewUser();
+            newUser.Show();
+        }
     }
 }
