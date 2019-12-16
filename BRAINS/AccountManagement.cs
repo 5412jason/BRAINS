@@ -17,7 +17,7 @@ namespace BRAINS
 
         public void changePassword(string password)
         {
-
+            UserData user = 
         }
         public void createUser(string username, string password, string confirmPassword, int department, string permissions)
         {
@@ -46,6 +46,11 @@ namespace BRAINS
         public void deleteUser()
         {
 
+        }
+        public UserData FindUser(int x)
+        {
+            UserData tempUserData = SqlManager.FindUser(x);
+            return tempUserData;
         }
         public string ComputeSha256Hash(string password)
         {

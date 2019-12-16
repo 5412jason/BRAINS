@@ -44,7 +44,7 @@ namespace BRAINS
 
             if (OversightPasswordChangeNewTextBox.Text == confirmPassword.Text)
             {
-               /* userToModify.Password = */ SqlManager.ModifyUser(userToModify);
+                
             }
 
         }

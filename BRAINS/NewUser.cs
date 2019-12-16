@@ -37,7 +37,7 @@ namespace BRAINS
             newUser.createUser(newUsername.Text, newUserPassword.Text, confirmNewUserPassword.Text, newdepartment.DepartmentUID, permissionsBox.Text);
             if (confirmNewUserPassword == newUserPassword)
             {
-                 this.Close();
+                 this.Hide();
             }
             else
             MessageBox.Show("Passwords do not match, Please re-enter");
