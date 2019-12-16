@@ -23,7 +23,7 @@ namespace BRAINS
         {
             UserData user = new UserData();
             user.Username = username;
-            user.Password = password;
+            user.Password = ComputeSha256Hash(password);
             user.DepartmentUID = department;
             user.Permissions = Convert.ToBoolean(permissions);
             user.UUID = getNextUserID();

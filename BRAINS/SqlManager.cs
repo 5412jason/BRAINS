@@ -425,7 +425,7 @@ namespace BRAINS
 
         static public bool AddUser(UserData user)
         {
-            string query = "INSERT INTO LoginTable(Username, DepartmentUID, Permissions, Password, UsernameUID)VALUES("
+            string query = "INSERT INTO LoginTable(Username, DepartmentUID, Permissions, Password, UsernameUID)VALUES('"
                 + user.Username + "','" + user.DepartmentUID.ToString() + "','"
                 + Convert.ToInt32(user.Permissions) + "','" + user.Password + "','"
                 + user.UUID.ToString() + "')";
