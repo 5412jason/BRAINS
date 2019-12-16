@@ -35,7 +35,7 @@ namespace BRAINS
             DepartmentManagement department = new DepartmentManagement();
             Department newdepartment = department.GetDepartmentByName(departmentAssign.Text);
             newUser.createUser(newUsername.Text, newUserPassword.Text, confirmNewUserPassword.Text, newdepartment.DepartmentUID, Convert.ToInt32(permissionsBox.Text));
-            if (confirmNewUserPassword == newUserPassword)
+            if (confirmNewUserPassword.Text == newUserPassword.Text)
             {
                  this.Hide();
             }
