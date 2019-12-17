@@ -411,10 +411,17 @@ namespace BRAINS
         }
 
         private void removeViolation_Click(object sender, EventArgs e)
-        {
-            int violationUID = Convert.ToInt32(OversightViolationList.SelectedItems[0].Text);
-            SqlManager.RemoveViolation(violationUID);
 
+        {
+            if (accountList.SelectedItems.Count > 0)
+            {
+                int violationUID = Convert.ToInt32(OversightViolationList.SelectedItems[0].Text);
+                SqlManager.RemoveViolation(violationUID);
+            }
+            else
+            {
+                MessageBox.Show ("Please select a violation to delete");
+            }
         }
 
         private void editViolation_Click(object sender, EventArgs e)
