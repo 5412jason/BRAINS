@@ -29,9 +29,9 @@ namespace BRAINS
 
         public List<UserData> getAllUsersInDepartment(int departmentUID)
         {
-            //List<UserData> allUsers = SqlManager.GetAllUsersInDepartment(departmentUID);
-            //return allUsers;
-            return null;
+            List<UserData> allUsers = SqlManager.GetUsersInDepartment(departmentUID);
+            return allUsers;
+            //return null;
         }
 
         private int getNextDepartmentID()
@@ -50,9 +50,9 @@ namespace BRAINS
 
         public List<Department> getDepartments()
         {
-            //List<Department> allDepartments = SqlManager.GetAllDepartments();
-            //return allDepartments;
-            return null;
+            List<Department> allDepartments = SqlManager.GetAllDepartments();
+            return allDepartments;
+            //return null;
 
         }
 
@@ -74,9 +74,12 @@ namespace BRAINS
             SqlManager.AddDepartment(dpmt);
         }
 
-        public void addDeparmentUser(UserData user)
+        public void addDeparmentUser(int user,int dpmt)
         {
-            SqlManager.ModifyUser(user);
+            UserData id = SqlManager.FindUser(user);
+            id.DepartmentUID = dpmt;
+            SqlManager.ModifyUser(id);
+
         }
 
         public void removeDeparment(int departmentUID)
@@ -89,9 +92,11 @@ namespace BRAINS
             
         }
 
-        public void removeDeparmentUser(UserData user)
+        public void removeDeparmentUser(int user, int dpmt)
         {
-            SqlManager.ModifyUser(user);
+            UserData id = SqlManager.FindUser(user);
+            id.DepartmentUID = 0;
+            SqlManager.ModifyUser(id);
         }
     }
     

@@ -78,7 +78,7 @@
             this.oversightAccountsUsernameChangeOK.TabIndex = 4;
             this.oversightAccountsUsernameChangeOK.Text = "OK";
             this.oversightAccountsUsernameChangeOK.UseVisualStyleBackColor = true;
-            //this.oversightAccountsUsernameChangeOK.Click += new System.EventHandler(this.oversightAccountsUsernameChangeOK_Click);
+            this.oversightAccountsUsernameChangeOK.Click += new System.EventHandler(this.oversightAccountsUsernameChangeOK_Click);
             // 
             // oversightAccountsUsernameChangeCancel
             // 

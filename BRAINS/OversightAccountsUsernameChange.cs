@@ -45,23 +45,28 @@ namespace BRAINS
             this.Close();
         }
 
-      /*  private void oversightAccountsUsernameChangeOK_Click(object sender, EventArgs e)
+        private void oversightAccountsUsernameChangeOK_Click(object sender, EventArgs e)
         {
-            string currentUsername = SqlManager.FindUser(uuid).Username;
 
-            if (currentUsername == OversightAccountsUsernameChangeCurrentTextbox.Text);
-            {
-                UserData userUpdatedPassword = SqlManager.FindUser(uuid).Password;
-                userUpdatedPassword.Username = OversightAccountsUsernameChangeNewTextbox.Text;
-                userUpdatedPassword.UUID = uuid;
-                userUpdatedPassword.DepartmentName = SqlManager.FindUser(uuid).DepartmentName;
-                userUpdatedPassword.DepartmentUID = SqlManager.FindUser(uuid).DepartmentUID;
-
-                SqlManager.ChangeUser(userUpdatedPassword);
-            }
-            
-            this.Close();
         }
-        */
+
+        /*  private void oversightAccountsUsernameChangeOK_Click(object sender, EventArgs e)
+          {
+              string currentUsername = SqlManager.FindUser(uuid).Username;
+
+              if (currentUsername == OversightAccountsUsernameChangeCurrentTextbox.Text);
+              {
+                  UserData userUpdatedPassword = SqlManager.FindUser(uuid).Password;
+                  userUpdatedPassword.Username = OversightAccountsUsernameChangeNewTextbox.Text;
+                  userUpdatedPassword.UUID = uuid;
+                  userUpdatedPassword.DepartmentName = SqlManager.FindUser(uuid).DepartmentName;
+                  userUpdatedPassword.DepartmentUID = SqlManager.FindUser(uuid).DepartmentUID;
+
+                  SqlManager.ChangeUser(userUpdatedPassword);
+              }
+
+              this.Close();
+          }
+          */
     }
 }

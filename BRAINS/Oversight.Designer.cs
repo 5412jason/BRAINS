@@ -74,6 +74,12 @@
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.departmentTab = new System.Windows.Forms.TabPage();
+            this.refreshAllUsers = new System.Windows.Forms.Button();
+            this.removeUserText = new System.Windows.Forms.TextBox();
+            this.departmentText = new System.Windows.Forms.TextBox();
+            this.allUsersList = new System.Windows.Forms.ListView();
+            this.UserID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.User = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.memberList = new System.Windows.Forms.ListView();
             this.Members = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.removeUserButton = new System.Windows.Forms.Button();
@@ -82,6 +88,7 @@
             this.RemoveDepartmentButton = new System.Windows.Forms.Button();
             this.addDepartmentButton = new System.Windows.Forms.Button();
             this.departmentList = new System.Windows.Forms.ListView();
+            this.DepartmentID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Departments = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.accountsTab = new System.Windows.Forms.TabPage();
             this.OversightAccountsAddUser = new System.Windows.Forms.Button();
@@ -104,6 +111,7 @@
             this.oversightDescription = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.oversightSeverity = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.oversightViolatedDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.DepartmentUID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.oversightTabControl.SuspendLayout();
             this.submissionsTab.SuspendLayout();
             this.stenerManagementTab.SuspendLayout();
@@ -525,6 +533,10 @@
             // 
             // departmentTab
             // 
+            this.departmentTab.Controls.Add(this.refreshAllUsers);
+            this.departmentTab.Controls.Add(this.removeUserText);
+            this.departmentTab.Controls.Add(this.departmentText);
+            this.departmentTab.Controls.Add(this.allUsersList);
             this.departmentTab.Controls.Add(this.memberList);
             this.departmentTab.Controls.Add(this.removeUserButton);
             this.departmentTab.Controls.Add(this.addUserButton);
@@ -540,12 +552,60 @@
             this.departmentTab.Text = "Departments";
             this.departmentTab.UseVisualStyleBackColor = true;
             // 
+            // refreshAllUsers
+            // 
+            this.refreshAllUsers.Location = new System.Drawing.Point(534, 415);
+            this.refreshAllUsers.Name = "refreshAllUsers";
+            this.refreshAllUsers.Size = new System.Drawing.Size(149, 23);
+            this.refreshAllUsers.TabIndex = 10;
+            this.refreshAllUsers.Text = "Refresh All Users";
+            this.refreshAllUsers.UseVisualStyleBackColor = true;
+            this.refreshAllUsers.Click += new System.EventHandler(this.refreshAllUsers_Click);
+            // 
+            // removeUserText
+            // 
+            this.removeUserText.Location = new System.Drawing.Point(753, 211);
+            this.removeUserText.Name = "removeUserText";
+            this.removeUserText.Size = new System.Drawing.Size(148, 20);
+            this.removeUserText.TabIndex = 9;
+            // 
+            // departmentText
+            // 
+            this.departmentText.Location = new System.Drawing.Point(752, 124);
+            this.departmentText.Name = "departmentText";
+            this.departmentText.Size = new System.Drawing.Size(148, 20);
+            this.departmentText.TabIndex = 8;
+            // 
+            // allUsersList
+            // 
+            this.allUsersList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.UserID,
+            this.User,
+            this.DepartmentUID});
+            this.allUsersList.FullRowSelect = true;
+            this.allUsersList.HideSelection = false;
+            this.allUsersList.Location = new System.Drawing.Point(498, 27);
+            this.allUsersList.Name = "allUsersList";
+            this.allUsersList.Size = new System.Drawing.Size(238, 381);
+            this.allUsersList.TabIndex = 7;
+            this.allUsersList.UseCompatibleStateImageBehavior = false;
+            this.allUsersList.View = System.Windows.Forms.View.Details;
+            this.allUsersList.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.allUsersList_ItemSelectionChanged);
+            // 
+            // UserID
+            // 
+            this.UserID.Text = "UserID";
+            // 
+            // User
+            // 
+            this.User.Text = "User";
+            // 
             // memberList
             // 
             this.memberList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.Members});
             this.memberList.HideSelection = false;
-            this.memberList.Location = new System.Drawing.Point(234, 26);
+            this.memberList.Location = new System.Drawing.Point(263, 26);
             this.memberList.Name = "memberList";
             this.memberList.Size = new System.Drawing.Size(215, 383);
             this.memberList.TabIndex = 6;
@@ -559,34 +619,37 @@
             // 
             // removeUserButton
             // 
-            this.removeUserButton.Location = new System.Drawing.Point(752, 182);
+            this.removeUserButton.Location = new System.Drawing.Point(752, 237);
             this.removeUserButton.Name = "removeUserButton";
             this.removeUserButton.Size = new System.Drawing.Size(149, 23);
             this.removeUserButton.TabIndex = 5;
             this.removeUserButton.Text = "Remove User from Dept.";
             this.removeUserButton.UseVisualStyleBackColor = true;
+            this.removeUserButton.Click += new System.EventHandler(this.removeUserButton_Click);
             // 
             // addUserButton
             // 
-            this.addUserButton.Location = new System.Drawing.Point(752, 137);
+            this.addUserButton.Location = new System.Drawing.Point(751, 150);
             this.addUserButton.Name = "addUserButton";
             this.addUserButton.Size = new System.Drawing.Size(149, 23);
             this.addUserButton.TabIndex = 4;
             this.addUserButton.Text = "Add User to Department";
             this.addUserButton.UseVisualStyleBackColor = true;
+            this.addUserButton.Click += new System.EventHandler(this.addUserButton_Click);
             // 
             // refreshButtonDepartments
             // 
-            this.refreshButtonDepartments.Location = new System.Drawing.Point(752, 229);
+            this.refreshButtonDepartments.Location = new System.Drawing.Point(169, 415);
             this.refreshButtonDepartments.Name = "refreshButtonDepartments";
             this.refreshButtonDepartments.Size = new System.Drawing.Size(149, 23);
             this.refreshButtonDepartments.TabIndex = 3;
             this.refreshButtonDepartments.Text = "Refresh";
             this.refreshButtonDepartments.UseVisualStyleBackColor = true;
+            this.refreshButtonDepartments.Click += new System.EventHandler(this.refreshButtonDepartments_Click);
             // 
             // RemoveDepartmentButton
             // 
-            this.RemoveDepartmentButton.Location = new System.Drawing.Point(752, 90);
+            this.RemoveDepartmentButton.Location = new System.Drawing.Point(752, 70);
             this.RemoveDepartmentButton.Name = "RemoveDepartmentButton";
             this.RemoveDepartmentButton.Size = new System.Drawing.Size(149, 23);
             this.RemoveDepartmentButton.TabIndex = 2;
@@ -596,7 +659,7 @@
             // 
             // addDepartmentButton
             // 
-            this.addDepartmentButton.Location = new System.Drawing.Point(752, 44);
+            this.addDepartmentButton.Location = new System.Drawing.Point(752, 27);
             this.addDepartmentButton.Name = "addDepartmentButton";
             this.addDepartmentButton.Size = new System.Drawing.Size(149, 23);
             this.addDepartmentButton.TabIndex = 1;
@@ -607,18 +670,26 @@
             // departmentList
             // 
             this.departmentList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.DepartmentID,
             this.Departments});
+            this.departmentList.FullRowSelect = true;
             this.departmentList.HideSelection = false;
             this.departmentList.Location = new System.Drawing.Point(29, 26);
             this.departmentList.Name = "departmentList";
-            this.departmentList.Size = new System.Drawing.Size(179, 383);
+            this.departmentList.Size = new System.Drawing.Size(195, 383);
             this.departmentList.TabIndex = 0;
             this.departmentList.UseCompatibleStateImageBehavior = false;
             this.departmentList.View = System.Windows.Forms.View.Details;
+            this.departmentList.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.departmentList_ItemSelectionChanged);
+            // 
+            // DepartmentID
+            // 
+            this.DepartmentID.Text = "DepartmentID";
+            this.DepartmentID.Width = 86;
             // 
             // Departments
             // 
-            this.Departments.Text = "Departments";
+            this.Departments.Text = "Department";
             this.Departments.Width = 188;
             // 
             // accountsTab
@@ -809,6 +880,10 @@
             this.oversightViolatedDate.Text = "Date Violated";
             this.oversightViolatedDate.Width = 88;
             // 
+            // DepartmentUID
+            // 
+            this.DepartmentUID.Text = "DepartmentUID";
+            // 
             // Oversight
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -824,6 +899,7 @@
             this.stenerManagementStatusStrip.ResumeLayout(false);
             this.stenerManagementStatusStrip.PerformLayout();
             this.departmentTab.ResumeLayout(false);
+            this.departmentTab.PerformLayout();
             this.accountsTab.ResumeLayout(false);
             this.violationsTab.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -908,5 +984,13 @@
         private System.Windows.Forms.TextBox categoryTextBox;
         private System.Windows.Forms.Label categoryLabel;
         private System.Windows.Forms.Button OversightAccountsAddUser;
+        private System.Windows.Forms.ColumnHeader DepartmentID;
+        private System.Windows.Forms.ListView allUsersList;
+        private System.Windows.Forms.ColumnHeader UserID;
+        private System.Windows.Forms.TextBox removeUserText;
+        private System.Windows.Forms.TextBox departmentText;
+        private System.Windows.Forms.Button refreshAllUsers;
+        private System.Windows.Forms.ColumnHeader User;
+        private System.Windows.Forms.ColumnHeader DepartmentUID;
     }
 }
