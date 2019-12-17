@@ -640,9 +640,11 @@ namespace BRAINS
                     violation.StenerSetUID = row.Field<int>("StenerSetUID");
                     violation.Severity = row.Field<int>("Severity");
 
-                    if (row.Field<string>("ViolatedDate") != null)
+                   if (row.Field<string>("ViolatedDate") != null)
                     {
-                        violation.ViolationDate = DateTime.ParseExact(row.Field<string>("ViolatedDate"), "yyyy-MM-dd", null);
+                        //test
+                        string test = row.Field<string>("ViolatedDate");
+                        violation.ViolationDate = DateTime.ParseExact(row.Field<string>("ViolatedDate"), "MM/dd/yyyy", null);
                     }
                     if (row.Field<string>("ViolationDescription") != null)
                     {

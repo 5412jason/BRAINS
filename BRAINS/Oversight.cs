@@ -74,10 +74,19 @@ namespace BRAINS
 
         private void changePasswordButton_Click(object sender, EventArgs e)
         {
-            int UUID = Convert.ToInt32(accountList.SelectedItems[0].Text);
-            UserData user = accountManagement.FindUser(UUID);
-            OversightPasswordChange passwordChange = new OversightPasswordChange(UUID);
-            passwordChange.Show();
+            if(accountList.SelectedItems.Count > 0)
+            {
+                int UUID = Convert.ToInt32(accountList.SelectedItems[0].Text);
+                UserData user = accountManagement.FindUser(UUID);
+                OversightPasswordChange passwordChange = new OversightPasswordChange(UUID);
+                passwordChange.Show();
+            }
+            else
+            {
+                accountManagementStatusStrip.Text = "Please select a user to change their password";
+
+            }
+
         }
 
         #region STENER_MANAGEMENT
@@ -152,13 +161,13 @@ namespace BRAINS
                 StenerManagementListView.Items.Add(listItem);
             }
         }
-        private void refreshAccountList()
+        public void refreshAccountList()
         {
             accountList.Items.Clear();
             this.usersData = accountManagement.GetUserList();
             foreach (UserData user in this.usersData)
             {
-                string[] row = { user.Username.ToString(), user.UUID.ToString(), user.DepartmentUID.ToString(), user.Permissions.ToString()};
+                string[] row = { user.UUID.ToString(), user.Username.ToString(), user.DepartmentUID.ToString(), user.Permissions.ToString()};
 
                 var listItem = new ListViewItem(row);
                 accountList.Items.Add(listItem);
@@ -372,7 +381,7 @@ namespace BRAINS
             preview.Show();
         }
 
-        private void refreshButtonAccounts_Click(object sender, EventArgs e)
+        public void refreshAccountList(object sender, EventArgs e)
         {
             accountList.Items.Clear();
             this.usersData = accountManagement.GetUserList();
@@ -383,15 +392,30 @@ namespace BRAINS
                 var listItem = new ListViewItem(row);
                 accountList.Items.Add(listItem);
             }
+
+        }
+
+        public void refreshButtonAccounts_Click(object sender, EventArgs e)
+        {
+            this.refreshAccountList();
         }
 
         private void OversightAccountsRemoveUser_Click(object sender, EventArgs e)
         {
-            int UUID = Convert.ToInt32(accountList.SelectedItems[0].Text);
-            UserData user = accountManagement.FindUser(UUID);
-            AccountManagement deleteUser = new AccountManagement();
+            if (accountList.SelectedItems.Count > 0)
+            {
+                int UUID = Convert.ToInt32(accountList.SelectedItems[0].Text);
+                accountManagement.FindUser(UUID);
+                AccountManagement deleteUser = new AccountManagement();
+                deleteUser.DeleteUser(UUID);
+                this.refreshAccountList();
+            }
+            else
+            {
+                accountManagementStatusStrip.Text = "Please select a user";
 
-            deleteUser.DeleteUser(UUID);
+            }
+
         }
 
         private void violationRefreshButton_Click(object sender, EventArgs e)

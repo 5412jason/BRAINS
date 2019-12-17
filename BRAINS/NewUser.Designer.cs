@@ -122,6 +122,11 @@
             // departmentAssign
             // 
             this.departmentAssign.FormattingEnabled = true;
+            this.departmentAssign.Items.AddRange(new object[] {
+            "Oversight",
+            "IT",
+            "HR",
+            "Facilites"});
             this.departmentAssign.Location = new System.Drawing.Point(142, 87);
             this.departmentAssign.Name = "departmentAssign";
             this.departmentAssign.Size = new System.Drawing.Size(224, 21);
@@ -131,8 +136,8 @@
             // 
             this.permissionsBox.FormattingEnabled = true;
             this.permissionsBox.Items.AddRange(new object[] {
-            "true",
-            "false"});
+            "1",
+            "0"});
             this.permissionsBox.Location = new System.Drawing.Point(142, 117);
             this.permissionsBox.Name = "permissionsBox";
             this.permissionsBox.Size = new System.Drawing.Size(224, 21);
