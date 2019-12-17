@@ -97,9 +97,9 @@
             // 
             this.confirmNewUserPassword.Location = new System.Drawing.Point(142, 60);
             this.confirmNewUserPassword.Name = "confirmNewUserPassword";
-            this.confirmNewUserPassword.ReadOnly = true;
             this.confirmNewUserPassword.Size = new System.Drawing.Size(224, 20);
             this.confirmNewUserPassword.TabIndex = 6;
+            this.confirmNewUserPassword.UseSystemPasswordChar = true;
             // 
             // newUserOK
             // 

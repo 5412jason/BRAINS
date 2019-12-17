@@ -26,7 +26,14 @@ namespace BRAINS
 
         private void departmentPermissionsText_TextChanged(object sender, EventArgs e)
         {
-            dpmtPermissions = Int32.Parse(departmentPermissionsText.Text);
+            try
+            {
+                dpmtPermissions = Int32.Parse(departmentPermissionsText.Text);
+            }
+            catch
+            {
+                dpmtPermissions = 0;
+            }
             
         }
         private void button1_Click(object sender, EventArgs e)
