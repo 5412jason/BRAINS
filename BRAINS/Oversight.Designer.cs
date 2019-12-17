@@ -124,13 +124,13 @@
             this.label2 = new System.Windows.Forms.Label();
             this.oversightTabControl.SuspendLayout();
             this.submissionsTab.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.stenerManagementTab.SuspendLayout();
             this.stenerManagementStatusStrip.SuspendLayout();
             this.departmentTab.SuspendLayout();
             this.accountsTab.SuspendLayout();
             this.accountManagementStatus.SuspendLayout();
             this.violationsTab.SuspendLayout();
-            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // oversightTabControl
@@ -167,6 +167,21 @@
             this.submissionsTab.TabIndex = 0;
             this.submissionsTab.Text = "Submissions";
             this.submissionsTab.UseVisualStyleBackColor = true;
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.submissionStatusLabel});
+            this.statusStrip1.Location = new System.Drawing.Point(3, 569);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(971, 22);
+            this.statusStrip1.TabIndex = 12;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // submissionStatusLabel
+            // 
+            this.submissionStatusLabel.Name = "submissionStatusLabel";
+            this.submissionStatusLabel.Size = new System.Drawing.Size(0, 17);
             // 
             // refreshSubmissionsButton
             // 
@@ -859,10 +874,10 @@
             this.Permissions});
             this.accountList.FullRowSelect = true;
             this.accountList.HideSelection = false;
-            this.accountList.Location = new System.Drawing.Point(31, 17);
+            this.accountList.Location = new System.Drawing.Point(3, 6);
             this.accountList.MultiSelect = false;
             this.accountList.Name = "accountList";
-            this.accountList.Size = new System.Drawing.Size(700, 358);
+            this.accountList.Size = new System.Drawing.Size(707, 560);
             this.accountList.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.accountList.TabIndex = 0;
             this.accountList.UseCompatibleStateImageBehavior = false;
@@ -1016,6 +1031,8 @@
             this.oversightTabControl.ResumeLayout(false);
             this.submissionsTab.ResumeLayout(false);
             this.submissionsTab.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.stenerManagementTab.ResumeLayout(false);
             this.stenerManagementTab.PerformLayout();
             this.stenerManagementStatusStrip.ResumeLayout(false);
@@ -1027,8 +1044,6 @@
             this.accountManagementStatus.ResumeLayout(false);
             this.accountManagementStatus.PerformLayout();
             this.violationsTab.ResumeLayout(false);
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
 
         }
