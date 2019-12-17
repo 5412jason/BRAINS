@@ -55,7 +55,7 @@
             // 
             // oversightAddDepartmentDialogOK
             // 
-            this.oversightAddDepartmentDialogOK.Location = new System.Drawing.Point(309, 293);
+            this.oversightAddDepartmentDialogOK.Location = new System.Drawing.Point(247, 120);
             this.oversightAddDepartmentDialogOK.Name = "oversightAddDepartmentDialogOK";
             this.oversightAddDepartmentDialogOK.Size = new System.Drawing.Size(75, 23);
             this.oversightAddDepartmentDialogOK.TabIndex = 4;
@@ -65,7 +65,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(390, 293);
+            this.button2.Location = new System.Drawing.Point(347, 120);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 5;
@@ -93,7 +93,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(478, 328);
+            this.ClientSize = new System.Drawing.Size(442, 155);
             this.Controls.Add(this.departmentPermissionsText);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.button2);
