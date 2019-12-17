@@ -119,13 +119,20 @@ namespace BRAINS
 
         private void deleteQuestionSetButton_Click(object sender, EventArgs e)
         {
-            ListViewItem selectedItem = StenerManagementListView.SelectedItems[0]; //only can select one item at a time
+            if (StenerManagementListView.SelectedItems.Count > 0)
+            {
+                ListViewItem selectedItem = StenerManagementListView.SelectedItems[0]; //only can select one item at a time
 
-            int questionSetUID = Convert.ToInt32(selectedItem.Text);
+                int questionSetUID = Convert.ToInt32(selectedItem.Text);
 
-            stenerManagement.DeleteQuesitonSet(questionSetUID);
+                stenerManagement.DeleteQuesitonSet(questionSetUID);
 
-            this.refreshStenerManagementList();
+                this.refreshStenerManagementList();
+            }
+            else
+            {
+                stenerManagementStatusLabel.Text = "Please select a question set to delete";
+            }
         }
         private void createQuestionSetButton_Click(object sender, EventArgs e)
         {
@@ -413,7 +420,7 @@ namespace BRAINS
         private void removeViolation_Click(object sender, EventArgs e)
 
         {
-            if (accountList.SelectedItems.Count > 0)
+            if (OversightViolationList.SelectedItems.Count > 0)
             {
                 int violationUID = Convert.ToInt32(OversightViolationList.SelectedItems[0].Text);
                 SqlManager.RemoveViolation(violationUID);
