@@ -84,6 +84,8 @@
             this.departmentList = new System.Windows.Forms.ListView();
             this.Departments = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.accountsTab = new System.Windows.Forms.TabPage();
+            this.accountManagementStatus = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.OversightAccountsAddUser = new System.Windows.Forms.Button();
             this.OversightAccountsRemoveUser = new System.Windows.Forms.Button();
             this.refreshButtonAccounts = new System.Windows.Forms.Button();
@@ -94,7 +96,6 @@
             this.Department = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Permissions = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.violationsTab = new System.Windows.Forms.TabPage();
-            this.editViolation = new System.Windows.Forms.Button();
             this.removeViolation = new System.Windows.Forms.Button();
             this.violationRefreshButton = new System.Windows.Forms.Button();
             this.OversightViolationList = new System.Windows.Forms.ListView();
@@ -104,12 +105,14 @@
             this.oversightDescription = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.oversightSeverity = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.oversightViolatedDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.accountManagementStatusStrip = new System.Windows.Forms.ToolStripStatusLabel();
             this.oversightTabControl.SuspendLayout();
             this.submissionsTab.SuspendLayout();
             this.stenerManagementTab.SuspendLayout();
             this.stenerManagementStatusStrip.SuspendLayout();
             this.departmentTab.SuspendLayout();
             this.accountsTab.SuspendLayout();
+            this.accountManagementStatus.SuspendLayout();
             this.violationsTab.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -622,6 +625,7 @@
             // 
             // accountsTab
             // 
+            this.accountsTab.Controls.Add(this.accountManagementStatus);
             this.accountsTab.Controls.Add(this.OversightAccountsAddUser);
             this.accountsTab.Controls.Add(this.OversightAccountsRemoveUser);
             this.accountsTab.Controls.Add(this.refreshButtonAccounts);
@@ -635,6 +639,22 @@
             this.accountsTab.Text = "Accounts";
             this.accountsTab.UseVisualStyleBackColor = true;
             this.accountsTab.Click += new System.EventHandler(this.accountsTab_Click);
+            // 
+            // accountManagementStatus
+            // 
+            this.accountManagementStatus.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1,
+            this.accountManagementStatusStrip});
+            this.accountManagementStatus.Location = new System.Drawing.Point(3, 569);
+            this.accountManagementStatus.Name = "accountManagementStatus";
+            this.accountManagementStatus.Size = new System.Drawing.Size(971, 22);
+            this.accountManagementStatus.TabIndex = 23;
+            this.accountManagementStatus.Text = "accountManagementStatus";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
             // 
             // OversightAccountsAddUser
             // 
@@ -717,7 +737,6 @@
             // 
             // violationsTab
             // 
-            this.violationsTab.Controls.Add(this.editViolation);
             this.violationsTab.Controls.Add(this.removeViolation);
             this.violationsTab.Controls.Add(this.violationRefreshButton);
             this.violationsTab.Controls.Add(this.OversightViolationList);
@@ -729,21 +748,11 @@
             this.violationsTab.Text = "Violations";
             this.violationsTab.UseVisualStyleBackColor = true;
             // 
-            // editViolation
-            // 
-            this.editViolation.Location = new System.Drawing.Point(762, 140);
-            this.editViolation.Name = "editViolation";
-            this.editViolation.Size = new System.Drawing.Size(107, 32);
-            this.editViolation.TabIndex = 3;
-            this.editViolation.Text = "Edit Violation";
-            this.editViolation.UseVisualStyleBackColor = true;
-            this.editViolation.Click += new System.EventHandler(this.editViolation_Click);
-            // 
             // removeViolation
             // 
-            this.removeViolation.Location = new System.Drawing.Point(762, 230);
+            this.removeViolation.Location = new System.Drawing.Point(757, 42);
             this.removeViolation.Name = "removeViolation";
-            this.removeViolation.Size = new System.Drawing.Size(107, 32);
+            this.removeViolation.Size = new System.Drawing.Size(141, 28);
             this.removeViolation.TabIndex = 2;
             this.removeViolation.Text = "Remove Violation";
             this.removeViolation.UseVisualStyleBackColor = true;
@@ -751,9 +760,9 @@
             // 
             // violationRefreshButton
             // 
-            this.violationRefreshButton.Location = new System.Drawing.Point(762, 49);
+            this.violationRefreshButton.Location = new System.Drawing.Point(757, 121);
             this.violationRefreshButton.Name = "violationRefreshButton";
-            this.violationRefreshButton.Size = new System.Drawing.Size(107, 32);
+            this.violationRefreshButton.Size = new System.Drawing.Size(141, 27);
             this.violationRefreshButton.TabIndex = 1;
             this.violationRefreshButton.Text = "Refresh";
             this.violationRefreshButton.UseVisualStyleBackColor = true;
@@ -808,6 +817,11 @@
             this.oversightViolatedDate.Text = "Date Violated";
             this.oversightViolatedDate.Width = 88;
             // 
+            // accountManagementStatusStrip
+            // 
+            this.accountManagementStatusStrip.Name = "accountManagementStatusStrip";
+            this.accountManagementStatusStrip.Size = new System.Drawing.Size(0, 17);
+            // 
             // Oversight
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -824,6 +838,9 @@
             this.stenerManagementStatusStrip.PerformLayout();
             this.departmentTab.ResumeLayout(false);
             this.accountsTab.ResumeLayout(false);
+            this.accountsTab.PerformLayout();
+            this.accountManagementStatus.ResumeLayout(false);
+            this.accountManagementStatus.PerformLayout();
             this.violationsTab.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -870,7 +887,6 @@
         private System.Windows.Forms.ListView OversightViolationList;
         private System.Windows.Forms.Button violationRefreshButton;
         private System.Windows.Forms.Button removeViolation;
-        private System.Windows.Forms.Button editViolation;
         private System.Windows.Forms.ColumnHeader oversightStenerSetUID;
         private System.Windows.Forms.ColumnHeader oversightDepartment;
         private System.Windows.Forms.ColumnHeader oversightSeverity;
@@ -907,5 +923,8 @@
         private System.Windows.Forms.TextBox categoryTextBox;
         private System.Windows.Forms.Label categoryLabel;
         private System.Windows.Forms.Button OversightAccountsAddUser;
+        private System.Windows.Forms.StatusStrip accountManagementStatus;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.ToolStripStatusLabel accountManagementStatusStrip;
     }
 }
