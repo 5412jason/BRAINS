@@ -20,7 +20,7 @@ namespace BRAINS
                 DataTable dataTable = new DataTable();
 
                 string connString = ConfigurationManager.ConnectionStrings["Brains"].ConnectionString;
-                
+
                 using (SqlConnection con = new SqlConnection(connString))
                 {
 
@@ -39,7 +39,7 @@ namespace BRAINS
                 }
                 return dataTable;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine(e);
                 return null;
@@ -126,7 +126,7 @@ namespace BRAINS
 
                     DataTable questionTable = QueryDatabase("SELECT * FROM StenerTable WHERE StenerSetUID = " + qSet.UniqueID.ToString());
 
-                    foreach(DataRow questionRow in questionTable.Rows)
+                    foreach (DataRow questionRow in questionTable.Rows)
                     {
                         Question question = new Question();
                         question.QuestionID = questionRow.Field<int>("QuestionUID");
@@ -148,7 +148,7 @@ namespace BRAINS
                         {
                             question.PlanForSolution = questionRow.Field<string>("PlanForSolution");
                         }
-                        
+
                         qSet.Questions.Add(question);
                     }
 
@@ -157,7 +157,7 @@ namespace BRAINS
 
                 return questionSets;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine(e);
                 return new List<QuestionSet>();
@@ -257,7 +257,7 @@ namespace BRAINS
         {
             try
             {
-                DataTable questionsDataTable = QueryDatabase("SELECT * FROM StenerTable WHERE Status = '" + status +"'");
+                DataTable questionsDataTable = QueryDatabase("SELECT * FROM StenerTable WHERE Status = '" + status + "'");
 
                 List<DataRow> qSetRows = new List<DataRow>();
                 List<int> qSetIds = new List<int>();
@@ -517,7 +517,7 @@ namespace BRAINS
                 {
                     user.Password = row.Field<string>("Password");
                 }
-                
+
                 users.Add(user);
             }
             return users;
@@ -527,7 +527,7 @@ namespace BRAINS
         {
             DataTable dataTable = QueryDatabase("SELECT * FROM LoginTable WHERE UsernameUID = " + userID.ToString());
 
-            if(dataTable.Rows.Count > 0)
+            if (dataTable.Rows.Count > 0)
             {
                 DataRow row = dataTable.Rows[0];
 
@@ -552,11 +552,11 @@ namespace BRAINS
                 return null;
             }
         }
-        
+
         static public UserData AuthenticateCredentials(string username, string password)
         {
             DataTable userTable = QueryDatabase("SELECT * FROM LoginTable WHERE Username = '" + username + "' AND Password = '" + password + "'");
-            
+
             if (userTable.Rows.Count == 0)
             {
                 return null;
@@ -624,12 +624,12 @@ namespace BRAINS
         static public List<Violation> GetAllViolations()
         {
             string query = "SELECT * FROM ViolationTable";
-            
+
             DataTable violationTable = QueryDatabase(query);
 
             List<Violation> violations = new List<Violation>();
 
-            if(violationTable.Rows.Count != 0)
+            if (violationTable.Rows.Count != 0)
             {
                 foreach (DataRow row in violationTable.Rows)
                 {
@@ -640,7 +640,7 @@ namespace BRAINS
                     violation.StenerSetUID = row.Field<int>("StenerSetUID");
                     violation.Severity = row.Field<int>("Severity");
 
-                   if (row.Field<string>("ViolatedDate") != null)
+                    if (row.Field<string>("ViolatedDate") != null)
                     {
                         //test
                         string test = row.Field<string>("ViolatedDate");
@@ -730,7 +730,7 @@ namespace BRAINS
             string query = "SELECT * FROM Departments";
             DataTable dataTable = QueryDatabase(query);
 
-            foreach(DataRow row in dataTable.Rows)
+            foreach (DataRow row in dataTable.Rows)
             {
                 Department department = new Department();
 
@@ -753,10 +753,10 @@ namespace BRAINS
             string query = "DELETE FROM Departments WHERE DepartmentUID = " + departmentUID.ToString();
 
             bool passed = NonQueryDatabase(query);
-            if(passed == true)
+            if (passed == true)
             {
                 List<UserData> users = GetUsersInDepartment(departmentUID);
-                foreach(UserData user in users)
+                foreach (UserData user in users)
                 {
                     user.DepartmentUID = 0;
                     ModifyUser(user);
@@ -768,7 +768,7 @@ namespace BRAINS
                 return passed;
             }
         }
-        
+
         static public bool AddDepartment(Department department)
         {
             string query = "INSERT INTO Departments(DepartmentUID, DepartmentName, Administrator)VALUES('"
@@ -786,9 +786,9 @@ namespace BRAINS
             List<UserData> users = new List<UserData>();
             DataTable dataTable = QueryDatabase(query);
 
-            if(dataTable.Rows.Count > 0)
+            if (dataTable.Rows.Count > 0)
             {
-                foreach(DataRow row in dataTable.Rows)
+                foreach (DataRow row in dataTable.Rows)
                 {
                     UserData user = new UserData();
 
@@ -817,8 +817,8 @@ namespace BRAINS
             string query = "SELECT * FROM Departments WHERE DepartmentUID = " + departmentID.ToString();
 
             DataTable dataTable = QueryDatabase(query);
-            
-            if(dataTable.Rows.Count > 0)
+
+            if (dataTable.Rows.Count > 0)
             {
                 DataRow row = dataTable.Rows[0];
 

@@ -39,11 +39,11 @@ namespace BRAINS
         public bool ModifyQuestion(string qText, int qSetID, int qID)
         {
             QuestionSet qSet = SqlManager.FindQuestionSet(qSetID);
-            if(qSet != null)
+            if (qSet != null)
             {
-                foreach(Question q in qSet.Questions)
+                foreach (Question q in qSet.Questions)
                 {
-                    if(q.QuestionID == qID)
+                    if (q.QuestionID == qID)
                     {
                         q.QuestionText = qText;
                         bool passed = SqlManager.ModifyQuestion(q, qSetID);
@@ -64,10 +64,10 @@ namespace BRAINS
         public bool SubmitQuestionSet(QuestionSet qSet)
         {
             bool result = SqlManager.ModifyQuestionSet(qSet);
-            
-            if(result == true)
+
+            if (result == true)
             {
-                foreach(Question q in qSet.Questions)
+                foreach (Question q in qSet.Questions)
                 {
                     SqlManager.ModifyQuestion(q, qSet.UniqueID);
                 }
@@ -79,7 +79,7 @@ namespace BRAINS
         public bool AddQuestion(string qText, int qSetID)
         {
             QuestionSet qSet = SqlManager.FindQuestionSet(qSetID);
-            if(qSet != null)
+            if (qSet != null)
             {
                 Question question = new Question();
                 question.QuestionText = qText;

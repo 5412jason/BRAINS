@@ -58,13 +58,14 @@
             this.workOnSelectedStenerButton = new System.Windows.Forms.Button();
             this.refreshCompleteListButton = new System.Windows.Forms.Button();
             this.violationTab = new System.Windows.Forms.TabPage();
-            this.BusinessViolationList = new System.Windows.Forms.ListView();
-            this.businessStenerSetUID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.businessDepartment = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.businessSeverity = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.businessDescription = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.businessViolatedDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.busniessViolationsrefreshButton = new System.Windows.Forms.Button();
+            this.BusinessViolationList = new System.Windows.Forms.ListView();
+            this.violationUID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.oversightStenerSetUID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.oversightDepartment = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.oversightDescription = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.oversightSeverity = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.oversightViolatedDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.businessTabControl.SuspendLayout();
             this.completeStenerTab.SuspendLayout();
             this.completeStenerStatusStrip.SuspendLayout();
@@ -357,55 +358,64 @@
             this.violationTab.Text = "Violations";
             this.violationTab.UseVisualStyleBackColor = true;
             // 
+            // busniessViolationsrefreshButton
+            // 
+            this.busniessViolationsrefreshButton.Location = new System.Drawing.Point(8, 508);
+            this.busniessViolationsrefreshButton.Name = "busniessViolationsrefreshButton";
+            this.busniessViolationsrefreshButton.Size = new System.Drawing.Size(940, 32);
+            this.busniessViolationsrefreshButton.TabIndex = 2;
+            this.busniessViolationsrefreshButton.Text = "Refresh";
+            this.busniessViolationsrefreshButton.UseVisualStyleBackColor = true;
+            this.busniessViolationsrefreshButton.Click += new System.EventHandler(this.busniessViolationsrefreshButton_Click);
+            // 
             // BusinessViolationList
             // 
             this.BusinessViolationList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.businessStenerSetUID,
-            this.businessDepartment,
-            this.businessSeverity,
-            this.businessDescription,
-            this.businessViolatedDate});
+            this.violationUID,
+            this.oversightStenerSetUID,
+            this.oversightDepartment,
+            this.oversightDescription,
+            this.oversightSeverity,
+            this.oversightViolatedDate});
+            this.BusinessViolationList.FullRowSelect = true;
             this.BusinessViolationList.HideSelection = false;
-            this.BusinessViolationList.Location = new System.Drawing.Point(0, 28);
+            this.BusinessViolationList.Location = new System.Drawing.Point(3, 3);
+            this.BusinessViolationList.MultiSelect = false;
             this.BusinessViolationList.Name = "BusinessViolationList";
-            this.BusinessViolationList.Size = new System.Drawing.Size(640, 450);
+            this.BusinessViolationList.Size = new System.Drawing.Size(950, 499);
             this.BusinessViolationList.TabIndex = 3;
             this.BusinessViolationList.UseCompatibleStateImageBehavior = false;
             this.BusinessViolationList.View = System.Windows.Forms.View.Details;
             // 
-            // businessStenerSetUID
+            // violationUID
             // 
-            this.businessStenerSetUID.Text = "Document";
-            this.businessStenerSetUID.Width = 91;
+            this.violationUID.Text = "ViolationUID";
+            this.violationUID.Width = 95;
             // 
-            // businessDepartment
+            // oversightStenerSetUID
             // 
-            this.businessDepartment.Text = "Department";
-            this.businessDepartment.Width = 83;
+            this.oversightStenerSetUID.Text = "StenerSetUID";
+            this.oversightStenerSetUID.Width = 91;
             // 
-            // businessSeverity
+            // oversightDepartment
             // 
-            this.businessSeverity.Text = "Severity";
-            this.businessSeverity.Width = 79;
+            this.oversightDepartment.Text = "Department";
+            this.oversightDepartment.Width = 121;
             // 
-            // businessDescription
+            // oversightDescription
             // 
-            this.businessDescription.Text = "Description";
-            this.businessDescription.Width = 91;
+            this.oversightDescription.Text = "Description";
+            this.oversightDescription.Width = 376;
             // 
-            // businessViolatedDate
+            // oversightSeverity
             // 
-            this.businessViolatedDate.Text = "Date Violated";
-            this.businessViolatedDate.Width = 88;
+            this.oversightSeverity.Text = "Severity";
+            this.oversightSeverity.Width = 171;
             // 
-            // busniessViolationsrefreshButton
+            // oversightViolatedDate
             // 
-            this.busniessViolationsrefreshButton.Location = new System.Drawing.Point(673, 28);
-            this.busniessViolationsrefreshButton.Name = "busniessViolationsrefreshButton";
-            this.busniessViolationsrefreshButton.Size = new System.Drawing.Size(107, 32);
-            this.busniessViolationsrefreshButton.TabIndex = 2;
-            this.busniessViolationsrefreshButton.Text = "Refresh";
-            this.busniessViolationsrefreshButton.UseVisualStyleBackColor = true;
+            this.oversightViolatedDate.Text = "Date Violated";
+            this.oversightViolatedDate.Width = 88;
             // 
             // Business
             // 
@@ -431,12 +441,6 @@
         private System.Windows.Forms.TabPage completeStenerTab;
         private System.Windows.Forms.TabPage violationTab;
         private System.Windows.Forms.Button busniessViolationsrefreshButton;
-        private System.Windows.Forms.ListView BusinessViolationList;
-        private System.Windows.Forms.ColumnHeader businessStenerSetUID;
-        private System.Windows.Forms.ColumnHeader businessDepartment;
-        private System.Windows.Forms.ColumnHeader businessSeverity;
-        private System.Windows.Forms.ColumnHeader businessDescription;
-        private System.Windows.Forms.ColumnHeader businessViolatedDate;
         private System.Windows.Forms.Button workOnSelectedStenerButton;
         private System.Windows.Forms.Button refreshCompleteListButton;
         private System.Windows.Forms.StatusStrip completeStenerStatusStrip;
@@ -464,5 +468,12 @@
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.ListView BusinessViolationList;
+        private System.Windows.Forms.ColumnHeader violationUID;
+        private System.Windows.Forms.ColumnHeader oversightStenerSetUID;
+        private System.Windows.Forms.ColumnHeader oversightDepartment;
+        private System.Windows.Forms.ColumnHeader oversightDescription;
+        private System.Windows.Forms.ColumnHeader oversightSeverity;
+        private System.Windows.Forms.ColumnHeader oversightViolatedDate;
     }
 }

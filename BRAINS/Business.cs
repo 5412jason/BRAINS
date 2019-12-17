@@ -17,7 +17,7 @@ namespace BRAINS
 
         private UserData currentUser;
         private StenerManagement stenerManagement;
-
+        private ViolationManagement violationManagement;
         private QuestionSet currentQuestionSet;
         private int currentQuestion;
 
@@ -25,6 +25,7 @@ namespace BRAINS
         {
             InitializeComponent();
             stenerManagement = new StenerManagement();
+            violationManagement = new ViolationManagement();
         }
 
         public Business(UserData user)
@@ -32,6 +33,8 @@ namespace BRAINS
             InitializeComponent();
             currentUser = user;
             stenerManagement = new StenerManagement();
+            violationManagement = new ViolationManagement();
+
         }
         private void Business_Load(object sender, EventArgs e)
         {
@@ -39,7 +42,16 @@ namespace BRAINS
         }
         private void busniessViolationsrefreshButton_Click(object sender, EventArgs e)
         {
+            BusinessViolationList.Items.Clear();
 
+            List<Violation> violations = violationManagement.GetDepartmentViolations(currentUser.DepartmentUID);
+            foreach (Violation violate in violations)
+            {
+                string[] row = { violate.ViolationUID.ToString(), violate.StenerSetUID.ToString(), violate.DepartmentUID.ToString(), violate.ViolationDescription.ToString(), violate.Severity.ToString(), violate.ViolationDate.ToString("MM/dd/yyyy") };
+
+                var listItem = new ListViewItem(row);
+                BusinessViolationList.Items.Add(listItem);
+            }
         }
 
         private void RefreshCompleteList_Click(object sender, EventArgs e)
@@ -426,5 +438,6 @@ namespace BRAINS
                 }
             }
         }
+
     }
 }

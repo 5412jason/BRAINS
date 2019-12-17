@@ -21,7 +21,7 @@ namespace BRAINS
         private List<Violation> violations;
         private UserData currentUser;
 
-        
+
 
         private enum stenerManagementMode
         {
@@ -58,7 +58,7 @@ namespace BRAINS
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void accountsTab_Click(object sender, EventArgs e)
@@ -74,7 +74,7 @@ namespace BRAINS
 
         private void changePasswordButton_Click(object sender, EventArgs e)
         {
-            if(accountList.SelectedItems.Count > 0)
+            if (accountList.SelectedItems.Count > 0)
             {
                 int UUID = Convert.ToInt32(accountList.SelectedItems[0].Text);
                 UserData user = accountManagement.FindUser(UUID);
@@ -140,7 +140,7 @@ namespace BRAINS
 
             List<string> departmentNames = departmentManagement.GetDepartmentNames();
 
-            foreach(string dept in departmentNames)
+            foreach (string dept in departmentNames)
             {
                 departmentComboBox.Items.Add(dept);
             }
@@ -168,7 +168,7 @@ namespace BRAINS
             this.usersData = accountManagement.GetUserList();
             foreach (UserData user in this.usersData)
             {
-                string[] row = { user.UUID.ToString(), user.Username.ToString(), user.DepartmentUID.ToString(), user.Permissions.ToString()};
+                string[] row = { user.UUID.ToString(), user.Username.ToString(), user.DepartmentUID.ToString(), user.Permissions.ToString() };
 
                 var listItem = new ListViewItem(row);
                 accountList.Items.Add(listItem);
@@ -296,7 +296,7 @@ namespace BRAINS
 
             // disable everything if submission was successfull
 
-            if(success == true)
+            if (success == true)
             {
                 StenerManagementListView.Enabled = true;
                 stenerManagementQuestionList.Enabled = true;
@@ -314,7 +314,7 @@ namespace BRAINS
 
         private void removeQuestionButton_Click(object sender, EventArgs e)
         {
-            if (StenerManagementListView.SelectedItems.Count > 0 && stenerManagementQuestionList.SelectedItems.Count > 0) 
+            if (StenerManagementListView.SelectedItems.Count > 0 && stenerManagementQuestionList.SelectedItems.Count > 0)
             {
                 int qSetID = Convert.ToInt32(StenerManagementListView.SelectedItems[0].SubItems[0].Text);
                 int qID = Convert.ToInt32(stenerManagementQuestionList.SelectedItems[0].SubItems[0].Text);
@@ -375,28 +375,10 @@ namespace BRAINS
             NewUser newUser = new NewUser();
             newUser.Show();
         }
-
-
-
-        public void refreshAccountList(object sender, EventArgs e)
-        {
-            accountList.Items.Clear();
-            this.usersData = accountManagement.GetUserList();
-            foreach (UserData user in this.usersData)
-            {
-                string[] row = { user.UUID.ToString(), user.Username.ToString(), user.DepartmentUID.ToString(), user.Permissions.ToString() };
-
-                var listItem = new ListViewItem(row);
-                accountList.Items.Add(listItem);
-            }
-
-        }
-
         public void refreshButtonAccounts_Click(object sender, EventArgs e)
         {
             this.refreshAccountList();
         }
-
         private void OversightAccountsRemoveUser_Click(object sender, EventArgs e)
         {
             if (accountList.SelectedItems.Count > 0)
@@ -465,7 +447,7 @@ namespace BRAINS
         }
         private void approveButton_Click(object sender, EventArgs e)
         {
-            if(submittedStenerListView.SelectedItems.Count > 0)
+            if (submittedStenerListView.SelectedItems.Count > 0)
             {
                 int qSetID = Convert.ToInt32(submittedStenerListView.SelectedItems[0].SubItems[0].Text);
                 QuestionSet qSet = stenerManagement.GetQuestionSet(qSetID);
@@ -486,7 +468,7 @@ namespace BRAINS
                 QuestionSet qSet = stenerManagement.GetQuestionSet(qSetID);
                 if (violationCheckbox.Checked == true)
                 {
-                    if(severityDropdown.SelectedItem != null && violationDescriptionTextBox.Text != "")
+                    if (severityDropdown.SelectedItem != null && violationDescriptionTextBox.Text != "")
                     {
                         Violation violation = new Violation();
                         violation.DepartmentUID = qSet.AssignedDepartment;
