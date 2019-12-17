@@ -20,7 +20,7 @@ namespace BRAINS
         private List<UserData> usersData;
         private List<Violation> violations;
         private UserData currentUser;
-        //private UserData deleteUser;
+
         
 
         private enum stenerManagementMode
@@ -92,6 +92,7 @@ namespace BRAINS
         #region STENER_MANAGEMENT
         private void stenerManageRefreshBtn_Click(object sender, EventArgs e)
         {
+
             this.refreshStenerManagementList();
         }
 
@@ -515,5 +516,125 @@ namespace BRAINS
             preview.Show();
         }
         #endregion
+
+        private void refreshButtonDepartments_Click(object sender, EventArgs e)
+        {
+
+            this.refreshDepartmentManagementList();
+        }
+        private void refreshDepartmentManagementList()
+        {
+            departmentList.Items.Clear();
+            memberList.Items.Clear();
+            /*
+            List<string> departmentNames = departmentManagement.GetDepartmentNames();
+
+            foreach (string dept in departmentNames)
+            {
+                string[] row = { };
+                var listItem = new ListViewItem(row);
+                departmentList.Items.Add(dept);
+                
+            }
+            */
+            List<Department> departmentNames = departmentManagement.getDepartments();
+
+            foreach (Department dept in departmentNames)
+            {
+                string[] row = { dept.DepartmentUID.ToString(), dept.Name };
+                var listItem = new ListViewItem(row);
+                departmentList.Items.Add(listItem);
+
+            }
+        }
+        private void departmentList_ItemSelectionChanged(object sender, EventArgs e)
+        {
+            memberList.Items.Clear();
+            if (departmentList.SelectedItems.Count > 0)
+            {
+                int selectedID = Convert.ToInt32(departmentList.SelectedItems[0].Text);
+                this.usersData = departmentManagement.getAllUsersInDepartment(selectedID);
+
+                if (usersData != null)
+                {
+
+                    foreach (UserData user in this.usersData)
+                    {
+                        if (user.DepartmentUID == selectedID)
+                        {
+                            string[] row = { user.Username.ToString() };
+                            var listItem = new ListViewItem(row);
+                            memberList.Items.Add(listItem);
+                        }
+                    }
+                }
+            }
+        }
+        private void memberList_ItemSelectionChanged(object sender, EventArgs e)
+        {
+            memberList.Items.Clear();
+            if (departmentList.SelectedItems.Count > 0)
+            {
+                int selectedID = Convert.ToInt32(departmentList.SelectedItems[0].Text);
+                this.usersData = departmentManagement.getAllUsersInDepartment(selectedID);
+
+                if (usersData != null)
+                {
+
+                    foreach (UserData user in this.usersData)
+                    {
+                        if (user.DepartmentUID == selectedID)
+                        {
+                            string[] row = { user.Username.ToString() };
+                            var listItem = new ListViewItem(row);
+                            memberList.Items.Add(listItem);
+                        }
+                    }
+                }
+            }
+        }
+
+        private void addUserButton_Click(object sender, EventArgs e)
+        {
+            if (allUsersList.SelectedItems.Count > 0)
+            {
+                int UUID = Convert.ToInt32(allUsersList.SelectedItems[0].SubItems[0].Text);
+                int departmentID = Convert.ToInt32(departmentText.Text);
+                departmentManagement.addDeparmentUser(UUID, departmentID);
+            }
+        }
+
+        private void removeUserButton_Click(object sender, EventArgs e)
+        {
+            if (allUsersList.SelectedItems.Count > 0)
+            {
+                int UUID = Convert.ToInt32(allUsersList.SelectedItems[0].SubItems[0].Text);
+                int departmentID = Convert.ToInt32(removeUserText.Text);
+                departmentManagement.removeDeparmentUser(UUID, departmentID);
+            }
+        }
+
+        private void allUsersList_ItemSelectionChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void refreshAllUsers_Click(object sender, EventArgs e)
+        {
+            this.refreshallUsersList();
+        }
+        private void refreshallUsersList()
+        {
+            allUsersList.Items.Clear();
+            this.usersData = accountManagement.GetUserList();
+            foreach (UserData user in this.usersData)
+            {
+                string[] row = { user.UUID.ToString(), user.Username.ToString(), user.DepartmentUID.ToString() };
+
+                var listItem = new ListViewItem(row);
+                allUsersList.Items.Add(listItem);
+            }
+        }
+
     }
 }
