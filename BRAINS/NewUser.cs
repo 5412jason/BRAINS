@@ -47,11 +47,18 @@ namespace BRAINS
             AccountManagement newUser = new AccountManagement();
             DepartmentManagement department = new DepartmentManagement();
             Department newdepartment = department.GetDepartmentByName(departmentAssign.Text);
-
-            if (confirmNewUserPassword.Text == newUserPassword.Text)
+            if (newUsername.Text == "" || newUserPassword.Text == "" || confirmNewUserPassword.Text == "" || departmentAssign.Text == "" || permissionsBox.Text == ""  || confirmNewUserPassword.Text == "")
             {
-                newUser.createUser(newUsername.Text, newUserPassword.Text, confirmNewUserPassword.Text, newdepartment.DepartmentUID, Convert.ToInt32(permissionsBox.Text));
-                this.Hide();
+                MessageBox.Show("You must have a value for ALL fields");
+
+            }
+            else if (newUserPassword.Text != "" || confirmNewUserPassword.Text != "")
+            { 
+                    if(confirmNewUserPassword.Text == newUserPassword.Text)
+                    {
+                        newUser.createUser(newUsername.Text, newUserPassword.Text, confirmNewUserPassword.Text, newdepartment.DepartmentUID, Convert.ToInt32(permissionsBox.Text));
+                        this.Hide();
+                    }
             }
             else
             MessageBox.Show("Passwords do not match, Please re-enter");
