@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Oversight));
             this.oversightTabControl = new System.Windows.Forms.TabControl();
             this.submissionsTab = new System.Windows.Forms.TabPage();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -1011,6 +1012,7 @@
             this.ClientSize = new System.Drawing.Size(985, 620);
             this.Controls.Add(this.oversightTabControl);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Oversight";
             this.Text = "Oversight";
             this.oversightTabControl.ResumeLayout(false);

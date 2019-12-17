@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Business));
             this.businessTabControl = new System.Windows.Forms.TabControl();
             this.completeStenerTab = new System.Windows.Forms.TabPage();
             this.completeQuestionSetListView = new System.Windows.Forms.ListView();
@@ -424,6 +425,7 @@
             this.ClientSize = new System.Drawing.Size(964, 574);
             this.Controls.Add(this.businessTabControl);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Business";
             this.Text = "Business";
             this.businessTabControl.ResumeLayout(false);
