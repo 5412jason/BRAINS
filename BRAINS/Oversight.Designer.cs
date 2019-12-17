@@ -30,6 +30,7 @@
         {
             this.oversightTabControl = new System.Windows.Forms.TabControl();
             this.submissionsTab = new System.Windows.Forms.TabPage();
+            this.violationDescriptionTextBox = new System.Windows.Forms.TextBox();
             this.previewStenerButton = new System.Windows.Forms.Button();
             this.rejectButton = new System.Windows.Forms.Button();
             this.approveButton = new System.Windows.Forms.Button();
@@ -102,7 +103,11 @@
             this.oversightDescription = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.oversightSeverity = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.oversightViolatedDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.severityDropdown = new System.Windows.Forms.ComboBox();
+            this.violationCheckbox = new System.Windows.Forms.CheckBox();
+            this.severityDropdownLabel = new System.Windows.Forms.Label();
+            this.violationDescLabel = new System.Windows.Forms.Label();
+            this.refreshSubmissionsButton = new System.Windows.Forms.Button();
             this.oversightTabControl.SuspendLayout();
             this.submissionsTab.SuspendLayout();
             this.stenerManagementTab.SuspendLayout();
@@ -128,7 +133,12 @@
             // 
             // submissionsTab
             // 
-            this.submissionsTab.Controls.Add(this.textBox1);
+            this.submissionsTab.Controls.Add(this.refreshSubmissionsButton);
+            this.submissionsTab.Controls.Add(this.violationDescLabel);
+            this.submissionsTab.Controls.Add(this.severityDropdownLabel);
+            this.submissionsTab.Controls.Add(this.violationCheckbox);
+            this.submissionsTab.Controls.Add(this.severityDropdown);
+            this.submissionsTab.Controls.Add(this.violationDescriptionTextBox);
             this.submissionsTab.Controls.Add(this.previewStenerButton);
             this.submissionsTab.Controls.Add(this.rejectButton);
             this.submissionsTab.Controls.Add(this.approveButton);
@@ -141,11 +151,19 @@
             this.submissionsTab.Text = "Submissions";
             this.submissionsTab.UseVisualStyleBackColor = true;
             // 
+            // violationDescriptionTextBox
+            // 
+            this.violationDescriptionTextBox.Location = new System.Drawing.Point(590, 348);
+            this.violationDescriptionTextBox.Multiline = true;
+            this.violationDescriptionTextBox.Name = "violationDescriptionTextBox";
+            this.violationDescriptionTextBox.Size = new System.Drawing.Size(379, 96);
+            this.violationDescriptionTextBox.TabIndex = 6;
+            // 
             // previewStenerButton
             // 
-            this.previewStenerButton.Location = new System.Drawing.Point(715, 6);
+            this.previewStenerButton.Location = new System.Drawing.Point(590, 149);
             this.previewStenerButton.Name = "previewStenerButton";
-            this.previewStenerButton.Size = new System.Drawing.Size(213, 23);
+            this.previewStenerButton.Size = new System.Drawing.Size(379, 23);
             this.previewStenerButton.TabIndex = 5;
             this.previewStenerButton.Text = "View Selected STENER";
             this.previewStenerButton.UseVisualStyleBackColor = true;
@@ -153,18 +171,18 @@
             // 
             // rejectButton
             // 
-            this.rejectButton.Location = new System.Drawing.Point(761, 64);
+            this.rejectButton.Location = new System.Drawing.Point(590, 532);
             this.rejectButton.Name = "rejectButton";
-            this.rejectButton.Size = new System.Drawing.Size(121, 23);
+            this.rejectButton.Size = new System.Drawing.Size(379, 23);
             this.rejectButton.TabIndex = 4;
             this.rejectButton.Text = "Reject";
             this.rejectButton.UseVisualStyleBackColor = true;
             // 
             // approveButton
             // 
-            this.approveButton.Location = new System.Drawing.Point(761, 35);
+            this.approveButton.Location = new System.Drawing.Point(590, 215);
             this.approveButton.Name = "approveButton";
-            this.approveButton.Size = new System.Drawing.Size(121, 23);
+            this.approveButton.Size = new System.Drawing.Size(379, 23);
             this.approveButton.TabIndex = 3;
             this.approveButton.Text = "Approve";
             this.approveButton.UseVisualStyleBackColor = true;
@@ -183,7 +201,7 @@
             this.submittedStenerListView.Location = new System.Drawing.Point(3, 6);
             this.submittedStenerListView.MultiSelect = false;
             this.submittedStenerListView.Name = "submittedStenerListView";
-            this.submittedStenerListView.Size = new System.Drawing.Size(664, 585);
+            this.submittedStenerListView.Size = new System.Drawing.Size(581, 585);
             this.submittedStenerListView.TabIndex = 0;
             this.submittedStenerListView.UseCompatibleStateImageBehavior = false;
             this.submittedStenerListView.View = System.Windows.Forms.View.Details;
@@ -289,9 +307,9 @@
             "3",
             "4",
             "5"});
-            this.priorityComboBox.Location = new System.Drawing.Point(648, 201);
+            this.priorityComboBox.Location = new System.Drawing.Point(642, 201);
             this.priorityComboBox.Name = "priorityComboBox";
-            this.priorityComboBox.Size = new System.Drawing.Size(99, 21);
+            this.priorityComboBox.Size = new System.Drawing.Size(105, 21);
             this.priorityComboBox.TabIndex = 21;
             // 
             // departmentComboBox
@@ -304,9 +322,9 @@
             "3",
             "4",
             "5"});
-            this.departmentComboBox.Location = new System.Drawing.Point(648, 161);
+            this.departmentComboBox.Location = new System.Drawing.Point(642, 161);
             this.departmentComboBox.Name = "departmentComboBox";
-            this.departmentComboBox.Size = new System.Drawing.Size(321, 21);
+            this.departmentComboBox.Size = new System.Drawing.Size(327, 21);
             this.departmentComboBox.TabIndex = 20;
             // 
             // submitStenerManagementButton
@@ -323,14 +341,14 @@
             // dueDateCalendar
             // 
             this.dueDateCalendar.Enabled = false;
-            this.dueDateCalendar.Location = new System.Drawing.Point(648, 260);
+            this.dueDateCalendar.Location = new System.Drawing.Point(642, 260);
             this.dueDateCalendar.Name = "dueDateCalendar";
             this.dueDateCalendar.TabIndex = 18;
             // 
             // dueDateEntryLabel
             // 
             this.dueDateEntryLabel.AutoSize = true;
-            this.dueDateEntryLabel.Location = new System.Drawing.Point(645, 238);
+            this.dueDateEntryLabel.Location = new System.Drawing.Point(639, 238);
             this.dueDateEntryLabel.Name = "dueDateEntryLabel";
             this.dueDateEntryLabel.Size = new System.Drawing.Size(53, 13);
             this.dueDateEntryLabel.TabIndex = 17;
@@ -339,7 +357,7 @@
             // priorityEntryLabel
             // 
             this.priorityEntryLabel.AutoSize = true;
-            this.priorityEntryLabel.Location = new System.Drawing.Point(645, 185);
+            this.priorityEntryLabel.Location = new System.Drawing.Point(639, 185);
             this.priorityEntryLabel.Name = "priorityEntryLabel";
             this.priorityEntryLabel.Size = new System.Drawing.Size(38, 13);
             this.priorityEntryLabel.TabIndex = 16;
@@ -348,7 +366,7 @@
             // departmentSelectionLabel
             // 
             this.departmentSelectionLabel.AutoSize = true;
-            this.departmentSelectionLabel.Location = new System.Drawing.Point(645, 144);
+            this.departmentSelectionLabel.Location = new System.Drawing.Point(639, 144);
             this.departmentSelectionLabel.Name = "departmentSelectionLabel";
             this.departmentSelectionLabel.Size = new System.Drawing.Size(95, 13);
             this.departmentSelectionLabel.TabIndex = 15;
@@ -799,12 +817,57 @@
             this.oversightViolatedDate.Text = "Date Violated";
             this.oversightViolatedDate.Width = 88;
             // 
-            // textBox1
+            // severityDropdown
             // 
-            this.textBox1.Location = new System.Drawing.Point(674, 138);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 6;
+            this.severityDropdown.FormattingEnabled = true;
+            this.severityDropdown.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"});
+            this.severityDropdown.Location = new System.Drawing.Point(590, 473);
+            this.severityDropdown.Name = "severityDropdown";
+            this.severityDropdown.Size = new System.Drawing.Size(121, 21);
+            this.severityDropdown.TabIndex = 7;
+            // 
+            // violationCheckbox
+            // 
+            this.violationCheckbox.AutoSize = true;
+            this.violationCheckbox.Location = new System.Drawing.Point(590, 312);
+            this.violationCheckbox.Name = "violationCheckbox";
+            this.violationCheckbox.Size = new System.Drawing.Size(66, 17);
+            this.violationCheckbox.TabIndex = 8;
+            this.violationCheckbox.Text = "Violation";
+            this.violationCheckbox.UseVisualStyleBackColor = true;
+            // 
+            // severityDropdownLabel
+            // 
+            this.severityDropdownLabel.AutoSize = true;
+            this.severityDropdownLabel.Location = new System.Drawing.Point(587, 457);
+            this.severityDropdownLabel.Name = "severityDropdownLabel";
+            this.severityDropdownLabel.Size = new System.Drawing.Size(48, 13);
+            this.severityDropdownLabel.TabIndex = 9;
+            this.severityDropdownLabel.Text = "Severity:";
+            // 
+            // violationDescLabel
+            // 
+            this.violationDescLabel.AutoSize = true;
+            this.violationDescLabel.Location = new System.Drawing.Point(587, 332);
+            this.violationDescLabel.Name = "violationDescLabel";
+            this.violationDescLabel.Size = new System.Drawing.Size(106, 13);
+            this.violationDescLabel.TabIndex = 10;
+            this.violationDescLabel.Text = "Violation Description:";
+            // 
+            // refreshSubmissionsButton
+            // 
+            this.refreshSubmissionsButton.Location = new System.Drawing.Point(590, 85);
+            this.refreshSubmissionsButton.Name = "refreshSubmissionsButton";
+            this.refreshSubmissionsButton.Size = new System.Drawing.Size(381, 23);
+            this.refreshSubmissionsButton.TabIndex = 11;
+            this.refreshSubmissionsButton.Text = "Refresh List";
+            this.refreshSubmissionsButton.UseVisualStyleBackColor = true;
+            this.refreshSubmissionsButton.Click += new System.EventHandler(this.refreshSubmissionsButton_Click);
             // 
             // Oversight
             // 
@@ -904,6 +967,11 @@
         private System.Windows.Forms.TextBox categoryTextBox;
         private System.Windows.Forms.Label categoryLabel;
         private System.Windows.Forms.Button OversightAccountsAddUser;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox violationDescriptionTextBox;
+        private System.Windows.Forms.ComboBox severityDropdown;
+        private System.Windows.Forms.Button refreshSubmissionsButton;
+        private System.Windows.Forms.Label violationDescLabel;
+        private System.Windows.Forms.Label severityDropdownLabel;
+        private System.Windows.Forms.CheckBox violationCheckbox;
     }
 }

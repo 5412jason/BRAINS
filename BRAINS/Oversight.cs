@@ -424,5 +424,24 @@ namespace BRAINS
             OversightRemoveDepartment form1 = new OversightRemoveDepartment();
             form1.Show();
         }
+
+        #region SUBMISSIONS
+        private void refreshSubmissionsList()
+        {
+            submittedStenerListView.Items.Clear();
+            this.questionSets = stenerManagement.GetSubmittedQuestionSets();
+            foreach (QuestionSet qSet in this.questionSets)
+            {
+                string[] row = { qSet.UniqueID.ToString(), qSet.AssignedDepartment.ToString(), qSet.Questions.Count.ToString(), qSet.DueDate.ToString("MM/dd/yyyy"), (qSet.SubmittedDate.Equals(new DateTime()) ? "" : qSet.SubmittedDate.ToString("MM/dd/yyyy")), qSet.Status };
+
+                var listItem = new ListViewItem(row);
+                submittedStenerListView.Items.Add(listItem);
+            }
+        }
+        private void refreshSubmissionsButton_Click(object sender, EventArgs e)
+        {
+            this.refreshSubmissionsList();
+        }
+        #endregion
     }
 }

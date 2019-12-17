@@ -29,6 +29,13 @@ namespace BRAINS
             return qSets;
         }
 
+        public List<QuestionSet> GetSubmittedQuestionSets()
+        {
+            List<QuestionSet> qSets = SqlManager.GetAllQuestionSetsOfStatus("SUBMITTED");
+
+            return qSets;
+        }
+
         public bool ModifyQuestion(string qText, int qSetID, int qID)
         {
             QuestionSet qSet = SqlManager.FindQuestionSet(qSetID);
