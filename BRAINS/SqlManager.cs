@@ -257,7 +257,7 @@ namespace BRAINS
         {
             try
             {
-                DataTable questionsDataTable = QueryDatabase("SELECT * FROM StenerTable WHERE Status = " + status);
+                DataTable questionsDataTable = QueryDatabase("SELECT * FROM StenerTable WHERE Status = '" + status +"'");
 
                 List<DataRow> qSetRows = new List<DataRow>();
                 List<int> qSetIds = new List<int>();
