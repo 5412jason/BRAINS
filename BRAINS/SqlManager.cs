@@ -644,7 +644,7 @@ namespace BRAINS
                     {
                         //test
                         string test = row.Field<string>("ViolatedDate");
-                        violation.ViolationDate = DateTime.ParseExact(row.Field<string>("ViolatedDate"), "MM/dd/yyyy", null);
+                        violation.ViolationDate = DateTime.ParseExact(row.Field<string>("ViolatedDate"), "MM/dd/yyyy hh:mm:ss tt", null);
                     }
                     if (row.Field<string>("ViolationDescription") != null)
                     {
@@ -682,7 +682,7 @@ namespace BRAINS
 
                     if (row.Field<string>("ViolatedDate") != null)
                     {
-                        violation.ViolationDate = DateTime.ParseExact(row.Field<string>("ViolatedDate"), "yyyy-MM-dd", null);
+                        violation.ViolationDate = DateTime.ParseExact(row.Field<string>("ViolatedDate"), "MM/dd/yyyy hh:mm:ss tt", null);
                     }
                     if (row.Field<string>("ViolationDescription") != null)
                     {
@@ -701,7 +701,7 @@ namespace BRAINS
 
         static public bool AddViolation(Violation violation)
         {
-            string query = "INSERT INTO ViolationTable(ViolationUID, DepratrmentUID, StenerSetUID, Severity, ViolatedDate, ViolatedDescription)VALUES("
+            string query = "INSERT INTO ViolationTable(ViolationUID, DepartmentUID, StenerSetUID, Severity, ViolatedDate, ViolationDescription)VALUES('"
                 + violation.ViolationUID.ToString() + "','" + violation.DepartmentUID.ToString() + "','"
                 + violation.StenerSetUID.ToString() + "','" + violation.Severity.ToString() + "','"
                 + violation.ViolationDate.ToString() + "','" + violation.ViolationDescription + "')";

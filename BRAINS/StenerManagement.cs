@@ -132,14 +132,16 @@ namespace BRAINS
         {
             List<QuestionSet> qSets = SqlManager.GetAllQuestionSets();
             int nextID = 0;
-            foreach(QuestionSet qSet in qSets)
+            if (qSets != null)
             {
-                if(qSet.UniqueID > nextID)
+                foreach (QuestionSet qSet in qSets)
                 {
-                    nextID = qSet.UniqueID;
+                    if (qSet.UniqueID > nextID)
+                    {
+                        nextID = qSet.UniqueID;
+                    }
                 }
             }
-
             nextID = nextID + 1;
 
             return nextID;

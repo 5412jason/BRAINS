@@ -375,11 +375,7 @@ namespace BRAINS
             newUser.Show();
         }
 
-        private void PreviewStenerButton_Click(object sender, EventArgs e)
-        {
-            OversightPreview preview = new OversightPreview();
-            preview.Show();
-        }
+
 
         public void refreshAccountList(object sender, EventArgs e)
         {
@@ -465,6 +461,58 @@ namespace BRAINS
         private void refreshSubmissionsButton_Click(object sender, EventArgs e)
         {
             this.refreshSubmissionsList();
+        }
+        private void approveButton_Click(object sender, EventArgs e)
+        {
+            if(submittedStenerListView.SelectedItems.Count > 0)
+            {
+                int qSetID = Convert.ToInt32(submittedStenerListView.SelectedItems[0].SubItems[0].Text);
+                QuestionSet qSet = stenerManagement.GetQuestionSet(qSetID);
+
+                qSet.Status = "APPROVED";
+
+                bool result = stenerManagement.SubmitQuestionSet(qSet);
+
+                this.refreshSubmissionsList();
+                submissionStatusLabel.Text = "Approved STENER!";
+            }
+        }
+        private void rejectButton_Click(object sender, EventArgs e)
+        {
+            if (submittedStenerListView.SelectedItems.Count > 0)
+            {
+                int qSetID = Convert.ToInt32(submittedStenerListView.SelectedItems[0].SubItems[0].Text);
+                QuestionSet qSet = stenerManagement.GetQuestionSet(qSetID);
+                if (violationCheckbox.Checked == true)
+                {
+                    if(severityDropdown.SelectedItem != null && violationDescriptionTextBox.Text != "")
+                    {
+                        Violation violation = new Violation();
+                        violation.DepartmentUID = qSet.AssignedDepartment;
+                        violation.Severity = Convert.ToInt32(severityDropdown.SelectedItem);
+                        violation.StenerSetUID = qSetID;
+                        violation.ViolationDescription = violationDescriptionTextBox.Text;
+                        violation.ViolationDate = DateTime.Now;
+
+                        violationManagement.AddViolation(violation);
+                    }
+                    else
+                    {
+                        submissionStatusLabel.Text = "Error: Ensure all violation fields are filled in for a violation!";
+                        return;
+                    }
+                }
+                qSet.Status = "REJECTED";
+                bool result = stenerManagement.SubmitQuestionSet(qSet);
+
+                this.refreshSubmissionsList();
+                submissionStatusLabel.Text = "Rejected STENER!";
+            }
+        }
+        private void PreviewStenerButton_Click(object sender, EventArgs e)
+        {
+            OversightPreview preview = new OversightPreview();
+            preview.Show();
         }
         #endregion
     }

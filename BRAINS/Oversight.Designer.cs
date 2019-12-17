@@ -30,6 +30,11 @@
         {
             this.oversightTabControl = new System.Windows.Forms.TabControl();
             this.submissionsTab = new System.Windows.Forms.TabPage();
+            this.refreshSubmissionsButton = new System.Windows.Forms.Button();
+            this.violationDescLabel = new System.Windows.Forms.Label();
+            this.severityDropdownLabel = new System.Windows.Forms.Label();
+            this.violationCheckbox = new System.Windows.Forms.CheckBox();
+            this.severityDropdown = new System.Windows.Forms.ComboBox();
             this.violationDescriptionTextBox = new System.Windows.Forms.TextBox();
             this.previewStenerButton = new System.Windows.Forms.Button();
             this.rejectButton = new System.Windows.Forms.Button();
@@ -85,6 +90,7 @@
             this.accountsTab = new System.Windows.Forms.TabPage();
             this.accountManagementStatus = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.accountManagementStatusStrip = new System.Windows.Forms.ToolStripStatusLabel();
             this.OversightAccountsAddUser = new System.Windows.Forms.Button();
             this.OversightAccountsRemoveUser = new System.Windows.Forms.Button();
             this.refreshButtonAccounts = new System.Windows.Forms.Button();
@@ -104,12 +110,8 @@
             this.oversightDescription = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.oversightSeverity = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.oversightViolatedDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.accountManagementStatusStrip = new System.Windows.Forms.ToolStripStatusLabel();
-            this.severityDropdown = new System.Windows.Forms.ComboBox();
-            this.violationCheckbox = new System.Windows.Forms.CheckBox();
-            this.severityDropdownLabel = new System.Windows.Forms.Label();
-            this.violationDescLabel = new System.Windows.Forms.Label();
-            this.refreshSubmissionsButton = new System.Windows.Forms.Button();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.submissionStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.oversightTabControl.SuspendLayout();
             this.submissionsTab.SuspendLayout();
             this.stenerManagementTab.SuspendLayout();
@@ -118,6 +120,7 @@
             this.accountsTab.SuspendLayout();
             this.accountManagementStatus.SuspendLayout();
             this.violationsTab.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // oversightTabControl
@@ -136,6 +139,7 @@
             // 
             // submissionsTab
             // 
+            this.submissionsTab.Controls.Add(this.statusStrip1);
             this.submissionsTab.Controls.Add(this.refreshSubmissionsButton);
             this.submissionsTab.Controls.Add(this.violationDescLabel);
             this.submissionsTab.Controls.Add(this.severityDropdownLabel);
@@ -153,6 +157,58 @@
             this.submissionsTab.TabIndex = 0;
             this.submissionsTab.Text = "Submissions";
             this.submissionsTab.UseVisualStyleBackColor = true;
+            // 
+            // refreshSubmissionsButton
+            // 
+            this.refreshSubmissionsButton.Location = new System.Drawing.Point(590, 85);
+            this.refreshSubmissionsButton.Name = "refreshSubmissionsButton";
+            this.refreshSubmissionsButton.Size = new System.Drawing.Size(381, 23);
+            this.refreshSubmissionsButton.TabIndex = 11;
+            this.refreshSubmissionsButton.Text = "Refresh List";
+            this.refreshSubmissionsButton.UseVisualStyleBackColor = true;
+            this.refreshSubmissionsButton.Click += new System.EventHandler(this.refreshSubmissionsButton_Click);
+            // 
+            // violationDescLabel
+            // 
+            this.violationDescLabel.AutoSize = true;
+            this.violationDescLabel.Location = new System.Drawing.Point(587, 332);
+            this.violationDescLabel.Name = "violationDescLabel";
+            this.violationDescLabel.Size = new System.Drawing.Size(106, 13);
+            this.violationDescLabel.TabIndex = 10;
+            this.violationDescLabel.Text = "Violation Description:";
+            // 
+            // severityDropdownLabel
+            // 
+            this.severityDropdownLabel.AutoSize = true;
+            this.severityDropdownLabel.Location = new System.Drawing.Point(587, 457);
+            this.severityDropdownLabel.Name = "severityDropdownLabel";
+            this.severityDropdownLabel.Size = new System.Drawing.Size(48, 13);
+            this.severityDropdownLabel.TabIndex = 9;
+            this.severityDropdownLabel.Text = "Severity:";
+            // 
+            // violationCheckbox
+            // 
+            this.violationCheckbox.AutoSize = true;
+            this.violationCheckbox.Location = new System.Drawing.Point(590, 312);
+            this.violationCheckbox.Name = "violationCheckbox";
+            this.violationCheckbox.Size = new System.Drawing.Size(66, 17);
+            this.violationCheckbox.TabIndex = 8;
+            this.violationCheckbox.Text = "Violation";
+            this.violationCheckbox.UseVisualStyleBackColor = true;
+            // 
+            // severityDropdown
+            // 
+            this.severityDropdown.FormattingEnabled = true;
+            this.severityDropdown.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"});
+            this.severityDropdown.Location = new System.Drawing.Point(590, 473);
+            this.severityDropdown.Name = "severityDropdown";
+            this.severityDropdown.Size = new System.Drawing.Size(121, 21);
+            this.severityDropdown.TabIndex = 7;
             // 
             // violationDescriptionTextBox
             // 
@@ -180,6 +236,7 @@
             this.rejectButton.TabIndex = 4;
             this.rejectButton.Text = "Reject";
             this.rejectButton.UseVisualStyleBackColor = true;
+            this.rejectButton.Click += new System.EventHandler(this.rejectButton_Click);
             // 
             // approveButton
             // 
@@ -189,6 +246,7 @@
             this.approveButton.TabIndex = 3;
             this.approveButton.Text = "Approve";
             this.approveButton.UseVisualStyleBackColor = true;
+            this.approveButton.Click += new System.EventHandler(this.approveButton_Click);
             // 
             // submittedStenerListView
             // 
@@ -204,7 +262,7 @@
             this.submittedStenerListView.Location = new System.Drawing.Point(3, 6);
             this.submittedStenerListView.MultiSelect = false;
             this.submittedStenerListView.Name = "submittedStenerListView";
-            this.submittedStenerListView.Size = new System.Drawing.Size(581, 585);
+            this.submittedStenerListView.Size = new System.Drawing.Size(581, 549);
             this.submittedStenerListView.TabIndex = 0;
             this.submittedStenerListView.UseCompatibleStateImageBehavior = false;
             this.submittedStenerListView.View = System.Windows.Forms.View.Details;
@@ -665,6 +723,11 @@
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
             // 
+            // accountManagementStatusStrip
+            // 
+            this.accountManagementStatusStrip.Name = "accountManagementStatusStrip";
+            this.accountManagementStatusStrip.Size = new System.Drawing.Size(0, 17);
+            // 
             // OversightAccountsAddUser
             // 
             this.OversightAccountsAddUser.Location = new System.Drawing.Point(781, 115);
@@ -826,62 +889,20 @@
             this.oversightViolatedDate.Text = "Date Violated";
             this.oversightViolatedDate.Width = 88;
             // 
-            // severityDropdown
+            // statusStrip1
             // 
-            this.severityDropdown.FormattingEnabled = true;
-            this.severityDropdown.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5"});
-            this.severityDropdown.Location = new System.Drawing.Point(590, 473);
-            this.severityDropdown.Name = "severityDropdown";
-            this.severityDropdown.Size = new System.Drawing.Size(121, 21);
-            this.severityDropdown.TabIndex = 7;
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.submissionStatusLabel});
+            this.statusStrip1.Location = new System.Drawing.Point(3, 569);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(971, 22);
+            this.statusStrip1.TabIndex = 12;
+            this.statusStrip1.Text = "statusStrip1";
             // 
-            // violationCheckbox
+            // submissionStatusLabel
             // 
-            this.violationCheckbox.AutoSize = true;
-            this.violationCheckbox.Location = new System.Drawing.Point(590, 312);
-            this.violationCheckbox.Name = "violationCheckbox";
-            this.violationCheckbox.Size = new System.Drawing.Size(66, 17);
-            this.violationCheckbox.TabIndex = 8;
-            this.violationCheckbox.Text = "Violation";
-            this.violationCheckbox.UseVisualStyleBackColor = true;
-            // 
-            // severityDropdownLabel
-            // 
-            this.severityDropdownLabel.AutoSize = true;
-            this.severityDropdownLabel.Location = new System.Drawing.Point(587, 457);
-            this.severityDropdownLabel.Name = "severityDropdownLabel";
-            this.severityDropdownLabel.Size = new System.Drawing.Size(48, 13);
-            this.severityDropdownLabel.TabIndex = 9;
-            this.severityDropdownLabel.Text = "Severity:";
-            // 
-            // violationDescLabel
-            // 
-            this.violationDescLabel.AutoSize = true;
-            this.violationDescLabel.Location = new System.Drawing.Point(587, 332);
-            this.violationDescLabel.Name = "violationDescLabel";
-            this.violationDescLabel.Size = new System.Drawing.Size(106, 13);
-            this.violationDescLabel.TabIndex = 10;
-            this.violationDescLabel.Text = "Violation Description:";
-            // 
-            // refreshSubmissionsButton
-            // 
-            this.refreshSubmissionsButton.Location = new System.Drawing.Point(590, 85);
-            this.refreshSubmissionsButton.Name = "refreshSubmissionsButton";
-            this.refreshSubmissionsButton.Size = new System.Drawing.Size(381, 23);
-            this.refreshSubmissionsButton.TabIndex = 11;
-            this.refreshSubmissionsButton.Text = "Refresh List";
-            this.refreshSubmissionsButton.UseVisualStyleBackColor = true;
-            this.refreshSubmissionsButton.Click += new System.EventHandler(this.refreshSubmissionsButton_Click);
-            // 
-            // accountManagementStatusStrip
-            // 
-            this.accountManagementStatusStrip.Name = "accountManagementStatusStrip";
-            this.accountManagementStatusStrip.Size = new System.Drawing.Size(0, 17);
+            this.submissionStatusLabel.Name = "submissionStatusLabel";
+            this.submissionStatusLabel.Size = new System.Drawing.Size(0, 17);
             // 
             // Oversight
             // 
@@ -904,6 +925,8 @@
             this.accountManagementStatus.ResumeLayout(false);
             this.accountManagementStatus.PerformLayout();
             this.violationsTab.ResumeLayout(false);
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -992,5 +1015,7 @@
         private System.Windows.Forms.StatusStrip accountManagementStatus;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel accountManagementStatusStrip;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel submissionStatusLabel;
     }
 }
