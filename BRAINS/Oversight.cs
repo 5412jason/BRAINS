@@ -512,8 +512,13 @@ namespace BRAINS
         }
         private void PreviewStenerButton_Click(object sender, EventArgs e)
         {
-            OversightPreview preview = new OversightPreview();
-            preview.Show();
+            if (submittedStenerListView.SelectedItems.Count > 0)
+            {
+                int qSetID = Convert.ToInt32(submittedStenerListView.SelectedItems[0].SubItems[0].Text);
+                QuestionSet qSet = stenerManagement.GetQuestionSet(qSetID);
+                OversightPreview preview = new OversightPreview(qSetID);
+                preview.Show();
+            }
         }
         #endregion
 

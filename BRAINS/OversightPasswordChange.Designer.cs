@@ -52,6 +52,7 @@
             this.OversightPasswordChangeNewTextBox.Name = "OversightPasswordChangeNewTextBox";
             this.OversightPasswordChangeNewTextBox.Size = new System.Drawing.Size(227, 20);
             this.OversightPasswordChangeNewTextBox.TabIndex = 3;
+            this.OversightPasswordChangeNewTextBox.UseSystemPasswordChar = true;
             // 
             // oversightPasswordChangeDialogCancel
             // 
@@ -69,6 +70,7 @@
             this.confirmPassword.Name = "confirmPassword";
             this.confirmPassword.Size = new System.Drawing.Size(227, 20);
             this.confirmPassword.TabIndex = 6;
+            this.confirmPassword.UseSystemPasswordChar = true;
             // 
             // confirmPass
             // 

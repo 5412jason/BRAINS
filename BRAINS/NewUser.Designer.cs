@@ -91,11 +91,13 @@
             this.newUserPassword.Name = "newUserPassword";
             this.newUserPassword.Size = new System.Drawing.Size(224, 20);
             this.newUserPassword.TabIndex = 5;
+            this.newUserPassword.UseSystemPasswordChar = true;
             // 
             // confirmNewUserPassword
             // 
             this.confirmNewUserPassword.Location = new System.Drawing.Point(142, 60);
             this.confirmNewUserPassword.Name = "confirmNewUserPassword";
+            this.confirmNewUserPassword.ReadOnly = true;
             this.confirmNewUserPassword.Size = new System.Drawing.Size(224, 20);
             this.confirmNewUserPassword.TabIndex = 6;
             // 
