@@ -123,10 +123,16 @@
             // 
             this.departmentAssign.FormattingEnabled = true;
             this.departmentAssign.Items.AddRange(new object[] {
-            "Oversight",
-            "IT",
-            "HR",
-            "Facilites"});
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"});
             this.departmentAssign.Location = new System.Drawing.Point(142, 87);
             this.departmentAssign.Name = "departmentAssign";
             this.departmentAssign.Size = new System.Drawing.Size(224, 21);
