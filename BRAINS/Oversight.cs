@@ -601,7 +601,7 @@ namespace BRAINS
 
         private void addUserButton_Click(object sender, EventArgs e)
         {
-            if (allUsersList.SelectedItems.Count > 0)
+            if (allUsersList.SelectedItems.Count > 0 && removeUserText.Text != null)
             {
                 int UUID = Convert.ToInt32(allUsersList.SelectedItems[0].SubItems[0].Text);
                 int departmentID = Convert.ToInt32(departmentText.Text);
@@ -611,7 +611,7 @@ namespace BRAINS
 
         private void removeUserButton_Click(object sender, EventArgs e)
         {
-            if (allUsersList.SelectedItems.Count > 0)
+            if (allUsersList.SelectedItems.Count > 0 && removeUserText.Text != null)
             {
                 int UUID = Convert.ToInt32(allUsersList.SelectedItems[0].SubItems[0].Text);
                 int departmentID = Convert.ToInt32(removeUserText.Text);

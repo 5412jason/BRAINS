@@ -52,7 +52,7 @@
             // 
             // deleteDepartmentButton
             // 
-            this.deleteDepartmentButton.Location = new System.Drawing.Point(350, 330);
+            this.deleteDepartmentButton.Location = new System.Drawing.Point(350, 92);
             this.deleteDepartmentButton.Name = "deleteDepartmentButton";
             this.deleteDepartmentButton.Size = new System.Drawing.Size(72, 36);
             this.deleteDepartmentButton.TabIndex = 10;
@@ -64,7 +64,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(456, 146);
             this.Controls.Add(this.deleteDepartmentButton);
             this.Controls.Add(this.departmentNameText);
             this.Controls.Add(this.label1);

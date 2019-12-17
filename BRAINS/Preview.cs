@@ -9,8 +9,7 @@ namespace BRAINS
     public class Preview
     {
         public string previewStener(int qID)
-        {
-
+        { 
             QuestionSet resultsByID = SqlManager.FindQuestionSet(qID);
 
 
