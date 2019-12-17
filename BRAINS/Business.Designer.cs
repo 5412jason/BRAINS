@@ -58,7 +58,6 @@
             this.workOnSelectedStenerButton = new System.Windows.Forms.Button();
             this.refreshCompleteListButton = new System.Windows.Forms.Button();
             this.violationTab = new System.Windows.Forms.TabPage();
-            this.busniessViolationsrefreshButton = new System.Windows.Forms.Button();
             this.BusinessViolationList = new System.Windows.Forms.ListView();
             this.violationUID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.oversightStenerSetUID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -66,6 +65,7 @@
             this.oversightDescription = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.oversightSeverity = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.oversightViolatedDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.busniessViolationsrefreshButton = new System.Windows.Forms.Button();
             this.businessTabControl.SuspendLayout();
             this.completeStenerTab.SuspendLayout();
             this.completeStenerStatusStrip.SuspendLayout();
@@ -358,16 +358,6 @@
             this.violationTab.Text = "Violations";
             this.violationTab.UseVisualStyleBackColor = true;
             // 
-            // busniessViolationsrefreshButton
-            // 
-            this.busniessViolationsrefreshButton.Location = new System.Drawing.Point(8, 508);
-            this.busniessViolationsrefreshButton.Name = "busniessViolationsrefreshButton";
-            this.busniessViolationsrefreshButton.Size = new System.Drawing.Size(940, 32);
-            this.busniessViolationsrefreshButton.TabIndex = 2;
-            this.busniessViolationsrefreshButton.Text = "Refresh";
-            this.busniessViolationsrefreshButton.UseVisualStyleBackColor = true;
-            this.busniessViolationsrefreshButton.Click += new System.EventHandler(this.busniessViolationsrefreshButton_Click);
-            // 
             // BusinessViolationList
             // 
             this.BusinessViolationList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -417,12 +407,23 @@
             this.oversightViolatedDate.Text = "Date Violated";
             this.oversightViolatedDate.Width = 88;
             // 
+            // busniessViolationsrefreshButton
+            // 
+            this.busniessViolationsrefreshButton.Location = new System.Drawing.Point(8, 508);
+            this.busniessViolationsrefreshButton.Name = "busniessViolationsrefreshButton";
+            this.busniessViolationsrefreshButton.Size = new System.Drawing.Size(940, 32);
+            this.busniessViolationsrefreshButton.TabIndex = 2;
+            this.busniessViolationsrefreshButton.Text = "Refresh";
+            this.busniessViolationsrefreshButton.UseVisualStyleBackColor = true;
+            this.busniessViolationsrefreshButton.Click += new System.EventHandler(this.busniessViolationsrefreshButton_Click);
+            // 
             // Business
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(964, 574);
             this.Controls.Add(this.businessTabControl);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Business";
             this.Text = "Business";
             this.businessTabControl.ResumeLayout(false);
