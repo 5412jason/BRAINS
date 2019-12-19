@@ -704,7 +704,7 @@ namespace BRAINS
             string query = "INSERT INTO ViolationTable(ViolationUID, DepartmentUID, StenerSetUID, Severity, ViolatedDate, ViolationDescription)VALUES('"
                 + violation.ViolationUID.ToString() + "','" + violation.DepartmentUID.ToString() + "','"
                 + violation.StenerSetUID.ToString() + "','" + violation.Severity.ToString() + "','"
-                + violation.ViolationDate.ToString() + "','" + violation.ViolationDescription + "')";
+                + violation.ViolationDate.ToString("MM/dd/yyyy hh:mm:ss tt") + "','" + violation.ViolationDescription + "')";
 
             bool passed = NonQueryDatabase(query);
 
