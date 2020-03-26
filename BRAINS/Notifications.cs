@@ -19,7 +19,7 @@ namespace BRAINS
 
             // Initial questions to compare
 
-            var initialQuestionSets = stenerManagement.GetQuestionSetsForDepartment(1);
+            var initialQuestionSets = stenerManagement.GetQuestionSetsForDepartment(notificationsUser.DepartmentUID);
 
 
             // Time parameters
