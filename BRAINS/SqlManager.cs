@@ -46,6 +46,8 @@ namespace BRAINS
             }
         }
 
+
+        // Since we always use try and catch we do not need to have a bool function
         static private bool NonQueryDatabase(string query)
         {
             try
@@ -73,6 +75,7 @@ namespace BRAINS
                 return false;
             }
         }
+
 
         #region QUESTION_SETS
         static public List<QuestionSet> GetAllQuestionSets()
@@ -164,6 +167,11 @@ namespace BRAINS
             }
         }
 
+
+        //We already have a function that retreives all the question sets above
+        //Use the same function to get question set for a specific department
+        //Pass in the department then do a check inside function if there is a department or not
+        //And rest of code will be the same
         static public List<QuestionSet> GetAllDepartmentQuestionSets(int departmentID)
         {
             try
@@ -253,6 +261,8 @@ namespace BRAINS
             }
         }
 
+
+        //Is it possible to pass in the status to the first function as well with the deparment ID?
         static public List<QuestionSet> GetAllQuestionSetsOfStatus(string status)
         {
             try
@@ -406,6 +416,9 @@ namespace BRAINS
             return null;
         }
 
+
+        //Is this modifying a table? if so tables should not be modified from code
+        //Usually tables are modified in a release then cannot be changed by users
         static public bool ModifyQuestionSet(QuestionSet updatedQSet)
         {
             string queryString =
