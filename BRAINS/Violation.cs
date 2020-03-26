@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BRAINS
 {
@@ -21,8 +17,5 @@ namespace BRAINS
         public DateTime ViolationDate { get => violationDate; set => violationDate = value; }
         public int ViolationUID { get => violationUID; set => violationUID = value; }
         public int StenerSetUID { get => stenerSetUID; set => stenerSetUID = value; }
-
-
-
     }
 }
