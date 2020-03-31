@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BRAINS
 {
@@ -12,7 +9,7 @@ namespace BRAINS
 
         public List<QuestionSet> GetStenerList()
         {
-            List<QuestionSet> steners = SqlManager.GetAllQuestionSets();
+            List<QuestionSet> steners = SqlManager.GetAllQuestionSets(-1, "");
 
             return steners;
         }
@@ -25,13 +22,13 @@ namespace BRAINS
 
         public List<QuestionSet> GetQuestionSetsForDepartment(int departmentID)
         {
-            List<QuestionSet> qSets = SqlManager.GetAllDepartmentQuestionSets(departmentID);
+            List<QuestionSet> qSets = SqlManager.GetAllQuestionSets(departmentID, "");
             return qSets;
         }
 
         public List<QuestionSet> GetSubmittedQuestionSets()
         {
-            List<QuestionSet> qSets = SqlManager.GetAllQuestionSetsOfStatus("SUBMITTED");
+            List<QuestionSet> qSets = SqlManager.GetAllQuestionSets(-1, "SUBMITTED");
 
             return qSets;
         }
@@ -130,7 +127,7 @@ namespace BRAINS
 
         private int GetNextQuestionSetID()
         {
-            List<QuestionSet> qSets = SqlManager.GetAllQuestionSets();
+            List<QuestionSet> qSets = SqlManager.GetAllQuestionSets(-1, "");
             int nextID = 0;
             if (qSets != null)
             {

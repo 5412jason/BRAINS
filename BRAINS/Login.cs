@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace BRAINS
@@ -28,21 +21,20 @@ namespace BRAINS
                 {
 
                     Oversight Landingpage = new Oversight(user);
-                    this.Hide();
                     Landingpage.Show();
+                    this.Close();
                 }
                 else
                 {
                     Business Landingpage = new Business(user);
-                    this.Hide();
                     Landingpage.Show();
+                    this.Close();
 
                 }
             }
             else
             {
                 MessageBox.Show("Invalid username or password");
-               
             }
 
         }

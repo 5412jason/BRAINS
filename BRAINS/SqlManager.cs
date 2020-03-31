@@ -1,13 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
-using System.Security.Cryptography;
-
 
 namespace BRAINS
 {
@@ -46,6 +41,7 @@ namespace BRAINS
             }
         }
 
+        // Since we always use try and catch we do not need to have a bool function
         static private bool NonQueryDatabase(string query)
         {
             try
@@ -74,190 +70,37 @@ namespace BRAINS
             }
         }
 
+
         #region QUESTION_SETS
-        static public List<QuestionSet> GetAllQuestionSets()
+        // If requesting for all departments, pass a negative department id.
+        // If requesting for all status, pass and empty status string.
+        static public List<QuestionSet> GetAllQuestionSets(int departmentID, string status)
         {
             try
             {
-                DataTable questionsDataTable = QueryDatabase("SELECT * FROM StenerTable");
+                DataTable questionsDataTable;
 
-                List<DataRow> qSetRows = new List<DataRow>();
-                List<int> qSetIds = new List<int>();
-
-                foreach (DataRow row in questionsDataTable.Rows)
+                if (departmentID >= 0)
                 {
-                    if (qSetIds.Contains(row.Field<int>("StenerSetUID")) == false)
+                    if (status == "")
                     {
-                        qSetIds.Add(row.Field<int>("StenerSetUID"));
-                        qSetRows.Add(row);
+                        questionsDataTable = QueryDatabase("SELECT * FROM StenerTable WHERE DepartmentUID = " + departmentID.ToString());
+                    }
+                    else
+                    {
+                        questionsDataTable = QueryDatabase("SELECT * FROM StenerTable WHERE DepartmentUID = "
+                                                                     + departmentID.ToString() + " AND "
+                                                                     + " Status = '" + status + "'");
                     }
                 }
-
-                List<QuestionSet> questionSets = new List<QuestionSet>();
-                foreach (DataRow row in qSetRows)
+                else if (status != "")
                 {
-                    QuestionSet qSet = new QuestionSet();
-                    qSet.UniqueID = row.Field<int>("StenerSetUID");
-                    qSet.AssignedDepartment = row.Field<int>("DepartmentUID");
-                    qSet.Priority = row.Field<int>("Priority");
-                    qSet.Violated = Convert.ToBoolean(row.Field<int>("Violated"));
-
-                    if (row.Field<string>("Category") != null)
-                    {
-                        qSet.Category = row.Field<string>("Category");
-                    }
-                    if (row.Field<string>("DueDate") != null)
-                    {
-                        //test
-                        string test = row.Field<string>("DueDate");
-                        qSet.DueDate = DateTime.ParseExact(row.Field<string>("DueDate"), "MM/dd/yyyy hh:mm:ss tt", null);
-                    }
-                    if (row.Field<string>("SubmittedDate") != null)
-                    {
-                        string test = row.Field<string>("SubmittedDate");
-                        qSet.SubmittedDate = DateTime.ParseExact(row.Field<string>("SubmittedDate"), "MM/dd/yyyy hh:mm:ss tt", null);
-                    }
-                    if (row.Field<string>("Status") != null)
-                    {
-                        qSet.Status = row.Field<string>("Status");
-                    }
-
-                    qSet.Questions = new List<Question>();
-
-                    DataTable questionTable = QueryDatabase("SELECT * FROM StenerTable WHERE StenerSetUID = " + qSet.UniqueID.ToString());
-
-                    foreach (DataRow questionRow in questionTable.Rows)
-                    {
-                        Question question = new Question();
-                        question.QuestionID = questionRow.Field<int>("QuestionUID");
-                        question.Compliance = Convert.ToBoolean(questionRow.Field<int>("Compliance"));
-
-                        if (questionRow.Field<string>("Question") != null)
-                        {
-                            question.QuestionText = questionRow.Field<string>("Question");
-                        }
-                        if (questionRow.Field<string>("Answer") != null)
-                        {
-                            question.Answer = questionRow.Field<string>("Answer");
-                        }
-                        if (questionRow.Field<string>("LocationEvidence") != null)
-                        {
-                            question.EvidenceLocation = questionRow.Field<string>("LocationEvidence");
-                        }
-                        if (questionRow.Field<string>("PlanForSolution") != null)
-                        {
-                            question.PlanForSolution = questionRow.Field<string>("PlanForSolution");
-                        }
-
-                        qSet.Questions.Add(question);
-                    }
-
-                    questionSets.Add(qSet);
+                    questionsDataTable = QueryDatabase("SELECT * FROM StenerTable WHERE Status = '" + status + "'");
                 }
-
-                return questionSets;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return new List<QuestionSet>();
-            }
-        }
-
-        static public List<QuestionSet> GetAllDepartmentQuestionSets(int departmentID)
-        {
-            try
-            {
-                DataTable questionsDataTable = QueryDatabase("SELECT * FROM StenerTable WHERE DepartmentUID = " + departmentID.ToString());
-
-                List<DataRow> qSetRows = new List<DataRow>();
-                List<int> qSetIds = new List<int>();
-
-                foreach (DataRow row in questionsDataTable.Rows)
+                else
                 {
-                    if (qSetIds.Contains(row.Field<int>("StenerSetUID")) == false)
-                    {
-                        qSetIds.Add(row.Field<int>("StenerSetUID"));
-                        qSetRows.Add(row);
-                    }
+                    questionsDataTable = QueryDatabase("SELECT * FROM StenerTable");
                 }
-
-                List<QuestionSet> questionSets = new List<QuestionSet>();
-                foreach (DataRow row in qSetRows)
-                {
-                    QuestionSet qSet = new QuestionSet();
-                    qSet.UniqueID = row.Field<int>("StenerSetUID");
-                    qSet.AssignedDepartment = row.Field<int>("DepartmentUID");
-                    qSet.Priority = row.Field<int>("Priority");
-                    qSet.Violated = Convert.ToBoolean(row.Field<int>("Violated"));
-
-                    if (row.Field<string>("Category") != null)
-                    {
-                        qSet.Category = row.Field<string>("Category");
-                    }
-                    if (row.Field<string>("DueDate") != null)
-                    {
-                        //test
-                        string test = row.Field<string>("DueDate");
-                        qSet.DueDate = DateTime.ParseExact(row.Field<string>("DueDate"), "MM/dd/yyyy hh:mm:ss tt", null);
-                    }
-                    if (row.Field<string>("SubmittedDate") != null)
-                    {
-                        string test = row.Field<string>("SubmittedDate");
-                        qSet.SubmittedDate = DateTime.ParseExact(row.Field<string>("SubmittedDate"), "MM/dd/yyyy hh:mm:ss tt", null);
-                    }
-                    if (row.Field<string>("Status") != null)
-                    {
-                        qSet.Status = row.Field<string>("Status");
-                    }
-
-                    qSet.Questions = new List<Question>();
-
-                    DataTable questionTable = QueryDatabase("SELECT * FROM StenerTable WHERE StenerSetUID = " + qSet.UniqueID.ToString());
-
-                    foreach (DataRow questionRow in questionTable.Rows)
-                    {
-                        Question question = new Question();
-                        question.QuestionID = questionRow.Field<int>("QuestionUID");
-                        question.Compliance = Convert.ToBoolean(questionRow.Field<int>("Compliance"));
-
-                        if (questionRow.Field<string>("Question") != null)
-                        {
-                            question.QuestionText = questionRow.Field<string>("Question");
-                        }
-                        if (questionRow.Field<string>("Answer") != null)
-                        {
-                            question.Answer = questionRow.Field<string>("Answer");
-                        }
-                        if (questionRow.Field<string>("LocationEvidence") != null)
-                        {
-                            question.EvidenceLocation = questionRow.Field<string>("LocationEvidence");
-                        }
-                        if (questionRow.Field<string>("PlanForSolution") != null)
-                        {
-                            question.PlanForSolution = questionRow.Field<string>("PlanForSolution");
-                        }
-
-                        qSet.Questions.Add(question);
-                    }
-
-                    questionSets.Add(qSet);
-                }
-
-                return questionSets;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return new List<QuestionSet>();
-            }
-        }
-
-        static public List<QuestionSet> GetAllQuestionSetsOfStatus(string status)
-        {
-            try
-            {
-                DataTable questionsDataTable = QueryDatabase("SELECT * FROM StenerTable WHERE Status = '" + status + "'");
 
                 List<DataRow> qSetRows = new List<DataRow>();
                 List<int> qSetIds = new List<int>();
@@ -406,6 +249,9 @@ namespace BRAINS
             return null;
         }
 
+
+        //Is this modifying a table? if so tables should not be modified from code
+        //Usually tables are modified in a release then cannot be changed by users
         static public bool ModifyQuestionSet(QuestionSet updatedQSet)
         {
             string queryString =
