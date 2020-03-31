@@ -26,12 +26,8 @@ namespace BRAINS
             currentUser = user;
             stenerManagement = new StenerManagement();
             violationManagement = new ViolationManagement();
+        }
 
-        }
-        private void Business_Load(object sender, EventArgs e)
-        {
-            //CompleteStenerDataGridView.DataSource = GetDepartmentList();
-        }
         private void busniessViolationsrefreshButton_Click(object sender, EventArgs e)
         {
             BusinessViolationList.Items.Clear();
@@ -177,12 +173,13 @@ namespace BRAINS
             {
                 if (answerTextBox.Text != "")
                 {
+                    currentQuestionSet.Questions[currentQuestion - 1].Answer = answerTextBox.Text;
+                    currentQuestionSet.Questions[currentQuestion - 1].Compliance = complianceCheckBox.Checked;
+
                     if (complianceCheckBox.Checked == true)
                     {
                         if (evidenceLocationTextBox.Text != "")
                         {
-                            currentQuestionSet.Questions[currentQuestion - 1].Answer = answerTextBox.Text;
-                            currentQuestionSet.Questions[currentQuestion - 1].Compliance = complianceCheckBox.Checked;
                             currentQuestionSet.Questions[currentQuestion - 1].EvidenceLocation = evidenceLocationTextBox.Text;
                             currentQuestionSet.Questions[currentQuestion - 1].PlanForSolution = "";
 
@@ -193,8 +190,6 @@ namespace BRAINS
                     {
                         if (planForSolutionTextBox.Text != "")
                         {
-                            currentQuestionSet.Questions[currentQuestion - 1].Answer = answerTextBox.Text;
-                            currentQuestionSet.Questions[currentQuestion - 1].Compliance = complianceCheckBox.Checked;
                             currentQuestionSet.Questions[currentQuestion - 1].EvidenceLocation = "";
                             currentQuestionSet.Questions[currentQuestion - 1].PlanForSolution = planForSolutionTextBox.Text;
 
@@ -249,10 +244,11 @@ namespace BRAINS
                 {
                     if (complianceCheckBox.Checked == true)
                     {
+                        currentQuestionSet.Questions[currentQuestion - 1].Answer = answerTextBox.Text;
+                        currentQuestionSet.Questions[currentQuestion - 1].Compliance = complianceCheckBox.Checked;
+
                         if (evidenceLocationTextBox.Text != "")
                         {
-                            currentQuestionSet.Questions[currentQuestion - 1].Answer = answerTextBox.Text;
-                            currentQuestionSet.Questions[currentQuestion - 1].Compliance = complianceCheckBox.Checked;
                             currentQuestionSet.Questions[currentQuestion - 1].EvidenceLocation = evidenceLocationTextBox.Text;
                             currentQuestionSet.Questions[currentQuestion - 1].PlanForSolution = "";
 
@@ -263,8 +259,6 @@ namespace BRAINS
                     {
                         if (planForSolutionTextBox.Text != "")
                         {
-                            currentQuestionSet.Questions[currentQuestion - 1].Answer = answerTextBox.Text;
-                            currentQuestionSet.Questions[currentQuestion - 1].Compliance = complianceCheckBox.Checked;
                             currentQuestionSet.Questions[currentQuestion - 1].EvidenceLocation = "";
                             currentQuestionSet.Questions[currentQuestion - 1].PlanForSolution = planForSolutionTextBox.Text;
 
@@ -430,6 +424,5 @@ namespace BRAINS
                 }
             }
         }
-
     }
 }
