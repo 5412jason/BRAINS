@@ -14,8 +14,7 @@ namespace BRAINS
         private List<UserData> usersData;
         private List<Violation> violations;
         private UserData currentUser;
-
-
+        private stenerManagementMode currentStenerManagementMode = stenerManagementMode.None;
 
         private enum stenerManagementMode
         {
@@ -24,9 +23,6 @@ namespace BRAINS
             ModifyQuestion,
             AddQuestion
         }
-
-        private stenerManagementMode currentStenerManagementMode = stenerManagementMode.None;
-
 
         public Oversight()
         {
@@ -38,6 +34,7 @@ namespace BRAINS
             violationManagement = new ViolationManagement();
 
         }
+
         public Oversight(UserData user)
         {
             InitializeComponent();
@@ -47,17 +44,6 @@ namespace BRAINS
             accountManagement = new AccountManagement();
             violationManagement = new ViolationManagement();
             currentUser = user;
-        }
-
-
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void accountsTab_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void addDepartmentButton_Click(object sender, EventArgs e)
@@ -86,7 +72,6 @@ namespace BRAINS
         #region STENER_MANAGEMENT
         private void stenerManageRefreshBtn_Click(object sender, EventArgs e)
         {
-
             this.refreshStenerManagementList();
         }
 
@@ -128,6 +113,7 @@ namespace BRAINS
                 stenerManagementStatusLabel.Text = "Please select a question set to delete";
             }
         }
+        
         private void createQuestionSetButton_Click(object sender, EventArgs e)
         {
             departmentComboBox.Enabled = true;
@@ -286,17 +272,13 @@ namespace BRAINS
                     statusMessage = "Error modifying the question.";
                 }
             }
-            else if (currentStenerManagementMode == stenerManagementMode.None)
-            {
-
-            }
             else
             {
                 //error stuffs
+                statusMessage = "Error modifying the question.";
             }
 
             // disable everything if submission was successfull
-
             if (success == true)
             {
                 StenerManagementListView.Enabled = true;
@@ -425,11 +407,6 @@ namespace BRAINS
             }
         }
 
-        private void editViolation_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void RemoveDepartmentButton_Click(object sender, EventArgs e)
         {
             OversightRemoveDepartment form1 = new OversightRemoveDepartment();
@@ -521,17 +498,7 @@ namespace BRAINS
         {
             departmentList.Items.Clear();
             memberList.Items.Clear();
-            /*
-            List<string> departmentNames = departmentManagement.GetDepartmentNames();
 
-            foreach (string dept in departmentNames)
-            {
-                string[] row = { };
-                var listItem = new ListViewItem(row);
-                departmentList.Items.Add(dept);
-                
-            }
-            */
             List<Department> departmentNames = departmentManagement.getDepartments();
 
             foreach (Department dept in departmentNames)
@@ -609,15 +576,11 @@ namespace BRAINS
             }
         }
 
-        private void allUsersList_ItemSelectionChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void refreshAllUsers_Click(object sender, EventArgs e)
         {
             this.refreshallUsersList();
         }
+
         private void refreshallUsersList()
         {
             allUsersList.Items.Clear();

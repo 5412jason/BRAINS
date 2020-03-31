@@ -697,7 +697,6 @@
             this.allUsersList.TabIndex = 7;
             this.allUsersList.UseCompatibleStateImageBehavior = false;
             this.allUsersList.View = System.Windows.Forms.View.Details;
-            this.allUsersList.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.allUsersList_ItemSelectionChanged);
             // 
             // UserID
             // 
@@ -821,7 +820,6 @@
             this.accountsTab.TabIndex = 3;
             this.accountsTab.Text = "Accounts";
             this.accountsTab.UseVisualStyleBackColor = true;
-            this.accountsTab.Click += new System.EventHandler(this.accountsTab_Click);
             // 
             // accountManagementStatus
             // 
@@ -901,7 +899,6 @@
             this.accountList.TabIndex = 0;
             this.accountList.UseCompatibleStateImageBehavior = false;
             this.accountList.View = System.Windows.Forms.View.Details;
-            this.accountList.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // UUID
             // 
