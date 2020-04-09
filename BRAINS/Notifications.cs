@@ -23,6 +23,7 @@ namespace BRAINS
 
 
             // Time parameters
+
             var startTimeSpan = TimeSpan.Zero;
             var periodTimeSpan = TimeSpan.FromMinutes(5);
 
@@ -40,9 +41,9 @@ namespace BRAINS
                     foreach(QuestionSet qs in toBeDisplayed)
                     {
                         var statusString = qs.Status.ToString();
-                        totalString += statusString + " ";
+                        totalString += "Status: " + statusString + " StenerSetID: ";
                         var idString = qs.UniqueID.ToString();
-                        totalString += idString + ", ";
+                        totalString += idString + "; ";
                     }
                 }
                MessageBox.Show(totalString);

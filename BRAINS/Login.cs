@@ -13,6 +13,7 @@ namespace BRAINS
         private void loginButton_Click(object sender, EventArgs e)
         {
             AccountManagement accMan = new AccountManagement();
+            Notifications notifications = new Notifications();
             UserData user = accMan.Login(usernameTextBox.Text, passwordTextBox.Text);
             if (user != null)
             {
@@ -22,12 +23,14 @@ namespace BRAINS
 
                     Oversight Landingpage = new Oversight(user);
                     Landingpage.Show();
+                    notifications.StartProcess(user);
                     this.Close();
                 }
                 else
                 {
                     Business Landingpage = new Business(user);
                     Landingpage.Show();
+                    notifications.StartProcess(user);
                     this.Close();
 
                 }
