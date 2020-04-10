@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.IO;
 
 namespace BRAINS
 {
@@ -413,6 +414,40 @@ namespace BRAINS
                     else
                         backButton.Enabled = false;
                 }
+        }
+
+        public void EvidenceLocationButton_Click(object sender, EventArgs e)
+        {
+            // Show File Dialog Screen
+            DialogResult dialog = openFileDialog1.ShowDialog(); 
+
+            // Test the result
+            if (dialog == DialogResult.OK) 
+            {
+                string file = openFileDialog1.FileName;
+
+                string[] f = file.Split('\\');
+                
+                // Get File Name
+                string fn = f[(f.Length) - 1];
+                string dest = @"C:\Users\15862\Documents\GitHub\BRAINS\BRAINS" + fn;
+
+                // Copy file to destination folder
+                File.Copy(file, dest, true);
+
+                // Get current QuestionSet
+                var qSetID = Convert.ToInt32(completeQuestionSetListView.SelectedItems[0].SubItems[1].Text);
+
+                // Save to database
+                string q = "INSERT INTO [Brains].dbo.StenerTable VALUES('" + fn + "','" + dest + "') WHERE StenerSetUID = "+qSetID;
+
+                //Use Sql manager to query database
+                SqlManager.QueryDatabase(q);
+
+                // Show success
+                MessageBox.Show("Success");
+            }
+
         }
     }
 }
