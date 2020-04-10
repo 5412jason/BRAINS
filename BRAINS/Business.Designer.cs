@@ -380,12 +380,12 @@
             // 
             // violationUID
             // 
-            this.violationUID.Text = "ViolationUID";
+            this.violationUID.Text = "ViolationUid";
             this.violationUID.Width = 95;
             // 
             // oversightStenerSetUID
             // 
-            this.oversightStenerSetUID.Text = "StenerSetUID";
+            this.oversightStenerSetUID.Text = "StenerSetUid";
             this.oversightStenerSetUID.Width = 91;
             // 
             // oversightDepartment

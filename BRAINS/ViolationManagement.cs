@@ -2,54 +2,41 @@
 
 namespace BRAINS
 {
-    class ViolationManagement
+    internal class ViolationManagement
     {
         public List<Violation> GetViolationList()
         {
-            List<Violation> violate = SqlManager.GetAllViolations();
-            if(violate == null)
-            {
-                return new List<Violation>();
-            }
+            var violate = SqlManager.GetAllViolations();
+            if (violate == null) return new List<Violation>();
             return violate;
         }
-        public void RemoveViolation(int violationUID)
-        {
-            SqlManager.RemoveViolation(violationUID);
-        }
+
         public bool AddViolation(Violation violation)
         {
-            violation.ViolationUID = this.GetNextViolationID();
-            bool result = SqlManager.AddViolation(violation);
+            violation.ViolationUid = GetNextViolationID();
+            var result = SqlManager.AddViolation(violation);
             return result;
         }
-        public List<Violation> GetDepartmentViolations(int departmentID)
+
+        public List<Violation> GetDepartmentViolations(int departmentId)
         {
-            List<Violation> violations = SqlManager.GetDepartmentViolations(departmentID);
-            if(violations == null)
-            {
-                return new List<Violation>();
-            }
+            var violations = SqlManager.GetDepartmentViolations(departmentId);
+            if (violations == null) return new List<Violation>();
             return violations;
         }
+
         private int GetNextViolationID()
         {
-            List<Violation> violations = SqlManager.GetAllViolations();
-            int nextID = 0;
+            var violations = SqlManager.GetAllViolations();
+            var nextId = 0;
             if (violations != null)
-            {
-                foreach (Violation violation in violations)
-                {
-                    if (violation.ViolationUID > nextID)
-                    {
-                        nextID = violation.ViolationUID;
-                    }
-                }
-            }
+                foreach (var violation in violations)
+                    if (violation.ViolationUid > nextId)
+                        nextId = violation.ViolationUid;
 
-            nextID = nextID + 1;
+            nextId += 1;
 
-            return nextID;
+            return nextId;
         }
     }
 }

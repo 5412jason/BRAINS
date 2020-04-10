@@ -1,15 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace BRAINS
 {
     public partial class Business : Form
     {
-
-        private UserData currentUser;
-        private StenerManagement stenerManagement;
-        private ViolationManagement violationManagement;
+        private readonly UserData currentUser;
+        private readonly StenerManagement stenerManagement;
+        private readonly ViolationManagement violationManagement;
         private QuestionSet currentQuestionSet;
         private int currentQuestion;
 
@@ -32,10 +30,15 @@ namespace BRAINS
         {
             BusinessViolationList.Items.Clear();
 
-            List<Violation> violations = violationManagement.GetDepartmentViolations(currentUser.DepartmentUID);
-            foreach (Violation violate in violations)
+            var violations = violationManagement.GetDepartmentViolations(currentUser.DepartmentUid);
+            foreach (var violate in violations)
             {
-                string[] row = { violate.ViolationUID.ToString(), violate.StenerSetUID.ToString(), violate.DepartmentUID.ToString(), violate.ViolationDescription.ToString(), violate.Severity.ToString(), violate.ViolationDate.ToString("MM/dd/yyyy") };
+                string[] row =
+                {
+                    violate.ViolationUid.ToString(), violate.StenerSetUid.ToString(), violate.DepartmentUid.ToString(),
+                    violate.ViolationDescription, violate.Severity.ToString(),
+                    violate.ViolationDate.ToString("MM/dd/yyyy")
+                };
 
                 var listItem = new ListViewItem(row);
                 BusinessViolationList.Items.Add(listItem);
@@ -44,7 +47,7 @@ namespace BRAINS
 
         private void RefreshCompleteList_Click(object sender, EventArgs e)
         {
-            this.refreshQuestionSetList();
+            refreshQuestionSetList();
         }
 
         private void refreshQuestionSetList()
@@ -54,15 +57,21 @@ namespace BRAINS
                 completeStenerStatusLabel.Text = "No valid user logged in!";
                 return;
             }
-            int departmentID = currentUser.DepartmentUID;
+
+            var departmentID = currentUser.DepartmentUid;
 
             //get all question sets for the department
-            List<QuestionSet> qSets = stenerManagement.GetQuestionSetsForDepartment(departmentID);
+            var qSets = stenerManagement.GetQuestionSetsForDepartment(departmentID);
             completeQuestionSetListView.Items.Clear();
 
-            foreach(QuestionSet qSet in qSets)
+            foreach (var qSet in qSets)
             {
-                string[] row = { qSet.Priority.ToString(), qSet.UniqueID.ToString(), qSet.Questions.Count.ToString(), qSet.DueDate.ToString("MM/dd/yyyy"), qSet.Status.ToString(), qSet.Category, (qSet.SubmittedDate.Equals(new DateTime()) ? "" : qSet.SubmittedDate.ToString("MM/dd/yyyy")) };
+                string[] row =
+                {
+                    qSet.Priority.ToString(), qSet.UniqueID.ToString(), qSet.Questions.Count.ToString(),
+                    qSet.DueDate.ToString("MM/dd/yyyy"), qSet.Status, qSet.Category,
+                    qSet.SubmittedDate.Equals(new DateTime()) ? "" : qSet.SubmittedDate.ToString("MM/dd/yyyy")
+                };
                 var listItem = new ListViewItem(row);
 
                 completeQuestionSetListView.Items.Add(listItem);
@@ -73,7 +82,7 @@ namespace BRAINS
         {
             if (completeQuestionSetListView.SelectedItems.Count > 0)
             {
-                int qSetID = Convert.ToInt32(completeQuestionSetListView.SelectedItems[0].SubItems[1].Text);
+                var qSetID = Convert.ToInt32(completeQuestionSetListView.SelectedItems[0].SubItems[1].Text);
 
                 currentQuestionSet = stenerManagement.GetQuestionSet(qSetID);
 
@@ -101,7 +110,7 @@ namespace BRAINS
 
                     saveAndCloseSetButton.Enabled = true;
 
-                    questionCountTextBox.Text = currentQuestion + "/" + currentQuestionSet.Questions.Count.ToString();
+                    questionCountTextBox.Text = currentQuestion + "/" + currentQuestionSet.Questions.Count;
                     questionBodyTextBox.Text = currentQuestionSet.Questions[currentQuestion - 1].QuestionText;
                     complianceCheckBox.Checked = currentQuestionSet.Questions[currentQuestion - 1].Compliance;
                     answerTextBox.Text = currentQuestionSet.Questions[currentQuestion - 1].Answer;
@@ -110,7 +119,7 @@ namespace BRAINS
 
                     if (currentQuestionSet.Status != "SUBMITTED" && currentQuestionSet.Status != "APPROVED")
                     {
-                        if (complianceCheckBox.Checked == true)
+                        if (complianceCheckBox.Checked)
                         {
                             planForSolutionTextBox.Enabled = false;
                             evidenceLocationTextBox.Enabled = true;
@@ -126,23 +135,18 @@ namespace BRAINS
                     {
                         nextButton.Enabled = false;
                         if (currentQuestionSet.Status != "SUBMITTED" && currentQuestionSet.Status != "APPROVED")
-                        {
                             submitQuestionSetButton.Enabled = true;
-                        }
                     }
                     else
                     {
                         nextButton.Enabled = true;
                         submitQuestionSetButton.Enabled = false;
                     }
+
                     if (currentQuestion > 1)
-                    {
                         backButton.Enabled = true;
-                    }
                     else
-                    {
                         backButton.Enabled = false;
-                    }
                 }
             }
         }
@@ -151,7 +155,7 @@ namespace BRAINS
         {
             if (currentQuestionSet.Status != "SUBMITTED" && currentQuestionSet.Status != "APPROVED")
             {
-                if (complianceCheckBox.Checked == true)
+                if (complianceCheckBox.Checked)
                 {
                     planForSolutionTextBox.Enabled = false;
                     evidenceLocationTextBox.Enabled = true;
@@ -168,19 +172,19 @@ namespace BRAINS
         {
             // check that the answer is not empty
             // check the stuff for compliance
-            bool passed = false;
+            var passed = false;
             if (currentQuestionSet.Status != "SUBMITTED" && currentQuestionSet.Status != "APPROVED")
-            {
                 if (answerTextBox.Text != "")
                 {
                     currentQuestionSet.Questions[currentQuestion - 1].Answer = answerTextBox.Text;
                     currentQuestionSet.Questions[currentQuestion - 1].Compliance = complianceCheckBox.Checked;
 
-                    if (complianceCheckBox.Checked == true)
+                    if (complianceCheckBox.Checked)
                     {
                         if (evidenceLocationTextBox.Text != "")
                         {
-                            currentQuestionSet.Questions[currentQuestion - 1].EvidenceLocation = evidenceLocationTextBox.Text;
+                            currentQuestionSet.Questions[currentQuestion - 1].EvidenceLocation =
+                                evidenceLocationTextBox.Text;
                             currentQuestionSet.Questions[currentQuestion - 1].PlanForSolution = "";
 
                             passed = true;
@@ -191,19 +195,19 @@ namespace BRAINS
                         if (planForSolutionTextBox.Text != "")
                         {
                             currentQuestionSet.Questions[currentQuestion - 1].EvidenceLocation = "";
-                            currentQuestionSet.Questions[currentQuestion - 1].PlanForSolution = planForSolutionTextBox.Text;
+                            currentQuestionSet.Questions[currentQuestion - 1].PlanForSolution =
+                                planForSolutionTextBox.Text;
 
                             passed = true;
                         }
                     }
                 }
-            }
-            if(passed == true || (currentQuestionSet.Status == "SUBMITTED" || currentQuestionSet.Status == "APPROVED"))
-            {
+
+            if (passed || currentQuestionSet.Status == "SUBMITTED" || currentQuestionSet.Status == "APPROVED")
                 if (currentQuestion + 1 <= currentQuestionSet.Questions.Count)
                 {
                     currentQuestion = currentQuestion + 1;
-                    questionCountTextBox.Text = currentQuestion + "/" + currentQuestionSet.Questions.Count.ToString();
+                    questionCountTextBox.Text = currentQuestion + "/" + currentQuestionSet.Questions.Count;
                     questionBodyTextBox.Text = currentQuestionSet.Questions[currentQuestion - 1].QuestionText;
                     complianceCheckBox.Checked = currentQuestionSet.Questions[currentQuestion - 1].Compliance;
                     answerTextBox.Text = currentQuestionSet.Questions[currentQuestion - 1].Answer;
@@ -214,42 +218,37 @@ namespace BRAINS
                     {
                         nextButton.Enabled = false;
                         if (currentQuestionSet.Status != "SUBMITTED" && currentQuestionSet.Status != "APPROVED")
-                        {
                             submitQuestionSetButton.Enabled = true;
-                        }
                     }
                     else
                     {
                         nextButton.Enabled = true;
                         submitQuestionSetButton.Enabled = false;
                     }
-                    if(currentQuestion > 1)
-                    {
+
+                    if (currentQuestion > 1)
                         backButton.Enabled = true;
-                    }
                     else
-                    {
                         backButton.Enabled = false;
-                    }
                 }
-            }
         }
 
         private void SubmitQuestionSetButton_Click(object sender, EventArgs e)
         {
             if (currentQuestionSet.Status != "SUBMITTED" && currentQuestionSet.Status != "APPROVED")
             {
-                bool passed = false;
+                var passed = false;
                 if (answerTextBox.Text != "")
                 {
-                    if (complianceCheckBox.Checked == true)
+                    if (complianceCheckBox.Checked)
                     {
                         currentQuestionSet.Questions[currentQuestion - 1].Answer = answerTextBox.Text;
                         currentQuestionSet.Questions[currentQuestion - 1].Compliance = complianceCheckBox.Checked;
 
                         if (evidenceLocationTextBox.Text != "")
                         {
-                            currentQuestionSet.Questions[currentQuestion - 1].EvidenceLocation = evidenceLocationTextBox.Text;
+                            currentQuestionSet.Questions[currentQuestion - 1].EvidenceLocation =
+                                evidenceLocationTextBox.Text;
                             currentQuestionSet.Questions[currentQuestion - 1].PlanForSolution = "";
 
                             passed = true;
@@ -260,19 +259,21 @@ namespace BRAINS
                         if (planForSolutionTextBox.Text != "")
                         {
                             currentQuestionSet.Questions[currentQuestion - 1].EvidenceLocation = "";
-                            currentQuestionSet.Questions[currentQuestion - 1].PlanForSolution = planForSolutionTextBox.Text;
+                            currentQuestionSet.Questions[currentQuestion - 1].PlanForSolution =
+                                planForSolutionTextBox.Text;
 
                             passed = true;
                         }
                     }
                 }
-                if (passed == true)
+
+                if (passed)
                 {
                     currentQuestionSet.Status = "SUBMITTED";
                     currentQuestionSet.SubmittedDate = DateTime.Now;
-                    bool result = stenerManagement.SubmitQuestionSet(currentQuestionSet);
+                    var result = stenerManagement.SubmitQuestionSet(currentQuestionSet);
 
-                    if (result == true)
+                    if (result)
                     {
                         questionCountTextBox.Text = "";
                         questionBodyTextBox.Text = "";
@@ -312,17 +313,12 @@ namespace BRAINS
             if (currentQuestionSet.Status != "SUBMITTED" && currentQuestionSet.Status != "APPROVED")
             {
                 currentQuestionSet.Status = "INPROGRESS";
-                bool result = stenerManagement.SubmitQuestionSet(currentQuestionSet);
+                var result = stenerManagement.SubmitQuestionSet(currentQuestionSet);
 
-                if (result == true)
-                {
-
+                if (result)
                     completeStenerStatusLabel.Text = "Saved Successfully!";
-                }
                 else
-                {
                     completeStenerStatusLabel.Text = "Error Saving!";
-                }
             }
 
             questionCountTextBox.Text = "";
@@ -343,32 +339,32 @@ namespace BRAINS
             submitQuestionSetButton.Enabled = false;
             completeQuestionSetListView.Enabled = true;
             workOnSelectedStenerButton.Enabled = true;
-            refreshCompleteListButton.Enabled = true; ;
+            refreshCompleteListButton.Enabled = true;
+            ;
 
             currentQuestion = 1;
             currentQuestionSet = null;
 
             refreshQuestionSetList();
             completeStenerStatusLabel.Text = "Closed Successfully!";
-            
         }
 
         private void backButton_Click(object sender, EventArgs e)
         {
             // check that the answer is not empty
             // check the stuff for compliance
-            bool passed = false;
+            var passed = false;
             if (currentQuestionSet.Status != "SUBMITTED" && currentQuestionSet.Status != "APPROVED")
-            {
                 if (answerTextBox.Text != "")
                 {
-                    if (complianceCheckBox.Checked == true)
+                    if (complianceCheckBox.Checked)
                     {
                         if (evidenceLocationTextBox.Text != "")
                         {
                             currentQuestionSet.Questions[currentQuestion - 1].Answer = answerTextBox.Text;
                             currentQuestionSet.Questions[currentQuestion - 1].Compliance = complianceCheckBox.Checked;
-                            currentQuestionSet.Questions[currentQuestion - 1].EvidenceLocation = evidenceLocationTextBox.Text;
+                            currentQuestionSet.Questions[currentQuestion - 1].EvidenceLocation =
+                                evidenceLocationTextBox.Text;
                             currentQuestionSet.Questions[currentQuestion - 1].PlanForSolution = "";
 
                             passed = true;
@@ -381,19 +377,19 @@ namespace BRAINS
                             currentQuestionSet.Questions[currentQuestion - 1].Answer = answerTextBox.Text;
                             currentQuestionSet.Questions[currentQuestion - 1].Compliance = complianceCheckBox.Checked;
                             currentQuestionSet.Questions[currentQuestion - 1].EvidenceLocation = "";
-                            currentQuestionSet.Questions[currentQuestion - 1].PlanForSolution = planForSolutionTextBox.Text;
+                            currentQuestionSet.Questions[currentQuestion - 1].PlanForSolution =
+                                planForSolutionTextBox.Text;
 
                             passed = true;
                         }
                     }
                 }
-            }
-            if (passed == true || (currentQuestionSet.Status == "SUBMITTED" || currentQuestionSet.Status == "APPROVED"))
-            {
+
+            if (passed || currentQuestionSet.Status == "SUBMITTED" || currentQuestionSet.Status == "APPROVED")
                 if (currentQuestion - 1 > 0)
                 {
                     currentQuestion = currentQuestion - 1;
-                    questionCountTextBox.Text = currentQuestion + "/" + currentQuestionSet.Questions.Count.ToString();
+                    questionCountTextBox.Text = currentQuestion + "/" + currentQuestionSet.Questions.Count;
                     questionBodyTextBox.Text = currentQuestionSet.Questions[currentQuestion - 1].QuestionText;
                     complianceCheckBox.Checked = currentQuestionSet.Questions[currentQuestion - 1].Compliance;
                     answerTextBox.Text = currentQuestionSet.Questions[currentQuestion - 1].Answer;
@@ -404,25 +400,19 @@ namespace BRAINS
                     {
                         nextButton.Enabled = false;
                         if (currentQuestionSet.Status != "SUBMITTED" && currentQuestionSet.Status != "APPROVED")
-                        {
                             submitQuestionSetButton.Enabled = true;
-                        }
                     }
                     else
                     {
                         nextButton.Enabled = true;
                         submitQuestionSetButton.Enabled = false;
                     }
+
                     if (currentQuestion > 1)
-                    {
                         backButton.Enabled = true;
-                    }
                     else
-                    {
                         backButton.Enabled = false;
-                    }
                 }
-            }
         }
     }
 }

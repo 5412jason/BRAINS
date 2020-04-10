@@ -39,7 +39,7 @@
             this.departmentNameText.Name = "departmentNameText";
             this.departmentNameText.Size = new System.Drawing.Size(259, 20);
             this.departmentNameText.TabIndex = 9;
-            this.departmentNameText.TextChanged += new System.EventHandler(this.departmentNameText_TextChanged);
+            this.departmentNameText.TextChanged += new System.EventHandler(this.DepartmentNameText_TextChanged);
             // 
             // label1
             // 
@@ -58,7 +58,7 @@
             this.deleteDepartmentButton.TabIndex = 10;
             this.deleteDepartmentButton.Text = "Delete Department";
             this.deleteDepartmentButton.UseVisualStyleBackColor = true;
-            this.deleteDepartmentButton.Click += new System.EventHandler(this.deleteDepartmentButton_Click);
+            this.deleteDepartmentButton.Click += new System.EventHandler(this.DeleteDepartmentButton_Click);
             // 
             // OversightRemoveDepartment
             // 
@@ -70,7 +70,6 @@
             this.Controls.Add(this.label1);
             this.Name = "OversightRemoveDepartment";
             this.Text = "OversightRemoveDepartment";
-            this.Load += new System.EventHandler(this.OversightRemoveDepartment_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

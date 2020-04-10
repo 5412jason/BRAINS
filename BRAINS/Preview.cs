@@ -2,38 +2,36 @@
 {
     public class Preview
     {
-        public string previewStener(int qID)
-        { 
-            QuestionSet resultsByID = SqlManager.FindQuestionSet(qID);
+        public string PreviewStener(int qID)
+        {
+            var questionSet = SqlManager.FindQuestionSet(qID);
 
-
-            string resultStr = "";
+            var resultStr = "";
 
             resultStr += "Assigned Department : ";
-            resultStr += " " + resultsByID.AssignedDepartment + "\r\n";
+            resultStr += " " + questionSet.AssignedDepartment + "\r\n";
             resultStr += "Category : ";
-            resultStr += " " + resultsByID.Category + "\r\n";
+            resultStr += " " + questionSet.Category + "\r\n";
             resultStr += "Due Date : ";
-            resultStr += " " + resultsByID.DueDate + "\r\n";
+            resultStr += " " + questionSet.DueDate + "\r\n";
             resultStr += "Priority : ";
-            resultStr += " " + resultsByID.Priority + "\r\n";
+            resultStr += " " + questionSet.Priority + "\r\n";
             resultStr += "Question Count: ";
-            resultStr += " " + resultsByID.QuestionCount + "\r\n";
+            resultStr += " " + questionSet.QuestionCount + "\r\n";
             resultStr += "Submitted Date : ";
-            resultStr += " " + resultsByID.SubmittedDate + "\r\n";
+            resultStr += " " + questionSet.SubmittedDate + "\r\n";
             resultStr += "Unique ID : ";
-            resultStr += " " + resultsByID.UniqueID + "\r\n";
+            resultStr += " " + questionSet.UniqueID + "\r\n";
             resultStr += "Violated : ";
-            resultStr += " " + resultsByID.Violated + "\r\n";
+            resultStr += " " + questionSet.Violated + "\r\n";
             resultStr += "Status : ";
-            resultStr += " " + resultsByID.Status + "\r\n";
-           
-            
+            resultStr += " " + questionSet.Status + "\r\n";
 
-            foreach (Question question in resultsByID.Questions)
+
+            foreach (var question in questionSet.Questions)
             {
                 resultStr += "Question ID: ";
-                resultStr += question.QuestionID + "\r\n";
+                resultStr += question.QuestionId + "\r\n";
                 resultStr += "Question: ";
                 resultStr += question.QuestionText + "\r\n";
                 resultStr += "Answer: ";
@@ -44,7 +42,6 @@
                 resultStr += question.Compliance + "\r\n";
                 resultStr += "Plan For Solution: ";
                 resultStr += question.PlanForSolution + "\r\n";
-
             }
 
             return resultStr;

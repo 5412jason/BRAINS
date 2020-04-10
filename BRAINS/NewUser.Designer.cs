@@ -110,7 +110,7 @@
             this.newUserOK.TabIndex = 8;
             this.newUserOK.Text = "OK";
             this.newUserOK.UseVisualStyleBackColor = true;
-            this.newUserOK.Click += new System.EventHandler(this.newUserOK_Click);
+            this.newUserOK.Click += new System.EventHandler(this.NewUserOK_Click);
             // 
             // newUserCancel
             // 

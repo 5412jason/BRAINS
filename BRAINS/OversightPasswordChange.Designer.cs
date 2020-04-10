@@ -44,7 +44,6 @@
             this.label2.Size = new System.Drawing.Size(32, 13);
             this.label2.TabIndex = 1;
             this.label2.Text = "New:";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // OversightPasswordChangeNewTextBox
             // 
@@ -62,7 +61,7 @@
             this.oversightPasswordChangeDialogCancel.TabIndex = 5;
             this.oversightPasswordChangeDialogCancel.Text = "Cancel";
             this.oversightPasswordChangeDialogCancel.UseVisualStyleBackColor = true;
-            this.oversightPasswordChangeDialogCancel.Click += new System.EventHandler(this.oversightPasswordChangeDialogCancel_Click);
+            this.oversightPasswordChangeDialogCancel.Click += new System.EventHandler(this.OversightPasswordChangeDialogCancel_Click);
             // 
             // confirmPassword
             // 
@@ -81,7 +80,7 @@
             this.confirmPass.TabIndex = 7;
             this.confirmPass.Text = "Confirm Password:";
             // 
-            // changePassword
+            // ChangePassword
             // 
             this.changePassword.Location = new System.Drawing.Point(157, 155);
             this.changePassword.Name = "changePassword";
@@ -89,7 +88,7 @@
             this.changePassword.TabIndex = 8;
             this.changePassword.Text = "Change";
             this.changePassword.UseVisualStyleBackColor = true;
-            this.changePassword.Click += new System.EventHandler(this.changePassword_Click);
+            this.changePassword.Click += new System.EventHandler(this.ChangePassword_Click);
             // 
             // OversightPasswordChange
             // 
@@ -104,7 +103,6 @@
             this.Controls.Add(this.label2);
             this.Name = "OversightPasswordChange";
             this.Text = "OversightPasswordChange";
-            this.Load += new System.EventHandler(this.OversightPasswordChange_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

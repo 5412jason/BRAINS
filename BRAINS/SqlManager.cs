@@ -1,37 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Configuration;
 
 namespace BRAINS
 {
-    static class SqlManager
+    internal static class SqlManager
     {
-        static private DataTable QueryDatabase(string query)
+        private static DataTable QueryDatabase(string query)
         {
             try
             {
-                DataTable dataTable = new DataTable();
+                var dataTable = new DataTable();
 
-                string connString = ConfigurationManager.ConnectionStrings["Brains"].ConnectionString;
+                var connString = ConfigurationManager.ConnectionStrings["Brains"].ConnectionString;
 
-                using (SqlConnection con = new SqlConnection(connString))
+                using (var con = new SqlConnection(connString))
                 {
-
-                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    using (var cmd = new SqlCommand(query, con))
                     {
-
                         con.Open();
 
-                        SqlDataReader reader = cmd.ExecuteReader();
+                        var reader = cmd.ExecuteReader();
 
                         dataTable.Load(reader);
 
                         con.Close();
                     }
-
                 }
+
                 return dataTable;
             }
             catch (Exception e)
@@ -42,16 +40,15 @@ namespace BRAINS
         }
 
         // Since we always use try and catch we do not need to have a bool function
-        static private bool NonQueryDatabase(string query)
+        private static bool NonQueryDatabase(string query)
         {
             try
             {
-                string connString = ConfigurationManager.ConnectionStrings["Brains"].ConnectionString;
+                var connString = ConfigurationManager.ConnectionStrings["Brains"].ConnectionString;
 
-                using (SqlConnection con = new SqlConnection(connString))
+                using (var con = new SqlConnection(connString))
                 {
-
-                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    using (var cmd = new SqlCommand(query, con))
                     {
                         con.Open();
 
@@ -59,8 +56,8 @@ namespace BRAINS
 
                         con.Close();
                     }
-
                 }
+
                 return true;
             }
             catch (Exception e)
@@ -70,11 +67,11 @@ namespace BRAINS
             }
         }
 
-
         #region QUESTION_SETS
+
         // If requesting for all departments, pass a negative department id.
         // If requesting for all status, pass and empty status string.
-        static public List<QuestionSet> GetAllQuestionSets(int departmentID, string status)
+        public static List<QuestionSet> GetAllQuestionSets(int departmentID, string status)
         {
             try
             {
@@ -83,15 +80,12 @@ namespace BRAINS
                 if (departmentID >= 0)
                 {
                     if (status == "")
-                    {
-                        questionsDataTable = QueryDatabase("SELECT * FROM StenerTable WHERE DepartmentUID = " + departmentID.ToString());
-                    }
+                        questionsDataTable =
+                            QueryDatabase("SELECT * FROM StenerTable WHERE DepartmentUid = " + departmentID);
                     else
-                    {
-                        questionsDataTable = QueryDatabase("SELECT * FROM StenerTable WHERE DepartmentUID = "
-                                                                     + departmentID.ToString() + " AND "
-                                                                     + " Status = '" + status + "'");
-                    }
+                        questionsDataTable = QueryDatabase("SELECT * FROM StenerTable WHERE DepartmentUid = "
+                                                           + departmentID + " AND "
+                                                           + " Status = '" + status + "'");
                 }
                 else if (status != "")
                 {
@@ -102,73 +96,64 @@ namespace BRAINS
                     questionsDataTable = QueryDatabase("SELECT * FROM StenerTable");
                 }
 
-                List<DataRow> qSetRows = new List<DataRow>();
-                List<int> qSetIds = new List<int>();
+                var qSetRows = new List<DataRow>();
+                var qSetIds = new List<int>();
 
                 foreach (DataRow row in questionsDataTable.Rows)
-                {
-                    if (qSetIds.Contains(row.Field<int>("StenerSetUID")) == false)
+                    if (qSetIds.Contains(row.Field<int>("StenerSetUid")) == false)
                     {
-                        qSetIds.Add(row.Field<int>("StenerSetUID"));
+                        qSetIds.Add(row.Field<int>("StenerSetUid"));
                         qSetRows.Add(row);
                     }
-                }
 
-                List<QuestionSet> questionSets = new List<QuestionSet>();
-                foreach (DataRow row in qSetRows)
+                var questionSets = new List<QuestionSet>();
+                foreach (var row in qSetRows)
                 {
-                    QuestionSet qSet = new QuestionSet();
-                    qSet.UniqueID = row.Field<int>("StenerSetUID");
-                    qSet.AssignedDepartment = row.Field<int>("DepartmentUID");
-                    qSet.Priority = row.Field<int>("Priority");
-                    qSet.Violated = Convert.ToBoolean(row.Field<int>("Violated"));
-
-                    if (row.Field<string>("Category") != null)
+                    var qSet = new QuestionSet
                     {
-                        qSet.Category = row.Field<string>("Category");
-                    }
+                        UniqueID = row.Field<int>("StenerSetUid"),
+                        AssignedDepartment = row.Field<int>("DepartmentUid"),
+                        Priority = row.Field<int>("Priority"),
+                        Violated = Convert.ToBoolean(row.Field<int>("Violated"))
+                    };
+
+                    if (row.Field<string>("Category") != null) qSet.Category = row.Field<string>("Category");
                     if (row.Field<string>("DueDate") != null)
                     {
                         //test
-                        string test = row.Field<string>("DueDate");
-                        qSet.DueDate = DateTime.ParseExact(row.Field<string>("DueDate"), "MM/dd/yyyy hh:mm:ss tt", null);
+                        var test = row.Field<string>("DueDate");
+                        qSet.DueDate =
+                            DateTime.ParseExact(row.Field<string>("DueDate"), "MM/dd/yyyy hh:mm:ss tt", null);
                     }
+
                     if (row.Field<string>("SubmittedDate") != null)
                     {
-                        string test = row.Field<string>("SubmittedDate");
-                        qSet.SubmittedDate = DateTime.ParseExact(row.Field<string>("SubmittedDate"), "MM/dd/yyyy hh:mm:ss tt", null);
+                        var test = row.Field<string>("SubmittedDate");
+                        qSet.SubmittedDate = DateTime.ParseExact(row.Field<string>("SubmittedDate"),
+                            "MM/dd/yyyy hh:mm:ss tt", null);
                     }
-                    if (row.Field<string>("Status") != null)
-                    {
-                        qSet.Status = row.Field<string>("Status");
-                    }
+
+                    if (row.Field<string>("Status") != null) qSet.Status = row.Field<string>("Status");
 
                     qSet.Questions = new List<Question>();
 
-                    DataTable questionTable = QueryDatabase("SELECT * FROM StenerTable WHERE StenerSetUID = " + qSet.UniqueID.ToString());
+                    var questionTable =
+                        QueryDatabase("SELECT * FROM StenerTable WHERE StenerSetUid = " + qSet.UniqueID);
 
                     foreach (DataRow questionRow in questionTable.Rows)
                     {
-                        Question question = new Question();
-                        question.QuestionID = questionRow.Field<int>("QuestionUID");
+                        var question = new Question();
+                        question.QuestionId = questionRow.Field<int>("QuestionUID");
                         question.Compliance = Convert.ToBoolean(questionRow.Field<int>("Compliance"));
 
                         if (questionRow.Field<string>("Question") != null)
-                        {
                             question.QuestionText = questionRow.Field<string>("Question");
-                        }
                         if (questionRow.Field<string>("Answer") != null)
-                        {
                             question.Answer = questionRow.Field<string>("Answer");
-                        }
                         if (questionRow.Field<string>("LocationEvidence") != null)
-                        {
                             question.EvidenceLocation = questionRow.Field<string>("LocationEvidence");
-                        }
                         if (questionRow.Field<string>("PlanForSolution") != null)
-                        {
                             question.PlanForSolution = questionRow.Field<string>("PlanForSolution");
-                        }
 
                         qSet.Questions.Add(question);
                     }
@@ -185,60 +170,47 @@ namespace BRAINS
             }
         }
 
-        static public QuestionSet FindQuestionSet(int qSetID)
+        public static QuestionSet FindQuestionSet(int qSetID)
         {
-            string query = "SELECT * FROM StenerTable WHERE StenerSetUID = " + qSetID.ToString();
+            var query = "SELECT * FROM StenerTable WHERE StenerSetUid = " + qSetID;
 
-            DataTable dataTable = QueryDatabase(query);
+            var dataTable = QueryDatabase(query);
             if (dataTable.Rows.Count > 0)
             {
-                DataRow row = dataTable.Rows[0];
+                var row = dataTable.Rows[0];
 
-                QuestionSet qSet = new QuestionSet();
-                qSet.UniqueID = row.Field<int>("StenerSetUID");
-                qSet.AssignedDepartment = row.Field<int>("DepartmentUID");
-                qSet.Priority = row.Field<int>("Priority");
-                qSet.Violated = Convert.ToBoolean(row.Field<int>("Violated"));
-
-                if (row.Field<string>("Category") != null)
+                var qSet = new QuestionSet
                 {
-                    qSet.Category = row.Field<string>("Category");
-                }
+                    UniqueID = row.Field<int>("StenerSetUid"),
+                    AssignedDepartment = row.Field<int>("DepartmentUid"),
+                    Priority = row.Field<int>("Priority"),
+                    Violated = Convert.ToBoolean(row.Field<int>("Violated"))
+                };
+
+                if (row.Field<string>("Category") != null) qSet.Category = row.Field<string>("Category");
                 if (row.Field<string>("DueDate") != null)
-                {
                     qSet.DueDate = DateTime.ParseExact(row.Field<string>("DueDate"), "MM/dd/yyyy hh:mm:ss tt", null);
-                }
                 if (row.Field<string>("SubmittedDate") != null)
-                {
-                    qSet.SubmittedDate = DateTime.ParseExact(row.Field<string>("SubmittedDate"), "MM/dd/yyyy hh:mm:ss tt", null);
-                }
-                if (row.Field<string>("Status") != null)
-                {
-                    qSet.Status = row.Field<string>("Status");
-                }
+                    qSet.SubmittedDate = DateTime.ParseExact(row.Field<string>("SubmittedDate"),
+                        "MM/dd/yyyy hh:mm:ss tt", null);
+                if (row.Field<string>("Status") != null) qSet.Status = row.Field<string>("Status");
 
                 foreach (DataRow questionRow in dataTable.Rows)
                 {
-                    Question question = new Question();
-                    question.QuestionID = questionRow.Field<int>("QuestionUID");
-                    question.Compliance = Convert.ToBoolean(questionRow.Field<int>("Compliance"));
+                    var question = new Question
+                    {
+                        QuestionId = questionRow.Field<int>("QuestionUID"),
+                        Compliance = Convert.ToBoolean(questionRow.Field<int>("Compliance"))
+                    };
 
                     if (questionRow.Field<string>("Question") != null)
-                    {
                         question.QuestionText = questionRow.Field<string>("Question");
-                    }
                     if (questionRow.Field<string>("Answer") != null)
-                    {
                         question.Answer = questionRow.Field<string>("Answer");
-                    }
                     if (questionRow.Field<string>("LocationEvidence") != null)
-                    {
                         question.EvidenceLocation = questionRow.Field<string>("LocationEvidence");
-                    }
                     if (questionRow.Field<string>("PlanForSolution") != null)
-                    {
                         question.PlanForSolution = questionRow.Field<string>("PlanForSolution");
-                    }
 
                     qSet.Questions.Add(question);
                 }
@@ -252,214 +224,194 @@ namespace BRAINS
 
         //Is this modifying a table? if so tables should not be modified from code
         //Usually tables are modified in a release then cannot be changed by users
-        static public bool ModifyQuestionSet(QuestionSet updatedQSet)
+        public static bool ModifyQuestionSet(QuestionSet updatedQSet)
         {
-            string queryString =
-                "UPDATE StenerTable SET DepartmentUID = '" + updatedQSet.AssignedDepartment.ToString()
-                + "', Priority = '" + updatedQSet.Priority.ToString()
-                + "', DueDate = '" + updatedQSet.DueDate.ToString("MM/dd/yyyy hh:mm:ss tt")
-                + "', SubmittedDate = '" + updatedQSet.SubmittedDate.ToString("MM/dd/yyyy hh:mm:ss tt")
-                + "', Status = '" + updatedQSet.Status
-                + "', Category = '" + updatedQSet.Category
-                + "' WHERE StenerSetUID = '" + updatedQSet.UniqueID.ToString() + "'";
+            var queryString =
+                "UPDATE StenerTable SET DepartmentUid = '" + updatedQSet.AssignedDepartment
+                                                           + "', Priority = '" + updatedQSet.Priority
+                                                           + "', DueDate = '" +
+                                                           updatedQSet.DueDate.ToString("MM/dd/yyyy hh:mm:ss tt")
+                                                           + "', SubmittedDate = '" +
+                                                           updatedQSet.SubmittedDate.ToString("MM/dd/yyyy hh:mm:ss tt")
+                                                           + "', Status = '" + updatedQSet.Status
+                                                           + "', Category = '" + updatedQSet.Category
+                                                           + "' WHERE StenerSetUid = '" + updatedQSet.UniqueID + "'";
 
-            bool passed = NonQueryDatabase(queryString);
+            var passed = NonQueryDatabase(queryString);
 
             return passed;
         }
 
-        static public bool AddQuestion(QuestionSet questionSet, Question question)
+        public static bool AddQuestion(QuestionSet questionSet, Question question)
         {
-            string queryString =
-                "INSERT INTO StenerTable(QuestionUID, StenerSetUID, DepartmentUID, Category, Question, Answer, LocationEvidence, Priority, DueDate, Status, Compliance, PlanForSolution, SubmittedDate, Violated)"
-                + "VALUES('" + question.QuestionID.ToString() + "','" + questionSet.UniqueID.ToString() + "','"
-                + questionSet.AssignedDepartment.ToString() + "','" + questionSet.Category + "','"
+            var queryString =
+                "INSERT INTO StenerTable(QuestionUID, StenerSetUid, DepartmentUid, Category, Question, Answer, LocationEvidence, Priority, DueDate, Status, Compliance, PlanForSolution, SubmittedDate, Violated)"
+                + "VALUES('" + question.QuestionId + "','" + questionSet.UniqueID + "','"
+                + questionSet.AssignedDepartment + "','" + questionSet.Category + "','"
                 + question.QuestionText + "','" + question.Answer + "','" + question.EvidenceLocation + "','"
-                + questionSet.Priority.ToString() + "','" + questionSet.DueDate.ToString("MM/dd/yyyy hh:mm:ss tt") + "','"
+                + questionSet.Priority + "','" + questionSet.DueDate.ToString("MM/dd/yyyy hh:mm:ss tt") + "','"
                 + questionSet.Status + "','" + Convert.ToInt32(question.Compliance) + "','"
-                + question.PlanForSolution + "','" + questionSet.SubmittedDate.ToString("MM/dd/yyyy hh:mm:ss tt") + "','" + Convert.ToInt32(questionSet.Violated) + "')";
+                + question.PlanForSolution + "','" + questionSet.SubmittedDate.ToString("MM/dd/yyyy hh:mm:ss tt") +
+                "','" + Convert.ToInt32(questionSet.Violated) + "')";
 
-            bool passed = NonQueryDatabase(queryString);
-
-            return passed;
-        }
-
-        static public bool RemoveQuestion(int questionUID, int qSetUID)
-        {
-            string queryString = "DELETE FROM StenerTable WHERE QuestionUID = '" + questionUID.ToString() + "' AND StenerSetUID = '" + qSetUID.ToString() + "'";
-
-            bool passed = NonQueryDatabase(queryString);
+            var passed = NonQueryDatabase(queryString);
 
             return passed;
         }
 
-        static public bool ModifyQuestion(Question question, int qSetID)
+        public static bool RemoveQuestion(int questionUID, int qSetUID)
         {
-            string queryString =
+            var queryString = "DELETE FROM StenerTable WHERE QuestionUID = '" + questionUID + "' AND StenerSetUid = '" +
+                              qSetUID + "'";
+
+            var passed = NonQueryDatabase(queryString);
+
+            return passed;
+        }
+
+        public static bool ModifyQuestion(Question question, int qSetID)
+        {
+            var queryString =
                 "UPDATE StenerTable SET "
-                    + " Question = '" + question.QuestionText
-                    + "', Answer = '" + question.Answer
-                    + "', LocationEvidence = '" + question.EvidenceLocation
-                    + "', PlanForSolution = '" + question.PlanForSolution
-                    + "', Compliance = '" + Convert.ToInt32(question.Compliance).ToString()
-                    + "' WHERE QuestionUID = '" + question.QuestionID.ToString() + "' AND StenerSetUID = '" + qSetID.ToString() + "'";
+                + " Question = '" + question.QuestionText
+                + "', Answer = '" + question.Answer
+                + "', LocationEvidence = '" + question.EvidenceLocation
+                + "', PlanForSolution = '" + question.PlanForSolution
+                + "', Compliance = '" + Convert.ToInt32(question.Compliance)
+                + "' WHERE QuestionUID = '" + question.QuestionId + "' AND StenerSetUid = '" + qSetID + "'";
 
-            bool passed = NonQueryDatabase(queryString);
+            var passed = NonQueryDatabase(queryString);
 
             return passed;
         }
 
-        static public bool CreateNewQuestionSet(QuestionSet questionSet)
+        public static bool CreateNewQuestionSet(QuestionSet questionSet)
         {
-            foreach (Question question in questionSet.Questions)
+            foreach (var question in questionSet.Questions)
             {
-                string queryString =
-                    "INSERT INTO StenerTable(QuestionUID, StenerSetUID, DepartmentUID, Category, Question, Answer, LocationEvidence, Priority, DueDate, Status, Compliance, PlanForSolution, Violated)"
-                    + "VALUES('" + question.QuestionID.ToString() + "','" + questionSet.UniqueID.ToString() + "','"
-                    + questionSet.AssignedDepartment.ToString() + "','" + questionSet.Category + "','"
+                var queryString =
+                    "INSERT INTO StenerTable(QuestionUID, StenerSetUid, DepartmentUid, Category, Question, Answer, LocationEvidence, Priority, DueDate, Status, Compliance, PlanForSolution, Violated)"
+                    + "VALUES('" + question.QuestionId + "','" + questionSet.UniqueID + "','"
+                    + questionSet.AssignedDepartment + "','" + questionSet.Category + "','"
                     + question.QuestionText + "','" + question.Answer + "','" + question.EvidenceLocation + "','"
-                    + questionSet.Priority.ToString() + "','" + questionSet.DueDate.ToString("MM/dd/yyyy hh:mm:ss tt") + "','"
+                    + questionSet.Priority + "','" + questionSet.DueDate.ToString("MM/dd/yyyy hh:mm:ss tt") + "','"
                     + questionSet.Status + "','" + Convert.ToInt32(question.Compliance) + "','"
                     + question.PlanForSolution + "','" + Convert.ToInt32(questionSet.Violated) + "')";
 
-                bool passed = NonQueryDatabase(queryString);
-                if (passed == false)
-                {
-                    return false;
-                }
+                var passed = NonQueryDatabase(queryString);
+                if (passed == false) return false;
             }
+
             return true;
         }
 
-        static public bool RemoveQuestionSet(int questionSetUID)
+        public static bool RemoveQuestionSet(int questionSetUID)
         {
-            string queryString = "DELETE FROM StenerTable WHERE StenerSetUID = " + questionSetUID.ToString();
+            var queryString = "DELETE FROM StenerTable WHERE StenerSetUid = " + questionSetUID;
 
-            bool passed = NonQueryDatabase(queryString);
+            var passed = NonQueryDatabase(queryString);
 
             return passed;
         }
+
         #endregion
 
         #region USER_DATA_STUFF
 
-        static public List<UserData> GetAllUsers()
+        public static List<UserData> GetAllUsers()
         {
-            DataTable usersTable = QueryDatabase("SELECT * FROM LoginTable");
-            List<UserData> users = new List<UserData>();
+            var usersTable = QueryDatabase("SELECT * FROM LoginTable");
+            var users = new List<UserData>();
 
             foreach (DataRow row in usersTable.Rows)
             {
-                UserData user = new UserData();
-                user.UUID = row.Field<int>("UsernameUID");
-                user.DepartmentUID = row.Field<int>("DepartmentUID");
+                var user = new UserData();
+                user.Uuid = row.Field<int>("UsernameUID");
+                user.DepartmentUid = row.Field<int>("DepartmentUid");
                 user.Permissions = Convert.ToBoolean(row.Field<int>("Permissions"));
 
-                if (row.Field<string>("Username") != null)
-                {
-                    user.Username = row.Field<string>("Username");
-                }
-                if (row.Field<string>("Password") != null)
-                {
-                    user.Password = row.Field<string>("Password");
-                }
+                if (row.Field<string>("Username") != null) user.Username = row.Field<string>("Username");
+                if (row.Field<string>("Password") != null) user.Password = row.Field<string>("Password");
 
                 users.Add(user);
             }
+
             return users;
         }
 
-        static public UserData FindUser(int userID)
+        public static UserData FindUser(int userID)
         {
-            DataTable dataTable = QueryDatabase("SELECT * FROM LoginTable WHERE UsernameUID = " + userID.ToString());
+            var dataTable = QueryDatabase("SELECT * FROM LoginTable WHERE UsernameUID = " + userID);
 
             if (dataTable.Rows.Count > 0)
             {
-                DataRow row = dataTable.Rows[0];
+                var row = dataTable.Rows[0];
 
-                UserData user = new UserData();
-                user.UUID = row.Field<int>("UsernameUID");
-                user.DepartmentUID = row.Field<int>("DepartmentUID");
+                var user = new UserData();
+                user.Uuid = row.Field<int>("UsernameUID");
+                user.DepartmentUid = row.Field<int>("DepartmentUid");
                 user.Permissions = Convert.ToBoolean(row.Field<int>("Permissions"));
 
-                if (row.Field<string>("Username") != null)
-                {
-                    user.Username = row.Field<string>("Username");
-                }
-                if (row.Field<string>("Password") != null)
-                {
-                    user.Password = row.Field<string>("Password");
-                }
+                if (row.Field<string>("Username") != null) user.Username = row.Field<string>("Username");
+                if (row.Field<string>("Password") != null) user.Password = row.Field<string>("Password");
 
                 return user;
             }
-            else
-            {
-                return null;
-            }
+
+            return null;
         }
 
-        static public UserData AuthenticateCredentials(string username, string password)
+        public static UserData AuthenticateCredentials(string username, string password)
         {
-            DataTable userTable = QueryDatabase("SELECT * FROM LoginTable WHERE Username = '" + username + "' AND Password = '" + password + "'");
+            var userTable = QueryDatabase("SELECT * FROM LoginTable WHERE Username = '" + username +
+                                          "' AND Password = '" + password + "'");
 
-            if (userTable.Rows.Count == 0)
-            {
-                return null;
-            }
-            else
-            {
-                DataRow row = userTable.Rows[0];
-                UserData user = new UserData();
-                user.UUID = row.Field<int>("UsernameUID");
-                user.DepartmentUID = row.Field<int>("DepartmentUID");
-                user.Permissions = Convert.ToBoolean(row.Field<int>("Permissions"));
+            if (userTable.Rows.Count == 0) return null;
 
-                if (row.Field<string>("Username") != null)
-                {
-                    user.Username = row.Field<string>("Username");
-                }
-                if (row.Field<string>("Password") != null)
-                {
-                    user.Password = row.Field<string>("Password");
-                }
+            var row = userTable.Rows[0];
+            var user = new UserData();
+            user.Uuid = row.Field<int>("UsernameUID");
+            user.DepartmentUid = row.Field<int>("DepartmentUid");
+            user.Permissions = Convert.ToBoolean(row.Field<int>("Permissions"));
 
-                return user;
-            }
+            if (row.Field<string>("Username") != null) user.Username = row.Field<string>("Username");
+            if (row.Field<string>("Password") != null) user.Password = row.Field<string>("Password");
+
+            return user;
         }
 
-        static public bool ModifyUser(UserData user)
+        public static bool ModifyUser(UserData user)
         {
-            string query =
-                           "UPDATE LoginTable SET"
-                           + " Username = '" + user.Username
-                           + "', DepartmentUID = '" + user.DepartmentUID.ToString()
-                           + "', Permissions = '" + Convert.ToInt32(user.Permissions).ToString()
-                           + "', Password = '" + user.Password
-                           + "' WHERE UsernameUID = '" + user.UUID.ToString() + "'";
+            var query =
+                "UPDATE LoginTable SET"
+                + " Username = '" + user.Username
+                + "', DepartmentUid = '" + user.DepartmentUid
+                + "', Permissions = '" + Convert.ToInt32(user.Permissions)
+                + "', Password = '" + user.Password
+                + "' WHERE UsernameUID = '" + user.Uuid + "'";
 
-            bool passed = NonQueryDatabase(query);
+            var passed = NonQueryDatabase(query);
 
             return passed;
         }
 
-        static public bool RemoveUser(int uid)
+        public static bool RemoveUser(int uid)
         {
-            string query = "DELETE FROM LoginTable WHERE UsernameUID = " + uid.ToString();
+            var query = "DELETE FROM LoginTable WHERE UsernameUID = " + uid;
 
-            bool passed = NonQueryDatabase(query);
+            var passed = NonQueryDatabase(query);
 
             return passed;
         }
 
-        static public bool AddUser(UserData user)
+        public static bool AddUser(UserData user)
         {
-            string query = "INSERT INTO LoginTable(Username, DepartmentUID, Permissions, Password, UsernameUID)VALUES('"
-                + user.Username + "','" + user.DepartmentUID.ToString() + "','"
-                + Convert.ToInt32(user.Permissions) + "','" + user.Password + "','"
-                + user.UUID.ToString() + "')";
+            var query = "INSERT INTO LoginTable(Username, DepartmentUid, Permissions, Password, UsernameUID)VALUES('"
+                        + user.Username + "','" + user.DepartmentUid + "','"
+                        + Convert.ToInt32(user.Permissions) + "','" + user.Password + "','"
+                        + user.Uuid + "')";
 
-            bool passed = NonQueryDatabase(query);
+            var passed = NonQueryDatabase(query);
 
             return passed;
         }
@@ -467,126 +419,123 @@ namespace BRAINS
         #endregion
 
         #region VIOLATION_STUFF
-        static public List<Violation> GetAllViolations()
+
+        public static List<Violation> GetAllViolations()
         {
-            string query = "SELECT * FROM ViolationTable";
+            var query = "SELECT * FROM ViolationTable";
 
-            DataTable violationTable = QueryDatabase(query);
+            var violationTable = QueryDatabase(query);
 
-            List<Violation> violations = new List<Violation>();
+            var violations = new List<Violation>();
 
             if (violationTable.Rows.Count != 0)
             {
                 foreach (DataRow row in violationTable.Rows)
                 {
-                    Violation violation = new Violation();
+                    var violation = new Violation();
 
-                    violation.ViolationUID = row.Field<int>("ViolationUID");
-                    violation.DepartmentUID = row.Field<int>("DepartmentUID");
-                    violation.StenerSetUID = row.Field<int>("StenerSetUID");
+                    violation.ViolationUid = row.Field<int>("ViolationUid");
+                    violation.DepartmentUid = row.Field<int>("DepartmentUid");
+                    violation.StenerSetUid = row.Field<int>("StenerSetUid");
                     violation.Severity = row.Field<int>("Severity");
 
                     if (row.Field<string>("ViolatedDate") != null)
                     {
                         //test
-                        string test = row.Field<string>("ViolatedDate");
-                        violation.ViolationDate = DateTime.ParseExact(row.Field<string>("ViolatedDate"), "MM/dd/yyyy hh:mm:ss tt", null);
+                        var test = row.Field<string>("ViolatedDate");
+                        violation.ViolationDate = DateTime.ParseExact(row.Field<string>("ViolatedDate"),
+                            "MM/dd/yyyy hh:mm:ss tt", null);
                     }
+
                     if (row.Field<string>("ViolationDescription") != null)
-                    {
                         violation.ViolationDescription = row.Field<string>("ViolationDescription");
-                    }
 
                     violations.Add(violation);
                 }
+
                 return violations;
             }
-            else
-            {
-                return null;
-            }
+
+            return null;
         }
 
-        static public List<Violation> GetDepartmentViolations(int departmentUID)
+        public static List<Violation> GetDepartmentViolations(int departmentUID)
         {
-            string query = "SELECT * FROM ViolationTable WHERE DepartmentUID = " + departmentUID.ToString();
+            var query = "SELECT * FROM ViolationTable WHERE DepartmentUid = " + departmentUID;
 
-            DataTable violationTable = QueryDatabase(query);
+            var violationTable = QueryDatabase(query);
 
-            List<Violation> violations = new List<Violation>();
+            var violations = new List<Violation>();
 
             if (violationTable.Rows.Count != 0)
             {
                 foreach (DataRow row in violationTable.Rows)
                 {
-                    Violation violation = new Violation();
+                    var violation = new Violation();
 
-                    violation.ViolationUID = row.Field<int>("ViolationUID");
-                    violation.DepartmentUID = row.Field<int>("DepartmentUID");
-                    violation.StenerSetUID = row.Field<int>("StenerSetUID");
+                    violation.ViolationUid = row.Field<int>("ViolationUid");
+                    violation.DepartmentUid = row.Field<int>("DepartmentUid");
+                    violation.StenerSetUid = row.Field<int>("StenerSetUid");
                     violation.Severity = row.Field<int>("Severity");
 
                     if (row.Field<string>("ViolatedDate") != null)
-                    {
-                        violation.ViolationDate = DateTime.ParseExact(row.Field<string>("ViolatedDate"), "MM/dd/yyyy hh:mm:ss tt", null);
-                    }
+                        violation.ViolationDate = DateTime.ParseExact(row.Field<string>("ViolatedDate"),
+                            "MM/dd/yyyy hh:mm:ss tt", null);
                     if (row.Field<string>("ViolationDescription") != null)
-                    {
                         violation.ViolationDescription = row.Field<string>("ViolationDescription");
-                    }
 
                     violations.Add(violation);
                 }
+
                 return violations;
             }
-            else
-            {
-                return null;
-            }
+
+            return null;
         }
 
-        static public bool AddViolation(Violation violation)
+        public static bool AddViolation(Violation violation)
         {
-            string query = "INSERT INTO ViolationTable(ViolationUID, DepartmentUID, StenerSetUID, Severity, ViolatedDate, ViolationDescription)VALUES('"
-                + violation.ViolationUID.ToString() + "','" + violation.DepartmentUID.ToString() + "','"
-                + violation.StenerSetUID.ToString() + "','" + violation.Severity.ToString() + "','"
-                + violation.ViolationDate.ToString("MM/dd/yyyy hh:mm:ss tt") + "','" + violation.ViolationDescription + "')";
+            var query =
+                "INSERT INTO ViolationTable(ViolationUid, DepartmentUid, StenerSetUid, Severity, ViolatedDate, ViolationDescription)VALUES('"
+                + violation.ViolationUid + "','" + violation.DepartmentUid + "','"
+                + violation.StenerSetUid + "','" + violation.Severity + "','"
+                + violation.ViolationDate.ToString("MM/dd/yyyy hh:mm:ss tt") + "','" + violation.ViolationDescription +
+                "')";
 
-            bool passed = NonQueryDatabase(query);
+            var passed = NonQueryDatabase(query);
 
             return passed;
         }
 
-        static public bool RemoveViolation(int violationUID)
+        public static bool RemoveViolation(int violationUID)
         {
-            string query =
-                "DELETE FROM ViolationTable WHERE ViolationUID = " + violationUID.ToString();
+            var query =
+                "DELETE FROM ViolationTable WHERE ViolationUid = " + violationUID;
 
-            bool passed = NonQueryDatabase(query);
+            var passed = NonQueryDatabase(query);
 
             return passed;
         }
+
         #endregion
 
         #region DEPARTMENTS
-        static public List<Department> GetAllDepartments()
-        {
-            List<Department> departments = new List<Department>();
 
-            string query = "SELECT * FROM Departments";
-            DataTable dataTable = QueryDatabase(query);
+        public static List<Department> GetAllDepartments()
+        {
+            var departments = new List<Department>();
+
+            var query = "SELECT * FROM Departments";
+            var dataTable = QueryDatabase(query);
 
             foreach (DataRow row in dataTable.Rows)
             {
-                Department department = new Department();
+                var department = new Department();
 
-                department.DepartmentUID = row.Field<int>("DepartmentUID");
+                department.DepartmentUid = row.Field<int>("DepartmentUid");
                 department.Admin = Convert.ToBoolean(row.Field<int>("Administrator"));
 
-                if (row.Field<string>("DepartmentName") != null)
-                {
-                    department.Name = row.Field<string>("DepartmentName");
-                }
+                if (row.Field<string>("DepartmentName") != null) department.Name = row.Field<string>("DepartmentName");
 
                 departments.Add(department);
             }
@@ -594,125 +543,108 @@ namespace BRAINS
             return departments;
         }
 
-        static public bool RemoveDepartment(int departmentUID)
+        public static bool RemoveDepartment(int departmentUID)
         {
-            string query = "DELETE FROM Departments WHERE DepartmentUID = " + departmentUID.ToString();
+            var query = "DELETE FROM Departments WHERE DepartmentUid = " + departmentUID;
 
-            bool passed = NonQueryDatabase(query);
-            if (passed == true)
+            var passed = NonQueryDatabase(query);
+            if (passed)
             {
-                List<UserData> users = GetUsersInDepartment(departmentUID);
-                foreach (UserData user in users)
+                var users = GetUsersInDepartment(departmentUID);
+                foreach (var user in users)
                 {
-                    user.DepartmentUID = 0;
+                    user.DepartmentUid = 0;
                     ModifyUser(user);
                 }
+
                 return passed;
             }
-            else
-            {
-                return passed;
-            }
-        }
-
-        static public bool AddDepartment(Department department)
-        {
-            string query = "INSERT INTO Departments(DepartmentUID, DepartmentName, Administrator)VALUES('"
-                + department.DepartmentUID.ToString() + "','" + department.Name + "','" + Convert.ToInt32(department.Admin) + "')";
-
-            bool passed = NonQueryDatabase(query);
 
             return passed;
         }
 
-        static public List<UserData> GetUsersInDepartment(int departmentID)
+        public static bool AddDepartment(Department department)
         {
-            string query = "SELECT * FROM LoginTable WHERE DepartmentUID = " + departmentID.ToString();
+            var query = "INSERT INTO Departments(DepartmentUid, DepartmentName, Administrator)VALUES('"
+                        + department.DepartmentUid + "','" + department.Name + "','" +
+                        Convert.ToInt32(department.Admin) + "')";
 
-            List<UserData> users = new List<UserData>();
-            DataTable dataTable = QueryDatabase(query);
+            var passed = NonQueryDatabase(query);
+
+            return passed;
+        }
+
+        public static List<UserData> GetUsersInDepartment(int departmentID)
+        {
+            var query = "SELECT * FROM LoginTable WHERE DepartmentUid = " + departmentID;
+
+            var users = new List<UserData>();
+            var dataTable = QueryDatabase(query);
 
             if (dataTable.Rows.Count > 0)
-            {
                 foreach (DataRow row in dataTable.Rows)
                 {
-                    UserData user = new UserData();
+                    var user = new UserData();
 
-                    user.UUID = row.Field<int>("UsernameUID");
-                    user.DepartmentUID = row.Field<int>("DepartmentUID");
+                    user.Uuid = row.Field<int>("UsernameUID");
+                    user.DepartmentUid = row.Field<int>("DepartmentUid");
                     user.Permissions = Convert.ToBoolean(row.Field<int>("Permissions"));
 
-                    if (row.Field<string>("Username") != null)
-                    {
-                        user.Username = row.Field<string>("Username");
-                    }
-                    if (row.Field<string>("Password") != null)
-                    {
-                        user.Password = row.Field<string>("Password");
-                    }
+                    if (row.Field<string>("Username") != null) user.Username = row.Field<string>("Username");
+                    if (row.Field<string>("Password") != null) user.Password = row.Field<string>("Password");
 
                     users.Add(user);
                 }
-            }
 
             return users;
         }
 
-        static public Department FindDepartment(int departmentID)
+        public static Department FindDepartment(int departmentID)
         {
-            string query = "SELECT * FROM Departments WHERE DepartmentUID = " + departmentID.ToString();
+            var query = "SELECT * FROM Departments WHERE DepartmentUid = " + departmentID;
 
-            DataTable dataTable = QueryDatabase(query);
+            var dataTable = QueryDatabase(query);
 
             if (dataTable.Rows.Count > 0)
             {
-                DataRow row = dataTable.Rows[0];
+                var row = dataTable.Rows[0];
 
-                Department department = new Department();
+                var department = new Department();
 
-                department.DepartmentUID = row.Field<int>("DepartmentUID");
+                department.DepartmentUid = row.Field<int>("DepartmentUid");
                 department.Admin = Convert.ToBoolean(row.Field<int>("Administrator"));
 
-                if (row.Field<string>("DepartmentName") != null)
-                {
-                    department.Name = row.Field<string>("DepartmentName");
-                }
+                if (row.Field<string>("DepartmentName") != null) department.Name = row.Field<string>("DepartmentName");
 
                 return department;
             }
-            else
-            {
-                return null;
-            }
+
+            return null;
         }
 
-        static public Department FindDepartmentByName(string name)
+        public static Department FindDepartmentByName(string name)
         {
-            string query = "SELECT * FROM Departments WHERE DepartmentName = '" + name + "'";
+            var query = "SELECT * FROM Departments WHERE DepartmentName = '" + name + "'";
 
-            DataTable dataTable = QueryDatabase(query);
+            var dataTable = QueryDatabase(query);
 
             if (dataTable.Rows.Count > 0)
             {
-                DataRow row = dataTable.Rows[0];
+                var row = dataTable.Rows[0];
 
-                Department department = new Department();
+                var department = new Department();
 
-                department.DepartmentUID = row.Field<int>("DepartmentUID");
+                department.DepartmentUid = row.Field<int>("DepartmentUid");
                 department.Admin = Convert.ToBoolean(row.Field<int>("Administrator"));
 
-                if (row.Field<string>("DepartmentName") != null)
-                {
-                    department.Name = row.Field<string>("DepartmentName");
-                }
+                if (row.Field<string>("DepartmentName") != null) department.Name = row.Field<string>("DepartmentName");
 
                 return department;
             }
-            else
-            {
-                return null;
-            }
+
+            return null;
         }
+
         #endregion
     }
 }

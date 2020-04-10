@@ -192,7 +192,7 @@
             this.refreshSubmissionsButton.TabIndex = 11;
             this.refreshSubmissionsButton.Text = "Refresh List";
             this.refreshSubmissionsButton.UseVisualStyleBackColor = true;
-            this.refreshSubmissionsButton.Click += new System.EventHandler(this.refreshSubmissionsButton_Click);
+            this.refreshSubmissionsButton.Click += new System.EventHandler(this.RefreshSubmissionsButton_Click);
             // 
             // violationDescLabel
             // 
@@ -262,7 +262,7 @@
             this.rejectButton.TabIndex = 4;
             this.rejectButton.Text = "Reject";
             this.rejectButton.UseVisualStyleBackColor = true;
-            this.rejectButton.Click += new System.EventHandler(this.rejectButton_Click);
+            this.rejectButton.Click += new System.EventHandler(this.RejectButton_Click);
             // 
             // approveButton
             // 
@@ -272,7 +272,7 @@
             this.approveButton.TabIndex = 3;
             this.approveButton.Text = "Approve";
             this.approveButton.UseVisualStyleBackColor = true;
-            this.approveButton.Click += new System.EventHandler(this.approveButton_Click);
+            this.approveButton.Click += new System.EventHandler(this.ApproveButton_Click);
             // 
             // submittedStenerListView
             // 
@@ -423,7 +423,7 @@
             this.submitStenerManagementButton.TabIndex = 19;
             this.submitStenerManagementButton.Text = "Submit Modifications";
             this.submitStenerManagementButton.UseVisualStyleBackColor = true;
-            this.submitStenerManagementButton.Click += new System.EventHandler(this.submitStenerManagementButton_Click);
+            this.submitStenerManagementButton.Click += new System.EventHandler(this.SubmitStenerManagementButton);
             // 
             // dueDateCalendar
             // 
@@ -467,7 +467,7 @@
             this.stenerManageRefreshBtn.TabIndex = 14;
             this.stenerManageRefreshBtn.Text = "Refresh Lists";
             this.stenerManageRefreshBtn.UseVisualStyleBackColor = true;
-            this.stenerManageRefreshBtn.Click += new System.EventHandler(this.stenerManageRefreshBtn_Click);
+            this.stenerManageRefreshBtn.Click += new System.EventHandler(this.StenerManageRefresh);
             // 
             // createQuestionSetButton
             // 
@@ -487,7 +487,7 @@
             this.deleteQuestionSetButton.TabIndex = 12;
             this.deleteQuestionSetButton.Text = "Delete Question Set";
             this.deleteQuestionSetButton.UseVisualStyleBackColor = true;
-            this.deleteQuestionSetButton.Click += new System.EventHandler(this.deleteQuestionSetButton_Click);
+            this.deleteQuestionSetButton.Click += new System.EventHandler(this.DeleteQuestionSetButton_Click);
             // 
             // addQuestionButton
             // 
@@ -497,7 +497,7 @@
             this.addQuestionButton.TabIndex = 11;
             this.addQuestionButton.Text = "Add Question";
             this.addQuestionButton.UseVisualStyleBackColor = true;
-            this.addQuestionButton.Click += new System.EventHandler(this.addQuestionButton_Click);
+            this.addQuestionButton.Click += new System.EventHandler(this.AddQuestionButton_Click);
             // 
             // modifyQuestionButton
             // 
@@ -507,7 +507,7 @@
             this.modifyQuestionButton.TabIndex = 10;
             this.modifyQuestionButton.Text = "Modify Question";
             this.modifyQuestionButton.UseVisualStyleBackColor = true;
-            this.modifyQuestionButton.Click += new System.EventHandler(this.modifyQuestionButton_Click);
+            this.modifyQuestionButton.Click += new System.EventHandler(this.ModifyQuestionButton_Click);
             // 
             // removeQuestionButton
             // 
@@ -517,7 +517,7 @@
             this.removeQuestionButton.TabIndex = 9;
             this.removeQuestionButton.Text = "Remove Question";
             this.removeQuestionButton.UseVisualStyleBackColor = true;
-            this.removeQuestionButton.Click += new System.EventHandler(this.removeQuestionButton_Click);
+            this.removeQuestionButton.Click += new System.EventHandler(this.RemoveQuestionButton_Click);
             // 
             // questionTextbox
             // 
@@ -667,7 +667,7 @@
             this.refreshAllUsers.TabIndex = 10;
             this.refreshAllUsers.Text = "Refresh All Users";
             this.refreshAllUsers.UseVisualStyleBackColor = true;
-            this.refreshAllUsers.Click += new System.EventHandler(this.refreshAllUsers_Click);
+            this.refreshAllUsers.Click += new System.EventHandler(this.RefreshAllUsers_Click);
             // 
             // removeUserText
             // 
@@ -708,9 +708,9 @@
             this.User.Text = "User";
             this.User.Width = 70;
             // 
-            // DepartmentUID
+            // DepartmentUid
             // 
-            this.DepartmentUID.Text = "DepartmentUID";
+            this.DepartmentUID.Text = "DepartmentUid";
             this.DepartmentUID.Width = 90;
             // 
             // memberList
@@ -748,7 +748,7 @@
             this.addUserButton.TabIndex = 4;
             this.addUserButton.Text = "Add User to Department";
             this.addUserButton.UseVisualStyleBackColor = true;
-            this.addUserButton.Click += new System.EventHandler(this.addUserButton_Click);
+            this.addUserButton.Click += new System.EventHandler(this.AddUserButton_Click);
             // 
             // refreshButtonDepartments
             // 
@@ -758,7 +758,7 @@
             this.refreshButtonDepartments.TabIndex = 3;
             this.refreshButtonDepartments.Text = "Refresh";
             this.refreshButtonDepartments.UseVisualStyleBackColor = true;
-            this.refreshButtonDepartments.Click += new System.EventHandler(this.refreshButtonDepartments_Click);
+            this.refreshButtonDepartments.Click += new System.EventHandler(this.RefreshButtonDepartments_Click);
             // 
             // RemoveDepartmentButton
             // 
@@ -793,7 +793,7 @@
             this.departmentList.TabIndex = 0;
             this.departmentList.UseCompatibleStateImageBehavior = false;
             this.departmentList.View = System.Windows.Forms.View.Details;
-            this.departmentList.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.departmentList_ItemSelectionChanged);
+            this.departmentList.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.DepartmentListItemSelectionChanged);
             // 
             // DepartmentID
             // 
@@ -900,9 +900,9 @@
             this.accountList.UseCompatibleStateImageBehavior = false;
             this.accountList.View = System.Windows.Forms.View.Details;
             // 
-            // UUID
+            // Uuid
             // 
-            this.UUID.Text = "UUID";
+            this.UUID.Text = "Uuid";
             this.UUID.Width = 113;
             // 
             // Username
@@ -974,12 +974,12 @@
             // 
             // violationUID
             // 
-            this.violationUID.Text = "ViolationUID";
+            this.violationUID.Text = "ViolationUid";
             this.violationUID.Width = 95;
             // 
             // oversightStenerSetUID
             // 
-            this.oversightStenerSetUID.Text = "StenerSetUID";
+            this.oversightStenerSetUID.Text = "StenerSetUid";
             this.oversightStenerSetUID.Width = 91;
             // 
             // oversightDepartment

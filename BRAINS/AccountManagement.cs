@@ -1,87 +1,80 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data;
-using System.Data.SqlClient;
-using System.Configuration;
-using System.Windows.Forms;
 using System.Security.Cryptography;
-
+using System.Text;
 
 namespace BRAINS
 {
-    class AccountManagement
+    internal class AccountManagement
     {
-
-        public void changePassword(string password, int UUID)
+        public void ChangePassword(string password, int uuid)
         {
-            UserData user = SqlManager.FindUser(UUID);
+            var user = SqlManager.FindUser(uuid);
             user.Password = ComputeSha256Hash(password);
             SqlManager.ModifyUser(user);
         }
+
         public List<UserData> GetUserList()
         {
-            List<UserData> usersData = SqlManager.GetAllUsers();
+            var usersData = SqlManager.GetAllUsers();
 
             return usersData;
         }
-        public void createUser(string username, string password, string confirmPassword, int department, int permissions)
+
+        public void CreateUser(string username, string password, int department, int permissions)
         {
-            UserData user = new UserData();
-            user.Username = username;
-            user.Password = ComputeSha256Hash(password);
-            user.DepartmentUID = department;
-            user.Permissions = Convert.ToBoolean(permissions);
-            user.UUID = getNextUserID();
+            var user = new UserData
+            {
+                Username = username,
+                Password = ComputeSha256Hash(password),
+                DepartmentUid = department,
+                Permissions = Convert.ToBoolean(permissions),
+                Uuid = GetNextUserId()
+            };
             SqlManager.AddUser(user);
         }
-        private int getNextUserID()
-        {
-            List<UserData> users = SqlManager.GetAllUsers();
-            int nextID = 0;
-            foreach (UserData user in users)
-            {
-                if (user.UUID > nextID)
-                {
-                    nextID = user.UUID;
-                }
-            }
-            return nextID + 1;
-        }
-        
-        public void DeleteUser(int UUID)
-        {
-            UserData user = SqlManager.FindUser(UUID);
-            SqlManager.RemoveUser(UUID);
 
+        private static int GetNextUserId()
+        {
+            var users = SqlManager.GetAllUsers();
+            var nextId = 0;
+            foreach (var user in users)
+                if (user.Uuid > nextId)
+                    nextId = user.Uuid;
+
+            return nextId + 1;
         }
+
+        public void DeleteUser(int uuid)
+        {
+            SqlManager.RemoveUser(uuid);
+        }
+
         public UserData FindUser(int x)
         {
-            UserData tempUserData = SqlManager.FindUser(x);
+            var tempUserData = SqlManager.FindUser(x);
             return tempUserData;
         }
+
         public string ComputeSha256Hash(string password)
         {
             // Create a SHA256   
-            using (SHA256 sha256Hash = SHA256.Create())
+            using (var sha256Hash = SHA256.Create())
             {
                 // ComputeHash - returns byte array  
-                byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(password));
+                var bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(password));
 
                 // Convert byte array to a string   
-                StringBuilder builder = new StringBuilder();
-                for (int i = 0; i < bytes.Length; i++)
-                {
-                    builder.Append(bytes[i].ToString("x2"));
-                }
+                var builder = new StringBuilder();
+                for (var i = 0; i < bytes.Length; i++) builder.Append(bytes[i].ToString("x2"));
+
                 return builder.ToString();
             }
         }
+
         public UserData Login(string username, string password)
         {
-            UserData user = SqlManager.AuthenticateCredentials(username, ComputeSha256Hash(password));
+            var user = SqlManager.AuthenticateCredentials(username, ComputeSha256Hash(password));
             return user;
         }
     }

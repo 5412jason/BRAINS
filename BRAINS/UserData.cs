@@ -2,16 +2,14 @@
 {
     public class UserData
     {
-        private int uuid;
-        private string username;
-        private string password;
-        private int departmentUID;
-        private bool permissions;
+        public int Uuid { get; set; }
 
-        public int UUID { get => uuid; set => uuid = value; }
-        public string Username { get => username; set => username = value; }
-        public string Password { get => password; set => password = value; }
-        public int DepartmentUID { get => departmentUID; set => departmentUID = value; }
-        public bool Permissions { get => permissions; set => permissions = value; }
+        public string Username { get; set; }
+
+        public string Password { get; set; }
+
+        public int DepartmentUid { get; set; }
+
+        public bool Permissions { get; set; }
     }
 }

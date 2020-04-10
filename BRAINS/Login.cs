@@ -12,39 +12,34 @@ namespace BRAINS
 
         private void loginButton_Click(object sender, EventArgs e)
         {
-            AccountManagement accMan = new AccountManagement();
-            Notifications notifications = new Notifications();
-            UserData user = accMan.Login(usernameTextBox.Text, passwordTextBox.Text);
+            var accMan = new AccountManagement();
+            var notifications = new Notifications();
+            var user = accMan.Login(usernameTextBox.Text, passwordTextBox.Text);
             if (user != null)
             {
-                
-                if (user.Permissions == true)
+                if (user.Permissions)
                 {
-
-                    Oversight Landingpage = new Oversight(user);
+                    var Landingpage = new Oversight(user);
                     Landingpage.Show();
                     notifications.StartProcess(user);
-                    this.Close();
+                    Close();
                 }
                 else
                 {
-                    Business Landingpage = new Business(user);
+                    var Landingpage = new Business(user);
                     Landingpage.Show();
                     notifications.StartProcess(user);
-                    this.Close();
-
+                    Close();
                 }
             }
             else
             {
                 MessageBox.Show("Invalid username or password");
             }
-
         }
 
         private void Login_Load(object sender, EventArgs e)
         {
-
         }
     }
 }

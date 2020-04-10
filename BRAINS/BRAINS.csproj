@@ -84,12 +84,6 @@
     <Compile Include="Oversight.Designer.cs">
       <DependentUpon>Oversight.cs</DependentUpon>
     </Compile>
-    <Compile Include="OversightAccountsUsernameChange.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="OversightAccountsUsernameChange.Designer.cs">
-      <DependentUpon>OversightAccountsUsernameChange.cs</DependentUpon>
-    </Compile>
     <Compile Include="OversightAddDepartment.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -135,6 +129,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="NewUser.resx">
       <DependentUpon>NewUser.cs</DependentUpon>
@@ -144,9 +139,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Oversight.resx">
       <DependentUpon>Oversight.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="OversightAccountsUsernameChange.resx">
-      <DependentUpon>OversightAccountsUsernameChange.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OversightAddDepartment.resx">
       <DependentUpon>OversightAddDepartment.cs</DependentUpon>
