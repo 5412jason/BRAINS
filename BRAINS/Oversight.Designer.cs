@@ -477,7 +477,7 @@
             this.createQuestionSetButton.TabIndex = 13;
             this.createQuestionSetButton.Text = "Create Question Set";
             this.createQuestionSetButton.UseVisualStyleBackColor = true;
-            this.createQuestionSetButton.Click += new System.EventHandler(this.createQuestionSetButton_Click);
+            this.createQuestionSetButton.Click += new System.EventHandler(this.CreateQuestionSetButton_Click);
             // 
             // deleteQuestionSetButton
             // 
@@ -738,7 +738,7 @@
             this.removeUserButton.TabIndex = 5;
             this.removeUserButton.Text = "Remove User from Dept.";
             this.removeUserButton.UseVisualStyleBackColor = true;
-            this.removeUserButton.Click += new System.EventHandler(this.removeUserButton_Click);
+            this.removeUserButton.Click += new System.EventHandler(this.RemoveUserButton_Click);
             // 
             // addUserButton
             // 
@@ -870,7 +870,7 @@
             this.refreshButtonAccounts.TabIndex = 5;
             this.refreshButtonAccounts.Text = "Refresh";
             this.refreshButtonAccounts.UseVisualStyleBackColor = true;
-            this.refreshButtonAccounts.Click += new System.EventHandler(this.refreshButtonAccounts_Click);
+            this.refreshButtonAccounts.Click += new System.EventHandler(this.RefreshButtonAccounts_Click);
             // 
             // changePasswordButton
             // 
@@ -880,7 +880,7 @@
             this.changePasswordButton.TabIndex = 2;
             this.changePasswordButton.Text = "Change Password";
             this.changePasswordButton.UseVisualStyleBackColor = true;
-            this.changePasswordButton.Click += new System.EventHandler(this.changePasswordButton_Click);
+            this.changePasswordButton.Click += new System.EventHandler(this.ChangePasswordButton_Click);
             // 
             // accountList
             // 
@@ -941,7 +941,7 @@
             this.removeViolation.TabIndex = 2;
             this.removeViolation.Text = "Remove Violation";
             this.removeViolation.UseVisualStyleBackColor = true;
-            this.removeViolation.Click += new System.EventHandler(this.removeViolation_Click);
+            this.removeViolation.Click += new System.EventHandler(this.RemoveViolation_Click);
             // 
             // violationRefreshButton
             // 
@@ -951,7 +951,7 @@
             this.violationRefreshButton.TabIndex = 1;
             this.violationRefreshButton.Text = "Refresh";
             this.violationRefreshButton.UseVisualStyleBackColor = true;
-            this.violationRefreshButton.Click += new System.EventHandler(this.violationRefreshButton_Click);
+            this.violationRefreshButton.Click += new System.EventHandler(this.ViolationRefreshButton_Click);
             // 
             // OversightViolationList
             // 
