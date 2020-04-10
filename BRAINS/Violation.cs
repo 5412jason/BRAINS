@@ -2,7 +2,7 @@
 
 namespace BRAINS
 {
-    internal class Violation
+    public class Violation
     {
         public string ViolationDescription { get; set; }
 

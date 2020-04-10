@@ -8,8 +8,8 @@ namespace BRAINS
         private readonly UserData currentUser;
         private readonly StenerManagement stenerManagement;
         private readonly ViolationManagement violationManagement;
-        private QuestionSet currentQuestionSet;
         private int currentQuestion;
+        private QuestionSet currentQuestionSet;
 
         public Business()
         {

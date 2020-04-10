@@ -6,7 +6,7 @@ using System.Data.SqlClient;
 
 namespace BRAINS
 {
-    internal static class SqlManager
+    public static class SqlManager
     {
         private static DataTable QueryDatabase(string query)
         {
@@ -597,29 +597,6 @@ namespace BRAINS
                 }
 
             return users;
-        }
-
-        public static Department FindDepartment(int departmentID)
-        {
-            var query = "SELECT * FROM Departments WHERE DepartmentUid = " + departmentID;
-
-            var dataTable = QueryDatabase(query);
-
-            if (dataTable.Rows.Count > 0)
-            {
-                var row = dataTable.Rows[0];
-
-                var department = new Department();
-
-                department.DepartmentUid = row.Field<int>("DepartmentUid");
-                department.Admin = Convert.ToBoolean(row.Field<int>("Administrator"));
-
-                if (row.Field<string>("DepartmentName") != null) department.Name = row.Field<string>("DepartmentName");
-
-                return department;
-            }
-
-            return null;
         }
 
         public static Department FindDepartmentByName(string name)
