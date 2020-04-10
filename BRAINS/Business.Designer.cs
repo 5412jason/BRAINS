@@ -416,7 +416,7 @@
             this.busniessViolationsrefreshButton.TabIndex = 2;
             this.busniessViolationsrefreshButton.Text = "Refresh";
             this.busniessViolationsrefreshButton.UseVisualStyleBackColor = true;
-            this.busniessViolationsrefreshButton.Click += new System.EventHandler(this.busniessViolationsrefreshButton_Click);
+            this.busniessViolationsrefreshButton.Click += new System.EventHandler(this.BusinessViolationsRefreshButton_Click);
             // 
             // Business
             // 
