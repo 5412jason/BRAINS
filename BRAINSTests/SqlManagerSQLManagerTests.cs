@@ -14,7 +14,19 @@ namespace BRAINS.Tests
         [TestMethod()]
         public void GetAllQuestionSetsTest()
         {
-            Assert.Fail();
+            //Arrange
+            int ExpectedNumOfQuestions = 25;
+            int departmentID = 2034;
+            string status = #??;
+            List<QuestionSet> questionSet;
+            int numOfQuestionsRetrieved;
+
+            //Act
+            questionSet = SqlManager.GetAllQuestionSets(departmentID, status);
+            numOfQuestionsRetrieved = questionSet.size();
+
+            //Assert
+            Assert.AreEqual(ExpectedNumOfQuestions, numOfQuestionsRetrieved);
         }
 
         [TestMethod()]
@@ -32,13 +44,36 @@ namespace BRAINS.Tests
         [TestMethod()]
         public void AddQuestionTest()
         {
-            Assert.Fail();
+            //Arrange
+            bool expected = true;
+            QuestionSet questionSet = ?;
+            Question question = ?
+            bool actual;
+
+            //Act
+            actual = SqlManager.AddQuestion(questionSet, question);
+                
+
+            //Assert
+            Assert.AreEqual(expected, actual);
         }
 
         [TestMethod()]
         public void RemoveQuestionTest()
         {
-            Assert.Fail();
+            //Arrange
+            bool expected = true;
+            int questionUID = 23;
+            int qSetUID = 57;
+            bool actual;
+
+
+            //Act
+            actual = SqlManager.RemoveQuestion(questionUID, qSetUID);
+            
+
+            //Assert
+            Assert.AreEqual(expected, actual);
         }
 
         [TestMethod()]
@@ -62,7 +97,17 @@ namespace BRAINS.Tests
         [TestMethod()]
         public void GetAllUsersTest()
         {
-            Assert.Fail();
+            //Arrange
+            int expectedNumOfUsers = 30;
+            List<UserData> userSet;
+            int numberOfUsersRetrieved;
+
+            //Act
+            userSet = SqlManager.List<UserData> GetAllUsers();
+            numberOfUsersRetrieved = questionSet.size();
+
+            //Assert
+            Assert.AreEqual(expectedNumOfUsers, numberOfUsersRetrieved);
         }
 
         [TestMethod()]
@@ -86,13 +131,35 @@ namespace BRAINS.Tests
         [TestMethod()]
         public void RemoveUserTest()
         {
-            Assert.Fail();
+            //Arrange
+            bool expected = true;
+            int uid = 15;
+            bool actual;
+
+
+            //Act
+            actual = SqlManager.RemoveUser(uid);
+            
+
+            //Assert
+            Assert.AreEqual(expected, actual);
         }
 
         [TestMethod()]
         public void AddUserTest()
         {
-            Assert.Fail();
+            //Arrange
+            bool expected = true;
+            UserData userToAdd = ##???;
+            bool actual;
+
+
+            //Act
+            actual = SqlManager.AddUser(userToAdd);
+            
+
+            //Assert
+            Assert.AreEqual(expected, actual);
         }
 
         [TestMethod()]
