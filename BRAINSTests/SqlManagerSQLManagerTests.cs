@@ -15,30 +15,18 @@ namespace BRAINS.Tests
         public void GetAllQuestionSetsTest()
         {
             //Arrange
-            int ExpectedNumOfQuestions = 25;
-            int departmentID = 2034;
-            string status = #??;
+            int ExpectedNumOfQuestions = 1;
+            int departmentID = 1;
+            string status = "submitted";
             List<QuestionSet> questionSet;
             int numOfQuestionsRetrieved;
 
             //Act
             questionSet = SqlManager.GetAllQuestionSets(departmentID, status);
-            numOfQuestionsRetrieved = questionSet.size();
+            numOfQuestionsRetrieved = questionSet.Count();
 
             //Assert
             Assert.AreEqual(ExpectedNumOfQuestions, numOfQuestionsRetrieved);
-        }
-
-        [TestMethod()]
-        public void FindQuestionSetTest()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
-        public void ModifyQuestionSetTest()
-        {
-            Assert.Fail();
         }
 
         [TestMethod()]
@@ -46,8 +34,8 @@ namespace BRAINS.Tests
         {
             //Arrange
             bool expected = true;
-            QuestionSet questionSet = ?;
-            Question question = ?
+            QuestionSet questionSet = new QuestionSet();
+            Question question = new Question();
             bool actual;
 
             //Act
@@ -76,58 +64,23 @@ namespace BRAINS.Tests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod()]
-        public void ModifyQuestionTest()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
-        public void CreateNewQuestionSetTest()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
-        public void RemoveQuestionSetTest()
-        {
-            Assert.Fail();
-        }
 
         [TestMethod()]
         public void GetAllUsersTest()
         {
             //Arrange
             int expectedNumOfUsers = 30;
-            List<UserData> userSet;
+            List<UserData> userSet = new List<UserData>();
             int numberOfUsersRetrieved;
 
             //Act
-            userSet = SqlManager.List<UserData> GetAllUsers();
-            numberOfUsersRetrieved = questionSet.size();
+            userSet = SqlManager.GetAllUsers();
+            numberOfUsersRetrieved = userSet.Count();
 
             //Assert
             Assert.AreEqual(expectedNumOfUsers, numberOfUsersRetrieved);
-        }
 
-        [TestMethod()]
-        public void FindUserTest()
-        {
-            Assert.Fail();
         }
-
-        [TestMethod()]
-        public void AuthenticateCredentialsTest()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
-        public void ModifyUserTest()
-        {
-            Assert.Fail();
-        }
-
         [TestMethod()]
         public void RemoveUserTest()
         {
@@ -145,75 +98,5 @@ namespace BRAINS.Tests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod()]
-        public void AddUserTest()
-        {
-            //Arrange
-            bool expected = true;
-            UserData userToAdd = ##???;
-            bool actual;
-
-
-            //Act
-            actual = SqlManager.AddUser(userToAdd);
-            
-
-            //Assert
-            Assert.AreEqual(expected, actual);
-        }
-
-        [TestMethod()]
-        public void GetAllViolationsTest()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
-        public void GetDepartmentViolationsTest()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
-        public void AddViolationTest()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
-        public void RemoveViolationTest()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
-        public void GetAllDepartmentsTest()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
-        public void RemoveDepartmentTest()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
-        public void AddDepartmentTest()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
-        public void GetUsersInDepartmentTest()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
-        public void FindDepartmentByNameTest()
-        {
-            Assert.Fail();
-        }
     }
 }
