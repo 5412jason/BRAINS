@@ -8,7 +8,7 @@ namespace BRAINS
 {
     public static class SqlManager
     {
-        private static DataTable QueryDatabase(string query)
+        public static DataTable QueryDatabase(string query)
         {
             try
             {

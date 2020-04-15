@@ -67,6 +67,8 @@
             this.oversightSeverity = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.oversightViolatedDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.busniessViolationsrefreshButton = new System.Windows.Forms.Button();
+            this.EvidenceLocationButton = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.businessTabControl.SuspendLayout();
             this.completeStenerTab.SuspendLayout();
             this.completeStenerStatusStrip.SuspendLayout();
@@ -86,6 +88,7 @@
             // 
             // completeStenerTab
             // 
+            this.completeStenerTab.Controls.Add(this.EvidenceLocationButton);
             this.completeStenerTab.Controls.Add(this.completeQuestionSetListView);
             this.completeStenerTab.Controls.Add(this.submitQuestionSetButton);
             this.completeStenerTab.Controls.Add(this.saveAndCloseSetButton);
@@ -227,7 +230,7 @@
             this.evidenceLocationTextBox.Location = new System.Drawing.Point(561, 404);
             this.evidenceLocationTextBox.Multiline = true;
             this.evidenceLocationTextBox.Name = "evidenceLocationTextBox";
-            this.evidenceLocationTextBox.Size = new System.Drawing.Size(392, 43);
+            this.evidenceLocationTextBox.Size = new System.Drawing.Size(195, 43);
             this.evidenceLocationTextBox.TabIndex = 14;
             // 
             // planForSolutionLabel
@@ -418,6 +421,20 @@
             this.busniessViolationsrefreshButton.UseVisualStyleBackColor = true;
             this.busniessViolationsrefreshButton.Click += new System.EventHandler(this.BusinessViolationsRefreshButton_Click);
             // 
+            // EvidenceLocationButton
+            // 
+            this.EvidenceLocationButton.Location = new System.Drawing.Point(778, 421);
+            this.EvidenceLocationButton.Name = "EvidenceLocationButton";
+            this.EvidenceLocationButton.Size = new System.Drawing.Size(174, 25);
+            this.EvidenceLocationButton.TabIndex = 21;
+            this.EvidenceLocationButton.Text = "Open Evidence Location";
+            this.EvidenceLocationButton.UseVisualStyleBackColor = true;
+            this.EvidenceLocationButton.Click += new System.EventHandler(this.EvidenceLocationButton_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
             // Business
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -478,5 +495,7 @@
         private System.Windows.Forms.ColumnHeader oversightDescription;
         private System.Windows.Forms.ColumnHeader oversightSeverity;
         private System.Windows.Forms.ColumnHeader oversightViolatedDate;
+        private System.Windows.Forms.Button EvidenceLocationButton;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
