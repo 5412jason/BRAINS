@@ -51,8 +51,8 @@ namespace BRAINS.Tests
         {
             //Arrange
             bool expected = true;
-            int questionUID = 23;
-            int qSetUID = 57;
+            int questionUID = 3;
+            int qSetUID = 3;
             bool actual;
 
 
@@ -69,7 +69,7 @@ namespace BRAINS.Tests
         public void GetAllUsersTest()
         {
             //Arrange
-            int expectedNumOfUsers = 30;
+            int expectedNumOfUsers = 3;
             List<UserData> userSet = new List<UserData>();
             int numberOfUsersRetrieved;
 
@@ -86,7 +86,7 @@ namespace BRAINS.Tests
         {
             //Arrange
             bool expected = true;
-            int uid = 15;
+            int uid = 3;
             bool actual;
 
 
